@@ -112,6 +112,21 @@ const dataCenterPartners: Partner[] = [
       </svg>
     ),
   },
+  {
+    name: 'Hewlett Packard',
+    bgColor: '#002561',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Adobe',
+    bgColor: '#FF0000',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Linux',
+    bgColor: '#222222',
+    isTextPlaceholder: true,
+  },
 ];
 
 const cyberSecurityPartners: Partner[] = [
@@ -181,6 +196,21 @@ const cyberSecurityPartners: Partner[] = [
       </svg>
     ),
   },
+  {
+    name: 'SafeNet',
+    bgColor: '#D9251B',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'AnyDesk',
+    bgColor: '#EF443B',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Zoom',
+    bgColor: '#2D8CFF',
+    isTextPlaceholder: true,
+  },
 ];
 
 const networkSecurityPartners: Partner[] = [
@@ -233,6 +263,31 @@ const networkSecurityPartners: Partner[] = [
         <rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900" />
       </svg>
     ),
+  },
+  {
+    name: 'Mikrotik',
+    bgColor: '#1B365D',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Cambium Networks',
+    bgColor: '#005A9C',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Rosenberger',
+    bgColor: '#009EE3',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Grandstream',
+    bgColor: '#005C9E',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Prosw',
+    bgColor: '#2C3E50',
+    isTextPlaceholder: true,
   },
 ];
 
@@ -397,21 +452,21 @@ export default function PartnersSection() {
       <section className="relative w-full py-24 overflow-hidden border-b border-dashed border-white/10">
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           
-          {/* Sub-section 1 — DATA CENTER & VIRTUALIZATION */}
+          {/* Sub-section 1 — NETWORK & SECURITY SOLUTIONS */}
           <div className="mb-20">
             <Reveal delay={0} threshold={0.15} duration={700}>
               <h2
                 className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono"
                 style={{ color: '#FFFFFF', letterSpacing: '0.08em' }}
               >
-                DATA CENTER & VIRTUALIZATION
+                NETWORK & SECURITY SOLUTIONS
               </h2>
             </Reveal>
 
             <div className="flex flex-col gap-3 w-full">
-              {dataCenterRows.map((rowItems, rowIndex) => (
+              {networkSecurityRows.map((rowItems, rowIndex) => (
                 <PartnersRow
-                  key={`datacenter-${rowIndex}`}
+                  key={`networksecurity-${rowIndex}`}
                   rowItems={rowItems}
                   staggerMs={90}
                 />
@@ -447,21 +502,21 @@ export default function PartnersSection() {
           {/* Divider 2 */}
           <div className="border-t border-dashed border-white/10 w-full my-20" />
 
-          {/* Sub-section 3 — NETWORK & SECURITY SOLUTIONS */}
+          {/* Sub-section 3 — DATA CENTER & VIRTUALIZATION */}
           <div>
             <Reveal delay={0} threshold={0.15} duration={700}>
               <h2
                 className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono"
                 style={{ color: '#FFFFFF', letterSpacing: '0.08em' }}
               >
-                NETWORK & SECURITY SOLUTIONS
+                DATA CENTER & VIRTUALIZATION
               </h2>
             </Reveal>
 
             <div className="flex flex-col gap-3 w-full">
-              {networkSecurityRows.map((rowItems, rowIndex) => (
+              {dataCenterRows.map((rowItems, rowIndex) => (
                 <PartnersRow
-                  key={`networksecurity-${rowIndex}`}
+                  key={`datacenter-${rowIndex}`}
                   rowItems={rowItems}
                   staggerMs={90}
                 />
