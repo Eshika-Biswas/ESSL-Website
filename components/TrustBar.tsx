@@ -38,7 +38,7 @@ const BASE_CLIENTS: ClientLogo[] = [
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Anwar Group', src: '/logos/anwar-group.png',
+    kind: 'image', name: 'United Group', src: '/logos/united.png',
     width: 110, height: 40,
   },
   {
@@ -51,6 +51,10 @@ const BASE_CLIENTS: ClientLogo[] = [
   },
   {
     kind: 'image', name: 'Masco Group', src: '/logos/masco.png',
+    width: 110, height: 40,
+  },
+  {
+    kind: 'image', name: 'Partex Star Group', src: '/logos/partex-star.png',
     width: 110, height: 40,
   },
   // --- Inline SVG logos rendered on a light tile, so colors are fully visible ---
