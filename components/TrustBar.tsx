@@ -38,7 +38,7 @@ const BASE_CLIENTS: ClientLogo[] = [
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Anwar Group', src: '/logos/anwar group.png',
+    kind: 'image', name: 'Anwar Group', src: '/logos/anwar-group.png',
     width: 110, height: 40,
   },
   {
@@ -58,7 +58,7 @@ const BASE_CLIENTS: ClientLogo[] = [
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Partex Star Group', src: '/logos/partex star.png',
+    kind: 'image', name: 'Partex Star Group', src: '/logos/partex-star.png',
     width: 110, height: 40,
   },
   // --- Inline SVG logos rendered on a light tile, so colors are fully visible ---
@@ -152,7 +152,7 @@ export default function TrustBar() {
               {CLIENTS.map((client, i) => (
                 <div
                   key={`${client.name}-${i}`}
-                  className="flex-shrink-0 mx-6 sm:mx-8"
+                  className="flex-shrink-0 mx-3 sm:mx-4"
                 >
                   {/* Light tile card — logos always visible on white/near-white bg */}
                   <div className="flex items-center justify-center h-14 px-4 rounded-xl border border-white/10 bg-white/90 hover:bg-white hover:border-primary/20 hover:shadow-md transition-all duration-300 group cursor-default" style={{ minWidth: '140px' }}>
@@ -162,11 +162,11 @@ export default function TrustBar() {
                         alt={`${client.name} logo`}
                         width={client.width}
                         height={client.height}
-                        className="object-contain max-h-[32px] w-auto opacity-70 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-300"
+                        className="object-contain max-h-[32px] w-auto transition-all duration-300"
                       />
                     ) : (
                       <div
-                        className="trustbar-svg-logo flex items-center justify-center opacity-70 group-hover:opacity-100 transition-opacity duration-300"
+                        className="flex items-center justify-center"
                         dangerouslySetInnerHTML={{ __html: client.svg }}
                       />
                     )}

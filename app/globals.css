@@ -167,16 +167,7 @@ main {
 }
 
 .animate-ticker {
-  animation: ticker 40s linear infinite;
-}
-
-/* TrustBar: SVG logos — grayscale by default, full color on card hover */
-.trustbar-svg-logo {
-  filter: grayscale(100%);
-  transition: filter 0.3s ease, opacity 0.3s ease;
-}
-.group:hover .trustbar-svg-logo {
-  filter: grayscale(0%);
+  animation: ticker 22s linear infinite;
 }
 
 .animate-shimmer {
