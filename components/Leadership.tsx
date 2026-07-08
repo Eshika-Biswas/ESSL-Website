@@ -169,7 +169,7 @@ export default function Leadership() {
                 >
                   GET IN TOUCH
                 </h3>
-                <p className="text-xs sm:text-sm leading-relaxed text-slate-650 max-w-xl">
+                <p className="text-xs sm:text-sm leading-relaxed text-slate-700 max-w-xl">
                   Learn more about how we foster a culture of creativity, support, and innovation 
                   to create cutting-edge solutions.
                 </p>

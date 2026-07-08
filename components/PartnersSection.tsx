@@ -499,7 +499,7 @@ export default function PartnersSection() {
               >
                 COLLABORATE WITH US
               </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-slate-650 mb-8 max-w-xl">
+              <p className="text-sm sm:text-base leading-relaxed text-slate-700 mb-8 max-w-xl">
                 We&apos;re always looking for new technology and channel partnerships.
                 Get in touch to discuss how we can work together to deliver better outcomes for our clients.
               </p>

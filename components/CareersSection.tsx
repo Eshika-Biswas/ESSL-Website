@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import Link from 'next/link';
 import { Network, Compass, Users, TrendingUp } from 'lucide-react';
 
 const benefits = [
@@ -199,6 +200,38 @@ export default function CareersSection() {
                 </div>
               );
             })}
+          </div>
+
+          {/* CTA Section */}
+          <div
+            className={`mt-24 sm:mt-32 transition-all duration-700 delay-500 ${
+              benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+            }`}
+          >
+            {/* Card 2: Get in Touch (light card - constrained max-width) */}
+            <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-100/10 bg-gradient-to-r from-white to-slate-50/95">
+              <div className="grid md:grid-cols-[2fr_1.2fr] items-center gap-6 text-left">
+                <div>
+                  <h3 className="text-lg sm:text-xl font-bold tracking-widest text-slate-900 uppercase font-mono mb-3"
+                    style={{ letterSpacing: '0.08em' }}
+                  >
+                    GET IN TOUCH
+                  </h3>
+                  <p className="text-xs sm:text-sm leading-relaxed text-slate-700 max-w-xl">
+                    Learn more about how we foster a culture of creativity, support, and innovation to create cutting-edge solutions.
+                  </p>
+                </div>
+                <div className="flex md:justify-end">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center justify-center rounded-full px-8 py-2.5 text-[10px] font-bold tracking-widest text-white font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
+                    style={{ background: '#FF6B35', letterSpacing: '0.08em' }}
+                  >
+                    CONTACT US
+                  </Link>
+                </div>
+              </div>
+            </div>
           </div>
 
         </div>
