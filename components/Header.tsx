@@ -84,7 +84,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <Image
-              src="/logo.png"
+              src="/logos/essl-logo.jpeg"
               alt="ESS - Ensure Support Services"
               width={200}
               height={74}
