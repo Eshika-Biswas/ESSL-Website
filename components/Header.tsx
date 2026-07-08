@@ -247,16 +247,16 @@ export default function Header() {
         }`}
       >
         <div className="px-4 py-6 space-y-2">
-          <MobileLink href="/" label="Home" />
-          <MobileAccordion title="About Us" items={about.map(a => ({ name: a.name, href: a.href }))} />
-          <MobileAccordion title="Solutions" items={solutions.map(s => ({ name: s.name, href: s.href }))} />
-          <MobileAccordion title="Services" items={services.map(s => ({ name: s.name, href: s.href }))} />
-          <MobileAccordion title="Products" items={products.map(p => ({ name: p, href: '#' }))} />
-          <MobileLink href="/case-studies" label="Case Studies" />
-          <MobileLink href="/insights" label="Insights" />
-          <MobileLink href="/contact" label="Contact Us" />
+          <MobileLink href="/" label="Home" onClick={() => setMobileMenuOpen(false)} />
+          <MobileAccordion title="About Us" items={about.map(a => ({ name: a.name, href: a.href }))} onItemClick={() => setMobileMenuOpen(false)} />
+          <MobileAccordion title="Solutions" items={solutions.map(s => ({ name: s.name, href: s.href }))} onItemClick={() => setMobileMenuOpen(false)} />
+          <MobileAccordion title="Services" items={services.map(s => ({ name: s.name, href: s.href }))} onItemClick={() => setMobileMenuOpen(false)} />
+          <MobileAccordion title="Products" items={products.map(p => ({ name: p, href: '#' }))} onItemClick={() => setMobileMenuOpen(false)} />
+          <MobileLink href="/case-studies" label="Case Studies" onClick={() => setMobileMenuOpen(false)} />
+          <MobileLink href="/insights" label="Insights" onClick={() => setMobileMenuOpen(false)} />
+          <MobileLink href="/contact" label="Contact Us" onClick={() => setMobileMenuOpen(false)} />
           <div className="pt-4">
-            <Link href="/contact" className="btn-primary block text-center w-full text-sm">
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn-primary block text-center w-full text-sm">
               Request a Quote
             </Link>
           </div>
@@ -279,15 +279,15 @@ function NavLink({ href, label, active }: { href: string; label: string; active?
   );
 }
 
-function MobileLink({ href, label }: { href: string; label: string }) {
+function MobileLink({ href, label, onClick }: { href: string; label: string; onClick?: () => void }) {
   return (
-    <Link href={href} className="block px-4 py-3 text-slate-200 hover:bg-white/5 rounded-xl transition-colors">
+    <Link href={href} onClick={onClick} className="block px-4 py-3 text-slate-200 hover:bg-white/5 rounded-xl transition-colors">
       {label}
     </Link>
   );
 }
 
-function MobileAccordion({ title, items }: { title: string; items: { name: string; href: string }[] }) {
+function MobileAccordion({ title, items, onItemClick }: { title: string; items: { name: string; href: string }[]; onItemClick?: () => void }) {
   const [open, setOpen] = useState(false);
   return (
     <div>
@@ -301,7 +301,7 @@ function MobileAccordion({ title, items }: { title: string; items: { name: strin
       <div className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-96' : 'max-h-0'}`}>
         <div className="pl-6 space-y-1 py-2">
           {items.map((item) => (
-            <Link key={item.name} href={item.href} className="block px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors">
+            <Link key={item.name} href={item.href} onClick={onItemClick} className="block px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors">
               {item.name}
             </Link>
           ))}
