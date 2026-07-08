@@ -21,7 +21,7 @@ export default function CTABanner() {
     <section ref={sectionRef} className="relative w-full py-24 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent-2/10 to-primary/10 animate-gradient" />
-      <div className="absolute inset-0 bg-white/80" />
+      <div className="absolute inset-0 bg-dark-950/80" />
       
       {/* Grid */}
       <div className="absolute inset-0 grid-bg opacity-20" />
@@ -35,13 +35,13 @@ export default function CTABanner() {
           className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
         >
           <h2
-            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6"
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Ready to Strengthen Your{' '}
             <span className="gradient-text-blue">IT Infrastructure?</span>
           </h2>
-          <p className="text-muted text-lg max-w-2xl mx-auto mb-10">
+          <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-10">
             Let&apos;s discuss how ESSL can architect, deploy, and manage the right solutions for your enterprise. 
             Our team of certified engineers is ready to help.
           </p>

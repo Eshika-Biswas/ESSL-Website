@@ -57,7 +57,7 @@ export default function BusinessProcess() {
   return (
     <section ref={sectionRef} id="process" className="relative w-full section-padding overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white" />
+      <div className="absolute inset-0 bg-dark-950" />
       
       {/* Subtle gradient orbs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
@@ -69,10 +69,10 @@ export default function BusinessProcess() {
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
             HOW WE WORK
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             [Business Process heading placeholder]
           </h2>
-          <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+          <p className="text-slate-450 text-lg max-w-2xl mx-auto">
             [One sentence placeholder describing the end-to-end process]
           </p>
         </div>
@@ -84,7 +84,7 @@ export default function BusinessProcess() {
             return (
               <div
                 key={index}
-                className={`group relative rounded-2xl border border-slate-100 bg-white p-8 overflow-hidden transition-all duration-700 hover:border-slate-200 hover:-translate-y-1 hover:shadow-xl ${
+                className={`group relative rounded-2xl glass-card p-8 overflow-hidden transition-all duration-700 hover:-translate-y-1 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${index * 150}ms` }}
@@ -109,13 +109,13 @@ export default function BusinessProcess() {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-semibold text-slate-900 group-hover:text-primary transition-colors leading-snug">
+                    <h3 className="text-xl font-semibold text-white group-hover:text-primary transition-colors leading-snug">
                       {step.title}
                     </h3>
                   </div>
 
                   {/* Chevron */}
-                  <ChevronDown className={`w-5 h-5 text-slate-500 transition-transform flex-shrink-0 ml-4 ${openIndex === index ? 'rotate-180' : ''}`} />
+                  <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform flex-shrink-0 ml-4 ${openIndex === index ? 'rotate-180' : ''}`} />
                 </button>
 
                 {/* Top gradient line */}
@@ -123,7 +123,7 @@ export default function BusinessProcess() {
 
                 {/* Description Accordion Body */}
                 <div className={`overflow-hidden transition-all duration-300 ${openIndex === index ? 'max-h-96' : 'max-h-0'}`}>
-                  <p className="text-slate-600 leading-relaxed pb-2">
+                  <p className="text-slate-350 leading-relaxed pb-2">
                     {step.description}
                   </p>
                 </div>

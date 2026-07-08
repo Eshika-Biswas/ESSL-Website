@@ -930,7 +930,7 @@ const CLIENTS_DATA: ClientGroup[] = [
 
 export default function ClientsPage() {
   return (
-    <div className="relative min-h-screen bg-slate-50 pt-28 pb-20">
+    <div className="relative min-h-screen bg-transparent pt-28 pb-20">
       {/* Grid Pattern Background */}
       <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
       
@@ -944,7 +944,7 @@ export default function ClientsPage() {
         <div className="mb-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary transition-colors group"
+            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             <span>Back to Home</span>
@@ -958,11 +958,11 @@ export default function ClientsPage() {
             Proven Partnerships
           </span>
           <h1
-            className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 font-[family-name:var(--font-display)]"
+            className="text-4xl sm:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-display)]"
           >
             Our <span className="gradient-text-blue">Clients</span>
           </h1>
-          <p className="text-slate-600 text-lg leading-relaxed">
+          <p className="text-slate-350 text-lg leading-relaxed">
             ESSL is privileged to design, deploy, and manage mission-critical IT infrastructure and cybersecurity solutions 
             for Bangladesh&apos;s leading financial institutions, government secretariats, energy giants, and corporate conglomerates.
           </p>
@@ -973,12 +973,12 @@ export default function ClientsPage() {
           {CLIENTS_DATA.map((group, groupIdx) => (
             <div key={group.category} className="space-y-6">
               {/* Category Heading */}
-              <div className="flex items-center gap-3 border-b border-slate-200/80 pb-4">
+              <div className="flex items-center gap-3 border-b border-white/5 pb-4">
                 <div className="w-1.5 h-6 rounded-full bg-primary" />
-                <h2 className="text-xl font-bold text-slate-800 tracking-tight font-[family-name:var(--font-display)]">
+                <h2 className="text-xl font-bold text-white tracking-tight font-[family-name:var(--font-display)]">
                   {group.category}
                 </h2>
-                <span className="text-xs font-medium text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">
+                <span className="text-xs font-semibold text-slate-400 bg-white/5 px-2 py-0.5 rounded-full">
                   {group.companies.length}
                 </span>
               </div>
@@ -993,7 +993,7 @@ export default function ClientsPage() {
                   return (
                     <div
                       key={company}
-                      className="group flex items-center justify-center bg-white border border-slate-200 rounded-xl p-6 hover:shadow-md transition-all duration-300 cursor-default"
+                      className="group flex items-center justify-center bg-white/90 border border-white/10 rounded-xl p-6 hover:bg-white hover:border-primary/20 hover:shadow-md transition-all duration-300 cursor-default"
                       id={`client-card-${groupIdx}-${companyIdx}`}
                     >
                       {hasInlineSvg ? (
@@ -1014,7 +1014,7 @@ export default function ClientsPage() {
                       ) : (
                         // Clean text-only fallback — styled, intentional, no generic circle icons
                         <div className="flex flex-col items-center justify-center h-28 w-full text-center px-2">
-                          <span className="text-xs font-bold text-slate-600 leading-snug transition-colors duration-300 group-hover:text-primary" style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>
+                          <span className="text-xs font-bold text-slate-800 leading-snug transition-colors duration-300 group-hover:text-primary" style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>
                             {company}
                           </span>
                         </div>

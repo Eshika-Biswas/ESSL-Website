@@ -14,43 +14,47 @@ export default function Hero() {
     return () => clearTimeout(timer);
   }, []);
 
+  useEffect(() => {
+    let vantaEffect: any = null;
+    const initVanta = async () => {
+      try {
+        const THREE = await import('three');
+        if (typeof window !== 'undefined') {
+          (window as any).THREE = THREE;
+          const NET = (await import('vanta/dist/vanta.net.min')).default;
+          if (heroRef.current) {
+            console.log('Vanta color being used:', 0x1B6BA8, (0x1B6BA8).toString(16));
+            vantaEffect = NET({
+              el: heroRef.current,
+              THREE: THREE,
+              mouseControls: true,
+              touchControls: true,
+              gyroControls: false,
+              minHeight: 200.00,
+              minWidth: 200.00,
+              scale: 1.00,
+              scaleMobile: 1.00,
+              color: 0x1B6BA8,        // = rgb(27,107,168), replaces white lines
+              backgroundColor: 0x0F1420, // pure black background (0x0), per updated reference
+              points: 11.00,
+              maxDistance: 20.00,
+              spacing: 15.00,
+              showDots: true
+            });
+          }
+        }
+      } catch (err) {
+        console.error('Vanta initialization failed:', err);
+      }
+    };
+    initVanta();
+    return () => {
+      if (vantaEffect) vantaEffect.destroy();
+    };
+  }, []);
+
   return (
-    <section ref={heroRef} className="relative min-h-screen flex items-center overflow-hidden">
-      {/* Background Effects */}
-      <div className="absolute inset-0 bg-dark-950" />
-      
-      {/* Animated Grid */}
-      <div className="absolute inset-0 grid-bg opacity-50" />
-      
-      {/* Gradient Orbs */}
-      <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/15 rounded-full blur-[120px] animate-float" />
-      <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-accent/10 rounded-full blur-[120px] animate-float" style={{ animationDelay: '3s' }} />
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent-2/5 rounded-full blur-[150px]" />
-
-      {/* Rotating Ring */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] opacity-[0.03]">
-        <div className="w-full h-full border-2 border-primary rounded-full animate-spin-slow" />
-      </div>
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] opacity-[0.05]">
-        <div className="w-full h-full border border-accent rounded-full animate-spin-slow" style={{ animationDirection: 'reverse', animationDuration: '30s' }} />
-      </div>
-
-      {/* Floating Particles */}
-      <div className="absolute inset-0 overflow-hidden">
-        {[...Array(6)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full animate-float"
-            style={{
-              left: `${15 + i * 15}%`,
-              top: `${20 + (i % 3) * 25}%`,
-              animationDelay: `${i * 0.8}s`,
-              animationDuration: `${4 + i}s`,
-            }}
-          />
-        ))}
-      </div>
-
+    <section ref={heroRef} id="hero-section" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Content */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
         <div className="max-w-4xl">
@@ -71,16 +75,16 @@ export default function Hero() {
             }`}
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            <span className="text-slate-900">Enterprise IT Infrastructure</span>
+            <span className="text-white">Enterprise IT Infrastructure</span>
             <br />
-            <span className="text-slate-900">& Cybersecurity,</span>
+            <span className="text-white">& Cybersecurity,</span>
             <br />
             <span className="gradient-text-blue">Delivered Right.</span>
           </h1>
 
           {/* Sub-headline */}
           <p
-            className={`text-lg sm:text-xl text-muted max-w-2xl leading-relaxed mb-10 transition-all duration-700 delay-400 ${
+            className={`text-lg sm:text-xl text-slate-300 max-w-2xl leading-relaxed mb-10 transition-all duration-700 delay-400 ${
               isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
             }`}
           >
@@ -127,10 +131,10 @@ export default function Hero() {
 function StatItem({ target, suffix = '', label }: { target: number; suffix?: string; label: string }) {
   return (
     <div className="text-center sm:text-left">
-      <div className="text-2xl sm:text-3xl font-bold text-slate-900 counter-value">
+      <div className="text-2xl sm:text-3xl font-bold text-white counter-value">
         <AnimatedCounter target={target} suffix={suffix} />
       </div>
-      <div className="text-sm text-muted mt-1">{label}</div>
+      <div className="text-sm text-slate-400 mt-1">{label}</div>
     </div>
   );
 }

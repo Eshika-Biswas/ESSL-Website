@@ -61,7 +61,7 @@ export default async function LeaderDetailPage({ params }: { params: Promise<{ s
   }
 
   return (
-    <div className="relative min-h-screen bg-slate-50 pt-36 pb-24">
+    <div className="relative min-h-screen bg-transparent pt-36 pb-24">
       {/* Background Decorative Orbs */}
       <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none" />
 
@@ -70,7 +70,7 @@ export default async function LeaderDetailPage({ params }: { params: Promise<{ s
         <div className="mb-10">
           <Link
             href="/about/leadership"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-600 hover:text-primary transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-slate-450 hover:text-white transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             Back to Leadership
@@ -78,9 +78,9 @@ export default async function LeaderDetailPage({ params }: { params: Promise<{ s
         </div>
 
         {/* Profile Grid */}
-        <div className="grid md:grid-cols-[1.2fr_2fr] gap-12 lg:gap-16 items-start bg-white border border-slate-100 rounded-3xl p-8 sm:p-12 shadow-sm">
+        <div className="grid md:grid-cols-[1.2fr_2fr] gap-12 lg:gap-16 items-start glass-card rounded-3xl p-8 sm:p-12">
           {/* Photo Container */}
-          <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-slate-100 shadow-md border border-slate-100">
+          <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl bg-slate-800 shadow-md border border-white/5">
             <Image
               src={leader.photo}
               alt={leader.name}
@@ -96,17 +96,17 @@ export default async function LeaderDetailPage({ params }: { params: Promise<{ s
             <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-4 w-fit">
               ESSL EXECUTIVE
             </span>
-            <h1 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-2 font-[family-name:var(--font-display)]">
+            <h1 className="text-3xl sm:text-4xl font-bold text-white mb-2 font-[family-name:var(--font-display)]">
               {leader.name}
             </h1>
-            <p className="text-base sm:text-lg font-medium text-slate-500 mb-6">
+            <p className="text-base sm:text-lg font-medium text-slate-400 mb-6">
               {leader.title}
             </p>
 
             <div className="w-12 h-1 bg-primary/20 rounded-full mb-8" />
 
             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-widest mb-3">Biography &amp; Vision</h3>
-            <p className="text-slate-600 leading-relaxed text-base sm:text-lg whitespace-pre-line">
+            <p className="text-slate-300 leading-relaxed text-base sm:text-lg whitespace-pre-line">
               {leader.bio}
             </p>
           </div>

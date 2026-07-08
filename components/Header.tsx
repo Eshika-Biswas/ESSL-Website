@@ -75,8 +75,8 @@ export default function Header() {
     <header
       className={`fixed z-50 transition-all duration-300 ${
         isScrolled
-          ? 'top-4 left-4 right-4 sm:left-6 sm:right-6 lg:left-8 lg:right-8 rounded-2xl border border-slate-200 bg-white/90 backdrop-blur-lg shadow-lg shadow-slate-100/40'
-          : 'top-0 left-0 right-0 rounded-none border-b border-slate-200 bg-white/95 backdrop-blur-xl shadow-md shadow-slate-100/50'
+          ? 'top-4 left-4 right-4 sm:left-6 sm:right-6 lg:left-8 lg:right-8 rounded-2xl border border-white/10 bg-[#0f1420]/80 backdrop-blur-lg shadow-lg shadow-black/20'
+          : 'top-0 left-0 right-0 rounded-none border-b border-white/10 bg-[#0f1420]/90 backdrop-blur-xl shadow-md shadow-black/30'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -103,24 +103,24 @@ export default function Header() {
               onMouseEnter={() => setActiveDropdown('about')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-600 hover:text-slate-900 transition-colors rounded-lg hover:bg-slate-100">
+              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
                 About Us
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'about' ? 'rotate-180' : ''}`} />
               </button>
               <div className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 ${activeDropdown === 'about' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
-                <div className="w-[520px] p-4 rounded-2xl glass border border-slate-200 bg-white/95 backdrop-blur-2xl shadow-2xl">
+                <div className="w-[520px] p-4 rounded-2xl glass border border-white/10 bg-[#0a0e17]/95 backdrop-blur-2xl shadow-2xl">
                   <p className="text-[11px] uppercase tracking-widest text-slate-400 mb-3 px-2">ABOUT ESSL</p>
                   <div className="grid grid-cols-2 gap-1">
                     {about.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors group"
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group"
                       >
                         <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                           <item.icon className="w-4 h-4 text-primary" />
                         </div>
-                        <span className="text-sm text-slate-600 group-hover:text-slate-900 transition-colors leading-tight">{item.name}</span>
+                        <span className="text-sm text-slate-300 group-hover:text-white transition-colors leading-tight">{item.name}</span>
                       </Link>
                     ))}
                   </div>
@@ -134,24 +134,24 @@ export default function Header() {
               onMouseEnter={() => setActiveDropdown('solutions')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-600 hover:text-slate-900 transition-colors rounded-lg hover:bg-slate-100">
+              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
                 Solutions
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'solutions' ? 'rotate-180' : ''}`} />
               </button>
               <div className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 ${activeDropdown === 'solutions' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
-                <div className="w-[520px] p-4 rounded-2xl glass border border-slate-200 bg-white/95 backdrop-blur-2xl shadow-2xl">
+                <div className="w-[520px] p-4 rounded-2xl glass border border-white/10 bg-[#0a0e17]/95 backdrop-blur-2xl shadow-2xl">
                   <p className="text-[11px] uppercase tracking-widest text-slate-400 mb-3 px-2">Centers of Excellence</p>
                   <div className="grid grid-cols-2 gap-1">
                     {solutions.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors group"
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group"
                       >
                         <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                           <item.icon className="w-4 h-4 text-primary" />
                         </div>
-                        <span className="text-sm text-slate-600 group-hover:text-slate-900 transition-colors leading-tight">{item.name}</span>
+                        <span className="text-sm text-slate-300 group-hover:text-white transition-colors leading-tight">{item.name}</span>
                       </Link>
                     ))}
                   </div>
@@ -165,23 +165,23 @@ export default function Header() {
               onMouseEnter={() => setActiveDropdown('services')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-600 hover:text-slate-900 transition-colors rounded-lg hover:bg-slate-100">
+              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
                 Services
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'services' ? 'rotate-180' : ''}`} />
               </button>
               <div className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 ${activeDropdown === 'services' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
-                <div className="w-80 p-4 rounded-2xl glass border border-slate-200 bg-white/95 backdrop-blur-2xl shadow-2xl">
+                <div className="w-80 p-4 rounded-2xl glass border border-white/10 bg-[#0a0e17]/95 backdrop-blur-2xl shadow-2xl">
                   <p className="text-[11px] uppercase tracking-widest text-slate-400 mb-3 px-2">Our Services</p>
                   {services.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
-                      className="flex items-center gap-3 p-3 rounded-xl hover:bg-slate-50 transition-colors group"
+                      className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group"
                     >
                       <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                         <item.icon className="w-4 h-4 text-primary" />
                       </div>
-                      <span className="text-sm text-slate-600 group-hover:text-slate-900 transition-colors">{item.name}</span>
+                      <span className="text-sm text-slate-300 group-hover:text-white transition-colors">{item.name}</span>
                     </Link>
                   ))}
                 </div>
@@ -194,19 +194,19 @@ export default function Header() {
               onMouseEnter={() => setActiveDropdown('products')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
-              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-600 hover:text-slate-900 transition-colors rounded-lg hover:bg-slate-100">
+              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
                 Products
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'products' ? 'rotate-180' : ''}`} />
               </button>
               <div className={`nav-dropdown absolute top-full right-0 pt-2 ${activeDropdown === 'products' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
-                <div className="w-64 p-4 rounded-2xl glass border border-slate-200 bg-white/95 backdrop-blur-2xl shadow-2xl">
+                <div className="w-64 p-4 rounded-2xl glass border border-white/10 bg-[#0a0e17]/95 backdrop-blur-2xl shadow-2xl">
                   <p className="text-[11px] uppercase tracking-widest text-slate-400 mb-3 px-2">Vendor Products</p>
                   <div className="grid grid-cols-2 gap-1">
                     {products.map((product) => (
                       <Link
                         key={product}
                         href="#"
-                        className="px-3 py-2 text-sm text-slate-600 hover:text-slate-900 hover:bg-slate-50 rounded-lg transition-colors"
+                        className="px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
                       >
                         {product}
                       </Link>
@@ -231,7 +231,7 @@ export default function Header() {
             </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="lg:hidden p-2 text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
+              className="lg:hidden p-2 text-white hover:bg-white/5 rounded-lg transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -242,7 +242,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden absolute top-full left-0 right-0 bg-white/98 backdrop-blur-2xl border-b border-slate-200 transition-all duration-300 ${
+        className={`lg:hidden absolute top-full left-0 right-0 bg-[#0f1420]/98 backdrop-blur-2xl border-b border-white/10 transition-all duration-300 ${
           mobileMenuOpen ? 'max-h-[80vh] overflow-y-auto opacity-100' : 'max-h-0 overflow-hidden opacity-0'
         }`}
       >
@@ -271,7 +271,7 @@ function NavLink({ href, label, active }: { href: string; label: string; active?
     <Link
       href={href}
       className={`px-4 py-2 text-sm rounded-lg transition-colors ${
-        active ? 'text-primary bg-primary/5 font-semibold' : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+        active ? 'text-white bg-primary/20 font-semibold' : 'text-slate-350 hover:text-white hover:bg-white/5'
       }`}
     >
       {label}
@@ -281,7 +281,7 @@ function NavLink({ href, label, active }: { href: string; label: string; active?
 
 function MobileLink({ href, label }: { href: string; label: string }) {
   return (
-    <Link href={href} className="block px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-xl transition-colors">
+    <Link href={href} className="block px-4 py-3 text-slate-200 hover:bg-white/5 rounded-xl transition-colors">
       {label}
     </Link>
   );
@@ -293,7 +293,7 @@ function MobileAccordion({ title, items }: { title: string; items: { name: strin
     <div>
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center justify-between w-full px-4 py-3 text-slate-800 hover:bg-slate-100 rounded-xl transition-colors"
+        className="flex items-center justify-between w-full px-4 py-3 text-slate-200 hover:bg-white/5 rounded-xl transition-colors"
       >
         {title}
         <ChevronDown className={`w-4 h-4 transition-transform ${open ? 'rotate-180' : ''}`} />
@@ -301,7 +301,7 @@ function MobileAccordion({ title, items }: { title: string; items: { name: strin
       <div className={`overflow-hidden transition-all duration-300 ${open ? 'max-h-96' : 'max-h-0'}`}>
         <div className="pl-6 space-y-1 py-2">
           {items.map((item) => (
-            <Link key={item.name} href={item.href} className="block px-4 py-2 text-sm text-slate-500 hover:text-slate-900 transition-colors">
+            <Link key={item.name} href={item.href} className="block px-4 py-2 text-sm text-slate-400 hover:text-white transition-colors">
               {item.name}
             </Link>
           ))}

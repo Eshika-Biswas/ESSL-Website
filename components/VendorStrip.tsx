@@ -166,10 +166,10 @@ export default function VendorStrip() {
           >
             Technology Partners
           </Link>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-900 mb-3" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3" style={{ fontFamily: 'var(--font-display)' }}>
             Certified Partner of the World&apos;s Leading Vendors
           </h2>
-          <p className="text-muted text-base max-w-xl mx-auto">
+          <p className="text-slate-400 text-base max-w-xl mx-auto">
             We hold the highest certifications from 12+ global technology leaders
           </p>
         </div>
@@ -180,7 +180,7 @@ export default function VendorStrip() {
             <Link
               key={vendor.name}
               href="/about/partners"
-              className={`group relative flex items-center justify-center h-24 rounded-2xl border border-slate-100 bg-white hover:bg-slate-50 transition-all duration-500 hover:border-primary/20 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 p-4 ${
+              className={`group relative flex items-center justify-center h-24 rounded-2xl border border-white/10 bg-white/90 hover:bg-white transition-all duration-500 hover:border-primary/20 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 p-4 ${
                 isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
               }`}
               style={{ transitionDelay: `${index * 60}ms` }}
@@ -199,7 +199,7 @@ export default function VendorStrip() {
         <div className={`text-center mt-10 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <Link
             href="/about/partners"
-            className="inline-flex items-center text-sm font-semibold tracking-wider uppercase font-mono text-slate-500 hover:text-primary hover:gap-2 transition-all duration-300 gap-1.5"
+            className="inline-flex items-center text-sm font-semibold tracking-wider uppercase font-mono text-slate-400 hover:text-white hover:gap-2 transition-all duration-300 gap-1.5"
           >
             <span>View All Partners</span>
             <span className="text-xs">→</span>

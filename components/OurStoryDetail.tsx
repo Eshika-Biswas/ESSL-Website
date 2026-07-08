@@ -166,7 +166,7 @@ export default function OurStoryDetail() {
           SECTION 1 — Hero (dark background, centered)
          ───────────────────────────────────────────────────────── */}
       <section className="relative w-full overflow-hidden"
-        style={{ background: 'linear-gradient(180deg, #0B1929 0%, #0F2337 60%, #122A42 100%)' }}
+        style={{ background: 'linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%)' }}
       >
         {/* Decorative radial glow */}
         <div
@@ -177,7 +177,7 @@ export default function OurStoryDetail() {
             width: 420,
             height: 420,
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(23,108,167,0.18) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(20,109,174,0.18) 0%, transparent 70%)',
           }}
         />
         {/* Faint ring decoration */}
@@ -189,7 +189,7 @@ export default function OurStoryDetail() {
             width: 260,
             height: 260,
             borderRadius: '50%',
-            border: '1px solid rgba(23,108,167,0.12)',
+            border: '1px solid rgba(20,109,174,0.12)',
           }}
         />
 
@@ -221,11 +221,11 @@ export default function OurStoryDetail() {
           {/* CTA Button */}
           <Reveal delay={300} threshold={0.1} duration={700}>
             <Link
-              href="/solutions"
+              href="/contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold uppercase tracking-widest border transition-all duration-300 hover:scale-105"
               style={{
-                color: '#FF6B35',
-                borderColor: '#FF6B35',
+                color: 'var(--accent-blue)',
+                borderColor: 'var(--accent-blue)',
                 background: 'transparent',
               }}
             >
@@ -239,7 +239,7 @@ export default function OurStoryDetail() {
           SECTION 2 — Our Vision (two-column, dark background)
          ───────────────────────────────────────────────────────── */}
       <section className="relative w-full overflow-hidden"
-        style={{ background: '#0F2337' }}
+        style={{ background: 'var(--bg-primary)' }}
       >
         {/* Diagonal gradient accent — bottom-right, behind content */}
         <div
@@ -269,7 +269,7 @@ export default function OurStoryDetail() {
             <div>
               <Reveal delay={150} threshold={0.2} duration={900}>
                 <p className="text-lg sm:text-xl leading-relaxed font-semibold mb-5"
-                  style={{ color: '#3F94CF' }}
+                  style={{ color: 'var(--accent-blue)' }}
                 >
                   Our vision is to provide greater value to our clients by providing complete
                   competitive solutions &amp; Services that are responsive to dynamic markets,
@@ -291,7 +291,7 @@ export default function OurStoryDetail() {
           SECTION 3 — Our Mission (full-width single-column, dark background)
          ───────────────────────────────────────────────────────── */}
       <section className="relative w-full overflow-hidden"
-        style={{ background: '#0A0F1D' }}
+        style={{ background: 'var(--bg-secondary)' }}
       >
         {/* Decorative background vertical grid lines */}
         <div className="absolute inset-0 z-0 flex justify-between pointer-events-none max-w-6xl mx-auto px-6">
@@ -330,11 +330,11 @@ export default function OurStoryDetail() {
           SECTION 4 — Cross-link card grid (2×2, dark background)
          ───────────────────────────────────────────────────────── */}
       <section className="relative w-full overflow-hidden"
-        style={{ background: '#0E1F32' }}
+        style={{ background: 'var(--bg-primary)' }}
       >
         {/* Subtle top divider — grid of thin lines */}
         <div className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: 'rgba(23,108,167,0.1)' }}
+          style={{ background: 'rgba(20,109,174,0.1)' }}
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6 pt-8 pb-28 sm:pb-36">
@@ -357,7 +357,7 @@ export default function OurStoryDetail() {
                 {/* Heading */}
                 <h3
                   className="text-lg sm:text-xl font-bold tracking-wide mb-3"
-                  style={{ color: '#FF6B35', fontFamily: 'var(--font-display)' }}
+                  style={{ color: 'var(--accent-blue)', fontFamily: 'var(--font-display)' }}
                 >
                   {card.heading}
                 </h3>

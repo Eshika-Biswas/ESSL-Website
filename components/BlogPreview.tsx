@@ -47,7 +47,7 @@ export default function BlogPreview() {
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white" />
+      <div className="absolute inset-0 bg-dark-950" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -56,7 +56,7 @@ export default function BlogPreview() {
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
               Insights & Blog
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>
               Latest Insights
             </h2>
           </div>
@@ -75,7 +75,7 @@ export default function BlogPreview() {
             <Link
               key={post.title}
               href="#"
-              className={`group relative rounded-2xl border border-slate-100 bg-white overflow-hidden transition-all duration-700 hover:border-slate-200 hover:-translate-y-2 hover:shadow-xl ${
+              className={`group relative rounded-2xl glass-card overflow-hidden transition-all duration-700 hover:-translate-y-2 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
@@ -84,7 +84,7 @@ export default function BlogPreview() {
               <div className={`h-48 bg-gradient-to-br ${post.gradient} relative overflow-hidden`}>
                 <div className="absolute inset-0 bg-slate-950/5" />
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-5xl font-bold text-slate-900/10">{post.category}</span>
+                  <span className="text-5xl font-bold text-white/5">{post.category}</span>
                 </div>
                 {/* Category Badge */}
                 <div className="absolute top-4 left-4">
@@ -109,7 +109,7 @@ export default function BlogPreview() {
                   <span>{post.readTime}</span>
                 </div>
 
-                <h3 className="text-lg font-semibold text-slate-900 mb-3 group-hover:text-primary transition-colors leading-snug line-clamp-2">
+                <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-primary transition-colors leading-snug line-clamp-2">
                   {post.title}
                 </h3>
                 <p className="text-sm text-muted leading-relaxed line-clamp-2 mb-4">

@@ -43,17 +43,17 @@ export default function Leadership() {
   return (
     <>
       <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
-        <div className="absolute inset-0 bg-slate-50/50" />
+        <div className="absolute inset-0 bg-transparent" />
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
               LEADERSHIP
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 font-[family-name:var(--font-display)]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 font-[family-name:var(--font-display)]">
               Our Executive Team
             </h2>
-            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
               Meet the leaders driving ensuring security, innovation, and support excellence at ESSL.
             </p>
           </div>
@@ -64,13 +64,13 @@ export default function Leadership() {
               <Link
                 href={`/about/leadership/${member.slug}`}
                 key={member.slug}
-                className={`group flex flex-col rounded-3xl border border-slate-100 bg-white p-6 shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 ${
+                className={`group flex flex-col rounded-3xl glass-card p-6 hover:-translate-y-1.5 transition-all duration-300 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${member.slug === 'golam-mostafa' ? '0ms' : member.slug === 'partha-sharathe-biswas' ? '120ms' : '240ms'}` }}
               >
                 {/* Image Container with fixed 4:5 aspect ratio and top headshot crop focus */}
-                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-6 bg-slate-100">
+                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-6 bg-slate-800">
                   <Image
                     src={member.photo}
                     alt={member.name}
@@ -83,10 +83,10 @@ export default function Leadership() {
 
                 {/* Text content */}
                 <div className="flex flex-col flex-grow text-center">
-                  <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">
                     {member.name}
                   </h3>
-                  <p className="text-sm font-medium text-slate-500">
+                  <p className="text-sm font-medium text-slate-400">
                     {member.title}
                   </p>
                   <span className="inline-flex items-center justify-center gap-1 mt-4 text-xs font-semibold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -103,7 +103,7 @@ export default function Leadership() {
           CTA SECTIONS (dark background wrapping container)
          ───────────────────────────────────────────────────────── */}
       <section className="relative w-full py-28 overflow-hidden"
-        style={{ background: '#0A0F1D' }}
+        style={{ background: 'var(--bg-secondary)' }}
       >
         {/* Soft blue radial glow gradient blending in from the right side */}
         <div
@@ -115,20 +115,20 @@ export default function Leadership() {
             width: '650px',
             height: '650px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(23,108,167,0.16) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(20,109,174,0.16) 0%, transparent 70%)',
             filter: 'blur(80px)',
           }}
         />
 
         {/* Decorative glowing dot/orbit accent in the top-right corner */}
-        <div className="absolute top-16 right-16 w-3 h-3 bg-accent rounded-full blur-[2px] opacity-45 animate-pulse pointer-events-none" />
+        <div className="absolute top-16 right-16 w-3 h-3 bg-accent rounded-full blur-[2px] opacity-45 pointer-events-none" />
         <div className="absolute top-6 right-8 w-20 h-20 border border-accent/15 rounded-full pointer-events-none" />
 
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-28">
           
           {/* Card 1: Come and Work for Us (dark card - constrained max-width) */}
-          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 text-center border border-white/[0.05] border-r-4 border-r-accent shadow-[0_0_40px_rgba(63,148,207,0.15)]"
-            style={{ background: '#0F1626' }}
+          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 text-center border border-white/[0.05] border-r-4 border-r-accent shadow-[0_0_40px_rgba(20,109,174,0.15)]"
+            style={{ background: 'var(--bg-primary)' }}
           >
             {/* Concentric circular orbit line pattern in background */}
             <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none opacity-[0.03]">
@@ -169,7 +169,7 @@ export default function Leadership() {
                 >
                   GET IN TOUCH
                 </h3>
-                <p className="text-xs sm:text-sm leading-relaxed text-slate-700 max-w-xl">
+                <p className="text-xs sm:text-sm leading-relaxed text-[#1f2937]">
                   Learn more about how we foster a culture of creativity, support, and innovation 
                   to create cutting-edge solutions.
                 </p>
@@ -178,7 +178,7 @@ export default function Leadership() {
                 <Link
                   href="/contact"
                   className="inline-flex items-center justify-center rounded-full px-8 py-2.5 text-[10px] font-bold tracking-widest text-white font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
-                  style={{ background: '#FF6B35', letterSpacing: '0.08em' }}
+                  style={{ background: 'var(--accent-blue)', letterSpacing: '0.08em' }}
                 >
                   CONTACT US
                 </Link>

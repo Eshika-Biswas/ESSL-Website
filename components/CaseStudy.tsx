@@ -31,10 +31,10 @@ export default function CaseStudy() {
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-success border border-success/20 bg-success/5 mb-6">
               Featured Case Study
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
               Enterprise Network Transformation for a Leading Financial Institution
             </h2>
-            <p className="text-muted text-lg leading-relaxed mb-8">
+            <p className="text-slate-350 text-lg leading-relaxed mb-8">
               ESSL delivered a complete network infrastructure overhaul for one of Bangladesh&apos;s largest banks,
               deploying Cisco SD-WAN across 100+ branches with zero downtime during migration,
               resulting in dramatically improved performance and security posture.
@@ -79,15 +79,15 @@ export default function CaseStudy() {
           <div className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
             <div className="relative">
               {/* Visual Card */}
-              <div className="relative rounded-2xl border border-slate-200 bg-white backdrop-blur-xl overflow-hidden p-8">
+              <div className="relative rounded-2xl glass-card overflow-hidden p-8">
                 {/* Decorative top bar */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600" />
 
                 {/* Stats visualization */}
                 <div className="space-y-6">
                   <div className="text-center mb-6">
-                    <h4 className="text-sm uppercase tracking-widest text-muted mb-2">Project Impact</h4>
-                    <p className="text-xs text-gray-500">Network performance before vs after</p>
+                    <h4 className="text-sm uppercase tracking-widest text-slate-400 mb-2">Project Impact</h4>
+                    <p className="text-xs text-slate-500">Network performance before vs after</p>
                   </div>
 
                   {/* Bar Charts */}
@@ -98,11 +98,11 @@ export default function CaseStudy() {
                 </div>
 
                 {/* Technologies Used */}
-                <div className="mt-8 pt-6 border-t border-slate-100">
+                <div className="mt-8 pt-6 border-t border-white/5">
                   <p className="text-xs uppercase tracking-widest text-slate-400 mb-3">Technologies Deployed</p>
                   <div className="flex flex-wrap gap-2">
                     {['Cisco SD-WAN', 'Cisco ISE', 'Fortinet NGFW', 'Palo Alto Prisma'].map((tech) => (
-                      <span key={tech} className="px-3 py-1 text-xs text-slate-600 rounded-full border border-slate-250 bg-slate-50">
+                      <span key={tech} className="px-3 py-1 text-xs text-slate-350 rounded-full border border-white/10 bg-white/5">
                         {tech}
                       </span>
                     ))}
@@ -136,9 +136,9 @@ function ResultMetric({
   color: string;
 }) {
   return (
-    <div className="text-center p-4 rounded-xl border border-slate-100 bg-slate-50/50">
+    <div className="text-center p-4 rounded-xl border border-white/5 bg-white/[0.02]">
       <Icon className={`w-5 h-5 ${color} mx-auto mb-2`} />
-      <div className="text-2xl font-bold text-slate-900">
+      <div className="text-2xl font-bold text-white">
         <AnimatedCounter target={target} suffix={suffix} decimals={decimals} />
       </div>
       <div className="text-xs text-slate-500 mt-1">{label}</div>
@@ -150,13 +150,13 @@ function BarChart({ label, before, after, color }: { label: string; before: numb
   return (
     <div>
       <div className="flex justify-between mb-1.5">
-        <span className="text-sm text-slate-500">{label}</span>
-        <span className="text-sm text-slate-900 font-medium">{after}%</span>
+        <span className="text-sm text-slate-400">{label}</span>
+        <span className="text-sm text-white font-medium">{after}%</span>
       </div>
-      <div className="relative h-2 bg-slate-100 rounded-full overflow-hidden">
+      <div className="relative h-2 bg-white/10 rounded-full overflow-hidden">
         {/* Before bar (faded) */}
         <div
-          className="absolute top-0 left-0 h-full bg-slate-200 rounded-full"
+          className="absolute top-0 left-0 h-full bg-white/5 rounded-full"
           style={{ width: `${before}%` }}
         />
         {/* After bar */}

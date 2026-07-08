@@ -437,7 +437,7 @@ export default function PartnersSection() {
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center rounded-full px-10 py-3.5 text-xs font-bold tracking-widest text-white font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md"
-                style={{ background: '#FF6B35', letterSpacing: '0.08em' }}
+                style={{ background: 'var(--accent-blue)', letterSpacing: '0.08em' }}
               >
                 CONTACT US
               </Link>
@@ -554,14 +554,14 @@ export default function PartnersSection() {
               >
                 COLLABORATE WITH US
               </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-slate-700 mb-8 max-w-xl">
+              <p className="text-sm sm:text-base leading-relaxed text-[#1f2937] mb-8 max-w-xl">
                 We&apos;re always looking for new technology and channel partnerships.
                 Get in touch to discuss how we can work together to deliver better outcomes for our clients.
               </p>
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center rounded-full px-10 py-3.5 text-xs font-bold tracking-widest text-white font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
-                style={{ background: '#FF6B35', letterSpacing: '0.08em' }}
+                style={{ background: 'var(--accent-blue)', letterSpacing: '0.08em' }}
               >
                 CONTACT US
               </Link>

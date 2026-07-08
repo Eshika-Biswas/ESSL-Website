@@ -97,7 +97,7 @@ export default function SolutionsGrid() {
   return (
     <section ref={sectionRef} id="solutions" className="relative w-full section-padding overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-white via-slate-50 to-white" />
+      <div className="absolute inset-0 bg-dark-950" />
       
       {/* Subtle gradient orbs */}
       <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
@@ -109,7 +109,7 @@ export default function SolutionsGrid() {
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-accent border border-accent/20 bg-accent/5 mb-6">
             Centers of Excellence
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             Solutions Built for Scale
           </h2>
           <p className="text-muted text-lg max-w-2xl mx-auto">
@@ -123,7 +123,7 @@ export default function SolutionsGrid() {
             <Link
               key={solution.title}
               href="#"
-              className={`group relative rounded-2xl border border-slate-100 bg-white backdrop-blur-sm p-6 overflow-hidden transition-all duration-700 hover:border-slate-200 hover:-translate-y-1 hover:shadow-xl ${
+              className={`group relative rounded-2xl glass-card p-6 overflow-hidden transition-all duration-700 hover:-translate-y-1 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 80}ms` }}
@@ -144,7 +144,7 @@ export default function SolutionsGrid() {
               </span>
 
               {/* Title */}
-              <h3 className="text-base font-semibold text-slate-900 mt-2 mb-2 group-hover:text-primary transition-colors leading-snug">
+              <h3 className="text-base font-semibold text-white mt-2 mb-2 group-hover:text-primary transition-colors leading-snug">
                 {solution.title}
               </h3>
 

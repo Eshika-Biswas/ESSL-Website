@@ -59,7 +59,7 @@ export default function ServicesGrid() {
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
             What We Do
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             Enterprise IT Services
           </h2>
           <p className="text-muted text-lg max-w-2xl mx-auto">
@@ -72,7 +72,7 @@ export default function ServicesGrid() {
           {services.map((service, index) => (
             <div
               key={service.title}
-              className={`group relative rounded-2xl border border-slate-100 bg-white backdrop-blur-sm overflow-hidden transition-all duration-700 ${service.borderHover} hover:shadow-2xl hover:-translate-y-2 ${
+              className={`group relative rounded-2xl glass-card overflow-hidden transition-all duration-700 hover:-translate-y-2 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
@@ -87,7 +87,7 @@ export default function ServicesGrid() {
                 </div>
 
                 {/* Content */}
-                <h3 className="text-xl font-semibold text-slate-900 mb-3 group-hover:text-primary-light transition-colors">
+                <h3 className="text-xl font-semibold text-white mb-3 group-hover:text-primary-light transition-colors">
                   {service.title}
                 </h3>
                 <p className="text-muted leading-relaxed mb-6">
@@ -97,7 +97,7 @@ export default function ServicesGrid() {
                 {/* Features */}
                 <div className="space-y-2 mb-8">
                   {service.features.map((feature) => (
-                    <div key={feature} className="flex items-center gap-2 text-sm text-slate-500">
+                    <div key={feature} className="flex items-center gap-2 text-sm text-slate-400">
                       <div className="w-1 h-1 rounded-full bg-primary" />
                       {feature}
                     </div>

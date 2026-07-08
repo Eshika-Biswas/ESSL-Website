@@ -65,7 +65,7 @@ export default function ClientOutcomes() {
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
       {/* Background elements to match ServicesGrid */}
-      <div className="absolute inset-0 bg-white" />
+      <div className="absolute inset-0 bg-dark-950" />
       <div className="absolute inset-0 grid-bg opacity-30" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,10 +74,10 @@ export default function ClientOutcomes() {
           <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
             CLIENT OUTCOMES
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             Delivered. Measured. Validated.
           </h2>
-          <p className="text-muted text-lg max-w-3xl mx-auto">
+          <p className="text-slate-350 text-lg max-w-3xl mx-auto">
             Outcomes from enterprise, critical infrastructure, and regulated industries across Bangladesh&apos;s most demanding sectors.
           </p>
         </div>
@@ -87,7 +87,7 @@ export default function ClientOutcomes() {
           {outcomes.map((item, index) => (
             <div
               key={item.client}
-              className={`group relative rounded-2xl border border-slate-100 bg-white p-8 transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 ${
+              className={`group relative rounded-2xl glass-card p-8 transition-all duration-700 hover:-translate-y-2 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
@@ -97,7 +97,7 @@ export default function ClientOutcomes() {
                 <span className="text-[10px] font-bold uppercase tracking-widest text-slate-400">
                   {item.client}
                 </span>
-                <span className="text-[10px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 whitespace-nowrap">
+                <span className="text-[10px] font-semibold uppercase tracking-widest px-2 py-0.5 rounded-full bg-white/5 text-slate-400 whitespace-nowrap">
                   {item.sector}
                 </span>
               </div>
@@ -111,13 +111,13 @@ export default function ClientOutcomes() {
                     <span>{item.metric}</span>
                   )}
                 </div>
-                <div className="text-xs font-semibold uppercase tracking-wider text-slate-500 mt-1">
+                <div className="text-xs font-semibold uppercase tracking-wider text-slate-400 mt-1">
                   {item.metricLabel}
                 </div>
               </div>
 
               {/* Outcome Description */}
-              <p className="text-slate-600 text-sm leading-relaxed">
+              <p className="text-slate-300 text-sm leading-relaxed">
                 {item.outcome}
               </p>
             </div>

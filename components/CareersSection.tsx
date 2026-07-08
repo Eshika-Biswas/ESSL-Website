@@ -190,7 +190,7 @@ export default function CareersSection() {
                   </div>
                   <h3
                     className="text-sm font-bold uppercase tracking-wider font-mono mb-2"
-                    style={{ color: '#FF6B35', letterSpacing: '0.08em' }}
+                    style={{ color: 'var(--accent-blue)', letterSpacing: '0.08em' }}
                   >
                     {benefit.heading}
                   </h3>
@@ -217,7 +217,7 @@ export default function CareersSection() {
                   >
                     GET IN TOUCH
                   </h3>
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-700 max-w-xl">
+                  <p className="text-xs sm:text-sm leading-relaxed text-[#1f2937]">
                     Learn more about how we foster a culture of creativity, support, and innovation to create cutting-edge solutions.
                   </p>
                 </div>
@@ -225,7 +225,7 @@ export default function CareersSection() {
                   <Link
                     href="/contact"
                     className="inline-flex items-center justify-center rounded-full px-8 py-2.5 text-[10px] font-bold tracking-widest text-white font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
-                    style={{ background: '#FF6B35', letterSpacing: '0.08em' }}
+                    style={{ background: 'var(--accent-blue)', letterSpacing: '0.08em' }}
                   >
                     CONTACT US
                   </Link>
