@@ -63,10 +63,11 @@ export default function ClientOutcomes() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
+    <section ref={sectionRef} className="relative w-full section-padding overflow-hidden section-transition">
       {/* Background elements to match ServicesGrid */}
-      <div className="absolute inset-0 bg-dark-950" />
-      <div className="absolute inset-0 grid-bg opacity-30" />
+      <div className="absolute inset-0 bg-[#121724]" />
+      <div className="absolute inset-0 radial-glow-cyan z-0 opacity-40 pointer-events-none" />
+      <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

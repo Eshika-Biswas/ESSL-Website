@@ -152,9 +152,9 @@ export default function VendorStrip() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-20 overflow-hidden">
+    <section ref={sectionRef} className="relative w-full py-20 overflow-hidden section-transition">
       {/* Background */}
-      <div className="absolute inset-0 bg-dark-950" />
+      <div className="absolute inset-0 bg-[#0c0f17]" />
       <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.02] to-transparent" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

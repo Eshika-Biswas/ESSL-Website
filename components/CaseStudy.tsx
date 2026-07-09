@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, TrendingUp, Shield, Clock } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 import AnimatedCounter from './AnimatedCounter';
 
 export default function CaseStudy() {
@@ -19,10 +20,21 @@ export default function CaseStudy() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-dark-950" />
-      <div className="absolute inset-0 grid-bg opacity-20" />
+    <section ref={sectionRef} className="relative w-full section-padding overflow-hidden section-transition">
+      {/* Background and NOC Image Overlay */}
+      <div className="absolute inset-0 bg-[#141a28]" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/noc-bg.png"
+          alt="NOC Operations Backdrop"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.06] mix-blend-overlay"
+        />
+        {/* Soft blue glow centered around the statistics panel */}
+        <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      </div>
+      <div className="absolute inset-0 grid-bg opacity-15 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -91,10 +103,10 @@ export default function CaseStudy() {
                   </div>
 
                   {/* Bar Charts */}
-                  <BarChart label="Network Latency" before={82} after={26} color="bg-blue-500" />
-                  <BarChart label="Threat Detection" before={35} after={96} color="bg-sky-500" />
-                  <BarChart label="Branch Connectivity" before={60} after={99} color="bg-indigo-500" />
-                  <BarChart label="Incident Response" before={45} after={92} color="bg-blue-600" />
+                  <BarChart label="Network Latency" before={82} after={26} color="bg-blue-500" isVisible={isVisible} />
+                  <BarChart label="Threat Detection" before={35} after={96} color="bg-sky-500" isVisible={isVisible} />
+                  <BarChart label="Branch Connectivity" before={60} after={99} color="bg-indigo-500" isVisible={isVisible} />
+                  <BarChart label="Incident Response" before={45} after={92} color="bg-blue-600" isVisible={isVisible} />
                 </div>
 
                 {/* Technologies Used */}
@@ -146,7 +158,7 @@ function ResultMetric({
   );
 }
 
-function BarChart({ label, before, after, color }: { label: string; before: number; after: number; color: string }) {
+function BarChart({ label, before, after, color, isVisible }: { label: string; before: number; after: number; color: string; isVisible: boolean }) {
   return (
     <div>
       <div className="flex justify-between mb-1.5">
@@ -162,9 +174,10 @@ function BarChart({ label, before, after, color }: { label: string; before: numb
         {/* After bar */}
         <div
           className={`absolute top-0 left-0 h-full ${color} rounded-full transition-all duration-1000`}
-          style={{ width: `${after}%` }}
+          style={{ width: isVisible ? `${after}%` : '0%' }}
         />
       </div>
     </div>
   );
 }
+

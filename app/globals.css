@@ -14,11 +14,11 @@
   --essl-primary-dark: var(--bg-primary);
   --essl-accent: var(--accent-blue);
   --essl-accent-2: var(--bg-secondary);
-  --essl-dark-950: var(--bg-primary);
-  --essl-dark-900: var(--bg-secondary);
-  --essl-dark-800: var(--bg-primary);
-  --essl-dark-700: #131926;
-  --essl-dark-600: #1b2536;
+  --essl-dark-950: #0f1420;
+  --essl-dark-900: #0a0e17;
+  --essl-dark-800: #121724;
+  --essl-dark-700: #141a28;
+  --essl-dark-600: #161d2e;
   --essl-gray-400: var(--text-secondary);
   --essl-gray-300: #8ba3c7;
   --essl-white: var(--text-primary);
@@ -364,3 +364,17 @@ main {
 .counter-value {
   font-variant-numeric: tabular-nums;
 }
+
+/* === RADIAL GLOWS === */
+.radial-glow-blue {
+  background: radial-gradient(circle at 50% 50%, rgba(20, 109, 174, 0.12) 0%, transparent 60%);
+}
+
+.radial-glow-cyan {
+  background: radial-gradient(circle at 50% 50%, rgba(63, 148, 207, 0.08) 0%, transparent 60%);
+}
+
+.section-transition {
+  transition: background-color 0.5s ease, border-color 0.5s ease;
+}
+

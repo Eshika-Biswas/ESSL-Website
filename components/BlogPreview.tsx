@@ -3,15 +3,17 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Calendar } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const posts = [
   {
     title: 'Zero Trust Architecture: A Complete Guide for Bangladeshi Enterprises',
     excerpt: 'Learn how Zero Trust principles can protect your organization from modern cyber threats and why Bangladeshi banks are adopting this framework.',
     date: '2026-06-28',
-    category: 'Cyber Security',
+    category: 'Cybersecurity',
     readTime: '8 min read',
-    gradient: 'from-blue-600/20 to-blue-400/20',
+    image: '/images/cybersecurity-card.png',
+    pillColor: 'text-blue-400 border-blue-500/30 bg-slate-950/70',
   },
   {
     title: 'The Future of SD-WAN: How Cisco and Fortinet Are Redefining Network Edge',
@@ -19,7 +21,8 @@ const posts = [
     date: '2026-06-15',
     category: 'Networking',
     readTime: '6 min read',
-    gradient: 'from-blue-700/20 to-indigo-500/20',
+    image: '/images/networking-card.png',
+    pillColor: 'text-amber-400 border-amber-500/30 bg-slate-950/70',
   },
   {
     title: 'Cloud Migration Strategies: Azure vs AWS for Enterprise Workloads',
@@ -27,7 +30,8 @@ const posts = [
     date: '2026-06-02',
     category: 'Cloud',
     readTime: '10 min read',
-    gradient: 'from-blue-800/20 to-sky-500/20',
+    image: '/images/cloud-card.png',
+    pillColor: 'text-sky-400 border-sky-500/30 bg-slate-950/70',
   },
 ];
 
@@ -45,9 +49,9 @@ export default function BlogPreview() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
+    <section ref={sectionRef} className="relative w-full section-padding overflow-hidden section-transition">
       {/* Background */}
-      <div className="absolute inset-0 bg-dark-950" />
+      <div className="absolute inset-0 bg-[#0b0e16]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -74,51 +78,57 @@ export default function BlogPreview() {
           {posts.map((post, index) => (
             <Link
               key={post.title}
-              href="#"
-              className={`group relative rounded-2xl glass-card overflow-hidden transition-all duration-700 hover:-translate-y-2 ${
+              href="/insights"
+              className={`group relative rounded-2xl bg-dark-950 border border-white/5 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
             >
-              {/* Image Placeholder — Gradient */}
-              <div className={`h-48 bg-gradient-to-br ${post.gradient} relative overflow-hidden`}>
-                <div className="absolute inset-0 bg-slate-950/5" />
-                <div className="absolute inset-0 flex items-center justify-center">
-                  <span className="text-5xl font-bold text-white/5">{post.category}</span>
-                </div>
-                {/* Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="px-3 py-1 text-xs font-medium text-primary bg-primary/5 rounded-full border border-primary/20">
+              {/* Top ~60% = Photo with Overlay */}
+              <div className="h-56 relative overflow-hidden">
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 33vw"
+                  className="object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
+                />
+                {/* Gradient Overlay (transparent at top fading to solid dark navy at the bottom) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/40 to-transparent" />
+                
+                {/* Category Pill Tag */}
+                <div className="absolute top-4 left-4 z-10">
+                  <span className={`px-3 py-1 text-[11px] font-semibold rounded-full border backdrop-blur-sm ${post.pillColor}`}>
                     {post.category}
                   </span>
                 </div>
               </div>
 
-              {/* Content */}
-              <div className="p-6">
+              {/* Bottom ~40% = Content */}
+              <div className="p-6 bg-dark-950 relative z-10">
                 <div className="flex items-center gap-3 text-xs text-muted mb-3">
                   <div className="flex items-center gap-1.5">
-                    <Calendar className="w-3 h-3" />
+                    <Calendar className="w-3.5 h-3.5 text-slate-400" />
                     {new Date(post.date).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
                       year: 'numeric',
                     })}
                   </div>
-                  <div className="w-1 h-1 rounded-full bg-gray-600" />
+                  <div className="w-1 h-1 rounded-full bg-slate-650" />
                   <span>{post.readTime}</span>
                 </div>
 
-                <h3 className="text-lg font-semibold text-white mb-3 group-hover:text-primary transition-colors leading-snug line-clamp-2">
+                <h3 className="text-base sm:text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors leading-snug line-clamp-2">
                   {post.title}
                 </h3>
-                <p className="text-sm text-muted leading-relaxed line-clamp-2 mb-4">
+                <p className="text-sm text-slate-400 leading-relaxed line-clamp-2 mb-5">
                   {post.excerpt}
                 </p>
 
-                <span className="inline-flex items-center gap-1.5 text-sm font-medium text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0">
+                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors duration-300">
                   Read article
-                  <ArrowRight className="w-3.5 h-3.5" />
+                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
               </div>
             </Link>
@@ -128,3 +138,4 @@ export default function BlogPreview() {
     </section>
   );
 }
+
