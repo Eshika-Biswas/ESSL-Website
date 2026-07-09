@@ -84,7 +84,7 @@ export default function Header() {
             
             {/* Services Dropdown */}
             <div
-              className="nav-item"
+              className="nav-item relative"
               onMouseEnter={() => setActiveDropdown('services')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
@@ -97,7 +97,7 @@ export default function Header() {
 
             {/* Solutions Dropdown */}
             <div
-              className="nav-item"
+              className="nav-item relative"
               onMouseEnter={() => setActiveDropdown('solutions')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
@@ -110,7 +110,7 @@ export default function Header() {
 
             {/* Products Dropdown */}
             <div
-              className="nav-item"
+              className="nav-item relative"
               onMouseEnter={() => setActiveDropdown('products')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
