@@ -22,17 +22,20 @@ export default function CaseStudy() {
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden section-transition">
       {/* Background and NOC Image Overlay */}
-      <div className="absolute inset-0 bg-[#141a28]" />
+      <div className="absolute inset-0 bg-[#0f1420]" />
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
           src="/images/noc-bg.png"
           alt="NOC Operations Backdrop"
           fill
           sizes="100vw"
-          className="object-cover opacity-[0.06] mix-blend-overlay"
+          className="object-cover opacity-[0.25]"
+          priority
         />
+        {/* Refined gradient overlay for text legibility */}
+        <div className="absolute inset-0 bg-gradient-to-r from-dark-950/95 via-dark-950/80 to-dark-950/40" />
         {/* Soft blue glow centered around the statistics panel */}
-        <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+        <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-primary/15 rounded-full blur-[120px] pointer-events-none" />
       </div>
       <div className="absolute inset-0 grid-bg opacity-15 pointer-events-none" />
 
@@ -91,7 +94,7 @@ export default function CaseStudy() {
           <div className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
             <div className="relative">
               {/* Visual Card */}
-              <div className="relative rounded-2xl glass-card overflow-hidden p-8">
+              <div className="relative rounded-2xl border border-white/10 bg-[#162030]/90 shadow-2xl p-8 backdrop-blur-sm transition-all duration-300 hover:border-primary/30 hover:bg-[#1b273b]/95">
                 {/* Decorative top bar */}
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-600 via-sky-500 to-indigo-600" />
 

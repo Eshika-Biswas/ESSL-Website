@@ -13,6 +13,7 @@ import {
   ArrowUpRight,
 } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const solutions = [
   {
@@ -95,24 +96,31 @@ export default function SolutionsGrid() {
   }, []);
 
   return (
-    <section ref={sectionRef} id="solutions" className="relative w-full section-padding overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-dark-950" />
-      
-      {/* Subtle gradient orbs */}
-      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent-2/5 rounded-full blur-[150px]" />
+    <section ref={sectionRef} id="solutions" className="relative w-full section-padding overflow-hidden section-transition">
+      {/* Background and Solutions Image Overlay */}
+      <div className="absolute inset-0 bg-[#f1f5f9]" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/solutions-bg.png"
+          alt="Solutions Network Backdrop"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.08]"
+        />
+        {/* Soft light-radial glow overlay for richness */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f1f5f9]/40 via-transparent to-[#f1f5f9]/60" />
+      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-accent border border-accent/20 bg-accent/5 mb-6">
+          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-accent border border-accent/20 bg-accent/5 mb-6">
             Centers of Excellence
           </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
             Solutions Built for Scale
           </h2>
-          <p className="text-muted text-lg max-w-2xl mx-auto">
+          <p className="text-slate-600 text-lg max-w-2xl mx-auto">
             Eight specialized practice areas delivering enterprise-grade technology solutions
           </p>
         </div>
@@ -123,7 +131,7 @@ export default function SolutionsGrid() {
             <Link
               key={solution.title}
               href="#"
-              className={`group relative rounded-2xl glass-card p-6 overflow-hidden transition-all duration-700 hover:-translate-y-1 ${
+              className={`group relative rounded-2xl bg-white border border-slate-200 p-6 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-primary/20 hover:bg-slate-50/50 flex flex-col h-full z-10 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 80}ms` }}
@@ -132,35 +140,32 @@ export default function SolutionsGrid() {
               <div className={`absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r ${solution.color} opacity-0 group-hover:opacity-100 transition-opacity duration-300`} />
 
               {/* Icon */}
-              <div className={`relative inline-flex items-center justify-center w-12 h-12 rounded-xl ${solution.bgGlow} mb-4 group-hover:scale-110 transition-transform duration-300`}>
+              <div className={`relative inline-flex items-center justify-center w-12 h-12 rounded-xl ${solution.bgGlow} mb-4 group-hover:scale-110 transition-transform duration-300 flex-shrink-0`}>
                 <solution.icon className={`w-6 h-6 bg-gradient-to-r ${solution.color} bg-clip-text`} style={{ color: 'inherit' }} />
                 <div className={`absolute inset-0 rounded-xl bg-gradient-to-r ${solution.color} opacity-20`} />
                 <solution.icon className="w-6 h-6 text-white absolute" />
               </div>
 
               {/* Vendor Tag */}
-              <span className="text-[11px] text-muted uppercase tracking-wider font-medium">
+              <span className="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">
                 {solution.vendor}
               </span>
 
               {/* Title */}
-              <h3 className="text-base font-semibold text-white mt-2 mb-2 group-hover:text-primary transition-colors leading-snug">
+              <h3 className="text-base font-bold text-slate-900 mt-2 mb-2 group-hover:text-primary transition-colors leading-snug">
                 {solution.title}
               </h3>
 
               {/* Description */}
-              <p className="text-sm text-muted leading-relaxed mb-4">
+              <p className="text-sm text-slate-650 leading-relaxed mb-4 flex-grow">
                 {solution.description}
               </p>
 
               {/* Arrow */}
-              <div className="flex items-center gap-1 text-sm text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-10px] group-hover:translate-x-0">
+              <div className="flex items-center gap-1 text-sm font-semibold text-primary opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-[-10px] group-hover:translate-x-0 mt-auto">
                 Explore
                 <ArrowUpRight className="w-3.5 h-3.5" />
               </div>
-
-              {/* Hover Glow */}
-              <div className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-24 ${solution.bgGlow} opacity-0 group-hover:opacity-30 blur-3xl transition-opacity duration-500`} />
             </Link>
           ))}
         </div>

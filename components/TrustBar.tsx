@@ -127,21 +127,21 @@ const CLIENTS = [...BASE_CLIENTS, ...BASE_CLIENTS];
 
 export default function TrustBar() {
   return (
-    <section className="relative w-full py-16 overflow-hidden border-y border-white/5">
+    <section className="relative w-full py-16 overflow-hidden border-y border-slate-200 bg-[#f8fafc] section-transition">
       {/* Background */}
-      <div className="absolute inset-0 bg-transparent" />
+      <div className="absolute inset-0 bg-[#f8fafc]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Label — always visible, no animation delay */}
-        <p className="text-center text-sm uppercase tracking-[0.2em] text-slate-400 mb-10">
+        <p className="text-center text-sm uppercase tracking-[0.2em] text-slate-500 font-bold mb-10">
           Trusted by leading organizations
         </p>
 
         {/* Scrolling Logo Strip */}
         <div className="relative">
           {/* Fade edges */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-dark-950/80 to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-dark-950/80 to-transparent z-10 pointer-events-none" />
+          <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-[#f8fafc] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-[#f8fafc] to-transparent z-10 pointer-events-none" />
 
           <div className="overflow-hidden">
             <div className="flex animate-ticker">
@@ -151,7 +151,7 @@ export default function TrustBar() {
                   className="flex-shrink-0 mx-3 sm:mx-4"
                 >
                   {/* Light tile card — logos always visible on white/near-white bg */}
-                  <div className="flex items-center justify-center h-14 px-4 rounded-xl border border-white/10 bg-white/90 hover:bg-white hover:border-primary/20 hover:shadow-md transition-all duration-300 group cursor-default" style={{ minWidth: '140px' }}>
+                  <div className="flex items-center justify-center h-14 px-4 rounded-xl border border-slate-200 bg-white hover:border-primary/40 hover:shadow-lg transition-all duration-300 group cursor-default" style={{ minWidth: '140px' }}>
                     {client.kind === 'image' ? (
                       <Image
                         src={client.src}
@@ -177,7 +177,7 @@ export default function TrustBar() {
         <div className="mt-10 flex justify-center">
           <Link
             href="/clients"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-white/20 bg-transparent hover:bg-white/5 text-sm font-semibold text-white hover:border-white/40 hover:shadow-md transition-all duration-300 group"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-300 bg-white hover:bg-slate-50 text-sm font-semibold text-slate-800 hover:border-primary hover:shadow-md transition-all duration-300 group"
           >
             <span>View all clients</span>
             <span className="inline-block transition-transform duration-300 group-hover:translate-x-1">→</span>

@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Lightbulb, Layers, HeadsetIcon } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 const services = [
   {
@@ -49,10 +50,21 @@ export default function ServicesGrid() {
 
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden section-transition">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[#121724]" />
-      <div className="absolute inset-0 radial-glow-blue z-0 opacity-50 pointer-events-none" />
-      <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
+      {/* Background and Services Image Overlay */}
+      <div className="absolute inset-0 bg-[#0f1420]" />
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <Image
+          src="/images/services-bg.png"
+          alt="Services Data Center Backdrop"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-[0.18]"
+        />
+        {/* Soft gradient mask and radial glow */}
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/60 via-dark-950/80 to-dark-950" />
+        <div className="absolute inset-0 radial-glow-blue z-0 opacity-40" />
+      </div>
+      <div className="absolute inset-0 grid-bg opacity-15 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}

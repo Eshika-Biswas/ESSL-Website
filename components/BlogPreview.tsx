@@ -51,7 +51,7 @@ export default function BlogPreview() {
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden section-transition">
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0b0e16]" />
+      <div className="absolute inset-0 bg-[#f8fafc]" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
@@ -60,13 +60,13 @@ export default function BlogPreview() {
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
               Insights & Blog
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-white" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
               Latest Insights
             </h2>
           </div>
           <Link
             href="/insights"
-            className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:text-primary-light transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-light transition-colors group"
           >
             View all articles
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -79,7 +79,7 @@ export default function BlogPreview() {
             <Link
               key={post.title}
               href="/insights"
-              className={`group relative rounded-2xl bg-dark-950 border border-white/5 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 ${
+              className={`group relative rounded-2xl bg-white border border-slate-200 overflow-hidden transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/20 hover:shadow-2xl hover:shadow-primary/5 ${
                 isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
               }`}
               style={{ transitionDelay: `${index * 150}ms` }}
@@ -93,8 +93,8 @@ export default function BlogPreview() {
                   sizes="(max-width: 768px) 100vw, 33vw"
                   className="object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
                 />
-                {/* Gradient Overlay (transparent at top fading to solid dark navy at the bottom) */}
-                <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-dark-950/40 to-transparent" />
+                {/* Gradient Overlay (transparent at top fading to solid white at the bottom) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-white via-white/20 to-transparent" />
                 
                 {/* Category Pill Tag */}
                 <div className="absolute top-4 left-4 z-10">
@@ -105,28 +105,28 @@ export default function BlogPreview() {
               </div>
 
               {/* Bottom ~40% = Content */}
-              <div className="p-6 bg-dark-950 relative z-10">
-                <div className="flex items-center gap-3 text-xs text-muted mb-3">
+              <div className="p-6 bg-white relative z-10">
+                <div className="flex items-center gap-3 text-xs text-slate-500 mb-3 font-semibold">
                   <div className="flex items-center gap-1.5">
-                    <Calendar className="w-3.5 h-3.5 text-slate-400" />
+                    <Calendar className="w-3.5 h-3.5 text-slate-500" />
                     {new Date(post.date).toLocaleDateString('en-US', {
                       month: 'short',
                       day: 'numeric',
                       year: 'numeric',
                     })}
                   </div>
-                  <div className="w-1 h-1 rounded-full bg-slate-650" />
+                  <div className="w-1 h-1 rounded-full bg-slate-300" />
                   <span>{post.readTime}</span>
                 </div>
 
-                <h3 className="text-base sm:text-lg font-bold text-white mb-3 group-hover:text-primary transition-colors leading-snug line-clamp-2">
+                <h3 className="text-base sm:text-lg font-bold text-slate-900 mb-3 group-hover:text-primary transition-colors leading-snug line-clamp-2">
                   {post.title}
                 </h3>
-                <p className="text-sm text-slate-400 leading-relaxed line-clamp-2 mb-5">
+                <p className="text-sm text-slate-600 leading-relaxed line-clamp-2 mb-5">
                   {post.excerpt}
                 </p>
 
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary transition-colors duration-300">
+                <span className="inline-flex items-center gap-1.5 text-sm font-bold text-primary transition-colors duration-300">
                   Read article
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </span>
