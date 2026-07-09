@@ -131,20 +131,20 @@ export default function Header() {
                 About Us
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'about' ? 'rotate-180' : ''}`} />
               </button>
-              <div className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 ${activeDropdown === 'about' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
-                <div className="w-[520px] p-4 rounded-2xl glass border border-white/10 bg-[#0a0e17]/95 backdrop-blur-2xl shadow-2xl">
-                  <p className="text-[11px] uppercase tracking-widest text-slate-400 mb-3 px-2">ABOUT ESSL</p>
-                  <div className="grid grid-cols-2 gap-1">
+              <div className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 z-[100] transition-all duration-300 ${activeDropdown === 'about' ? '!opacity-100 !visible !translate-y-0' : 'pointer-events-none'}`}>
+                <div className="w-[520px] p-6 rounded-2xl border border-white/10 bg-[#0f1420] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)]">
+                  <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-4 px-2 font-mono font-bold">ABOUT ESSL</p>
+                  <div className="grid grid-cols-2 gap-2">
                     {about.map((item) => (
                       <Link
                         key={item.name}
                         href={item.href}
-                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group"
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all duration-200 group"
                       >
-                        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <item.icon className="w-4 h-4 text-primary" />
+                        <div className="w-9 h-9 rounded-lg bg-[rgb(20,109,174)]/10 flex items-center justify-center group-hover:bg-[rgb(20,109,174)]/20 transition-colors shrink-0">
+                          <item.icon className="w-4 h-4 text-[rgb(20,109,174)]" />
                         </div>
-                        <span className="text-sm text-slate-300 group-hover:text-white transition-colors leading-tight">{item.name}</span>
+                        <span className="text-sm font-sans text-slate-300 group-hover:text-white transition-colors leading-tight group-hover:underline group-hover:decoration-[rgb(20,109,174)] group-hover:decoration-2 group-hover:underline-offset-4">{item.name}</span>
                       </Link>
                     ))}
                   </div>
@@ -162,21 +162,23 @@ export default function Header() {
                 Insights
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'insights' ? 'rotate-180' : ''}`} />
               </button>
-              <div className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 ${activeDropdown === 'insights' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
-                <div className="w-80 p-4 rounded-2xl glass border border-white/10 bg-[#0a0e17]/95 backdrop-blur-2xl shadow-2xl">
-                  <p className="text-[11px] uppercase tracking-widest text-slate-400 mb-3 px-2">Insights & Resources</p>
-                  {insightsItems.map((item) => (
-                    <Link
-                      key={item.name}
-                      href={item.href}
-                      className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group"
-                    >
-                      <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                        <item.icon className="w-4 h-4 text-primary" />
-                      </div>
-                      <span className="text-sm text-slate-300 group-hover:text-white transition-colors leading-tight">{item.name}</span>
-                    </Link>
-                  ))}
+              <div className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 z-[100] transition-all duration-300 ${activeDropdown === 'insights' ? '!opacity-100 !visible !translate-y-0' : 'pointer-events-none'}`}>
+                <div className="w-80 p-6 rounded-2xl border border-white/10 bg-[#0f1420] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)]">
+                  <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-4 px-2 font-mono font-bold">Insights & Resources</p>
+                  <div className="space-y-1">
+                    {insightsItems.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-all duration-200 group"
+                      >
+                        <div className="w-9 h-9 rounded-lg bg-[rgb(20,109,174)]/10 flex items-center justify-center group-hover:bg-[rgb(20,109,174)]/20 transition-colors shrink-0">
+                          <item.icon className="w-4 h-4 text-[rgb(20,109,174)]" />
+                        </div>
+                        <span className="text-sm font-sans text-slate-300 group-hover:text-white transition-colors leading-tight group-hover:underline group-hover:decoration-[rgb(20,109,174)] group-hover:decoration-2 group-hover:underline-offset-4">{item.name}</span>
+                      </Link>
+                    ))}
+                  </div>
                 </div>
               </div>
             </div>
