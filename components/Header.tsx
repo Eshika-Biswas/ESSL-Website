@@ -26,28 +26,9 @@ import {
   Briefcase
 } from 'lucide-react';
 
-const solutions = [
-  { name: 'Network & Security (Cisco)', icon: Network, href: '#' },
-  { name: 'Cyber Security', icon: Shield, href: '#' },
-  { name: 'Data Center, Virtualization & Cloud', icon: Server, href: '#' },
-  { name: 'Passive Infrastructure & DC Facilities', icon: Building, href: '#' },
-  { name: 'Managed Services', icon: MonitorCog, href: '#' },
-  { name: 'Technology Consulting & Project Delivery', icon: Settings, href: '#' },
-  { name: 'Software Engineering, AI & Automation', icon: Code, href: '#' },
-  { name: 'Cloud, DevOps & Platform Engineering', icon: Cloud, href: '#' },
-];
-
-const services = [
-  { name: 'Technology Consulting', icon: Cpu, href: '#' },
-  { name: 'System Integration', icon: Layers, href: '#' },
-  { name: 'Managed Services', icon: Wrench, href: '#' },
-];
-
-const products = [
-  'Cisco', 'Fortinet', 'Sophos', 'Palo Alto Networks',
-  'CrowdStrike', 'Dell', 'Microsoft', 'VMware',
-  'F5', 'Veritas', 'NetApp', 'Veeam'
-];
+import ServicesMegaMenu, { serviceCategories } from './ServicesMegaMenu';
+import SolutionsMegaMenu, { solutionCategories } from './SolutionsMegaMenu';
+import ProductsMegaMenu, { productVendors } from './ProductsMegaMenu';
 
 const about = [
   { name: 'Our Story', icon: BookOpen, href: '/about/our-story' },
@@ -55,6 +36,11 @@ const about = [
   { name: 'Our Business Process', icon: Workflow, href: '/about/business-process' },
   { name: 'Our Partners', icon: Handshake, href: '/about/partners' },
   { name: 'Careers', icon: Briefcase, href: '/about/careers' },
+];
+
+const insightsItems = [
+  { name: 'Insights Hub', icon: BookOpen, href: '/insights' },
+  { name: 'Case Studies', icon: Briefcase, href: '/case-studies' },
 ];
 
 export default function Header() {
@@ -84,7 +70,7 @@ export default function Header() {
           {/* Logo */}
           <Link href="/" className="flex items-center group">
             <Image
-              src="/logos/essl-logo.jpeg"
+              src="/logos/essl-logo-transparent.png"
               alt="ESS - Ensure Support Services"
               width={200}
               height={74}
@@ -95,8 +81,46 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className={`hidden lg:flex items-center transition-all duration-300 ${isScrolled ? 'gap-1 xl:gap-2' : 'gap-2 xl:gap-4'}`}>
-            <NavLink href="/" label="Home" active={pathname === '/'} />
             
+            {/* Services Dropdown */}
+            <div
+              className="nav-item"
+              onMouseEnter={() => setActiveDropdown('services')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+                Services
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'services' ? 'rotate-180' : ''}`} />
+              </button>
+              <ServicesMegaMenu isOpen={activeDropdown === 'services'} onClose={() => setActiveDropdown(null)} />
+            </div>
+
+            {/* Solutions Dropdown */}
+            <div
+              className="nav-item"
+              onMouseEnter={() => setActiveDropdown('solutions')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+                Solutions
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'solutions' ? 'rotate-180' : ''}`} />
+              </button>
+              <SolutionsMegaMenu isOpen={activeDropdown === 'solutions'} onClose={() => setActiveDropdown(null)} />
+            </div>
+
+            {/* Products Dropdown */}
+            <div
+              className="nav-item"
+              onMouseEnter={() => setActiveDropdown('products')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
+                Products
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'products' ? 'rotate-180' : ''}`} />
+              </button>
+              <ProductsMegaMenu isOpen={activeDropdown === 'products'} onClose={() => setActiveDropdown(null)} />
+            </div>
+
             {/* About Us Dropdown */}
             <div
               className="nav-item relative"
@@ -128,51 +152,20 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Solutions Dropdown */}
+            {/* Insights Dropdown */}
             <div
               className="nav-item relative"
-              onMouseEnter={() => setActiveDropdown('solutions')}
+              onMouseEnter={() => setActiveDropdown('insights')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
-                Solutions
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'solutions' ? 'rotate-180' : ''}`} />
+                Insights
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'insights' ? 'rotate-180' : ''}`} />
               </button>
-              <div className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 ${activeDropdown === 'solutions' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
-                <div className="w-[520px] p-4 rounded-2xl glass border border-white/10 bg-[#0a0e17]/95 backdrop-blur-2xl shadow-2xl">
-                  <p className="text-[11px] uppercase tracking-widest text-slate-400 mb-3 px-2">Centers of Excellence</p>
-                  <div className="grid grid-cols-2 gap-1">
-                    {solutions.map((item) => (
-                      <Link
-                        key={item.name}
-                        href={item.href}
-                        className="flex items-center gap-3 p-3 rounded-xl hover:bg-white/5 transition-colors group"
-                      >
-                        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                          <item.icon className="w-4 h-4 text-primary" />
-                        </div>
-                        <span className="text-sm text-slate-300 group-hover:text-white transition-colors leading-tight">{item.name}</span>
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Services Dropdown */}
-            <div
-              className="nav-item relative"
-              onMouseEnter={() => setActiveDropdown('services')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
-                Services
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'services' ? 'rotate-180' : ''}`} />
-              </button>
-              <div className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 ${activeDropdown === 'services' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
+              <div className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 ${activeDropdown === 'insights' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
                 <div className="w-80 p-4 rounded-2xl glass border border-white/10 bg-[#0a0e17]/95 backdrop-blur-2xl shadow-2xl">
-                  <p className="text-[11px] uppercase tracking-widest text-slate-400 mb-3 px-2">Our Services</p>
-                  {services.map((item) => (
+                  <p className="text-[11px] uppercase tracking-widest text-slate-400 mb-3 px-2">Insights & Resources</p>
+                  {insightsItems.map((item) => (
                     <Link
                       key={item.name}
                       href={item.href}
@@ -181,54 +174,18 @@ export default function Header() {
                       <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                         <item.icon className="w-4 h-4 text-primary" />
                       </div>
-                      <span className="text-sm text-slate-300 group-hover:text-white transition-colors">{item.name}</span>
+                      <span className="text-sm text-slate-300 group-hover:text-white transition-colors leading-tight">{item.name}</span>
                     </Link>
                   ))}
                 </div>
               </div>
             </div>
 
-            {/* Products Dropdown */}
-            <div
-              className="nav-item relative"
-              onMouseEnter={() => setActiveDropdown('products')}
-              onMouseLeave={() => setActiveDropdown(null)}
-            >
-              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5">
-                Products
-                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'products' ? 'rotate-180' : ''}`} />
-              </button>
-              <div className={`nav-dropdown absolute top-full right-0 pt-2 ${activeDropdown === 'products' ? '!opacity-100 !visible !translate-y-0' : ''}`}>
-                <div className="w-64 p-4 rounded-2xl glass border border-white/10 bg-[#0a0e17]/95 backdrop-blur-2xl shadow-2xl">
-                  <p className="text-[11px] uppercase tracking-widest text-slate-400 mb-3 px-2">Vendor Products</p>
-                  <div className="grid grid-cols-2 gap-1">
-                    {products.map((product) => (
-                      <Link
-                        key={product}
-                        href="#"
-                        className="px-3 py-2 text-sm text-slate-300 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
-                      >
-                        {product}
-                      </Link>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <NavLink href="/case-studies" label="Case Studies" active={pathname === '/case-studies'} />
-            <NavLink href="/insights" label="Insights" active={pathname === '/insights'} />
             <NavLink href="/contact" label="Contact Us" active={pathname === '/contact'} />
           </nav>
 
           {/* CTA + Mobile Toggle */}
           <div className="flex items-center gap-4">
-            <Link
-              href="/contact"
-              className="hidden sm:inline-flex btn-primary text-sm"
-            >
-              Request a Quote
-            </Link>
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="lg:hidden p-2 text-white hover:bg-white/5 rounded-lg transition-colors"
@@ -247,19 +204,12 @@ export default function Header() {
         }`}
       >
         <div className="px-4 py-6 space-y-2">
-          <MobileLink href="/" label="Home" onClick={() => setMobileMenuOpen(false)} />
+          <MobileServicesAccordion onItemClick={() => setMobileMenuOpen(false)} />
+          <MobileSolutionsAccordion onItemClick={() => setMobileMenuOpen(false)} />
+          <MobileProductsAccordion onItemClick={() => setMobileMenuOpen(false)} />
           <MobileAccordion title="About Us" items={about.map(a => ({ name: a.name, href: a.href }))} onItemClick={() => setMobileMenuOpen(false)} />
-          <MobileAccordion title="Solutions" items={solutions.map(s => ({ name: s.name, href: s.href }))} onItemClick={() => setMobileMenuOpen(false)} />
-          <MobileAccordion title="Services" items={services.map(s => ({ name: s.name, href: s.href }))} onItemClick={() => setMobileMenuOpen(false)} />
-          <MobileAccordion title="Products" items={products.map(p => ({ name: p, href: '#' }))} onItemClick={() => setMobileMenuOpen(false)} />
-          <MobileLink href="/case-studies" label="Case Studies" onClick={() => setMobileMenuOpen(false)} />
-          <MobileLink href="/insights" label="Insights" onClick={() => setMobileMenuOpen(false)} />
+          <MobileAccordion title="Insights" items={insightsItems.map(i => ({ name: i.name, href: i.href }))} onItemClick={() => setMobileMenuOpen(false)} />
           <MobileLink href="/contact" label="Contact Us" onClick={() => setMobileMenuOpen(false)} />
-          <div className="pt-4">
-            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="btn-primary block text-center w-full text-sm">
-              Request a Quote
-            </Link>
-          </div>
         </div>
       </div>
     </header>
@@ -305,6 +255,177 @@ function MobileAccordion({ title, items, onItemClick }: { title: string; items: 
               {item.name}
             </Link>
           ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileServicesAccordion({ onItemClick }: { onItemClick: () => void }) {
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const toggleCategory = (catId: string) => {
+    if (activeCategory === catId) {
+      setActiveCategory(null);
+    } else {
+      setActiveCategory(catId);
+    }
+  };
+
+  return (
+    <div>
+      <button
+        onClick={() => setServicesOpen(!servicesOpen)}
+        className="flex items-center justify-between w-full px-4 py-3 text-slate-200 hover:bg-white/5 rounded-xl transition-colors font-semibold"
+      >
+        Services
+        <ChevronDown className={`w-4 h-4 transition-transform ${servicesOpen ? 'rotate-180' : ''}`} />
+      </button>
+      <div className={`overflow-hidden transition-all duration-300 ${servicesOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
+        <div className="pl-4 space-y-2 py-2 border-l border-white/5 ml-4">
+          {serviceCategories.map((category) => {
+            const isCatOpen = activeCategory === category.id;
+            return (
+              <div key={category.id}>
+                <button
+                  onClick={() => toggleCategory(category.id)}
+                  className="flex items-center justify-between w-full px-4 py-2 text-sm text-slate-300 hover:bg-white/5 rounded-lg transition-colors font-mono uppercase tracking-wider text-left"
+                >
+                  {category.name}
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isCatOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ${isCatOpen ? 'max-h-96' : 'max-h-0'}`}>
+                  <div className="pl-6 space-y-1 py-1">
+                    {category.items.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={onItemClick}
+                        className="block px-4 py-2 text-xs text-slate-400 hover:text-white transition-colors"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileSolutionsAccordion({ onItemClick }: { onItemClick: () => void }) {
+  const [solutionsOpen, setSolutionsOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const toggleCategory = (catId: string) => {
+    if (activeCategory === catId) {
+      setActiveCategory(null);
+    } else {
+      setActiveCategory(catId);
+    }
+  };
+
+  return (
+    <div>
+      <button
+        onClick={() => setSolutionsOpen(!solutionsOpen)}
+        className="flex items-center justify-between w-full px-4 py-3 text-slate-200 hover:bg-white/5 rounded-xl transition-colors font-semibold"
+      >
+        Solutions
+        <ChevronDown className={`w-4 h-4 transition-transform ${solutionsOpen ? 'rotate-180' : ''}`} />
+      </button>
+      <div className={`overflow-hidden transition-all duration-300 ${solutionsOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
+        <div className="pl-4 space-y-2 py-2 border-l border-white/5 ml-4">
+          {solutionCategories.map((category) => {
+            const isCatOpen = activeCategory === category.id;
+            return (
+              <div key={category.id}>
+                <button
+                  onClick={() => toggleCategory(category.id)}
+                  className="flex items-center justify-between w-full px-4 py-2 text-sm text-slate-300 hover:bg-white/5 rounded-lg transition-colors font-mono uppercase tracking-wider text-left"
+                >
+                  {category.name}
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isCatOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ${isCatOpen ? 'max-h-96' : 'max-h-0'}`}>
+                  <div className="pl-6 space-y-1 py-1">
+                    {category.items.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={onItemClick}
+                        className="block px-4 py-2 text-xs text-slate-400 hover:text-white transition-colors"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function MobileProductsAccordion({ onItemClick }: { onItemClick: () => void }) {
+  const [productsOpen, setProductsOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+
+  const toggleCategory = (catId: string) => {
+    if (activeCategory === catId) {
+      setActiveCategory(null);
+    } else {
+      setActiveCategory(catId);
+    }
+  };
+
+  return (
+    <div>
+      <button
+        onClick={() => setProductsOpen(!productsOpen)}
+        className="flex items-center justify-between w-full px-4 py-3 text-slate-200 hover:bg-white/5 rounded-xl transition-colors font-semibold"
+      >
+        Products
+        <ChevronDown className={`w-4 h-4 transition-transform ${productsOpen ? 'rotate-180' : ''}`} />
+      </button>
+      <div className={`overflow-hidden transition-all duration-300 ${productsOpen ? 'max-h-[1000px]' : 'max-h-0'}`}>
+        <div className="pl-4 space-y-2 py-2 border-l border-white/5 ml-4">
+          {productVendors.map((vendor) => {
+            const isVendorOpen = activeCategory === vendor.id;
+            return (
+              <div key={vendor.id}>
+                <button
+                  onClick={() => toggleCategory(vendor.id)}
+                  className="flex items-center justify-between w-full px-4 py-2 text-sm text-slate-300 hover:bg-white/5 rounded-lg transition-colors font-mono uppercase tracking-wider text-left"
+                >
+                  {vendor.name}
+                  <ChevronDown className={`w-3.5 h-3.5 transition-transform ${isVendorOpen ? 'rotate-180' : ''}`} />
+                </button>
+                <div className={`overflow-hidden transition-all duration-300 ${isVendorOpen ? 'max-h-96' : 'max-h-0'}`}>
+                  <div className="pl-6 space-y-1 py-1">
+                    {vendor.items.map((item) => (
+                      <Link
+                        key={item.name}
+                        href={item.href}
+                        onClick={onItemClick}
+                        className="block px-4 py-2 text-xs text-slate-400 hover:text-white transition-colors"
+                      >
+                        {item.name}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>

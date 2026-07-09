@@ -27,6 +27,9 @@ export const metadata: Metadata = {
     siteName: "ESSL",
     type: "website",
   },
+  alternates: {
+    canonical: "https://ensure-bd.com",
+  },
 };
 
 export default function RootLayout({
