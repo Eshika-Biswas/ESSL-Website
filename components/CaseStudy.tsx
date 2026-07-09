@@ -29,11 +29,11 @@ export default function CaseStudy() {
           alt="NOC Operations Backdrop"
           fill
           sizes="100vw"
-          className="object-cover opacity-[0.25]"
+          className="object-cover opacity-[0.45]"
           priority
         />
         {/* Refined gradient overlay for text legibility */}
-        <div className="absolute inset-0 bg-gradient-to-r from-dark-950/95 via-dark-950/80 to-dark-950/40" />
+        <div className="absolute inset-0 bg-gradient-to-r from-dark-950/90 via-dark-950/40 to-transparent" />
         {/* Soft blue glow centered around the statistics panel */}
         <div className="absolute top-1/2 right-10 w-[500px] h-[500px] bg-primary/15 rounded-full blur-[120px] pointer-events-none" />
       </div>

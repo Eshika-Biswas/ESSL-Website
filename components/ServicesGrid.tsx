@@ -58,10 +58,10 @@ export default function ServicesGrid() {
           alt="Services Data Center Backdrop"
           fill
           sizes="100vw"
-          className="object-cover opacity-[0.18]"
+          className="object-cover opacity-[0.4]"
         />
         {/* Soft gradient mask and radial glow */}
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/60 via-dark-950/80 to-dark-950" />
+        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/80 via-dark-950/20 to-dark-950/95" />
         <div className="absolute inset-0 radial-glow-blue z-0 opacity-40" />
       </div>
       <div className="absolute inset-0 grid-bg opacity-15 pointer-events-none" />
