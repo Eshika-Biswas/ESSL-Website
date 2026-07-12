@@ -1,34 +1,38 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Shield, Server, Cpu, Wrench } from 'lucide-react';
+import { ArrowRight, Network, Shield, Server, Building, Cpu, Wrench, Code, MonitorCog } from 'lucide-react';
 
-export const solutions = [
-  { name: 'Secure Workplace', icon: Shield, href: '#' },
-  { name: 'Modern Data Center', icon: Server, href: '#' },
-  { name: 'AI Workplace', icon: Cpu, href: '#' },
+export const businessUnits = [
+  { name: 'Network & Security', icon: Network, href: '#' },
+  { name: 'Cyber Security', icon: Shield, href: '#' },
+  { name: 'Data Center & Cloud', icon: Server, href: '#' },
+  { name: 'Passive Infrastructure', icon: Building, href: '#' },
+  { name: 'Technology Consulting', icon: Cpu, href: '#' },
   { name: 'Managed Services', icon: Wrench, href: '#' },
+  { name: 'Software Engineering', icon: Code, href: '#' },
+  { name: 'AI & Automation', icon: MonitorCog, href: '#' },
 ];
 
-interface SolutionsMegaMenuProps {
+interface BusinessUnitsMegaMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function SolutionsMegaMenu({ isOpen, onClose }: SolutionsMegaMenuProps) {
+export default function BusinessUnitsMegaMenu({ isOpen, onClose }: BusinessUnitsMegaMenuProps) {
   return (
     <div
       className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 z-[100] transition-all duration-300 ${
         isOpen ? '!opacity-100 !visible !translate-y-0' : 'pointer-events-none opacity-0 invisible translate-y-2'
       }`}
     >
-      <div className="w-[320px] p-5 rounded-2xl border border-white/10 bg-[#0f1420] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] flex flex-col gap-2">
+      <div className="w-[340px] p-5 rounded-2xl border border-white/10 bg-[#0f1420] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] flex flex-col gap-2">
         <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-2 px-3 font-mono font-bold">
-          Solutions
+          Business Units
         </p>
         
         <div className="space-y-1">
-          {solutions.map((item) => {
+          {businessUnits.map((item) => {
             const IconComponent = item.icon;
             return (
               <div
@@ -52,7 +56,7 @@ export default function SolutionsMegaMenu({ isOpen, onClose }: SolutionsMegaMenu
             onClick={onClose}
             className="inline-flex items-center gap-2 text-sm font-semibold text-[rgb(20,109,174)] hover:text-white transition-colors duration-200 group/all"
           >
-            View All Solutions
+            View All Business Units
             <ArrowRight className="w-4 h-4 group-hover/all:translate-x-1 transition-transform" />
           </Link>
         </div>

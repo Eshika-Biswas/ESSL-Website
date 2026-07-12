@@ -1,34 +1,50 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Shield, Server, Cpu, Wrench } from 'lucide-react';
+import {
+  ArrowRight,
+  Landmark,
+  Heart,
+  Factory,
+  GraduationCap,
+  Building2,
+  HeartHandshake,
+  ShoppingBag,
+  Pill,
+  Umbrella
+} from 'lucide-react';
 
-export const solutions = [
-  { name: 'Secure Workplace', icon: Shield, href: '#' },
-  { name: 'Modern Data Center', icon: Server, href: '#' },
-  { name: 'AI Workplace', icon: Cpu, href: '#' },
-  { name: 'Managed Services', icon: Wrench, href: '#' },
+export const industries = [
+  { name: 'Banking', icon: Landmark, href: '#' },
+  { name: 'Healthcare', icon: Heart, href: '#' },
+  { name: 'Manufacturing', icon: Factory, href: '#' },
+  { name: 'Education', icon: GraduationCap, href: '#' },
+  { name: 'Government', icon: Building2, href: '#' },
+  { name: 'NGO', icon: HeartHandshake, href: '#' },
+  { name: 'Retail', icon: ShoppingBag, href: '#' },
+  { name: 'Pharmaceutical', icon: Pill, href: '#' },
+  { name: 'Insurance', icon: Umbrella, href: '#' },
 ];
 
-interface SolutionsMegaMenuProps {
+interface IndustriesMegaMenuProps {
   isOpen: boolean;
   onClose: () => void;
 }
 
-export default function SolutionsMegaMenu({ isOpen, onClose }: SolutionsMegaMenuProps) {
+export default function IndustriesMegaMenu({ isOpen, onClose }: IndustriesMegaMenuProps) {
   return (
     <div
       className={`nav-dropdown absolute top-full left-1/2 -translate-x-1/2 pt-2 z-[100] transition-all duration-300 ${
         isOpen ? '!opacity-100 !visible !translate-y-0' : 'pointer-events-none opacity-0 invisible translate-y-2'
       }`}
     >
-      <div className="w-[320px] p-5 rounded-2xl border border-white/10 bg-[#0f1420] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] flex flex-col gap-2">
+      <div className="w-[340px] p-5 rounded-2xl border border-white/10 bg-[#0f1420] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] flex flex-col gap-2">
         <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-2 px-3 font-mono font-bold">
-          Solutions
+          Industries
         </p>
         
         <div className="space-y-1">
-          {solutions.map((item) => {
+          {industries.map((item) => {
             const IconComponent = item.icon;
             return (
               <div
@@ -52,7 +68,7 @@ export default function SolutionsMegaMenu({ isOpen, onClose }: SolutionsMegaMenu
             onClick={onClose}
             className="inline-flex items-center gap-2 text-sm font-semibold text-[rgb(20,109,174)] hover:text-white transition-colors duration-200 group/all"
           >
-            View All Solutions
+            View All Industries
             <ArrowRight className="w-4 h-4 group-hover/all:translate-x-1 transition-transform" />
           </Link>
         </div>
