@@ -194,7 +194,7 @@ export default function NetworkSecurityDetail() {
             poster="/images/network-security-poster.png"
             className="w-full h-full object-cover opacity-65"
           >
-            <source src="/videos/network-security-hero.mp4" type="video/mp4" />
+            <source src="/videos/network-security-hero-v2.mp4" type="video/mp4" />
           </video>
           
           {/* Directional gradient overlay to ensure text contrast on the left, and vivid video on the right */}
