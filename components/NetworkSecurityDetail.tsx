@@ -190,7 +190,6 @@ export default function NetworkSecurityDetail() {
             muted
             playsInline
             preload="auto"
-            fetchPriority="high"
             poster="/images/network-security-poster.png"
             className="w-full h-full object-cover opacity-65"
           >
