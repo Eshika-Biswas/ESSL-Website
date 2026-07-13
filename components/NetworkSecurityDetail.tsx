@@ -189,14 +189,17 @@ export default function NetworkSecurityDetail() {
             loop
             muted
             playsInline
-            className="w-full h-full object-cover opacity-35"
+            preload="auto"
+            fetchPriority="high"
+            poster="/images/network-security-poster.png"
+            className="w-full h-full object-cover opacity-65"
           >
             <source src="/videos/network-security-hero.mp4" type="video/mp4" />
           </video>
           
-          {/* Subtle overlays for legibility */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420] via-[#0f1420]/80 to-transparent z-[1]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420]/50 via-transparent to-[#0f1420] z-[1]" />
+          {/* Directional gradient overlay to ensure text contrast on the left, and vivid video on the right */}
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420]/95 via-[#0f1420]/70 to-[#0f1420]/15 z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420]/60 via-transparent to-[#0f1420]/80 z-[1]" />
         </div>
 
         {/* Content */}
