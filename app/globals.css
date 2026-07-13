@@ -51,6 +51,17 @@
   --color-text-primary: var(--text-primary);
   --color-text-secondary: var(--text-secondary);
   --color-text-on-light: var(--text-on-light);
+
+  --animate-grid-drift: grid-drift 24s linear infinite;
+
+  @keyframes grid-drift {
+    from {
+      background-position: 0px 0px, 0px 0px;
+    }
+    to {
+      background-position: 40px 40px, 40px 40px;
+    }
+  }
 }
 
 @layer base {
@@ -377,4 +388,3 @@ main {
 .section-transition {
   transition: background-color 0.5s ease, border-color 0.5s ease;
 }
-

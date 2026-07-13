@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Shield, Mail, Phone, MapPin } from 'lucide-react';
 
 const solutions = [
-  { name: 'Network & Security', href: '#' },
+  { name: 'Network & Security', href: '/business-units/network-security' },
   { name: 'Cyber Security', href: '#' },
   { name: 'Data Center & Cloud', href: '#' },
   { name: 'Passive Infrastructure', href: '#' },

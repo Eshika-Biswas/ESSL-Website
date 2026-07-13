@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Network, Shield, Server, Building, Cpu, Wrench, Code, MonitorCog } from 'lucide-react';
 
 export const businessUnits = [
-  { name: 'Network & Security', icon: Network, href: '#' },
+  { name: 'Network & Security', icon: Network, href: '/business-units/network-security' },
   { name: 'Cyber Security', icon: Shield, href: '#' },
   { name: 'Data Center & Cloud', icon: Server, href: '#' },
   { name: 'Passive Infrastructure', icon: Building, href: '#' },
@@ -35,9 +35,11 @@ export default function BusinessUnitsMegaMenu({ isOpen, onClose }: BusinessUnits
           {businessUnits.map((item) => {
             const IconComponent = item.icon;
             return (
-              <div
+              <Link
                 key={item.name}
-                className="flex items-center gap-4 px-3 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 cursor-default group"
+                href={item.href}
+                onClick={onClose}
+                className="flex items-center gap-4 px-3 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 cursor-pointer group"
               >
                 <div className="w-9 h-9 rounded-lg bg-[rgb(20,109,174)]/10 flex items-center justify-center group-hover:bg-[rgb(20,109,174)]/20 transition-colors shrink-0">
                   <IconComponent className="w-5 h-5 text-[rgb(20,109,174)]" />
@@ -45,7 +47,7 @@ export default function BusinessUnitsMegaMenu({ isOpen, onClose }: BusinessUnits
                 <span className="text-base font-sans font-semibold group-hover:text-white transition-colors leading-tight">
                   {item.name}
                 </span>
-              </div>
+              </Link>
             );
           })}
         </div>
