@@ -35,7 +35,7 @@ const businessUnits = [
     category: 'Infrastructure',
     description: 'Structured cabling, fiber optic systems, cable management, and physical layer design.',
     image: '/images/passive-infrastructure-card.png',
-    href: '#',
+    href: '/business-units/passive-infrastructure',
     pillColor: 'text-amber-400 border-amber-500/30 bg-slate-950/70',
   },
   {
