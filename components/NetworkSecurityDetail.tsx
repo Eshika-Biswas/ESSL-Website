@@ -104,6 +104,10 @@ export default function NetworkSecurityDetail() {
   const journeyRef = useRef<HTMLElement>(null);
   const [journeyVisible, setJourneyVisible] = useState(false);
 
+  // Technology Ecosystem section
+  const ecosystemRef = useRef<HTMLElement>(null);
+  const [ecosystemVisible, setEcosystemVisible] = useState(false);
+
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.playbackRate = 0.5; // Cinematic half-speed for background video readability
@@ -143,6 +147,21 @@ export default function NetworkSecurityDetail() {
       journeyObserver.observe(currentJourneyRef);
     }
 
+    // Ecosystem observer
+    const ecosystemObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setEcosystemVisible(true);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const currentEcosystemRef = ecosystemRef.current;
+    if (currentEcosystemRef) {
+      ecosystemObserver.observe(currentEcosystemRef);
+    }
+
     return () => {
       clearTimeout(timer);
       if (currentGridRef) {
@@ -150,6 +169,9 @@ export default function NetworkSecurityDetail() {
       }
       if (currentJourneyRef) {
         journeyObserver.disconnect();
+      }
+      if (currentEcosystemRef) {
+        ecosystemObserver.disconnect();
       }
     };
   }, []);
@@ -289,75 +311,43 @@ export default function NetworkSecurityDetail() {
           {/* Section Headers */}
           <div className={`text-center mb-20 transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-6">
-              WHAT WE DELIVER
+              SECURITY DOMAINS
             </span>
             <h2 
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4" 
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Capabilities &amp; Approach
+              Complete Coverage Across Every Domain
             </h2>
             <p className="text-slate-650 text-lg max-w-2xl mx-auto">
-              Comprehensive and highly secure networking solutions built to scale with your enterprise.
+              Our network and security capabilities span every critical domain — ensuring nothing is missed.
             </p>
           </div>
 
-          {/* Cards Grid (7 Cards, responsive with centered 7th card on large view) */}
+          {/* Cards Grid (7 Cards, responsive with left-aligned 7th card) */}
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {capabilities.map((card, index) => (
               <div
                 key={card.number}
-                className={`group relative rounded-2xl bg-white border border-slate-200/80 overflow-hidden flex flex-col shadow-sm hover:shadow-xl hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${
+                className={`group relative rounded-2xl bg-white border border-slate-200/60 p-8 sm:p-10 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${
                   gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{
                   transitionDelay: `${(index % 3) * 100}ms`,
                 }}
               >
-                {/* Top portion of the card: capability's image with rounded top corners */}
-                <div className="h-56 relative w-full overflow-hidden bg-slate-100">
-                  <Image
-                    src={card.image}
-                    alt={card.title}
-                    fill
-                    className="object-cover transition-transform duration-500 ease-out group-hover:scale-105 group-hover:brightness-110"
-                    sizes="(max-w-768px) 100vw, 33vw"
-                  />
-                  {/* Soft overlay (slightly light at the bottom) */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-white via-white/10 to-transparent" />
-                  
-                  {/* Category Pill Tag overlaid on the top-left */}
-                  <div className="absolute top-4 left-4 z-10">
-                    <span className="px-3 py-1 text-[11px] font-semibold rounded-full border border-white/20 bg-slate-950/75 text-white backdrop-blur-sm">
-                      {card.category}
-                    </span>
-                  </div>
+                {/* Icon top-left in brand blue */}
+                <card.icon className="w-8 h-8 text-[rgb(20,109,174)] mb-4 shrink-0" />
 
-                  {/* Number label as a small badge on the top-right */}
-                  <div className="absolute top-4 right-4 z-10">
-                    <span className="text-xs font-mono font-bold text-slate-700 bg-white/90 border border-slate-200 rounded-md px-2 py-0.5 shadow-sm">
-                      {card.number}
-                    </span>
-                  </div>
-                </div>
+                {/* Headline below number */}
+                <h3 className="text-xl font-bold text-slate-900 group-hover:text-[rgb(20,109,174)] transition-colors duration-300 leading-snug mb-3">
+                  {card.title}
+                </h3>
 
-                {/* Bottom portion: Content */}
-                <div className="p-6 bg-white flex flex-col flex-grow relative z-10">
-                  {/* Headline & Icon row */}
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <h3 className="text-lg font-bold text-slate-900 group-hover:text-[rgb(20,109,174)] transition-colors duration-300 leading-snug">
-                      {card.title}
-                    </h3>
-                    <div className="w-8 h-8 rounded-lg bg-[rgb(20,109,174)]/10 flex items-center justify-center group-hover:bg-[rgb(20,109,174)]/20 transition-colors shrink-0">
-                      <card.icon className="w-4 h-4 text-[rgb(20,109,174)]" />
-                    </div>
-                  </div>
-
-                  {/* Description / Sub-solutions */}
-                  <p className="text-sm text-slate-600 leading-relaxed flex-grow">
-                    {card.description}
-                  </p>
-                </div>
+                {/* Description below headline */}
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  {card.description}
+                </p>
               </div>
             ))}
           </div>
@@ -470,6 +460,119 @@ export default function NetworkSecurityDetail() {
             </div>
 
           </div>
+
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────
+          PART 4 — "TECHNOLOGY ECOSYSTEM" PARTNER LOGOS SECTION
+         ───────────────────────────────────────────────────────── */}
+      <section
+        ref={ecosystemRef}
+        id="ecosystem"
+        className="relative w-full py-24 overflow-hidden border-t border-slate-200 animate-grid-drift"
+        style={gridBgStyle}
+      >
+        {/* Decorative glow */}
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(20,109,174,0.04)_0%,transparent_70%)] pointer-events-none" />
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Section Header */}
+          <div className={`text-center mb-16 transition-all duration-700 ${ecosystemVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-6">
+              TECHNOLOGY ECOSYSTEM
+            </span>
+            <h2
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              Powered by Industry-Leading Partners
+            </h2>
+            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
+              Deployed and certified across every leading network and security technology partner — ensuring the right fit for your infrastructure.
+            </p>
+          </div>
+
+          {/* Logo Grid — 4 columns × 2 rows */}
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+            {[
+              { name: 'Cisco',      src: '/logos/partners/cisco.svg'      },
+              { name: 'Fortinet',   src: '/logos/partners/fortinet.svg'   },
+              { name: 'Palo Alto',  src: '/logos/partners/palo-alto.svg'  },
+              { name: 'Sophos',     src: '/logos/partners/sophos.svg'     },
+              { name: 'F5',         src: '/logos/partners/f5.svg'         },
+              { name: 'Ruckus',     src: '/logos/partners/ruckus.svg'     },
+              { name: 'Cambium',    src: '/logos/partners/cambium.svg'    },
+              { name: 'CommScope',  src: '/logos/partners/commscope.svg'  },
+            ].map((partner, index) => (
+              <div
+                key={partner.name}
+                className={`group flex items-center justify-center bg-white rounded-2xl border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.10)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1 transition-all duration-400 p-8 h-28 sm:h-32 transition-all duration-500 ${
+                  ecosystemVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                }`}
+                style={{ transitionDelay: `${(index % 4) * 80}ms` }}
+              >
+                <Image
+                  src={partner.src}
+                  alt={`${partner.name} logo`}
+                  width={160}
+                  height={60}
+                  className="object-contain max-h-10 w-auto grayscale-[20%] group-hover:grayscale-0 transition-all duration-300"
+                />
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────
+          PART 5 — CLOSING CTA SECTION
+         ───────────────────────────────────────────────────────── */}
+      <section className="relative w-full py-28 sm:py-36 overflow-hidden">
+
+        {/* Blue gradient background */}
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            background: 'radial-gradient(ellipse at 30% 50%, rgb(26,138,220) 0%, rgb(14,76,122) 45%, rgb(8,42,72) 100%)',
+          }}
+        />
+
+        {/* Subtle dot-grid texture overlay (white dots on blue) */}
+        <div
+          className="absolute inset-0 z-0 pointer-events-none opacity-[0.07]"
+          style={{
+            backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
+            backgroundSize: '32px 32px',
+          }}
+        />
+
+        {/* Corner vignette to fade grid at edges */}
+        <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(8,42,72,0.6)_100%)]" />
+
+        {/* Content */}
+        <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+
+          <h2
+            className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            Ready to Deploy with Confidence?
+          </h2>
+
+          <p className="text-white/70 text-lg sm:text-xl leading-relaxed mb-10 max-w-xl mx-auto">
+            Start with a structured consultation. Understand your exposure. Build a roadmap grounded in operational reality.
+          </p>
+
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center gap-2 bg-white text-[rgb(14,76,122)] font-semibold text-base px-8 py-4 rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
+          >
+            Book Architecture Session
+            <ArrowRight className="w-4 h-4" />
+          </Link>
 
         </div>
       </section>

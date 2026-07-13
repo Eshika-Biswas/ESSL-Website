@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 60" fill="none">
+  <!-- Shield / F mark -->
+  <path d="M8 8 L8 52 L24 44 L24 28 L38 28 L38 18 L24 18 L24 8 Z" fill="#EE3124"/>
+  <!-- Wordmark -->
+  <text x="46" y="39" font-family="Arial, Helvetica, sans-serif" font-size="21" font-weight="700" fill="#1A1A1A" letter-spacing="0.3">Fortinet</text>
+</svg>

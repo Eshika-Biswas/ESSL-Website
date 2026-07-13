@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- Six vertical bars (Cisco antenna motif) -->
+  <rect x="10" y="18" width="6" height="16" rx="3" fill="#049FD9"/>
+  <rect x="22" y="12" width="6" height="28" rx="3" fill="#049FD9"/>
+  <rect x="34" y="6"  width="6" height="40" rx="3" fill="#049FD9"/>
+  <rect x="46" y="12" width="6" height="28" rx="3" fill="#049FD9"/>
+  <rect x="58" y="18" width="6" height="16" rx="3" fill="#049FD9"/>
+  <!-- Wordmark -->
+  <text x="76" y="38" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#049FD9" letter-spacing="0.5">cisco</text>
+</svg>
