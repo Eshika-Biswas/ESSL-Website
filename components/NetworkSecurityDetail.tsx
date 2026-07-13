@@ -97,11 +97,18 @@ export default function NetworkSecurityDetail() {
   const [gridVisible, setGridVisible] = useState(false);
   const heroRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   // Methodology Timeline states
   const [activeSteps, setActiveSteps] = useState(0);
   const journeyRef = useRef<HTMLElement>(null);
   const [journeyVisible, setJourneyVisible] = useState(false);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.playbackRate = 0.5; // Cinematic half-speed for background video readability
+    }
+  }, []);
 
   useEffect(() => {
     // Quick delay for hero fade-in on mount
@@ -185,6 +192,7 @@ export default function NetworkSecurityDetail() {
         {/* Background Video element */}
         <div className="absolute inset-0 z-0 bg-[#0a0e17]">
           <video
+            ref={videoRef}
             autoPlay
             loop
             muted
