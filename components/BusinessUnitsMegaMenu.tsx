@@ -5,8 +5,8 @@ import { ArrowRight, Network, Shield, Server, Building, Cpu, Wrench, Code, Monit
 
 export const businessUnits = [
   { name: 'Network & Security', icon: Network, href: '/business-units/network-security' },
-  { name: 'Cyber Security', icon: Shield, href: '#' },
-  { name: 'Data Center & Cloud', icon: Server, href: '#' },
+  { name: 'Cyber Security', icon: Shield, href: '/business-units/cyber-security' },
+  { name: 'Data Center & Cloud', icon: Server, href: '/business-units/data-center-cloud' },
   { name: 'Passive Infrastructure', icon: Building, href: '#' },
   { name: 'Technology Consulting', icon: Cpu, href: '#' },
   { name: 'Managed Services', icon: Wrench, href: '#' },

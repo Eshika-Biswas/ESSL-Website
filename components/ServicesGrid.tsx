@@ -19,7 +19,7 @@ const businessUnits = [
     category: 'Security',
     description: 'SOC, threat detection, incident response, and enterprise security posture management.',
     image: '/images/cybersecurity-card.png',
-    href: '#',
+    href: '/business-units/cyber-security',
     pillColor: 'text-red-400 border-red-500/30 bg-slate-950/70',
   },
   {
@@ -27,7 +27,7 @@ const businessUnits = [
     category: 'Cloud',
     description: 'Hyper-converged infrastructure, hybrid cloud design, and data center consolidation.',
     image: '/images/cloud-card.png',
-    href: '#',
+    href: '/business-units/data-center-cloud',
     pillColor: 'text-sky-400 border-sky-500/30 bg-slate-950/70',
   },
   {
