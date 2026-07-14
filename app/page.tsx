@@ -1,5 +1,4 @@
 import Hero from '@/components/Hero';
-import TrustBar from '@/components/TrustBar';
 import AIAdvisorTeaser from '@/components/AIAdvisorTeaser';
 import ServicesGrid from '@/components/ServicesGrid';
 import VendorStrip from '@/components/VendorStrip';
@@ -12,11 +11,9 @@ import CTABanner from '@/components/CTABanner';
 export default function Home() {
   return (
     <>
-      {/* 1. Hero */}
+      {/* 1. Hero (includes combined floating bottom bar for stats and logos) */}
       <Hero />
-      {/* 2. Trusted clients logo strip */}
-      <TrustBar />
-      {/* 3. Ask Our AI Advisor */}
+      {/* 2. Ask Our AI Advisor */}
       <AIAdvisorTeaser />
       {/* 4. End To End Technology — 8 business unit cards */}
       <ServicesGrid />

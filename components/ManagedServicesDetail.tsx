@@ -4,12 +4,12 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  Server,
-  Database,
-  Layers,
-  RefreshCw,
+  Network,
+  Shield,
   Cloud,
-  Package,
+  Monitor,
+  Server,
+  Users,
   ArrowRight,
   Search,
   Compass,
@@ -20,70 +20,62 @@ import {
 // ─── Capability Cards ─────────────────────────────────────────────────────────
 const capabilities = [
   {
-    title: 'Compute',
-    description: 'Enterprise Servers, Hyper-Converged Infrastructure (HCI), GPU Infrastructure',
-    icon: Server,
+    number: '01',
+    title: 'Managed Network',
+    description: 'Proactive network monitoring, performance management, and incident response',
+    icon: Network,
   },
   {
-    title: 'Storage',
-    description: 'SAN Storage, NAS Storage, Object Storage',
-    icon: Database,
+    number: '02',
+    title: 'Managed Security',
+    description: 'NOC/SOC, 24/7 threat monitoring, detection & response',
+    icon: Shield,
   },
   {
-    title: 'Virtualization',
-    description: 'Server Virtualization, Private Cloud',
-    icon: Layers,
-  },
-  {
-    title: 'Backup & Disaster Recovery',
-    description: 'Backup Solutions, Disaster Recovery, Business Continuity, Immutable Backup',
-    icon: RefreshCw,
-  },
-  {
-    title: 'Hybrid Cloud',
-    description: 'Cloud Migration, AWS Solutions, Microsoft Azure Solutions, Google Cloud Solutions, Hybrid Cloud Architecture',
+    number: '03',
+    title: 'Managed Cloud',
+    description: 'Cloud infrastructure monitoring, optimization, and cost management',
     icon: Cloud,
   },
   {
-    title: 'Cloud Modernization',
-    description: 'Container Platform, Kubernetes Platform, Cloud Native Infrastructure',
-    icon: Package,
+    number: '04',
+    title: 'Managed Workplace',
+    description: 'End-user device management, helpdesk, and workplace support',
+    icon: Monitor,
+  },
+  {
+    number: '05',
+    title: 'Managed Infrastructure',
+    description: 'Data center and infrastructure monitoring, patching, and maintenance',
+    icon: Server,
+  },
+  {
+    number: '06',
+    title: 'Professional Services',
+    description: 'SLA management, proactive support, and dedicated service delivery',
+    icon: Users,
   },
 ];
 
 // ─── Methodology Steps ────────────────────────────────────────────────────────
 const steps = [
   { title: 'Assess',            icon: Search,      description: 'Infrastructure audit & requirements gathering' },
-  { title: 'Design',            icon: Layers,      description: 'Architecture, topology & cloud blueprints' },
+  { title: 'Design',            icon: Compass,     description: 'Architecture, topology & physical blueprints' },
   { title: 'Deploy',            icon: Server,      description: 'Hardware/software provisioning & configuration' },
   { title: 'Secure & Optimize', icon: ShieldCheck, description: 'Hardening, testing, performance tuning' },
   { title: 'Support',           icon: Headphones,  description: '24/7 monitoring & knowledge transfer' },
 ];
 
-// ─── Partner Logos ────────────────────────────────────────────────────────────
-const partners = [
-  { name: 'AWS',             src: '/logos/partners/aws.svg'       },
-  { name: 'Microsoft Azure', src: '/logos/partners/azure.svg'     },
-  { name: 'Dell',            src: '/logos/partners/dell.svg'      },
-  { name: 'VMware',          src: '/logos/partners/vmware.svg'    },
-  { name: 'Cohesity',        src: '/logos/partners/cohesity.svg'  },
-  { name: 'NetApp',          src: '/logos/partners/netapp.svg'    },
-  { name: 'Veeam',           src: '/logos/partners/veeam.svg'     },
-  { name: 'Red Hat',         src: '/logos/partners/redhat.svg'    },
-];
-
 // ─── Component ────────────────────────────────────────────────────────────────
-export default function DataCenterCloudDetail() {
-  const [heroVisible,      setHeroVisible]      = useState(false);
-  const [gridVisible,      setGridVisible]      = useState(false);
-  const [journeyVisible,   setJourneyVisible]   = useState(false);
-  const [ecosystemVisible, setEcosystemVisible] = useState(false);
-  const [activeSteps,      setActiveSteps]      = useState(0);
+export default function ManagedServicesDetail() {
+  const [heroVisible,    setHeroVisible]    = useState(false);
+  const [gridVisible,    setGridVisible]    = useState(false);
+  const [journeyVisible, setJourneyVisible] = useState(false);
+  const [activeSteps,    setActiveSteps]    = useState(0);
 
-  const heroRef      = useRef<HTMLElement>(null);
-  const gridRef      = useRef<HTMLElement>(null);
-  const journeyRef   = useRef<HTMLElement>(null);
-  const ecosystemRef = useRef<HTMLElement>(null);
+  const heroRef    = useRef<HTMLElement>(null);
+  const gridRef    = useRef<HTMLElement>(null);
+  const journeyRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setHeroVisible(true), 50);
@@ -93,14 +85,12 @@ export default function DataCenterCloudDetail() {
         if (entry.isIntersecting) setter(true);
       }, { threshold });
 
-    const gridObs      = makeObserver(setGridVisible,      0.05);
-    const journeyObs   = makeObserver(setJourneyVisible,   0.15);
-    const ecosystemObs = makeObserver(setEcosystemVisible, 0.1);
+    const gridObs    = makeObserver(setGridVisible,    0.05);
+    const journeyObs = makeObserver(setJourneyVisible, 0.15);
 
     const refs = [
-      { obs: gridObs,      ref: gridRef.current      },
-      { obs: journeyObs,   ref: journeyRef.current   },
-      { obs: ecosystemObs, ref: ecosystemRef.current },
+      { obs: gridObs,    ref: gridRef.current    },
+      { obs: journeyObs, ref: journeyRef.current },
     ];
     refs.forEach(({ obs, ref }) => { if (ref) obs.observe(ref); });
 
@@ -139,11 +129,12 @@ export default function DataCenterCloudDetail() {
         ref={heroRef}
         className="relative min-h-[85vh] flex items-center overflow-hidden"
       >
-        {/* Static image placeholder — swap for video when asset is available */}
+        {/* Background video placeholder — static image fallback */}
+        {/* NOTE: Swap image for relevant NOC/monitoring loop video when asset becomes available */}
         <div className="absolute inset-0 z-0 bg-[#0a0e17]">
           <Image
-            src="/images/cloud-card.png"
-            alt="Data Center & Cloud hero backdrop"
+            src="/images/noc-bg.png"
+            alt="Managed Services hero backdrop"
             fill
             sizes="100vw"
             className="object-cover opacity-75"
@@ -166,12 +157,12 @@ export default function DataCenterCloudDetail() {
                 className={`text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 transition-all duration-700 delay-100 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
                 style={{ fontFamily: 'var(--font-display)' }}
               >
-                <span className="text-white">Data Center </span>
-                <span className="text-[rgb(20,109,174)]">&amp; Cloud</span>
+                <span className="text-white">Managed </span>
+                <span className="text-[rgb(20,109,174)]">Services</span>
               </h1>
 
               <p className={`text-lg sm:text-xl text-slate-350 leading-relaxed mb-10 max-w-xl transition-all duration-700 delay-200 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-                Modernize your data center and accelerate your journey to cloud.
+                24×7 monitoring, support, and optimization for your critical systems.
               </p>
 
               <div className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
@@ -200,17 +191,17 @@ export default function DataCenterCloudDetail() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className={`text-center mb-20 transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-6">
-              INFRASTRUCTURE DOMAINS
+              SERVICE DOMAINS
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
               Complete Coverage Across Every Domain
             </h2>
             <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-              Our data center and cloud capabilities span every critical domain — ensuring nothing is missed.
+              Our managed services capabilities span every critical domain — ensuring nothing is missed.
             </p>
           </div>
 
-          {/* 6 cards — 3-column × 2-row */}
+          {/* 6 cards grid */}
           <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {capabilities.map((card, index) => (
               <div
@@ -218,6 +209,11 @@ export default function DataCenterCloudDetail() {
                 className={`group relative rounded-2xl bg-white border border-slate-200/60 p-8 sm:p-10 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
                 style={{ transitionDelay: `${(index % 3) * 100}ms` }}
               >
+                {/* Numbered badge top-right */}
+                <div className="absolute top-8 right-8 text-xs font-mono font-bold text-slate-400 group-hover:text-[rgb(20,109,174)]/45 transition-colors duration-300">
+                  {card.number}
+                </div>
+
                 <card.icon className="w-8 h-8 text-[rgb(20,109,174)] mb-4 shrink-0" />
                 <h3 className="text-xl font-bold text-slate-900 group-hover:text-[rgb(20,109,174)] transition-colors duration-300 leading-snug mb-3">
                   {card.title}
@@ -291,43 +287,7 @@ export default function DataCenterCloudDetail() {
         </div>
       </section>
 
-      {/* ─── PART 4 — TECHNOLOGY ECOSYSTEM ─────────────────────────────────── */}
-      <section
-        ref={ecosystemRef}
-        id="ecosystem"
-        className="relative w-full py-24 overflow-hidden border-t border-slate-200 animate-grid-drift"
-        style={gridBgStyle}
-      >
-        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-[radial-gradient(circle,rgba(20,109,174,0.04)_0%,transparent_70%)] pointer-events-none" />
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className={`text-center mb-16 transition-all duration-700 ${ecosystemVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-6">
-              TECHNOLOGY ECOSYSTEM
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-              Powered by Industry-Leading Partners
-            </h2>
-            <p className="text-slate-500 text-lg max-w-2xl mx-auto">
-              Deployed and certified across every leading data center and cloud technology partner — ensuring the right fit for your infrastructure.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-            {partners.map((partner, index) => (
-              <div
-                key={partner.name}
-                className={`group flex items-center justify-center bg-white rounded-2xl border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.10)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1 p-8 h-28 sm:h-32 transition-all duration-500 ${ecosystemVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
-                style={{ transitionDelay: `${(index % 4) * 80}ms` }}
-              >
-                <Image src={partner.src} alt={`${partner.name} logo`} width={160} height={60} className="object-contain max-h-10 w-auto grayscale-[20%] group-hover:grayscale-0 transition-all duration-300" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── PART 5 — CLOSING CTA ───────────────────────────────────────────── */}
+      {/* ─── PART 4 — CLOSING CTA ───────────────────────────────────────────── */}
       <section className="relative w-full py-28 sm:py-36 overflow-hidden">
         <div className="absolute inset-0 z-0" style={{ background: 'radial-gradient(ellipse at 30% 50%, rgb(26,138,220) 0%, rgb(14,76,122) 45%, rgb(8,42,72) 100%)' }} />
         <div className="absolute inset-0 z-0 pointer-events-none opacity-[0.07]" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
@@ -335,16 +295,16 @@ export default function DataCenterCloudDetail() {
 
         <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight" style={{ fontFamily: 'var(--font-display)' }}>
-            Ready to Modernize Your Infrastructure?
+            Ready for Worry-Free Operations?
           </h2>
           <p className="text-white/70 text-lg sm:text-xl leading-relaxed mb-10 max-w-xl mx-auto">
-            Start with a structured assessment. Understand your environment. Build a roadmap grounded in operational reality.
+            Start with a structured consultation. Understand your environment. Build a roadmap grounded in operational reality.
           </p>
           <Link
             href="/contact"
             className="inline-flex items-center justify-center gap-2 bg-white text-[rgb(14,76,122)] font-semibold text-base px-8 py-4 rounded-full shadow-[0_4px_24px_rgba(0,0,0,0.2)] hover:shadow-[0_8px_32px_rgba(0,0,0,0.3)] hover:scale-[1.03] active:scale-[0.98] transition-all duration-300"
           >
-            Book Architecture Session
+            Schedule a Consultation
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

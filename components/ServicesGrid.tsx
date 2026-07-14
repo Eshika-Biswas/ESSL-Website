@@ -43,7 +43,7 @@ const businessUnits = [
     category: 'Consulting',
     description: 'IT strategy, architecture roadmaps, vendor selection, and digital transformation advisory.',
     image: '/images/tech-consulting-card.png',
-    href: '#',
+    href: '/business-units/technology-consulting',
     pillColor: 'text-emerald-400 border-emerald-500/30 bg-slate-950/70',
   },
   {
@@ -51,7 +51,7 @@ const businessUnits = [
     category: 'Operations',
     description: '24×7 NOC/SOC monitoring, proactive support, and SLA-backed managed operations.',
     image: '/images/noc-bg.png',
-    href: '#',
+    href: '/business-units/managed-services',
     pillColor: 'text-violet-400 border-violet-500/30 bg-slate-950/70',
   },
   {
@@ -59,7 +59,7 @@ const businessUnits = [
     category: 'Development',
     description: 'Custom enterprise applications, system integration, APIs, and digital product delivery.',
     image: '/images/software-engineering-card.png',
-    href: '#',
+    href: '/business-units/software-engineering',
     pillColor: 'text-cyan-400 border-cyan-500/30 bg-slate-950/70',
   },
   {
@@ -67,7 +67,7 @@ const businessUnits = [
     category: 'Artificial Intelligence',
     description: 'Intelligent automation, ML pipelines, AI-powered analytics, and process optimization.',
     image: '/images/ai-automation-card.png',
-    href: '#',
+    href: '/business-units/ai-automation',
     pillColor: 'text-fuchsia-400 border-fuchsia-500/30 bg-slate-950/70',
   },
 ];

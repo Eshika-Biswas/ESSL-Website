@@ -145,12 +145,12 @@ export default function CyberSecurityDetail() {
             alt="Cyber Security hero backdrop"
             fill
             sizes="100vw"
-            className="object-cover opacity-50"
+            className="object-cover opacity-75"
             priority
           />
           {/* Directional gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420]/95 via-[#0f1420]/70 to-[#0f1420]/15 z-[1]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420]/60 via-transparent to-[#0f1420]/80 z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420]/90 via-[#0f1420]/45 to-transparent z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420]/30 via-transparent to-[#0f1420]/50 z-[1]" />
         </div>
 
         {/* Content */}

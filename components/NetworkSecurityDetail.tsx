@@ -221,14 +221,14 @@ export default function NetworkSecurityDetail() {
             playsInline
             preload="auto"
             poster="/images/network-security-poster.png"
-            className="w-full h-full object-cover opacity-65"
+            className="w-full h-full object-cover opacity-80"
           >
             <source src="/videos/network-security-hero-v2.mp4" type="video/mp4" />
           </video>
           
           {/* Directional gradient overlay to ensure text contrast on the left, and vivid video on the right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420]/95 via-[#0f1420]/70 to-[#0f1420]/15 z-[1]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420]/60 via-transparent to-[#0f1420]/80 z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420]/90 via-[#0f1420]/45 to-transparent z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420]/30 via-transparent to-[#0f1420]/50 z-[1]" />
         </div>
 
         {/* Content */}

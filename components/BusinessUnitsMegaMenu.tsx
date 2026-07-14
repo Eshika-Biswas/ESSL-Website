@@ -8,10 +8,10 @@ export const businessUnits = [
   { name: 'Cyber Security', icon: Shield, href: '/business-units/cyber-security' },
   { name: 'Data Center & Cloud', icon: Server, href: '/business-units/data-center-cloud' },
   { name: 'Passive Infrastructure', icon: Building, href: '/business-units/passive-infrastructure' },
-  { name: 'Technology Consulting', icon: Cpu, href: '#' },
-  { name: 'Managed Services', icon: Wrench, href: '#' },
-  { name: 'Software Engineering', icon: Code, href: '#' },
-  { name: 'AI & Automation', icon: MonitorCog, href: '#' },
+  { name: 'Technology Consulting', icon: Cpu, href: '/business-units/technology-consulting' },
+  { name: 'Managed Services', icon: Wrench, href: '/business-units/managed-services' },
+  { name: 'Software Engineering', icon: Code, href: '/business-units/software-engineering' },
+  { name: 'AI & Automation', icon: MonitorCog, href: '/business-units/ai-automation' },
 ];
 
 interface BusinessUnitsMegaMenuProps {
