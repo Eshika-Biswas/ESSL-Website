@@ -10,20 +10,18 @@ import {
   Building2,
   HeartHandshake,
   ShoppingBag,
-  Pill,
-  Umbrella
+  Radio,
 } from 'lucide-react';
 
 export const industries = [
-  { name: 'Banking', icon: Landmark, href: '#' },
-  { name: 'Healthcare', icon: Heart, href: '#' },
-  { name: 'Manufacturing', icon: Factory, href: '#' },
-  { name: 'Education', icon: GraduationCap, href: '#' },
-  { name: 'Government', icon: Building2, href: '#' },
-  { name: 'NGO', icon: HeartHandshake, href: '#' },
-  { name: 'Retail', icon: ShoppingBag, href: '#' },
-  { name: 'Pharmaceutical', icon: Pill, href: '#' },
-  { name: 'Insurance', icon: Umbrella, href: '#' },
+  { name: 'Banking & Financial Services', icon: Landmark, href: '/industries/banking-financial-services' },
+  { name: 'Healthcare & Pharmaceuticals', icon: Heart, href: '/industries/healthcare-pharmaceuticals' },
+  { name: 'Manufacturing & Industrial', icon: Factory, href: '/industries/manufacturing-industrial' },
+  { name: 'Education & Research', icon: GraduationCap, href: '/industries/education-research' },
+  { name: 'Government & Public Sector', icon: Building2, href: '/industries/government-public-sector' },
+  { name: 'NGO & Development', icon: HeartHandshake, href: '/industries/ngo-development' },
+  { name: 'Retail & E-commerce', icon: ShoppingBag, href: '/industries/retail-ecommerce' },
+  { name: 'Telecom & Media', icon: Radio, href: '/industries/telecom-media' },
 ];
 
 interface IndustriesMegaMenuProps {
@@ -47,9 +45,11 @@ export default function IndustriesMegaMenu({ isOpen, onClose }: IndustriesMegaMe
           {industries.map((item) => {
             const IconComponent = item.icon;
             return (
-              <div
+              <Link
                 key={item.name}
-                className="flex items-center gap-4 px-3 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 cursor-default group"
+                href={item.href}
+                onClick={onClose}
+                className="flex items-center gap-4 px-3 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 cursor-pointer group"
               >
                 <div className="w-9 h-9 rounded-lg bg-[rgb(20,109,174)]/10 flex items-center justify-center group-hover:bg-[rgb(20,109,174)]/20 transition-colors shrink-0">
                   <IconComponent className="w-5 h-5 text-[rgb(20,109,174)]" />
@@ -57,7 +57,7 @@ export default function IndustriesMegaMenu({ isOpen, onClose }: IndustriesMegaMe
                 <span className="text-base font-sans font-semibold group-hover:text-white transition-colors leading-tight">
                   {item.name}
                 </span>
-              </div>
+              </Link>
             );
           })}
         </div>
