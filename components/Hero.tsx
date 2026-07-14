@@ -21,8 +21,8 @@ const slides = [
     description: "High-performance networking solutions for a connected enterprise.",
     href: "/business-units/network-security",
     image: "/images/hero/network.png",
-    isLightImage: true,
-    overlayColor: "#0a0f1d",
+    overlayType: "light",
+    overlayColor: "239, 247, 251",
   },
   {
     title: "Cyber Security",
@@ -31,7 +31,8 @@ const slides = [
     description: "Protect what matters most with advanced solutions and services.",
     href: "/business-units/cyber-security",
     image: "/images/hero/cyber-security.jpg",
-    overlayColor: "#0b091a",
+    overlayType: "light",
+    overlayColor: "234, 237, 244",
   },
   {
     title: "Data Center & Cloud",
@@ -40,7 +41,8 @@ const slides = [
     description: "Modernize your data center and accelerate your journey to cloud.",
     href: "/business-units/data-center-cloud",
     image: "/images/hero/data-center-cloud.png",
-    overlayColor: "#05101a",
+    overlayType: "light",
+    overlayColor: "233, 245, 252",
   },
   {
     title: "Passive Infrastructure",
@@ -49,7 +51,9 @@ const slides = [
     description: "Structured, reliable and future-ready physical infrastructure.",
     href: "/business-units/passive-infrastructure",
     image: "/images/hero/passive-infrastructure.png",
-    overlayColor: "#0b0e14",
+    overlayType: "dark",
+    overlayColor: "15, 20, 32",
+    darkOpacityRange: [0.4, 0.2],
   },
   {
     title: "Technology Consulting",
@@ -58,7 +62,9 @@ const slides = [
     description: "Strategic guidance to architect the right technology roadmap for your business.",
     href: "/business-units/technology-consulting",
     image: "/images/hero/technology-consulting.png",
-    overlayColor: "#080e1a",
+    overlayType: "dark",
+    overlayColor: "15, 20, 32",
+    darkOpacityRange: [0.65, 0.35],
   },
   {
     title: "Managed Services",
@@ -67,7 +73,9 @@ const slides = [
     description: "24×7 monitoring, support, and optimization for your critical systems.",
     href: "/business-units/managed-services",
     image: "/images/hero/managed-services.png",
-    overlayColor: "#060f1c",
+    overlayType: "dark",
+    overlayColor: "15, 20, 32",
+    darkOpacityRange: [0.8, 0.45],
   },
   {
     title: "Software Engineering",
@@ -76,7 +84,8 @@ const slides = [
     description: "Custom software solutions and seamless integrations built for your business.",
     href: "/business-units/software-engineering",
     image: "/images/hero/software-engineering.png",
-    overlayColor: "#08101a",
+    overlayType: "light",
+    overlayColor: "221, 232, 236",
   },
   {
     title: "AI & Automation",
@@ -85,7 +94,8 @@ const slides = [
     description: "Intelligent automation and AI-driven solutions that transform how you work.",
     href: "/business-units/ai-automation",
     image: "/images/hero/ai-automation.png",
-    overlayColor: "#0d0818",
+    overlayType: "light",
+    overlayColor: "233, 242, 245",
   },
 ];
 
@@ -286,6 +296,9 @@ export default function Hero() {
     };
   }, [currentSlide, isHovered]);
 
+  const activeSlide = slides[currentSlide];
+  const isCurrentSlideLight = activeSlide?.overlayType === 'light';
+
   return (
     <>
       <section
@@ -301,6 +314,7 @@ export default function Hero() {
         >
           {slides.map((slide, index) => {
             const isActive = index === currentSlide;
+            const isLight = slide.overlayType === 'light';
             return (
               <div
                 key={slide.title}
@@ -314,16 +328,16 @@ export default function Hero() {
                     alt={`${slide.title} backdrop`}
                     fill
                     sizes="100vw"
-                    className={`object-cover ${(slide as any).isLightImage ? 'opacity-100 object-right' : 'opacity-80'}`}
+                    className={`object-cover ${isLight ? 'opacity-100 object-right' : 'opacity-80'}`}
                     priority={index === 0}
                   />
                   {/* Overlays */}
-                  {(slide as any).isLightImage ? (
-                    /* Smooth, full-screen color-matched gradient vignette to prevent hard edges */
+                  {isLight ? (
+                    /* Smooth, full-screen color-matched light gradient vignette to prevent hard edges */
                     <div 
                       className="absolute inset-0 bg-gradient-to-r z-[1]" 
                       style={{
-                        backgroundImage: `linear-gradient(to right, ${slide.overlayColor} 0%, ${slide.overlayColor}F2 35%, ${slide.overlayColor}BF 55%, ${slide.overlayColor}33 75%, transparent 100%)`
+                        backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, 0.95) 0%, rgba(${slide.overlayColor}, 0.9) 35%, rgba(${slide.overlayColor}, 0.75) 55%, rgba(${slide.overlayColor}, 0.2) 75%, transparent 100%)`
                       }}
                     />
                   ) : (
@@ -332,13 +346,13 @@ export default function Hero() {
                       <div 
                         className="absolute inset-0 bg-gradient-to-r z-[1]" 
                         style={{
-                          backgroundImage: `linear-gradient(to right, ${slide.overlayColor} 0%, ${slide.overlayColor}F2 35%, ${slide.overlayColor}80 65%, transparent 100%)`
+                          backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.darkOpacityRange?.[0] || 0.95}) 0%, rgba(${slide.overlayColor}, ${slide.darkOpacityRange?.[1] || 0.5}) 50%, transparent 100%)`
                         }}
                       />
                       <div 
                         className="absolute inset-0 bg-gradient-to-b z-[1]" 
                         style={{
-                          backgroundImage: `linear-gradient(to bottom, ${slide.overlayColor}4D 0%, transparent 40%, transparent 70%, ${slide.overlayColor}80 100%)`
+                          backgroundImage: `linear-gradient(to bottom, rgba(${slide.overlayColor}, 0.3) 0%, transparent 40%, transparent 70%, rgba(${slide.overlayColor}, 0.5) 100%)`
                         }}
                       />
                     </>
@@ -350,9 +364,17 @@ export default function Hero() {
                   <div className="max-w-4xl text-left">
 
                     {/* Eyebrow badge */}
-                    <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-8">
+                    <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-8 ${
+                      isLight 
+                        ? 'border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/5' 
+                        : 'border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5'
+                    }`}>
                       <div className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
-                      <span className="text-xs uppercase tracking-widest text-primary-light font-semibold">Business Unit</span>
+                      <span className={`text-xs uppercase tracking-widest font-semibold ${
+                        isLight ? 'text-[#0f1420]/80' : 'text-primary-light'
+                      }`}>
+                        Business Unit
+                      </span>
                     </div>
 
                     {/* Headline */}
@@ -360,13 +382,15 @@ export default function Hero() {
                       className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-6"
                       style={{ fontFamily: 'var(--font-display)' }}
                     >
-                      <span className="text-white">{slide.titleLight} </span>
+                      <span className={isLight ? 'text-[#0f1420]' : 'text-white'}>{slide.titleLight} </span>
                       <br className="hidden sm:inline" />
                       <span className="text-[rgb(20,109,174)]">{slide.titleColor}</span>
                     </h1>
 
                     {/* Tagline */}
-                    <p className="text-lg sm:text-xl text-slate-200 max-w-2xl leading-relaxed mb-10">
+                    <p className={`text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 ${
+                      isLight ? 'text-slate-800' : 'text-slate-200'
+                    }`}>
                       {slide.description}
                     </p>
 
@@ -398,7 +422,9 @@ export default function Hero() {
               onMouseLeave={() => setIsHovered(false)}
               className={`w-3 h-3 rounded-full transition-all duration-350 cursor-pointer ${index === currentSlide
                 ? 'bg-[rgb(20,109,174)] w-8'
-                : 'bg-white/40 hover:bg-white/70'
+                : isCurrentSlideLight
+                  ? 'bg-[#0f1420]/30 hover:bg-[#0f1420]/50'
+                  : 'bg-white/40 hover:bg-white/70'
                 }`}
               aria-label={`Go to slide ${index + 1}`}
             />
