@@ -117,7 +117,7 @@ export default function SoftwareEngineeringDetail() {
             alt="Software Engineering hero backdrop"
             fill
             sizes="100vw"
-            className="object-cover opacity-75"
+            className="object-cover opacity-80"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420]/90 via-[#0f1420]/45 to-transparent z-[1]" />

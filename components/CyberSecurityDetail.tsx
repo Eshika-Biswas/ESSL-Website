@@ -145,7 +145,7 @@ export default function CyberSecurityDetail() {
             alt="Cyber Security hero backdrop"
             fill
             sizes="100vw"
-            className="object-cover opacity-75"
+            className="object-cover opacity-80"
             priority
           />
           {/* Directional gradient overlays */}
