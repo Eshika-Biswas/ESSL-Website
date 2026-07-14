@@ -22,6 +22,7 @@ const slides = [
     href: "/business-units/network-security",
     image: "/images/hero/network.png",
     isLightImage: true,
+    overlayColor: "#0a0f1d",
   },
   {
     title: "Cyber Security",
@@ -30,6 +31,7 @@ const slides = [
     description: "Protect what matters most with advanced solutions and services.",
     href: "/business-units/cyber-security",
     image: "/images/hero/cyber-security.jpg",
+    overlayColor: "#0b091a",
   },
   {
     title: "Data Center & Cloud",
@@ -38,6 +40,7 @@ const slides = [
     description: "Modernize your data center and accelerate your journey to cloud.",
     href: "/business-units/data-center-cloud",
     image: "/images/hero/data-center-cloud.png",
+    overlayColor: "#05101a",
   },
   {
     title: "Passive Infrastructure",
@@ -46,6 +49,7 @@ const slides = [
     description: "Structured, reliable and future-ready physical infrastructure.",
     href: "/business-units/passive-infrastructure",
     image: "/images/hero/passive-infrastructure.png",
+    overlayColor: "#0b0e14",
   },
   {
     title: "Technology Consulting",
@@ -54,6 +58,7 @@ const slides = [
     description: "Strategic guidance to architect the right technology roadmap for your business.",
     href: "/business-units/technology-consulting",
     image: "/images/hero/technology-consulting.png",
+    overlayColor: "#080e1a",
   },
   {
     title: "Managed Services",
@@ -62,6 +67,7 @@ const slides = [
     description: "24×7 monitoring, support, and optimization for your critical systems.",
     href: "/business-units/managed-services",
     image: "/images/hero/managed-services.png",
+    overlayColor: "#060f1c",
   },
   {
     title: "Software Engineering",
@@ -70,6 +76,7 @@ const slides = [
     description: "Custom software solutions and seamless integrations built for your business.",
     href: "/business-units/software-engineering",
     image: "/images/hero/software-engineering.png",
+    overlayColor: "#08101a",
   },
   {
     title: "AI & Automation",
@@ -78,6 +85,7 @@ const slides = [
     description: "Intelligent automation and AI-driven solutions that transform how you work.",
     href: "/business-units/ai-automation",
     image: "/images/hero/ai-automation.png",
+    overlayColor: "#0d0818",
   },
 ];
 
@@ -311,13 +319,28 @@ export default function Hero() {
                   />
                   {/* Overlays */}
                   {(slide as any).isLightImage ? (
-                    /* Left-side specific dark gradient mask behind text, leaving the right 45% clear on desktop */
-                    <div className="absolute inset-y-0 left-0 bg-gradient-to-r from-[#0f1420]/95 via-[#0f1420]/85 to-transparent z-[1] w-full md:w-[55%]" />
+                    /* Smooth, full-screen color-matched gradient vignette to prevent hard edges */
+                    <div 
+                      className="absolute inset-0 bg-gradient-to-r z-[1]" 
+                      style={{
+                        backgroundImage: `linear-gradient(to right, ${slide.overlayColor} 0%, ${slide.overlayColor}F2 35%, ${slide.overlayColor}BF 55%, ${slide.overlayColor}33 75%, transparent 100%)`
+                      }}
+                    />
                   ) : (
                     <>
                       {/* Directional Overlay (left shadow, transparent right) */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420]/95 via-[#0f1420]/50 to-transparent z-[1]" />
-                      <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420]/30 via-transparent to-[#0f1420]/50 z-[1]" />
+                      <div 
+                        className="absolute inset-0 bg-gradient-to-r z-[1]" 
+                        style={{
+                          backgroundImage: `linear-gradient(to right, ${slide.overlayColor} 0%, ${slide.overlayColor}F2 35%, ${slide.overlayColor}80 65%, transparent 100%)`
+                        }}
+                      />
+                      <div 
+                        className="absolute inset-0 bg-gradient-to-b z-[1]" 
+                        style={{
+                          backgroundImage: `linear-gradient(to bottom, ${slide.overlayColor}4D 0%, transparent 40%, transparent 70%, ${slide.overlayColor}80 100%)`
+                        }}
+                      />
                     </>
                   )}
                 </div>
