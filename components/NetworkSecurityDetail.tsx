@@ -227,8 +227,8 @@ export default function NetworkSecurityDetail() {
           </video>
           
           {/* Directional gradient overlay to ensure text contrast on the left, and vivid video on the right */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420]/90 via-[#0f1420]/45 to-transparent z-[1]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420]/30 via-transparent to-[#0f1420]/50 z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0a0f1d]/90 via-[#0a0f1d]/45 to-transparent z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0f1d]/30 via-transparent to-[#0a0f1d]/50 z-[1]" />
         </div>
 
         {/* Content */}

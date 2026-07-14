@@ -149,8 +149,8 @@ export default function CyberSecurityDetail() {
             priority
           />
           {/* Directional gradient overlays */}
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420]/90 via-[#0f1420]/45 to-transparent z-[1]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420]/30 via-transparent to-[#0f1420]/50 z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0b091a]/90 via-[#0b091a]/45 to-transparent z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#0b091a]/30 via-transparent to-[#0b091a]/50 z-[1]" />
         </div>
 
         {/* Content */}

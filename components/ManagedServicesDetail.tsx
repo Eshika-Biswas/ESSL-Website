@@ -140,8 +140,8 @@ export default function ManagedServicesDetail() {
             className="object-cover opacity-80"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-[#0f1420]/90 via-[#0f1420]/45 to-transparent z-[1]" />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420]/30 via-transparent to-[#0f1420]/50 z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#060f1c]/90 via-[#060f1c]/45 to-transparent z-[1]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#060f1c]/30 via-transparent to-[#060f1c]/50 z-[1]" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 w-full">
