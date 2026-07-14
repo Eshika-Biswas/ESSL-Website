@@ -29,6 +29,16 @@ export default function AIAdvisorTeaser() {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-dark-950 via-dark-900 to-dark-950" />
       
+      {/* Subtle diagonal geometric line pattern */}
+      <div 
+        className="absolute inset-0 z-0 opacity-[0.25] pointer-events-none mix-blend-overlay"
+        style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='white' stroke-width='1'%3E%3Cpath d='M-10,40 L90,-60 M70,170 L170,70 M10,130 L110,30' stroke-opacity='0.15' stroke-dasharray='3,3'/%3E%3Crect x='30' y='30' width='80' height='50' rx='2' stroke-opacity='0.12' transform='rotate(15 70 55)'/%3E%3Crect x='90' y='90' width='60' height='40' rx='2' stroke-opacity='0.08' transform='rotate(-20 120 110)'/%3E%3Cline x1='0' y1='0' x2='160' y2='160' stroke-opacity='0.1'/%3E%3Cline x1='160' y1='0' x2='0' y2='160' stroke-opacity='0.05'/%3E%3C/g%3E%3C/svg%3E")`,
+          backgroundSize: '160px 160px',
+          backgroundRepeat: 'repeat'
+        }}
+      />
+      
       {/* Gradient Orbs */}
       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-accent-2/10 rounded-full blur-[120px]" />
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[120px]" />
