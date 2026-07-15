@@ -87,10 +87,10 @@ export default function ServicesGrid() {
 
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden section-transition">
-      {/* Background Image: End to End Technology Circuit Pattern */}
+      {/* Background Image: End to End Technology Grid Pattern */}
       <div className="absolute inset-0 z-0 bg-[#f8fafc]">
         <Image
-          src="/images/end-to-end.png"
+          src="/images/end-to-end-tech-bg.png"
           alt="End to End Technology Backdrop"
           fill
           sizes="100vw"
