@@ -34,13 +34,13 @@ export default function AIAdvisorTeaser() {
           alt="AI Advisor Mesh Background"
           fill
           sizes="100vw"
-          className="object-cover opacity-45 mix-blend-overlay"
+          className="object-cover opacity-90"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#0f1420]/80 z-[1]" />
+        <div className="absolute inset-0 bg-[#0f1420]/45 z-[1]" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420] via-transparent to-[#0f1420] z-[1]" />
       </div>
-      
+
       {/* Gradient Orbs */}
       <div className="absolute top-1/2 left-1/4 w-[400px] h-[400px] bg-accent-2/10 rounded-full blur-[120px]" />
       <div className="absolute top-1/2 right-1/4 w-[400px] h-[400px] bg-primary/10 rounded-full blur-[120px]" />
@@ -60,7 +60,7 @@ export default function AIAdvisorTeaser() {
               </span>
             </h2>
             <p className="text-slate-350 text-lg leading-relaxed mb-8">
-              Get instant, intelligent answers about cybersecurity solutions, infrastructure design, 
+              Get instant, intelligent answers about cybersecurity solutions, infrastructure design,
               and managed services — powered by ESSL&apos;s real service and product knowledge base.
             </p>
 
@@ -98,11 +98,10 @@ export default function AIAdvisorTeaser() {
                   <button
                     key={index}
                     onClick={() => setActivePrompt(index)}
-                    className={`w-full text-left flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-300 group ${
-                      activePrompt === index
+                    className={`w-full text-left flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-300 group ${activePrompt === index
                         ? 'border-primary/40 bg-primary/5 text-primary'
                         : 'border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.06] text-slate-300'
-                    }`}
+                      }`}
                   >
                     <MessageSquare className={`w-4 h-4 flex-shrink-0 ${activePrompt === index ? 'text-primary' : 'text-slate-400 group-hover:text-slate-200'} transition-colors`} />
                     <span className="text-sm transition-colors">
