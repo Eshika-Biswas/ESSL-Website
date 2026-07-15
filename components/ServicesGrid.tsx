@@ -87,34 +87,29 @@ export default function ServicesGrid() {
 
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden section-transition">
-      {/* Background — dark server-room image, unchanged */}
-      <div className="absolute inset-0 bg-[#0f1420]" />
-      <div className="absolute inset-0 z-0 pointer-events-none">
+      {/* Background Image: End to End Technology Circuit Pattern */}
+      <div className="absolute inset-0 z-0 bg-[#f8fafc]">
         <Image
           src="/images/end-to-end-technology-bg.jpg"
-          alt="Services Data Center Backdrop"
+          alt="End to End Technology Backdrop"
           fill
           sizes="100vw"
-          className="object-cover opacity-[0.80]"
+          className="object-cover object-center opacity-100"
+          loading="lazy"
         />
-        {/* Soft edge blends and subtle overlay to blend with ESSL's navy scheme */}
-        <div className="absolute inset-0 bg-[#0f1420]/20" />
-        <div className="absolute inset-0 radial-glow-blue z-0 opacity-20" />
       </div>
-      <div className="absolute inset-0 grid-bg opacity-15 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header with localized dark gradient overlay for text legibility */}
+        {/* Section Header */}
         <div className="relative max-w-3xl mx-auto mb-16 text-center z-10">
-          <div className="absolute inset-0 -mx-10 -my-6 bg-dark-950/45 blur-2xl rounded-3xl pointer-events-none" />
           <div className={`relative transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#1B6BA8] border border-[#1B6BA8]/20 bg-[#1B6BA8]/5 mb-6">
               What We Do
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#0f1420] mb-4" style={{ fontFamily: 'var(--font-display)' }}>
               End To End Technology
             </h2>
-            <p className="text-muted text-lg max-w-2xl mx-auto">
+            <p className="text-[#0f1420]/80 text-lg max-w-2xl mx-auto">
               Eight specialised business units delivering comprehensive technology services across every domain.
             </p>
           </div>
@@ -150,18 +145,20 @@ export default function ServicesGrid() {
                 </div>
               </div>
 
-              {/* Content area — dark card body to match dark gradient bottom */}
-              <div className="p-5 bg-[#111827] border-t border-white/5">
+              {/* Content area — dark card body */}
+              <div className="p-5 bg-[#111827] border-t border-white/5 flex flex-col h-[180px]">
                 <h3 className="text-base font-bold text-white mb-2 group-hover:text-primary-light transition-colors leading-snug">
                   {unit.title}
                 </h3>
-                <p className="text-xs text-slate-400 leading-relaxed mb-4 line-clamp-2">
+                <p className="text-xs text-slate-400 leading-relaxed mb-4 line-clamp-2 flex-grow">
                   {unit.description}
                 </p>
-                <span className="inline-flex items-center gap-1.5 text-xs font-bold text-primary transition-colors duration-300">
-                  Explore
-                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                </span>
+                <div className="mt-auto">
+                  <span className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-full text-xs font-bold bg-[#1B6BA8] text-white border border-[#1B6BA8]/20 transition-all duration-300 shadow-sm group-hover:bg-[#1B6BA8]/85 group-hover:scale-[1.03] group-hover:shadow-md">
+                    <span>Explore</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </div>
               </div>
             </Link>
           ))}
