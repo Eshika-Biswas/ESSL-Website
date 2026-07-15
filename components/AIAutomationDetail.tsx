@@ -113,7 +113,7 @@ export default function AIAutomationDetail() {
         {/* NOTE: Swap image for relevant AI & Automation loop video when asset becomes available */}
         <div className="absolute inset-0 z-0 bg-[#0a0e17]">
           <Image
-            src="/images/ai-integrated.jpg"
+            src="/images/ai.jpg"
             alt="AI & Automation hero backdrop"
             fill
             sizes="100vw"
