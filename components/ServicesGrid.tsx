@@ -18,7 +18,7 @@ const businessUnits = [
     title: 'Cyber Security',
     category: 'Security',
     description: 'SOC, threat detection, incident response, and enterprise security posture management.',
-    image: '/images/cybersecurity-card.png',
+    image: '/images/cyber-security-1.png',
     href: '/business-units/cyber-security',
     pillColor: 'text-red-400 border-red-500/30 bg-slate-950/70',
   },
@@ -122,9 +122,8 @@ export default function ServicesGrid() {
             <Link
               key={unit.title}
               href={unit.href}
-              className={`group relative rounded-2xl bg-white border border-slate-200/10 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/30 hover:border-primary/20 ${
-                isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-              }`}
+              className={`group relative rounded-2xl bg-white border border-slate-200/10 overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-black/30 hover:border-primary/20 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                }`}
               style={{ transitionDelay: `${(index % 4) * 100}ms` }}
             >
               {/* Top image area */}

@@ -211,7 +211,7 @@ export default function CyberSecurityDetail() {
         {/* Background — static image placeholder (swap for video when asset is available) */}
         <div className="absolute inset-0 z-0 bg-[#0a0e17]">
           <Image
-            src="/images/cybersecurity-card.png"
+            src="/images/cyber-security-1.png"
             alt="Cyber Security hero backdrop"
             fill
             sizes="100vw"
