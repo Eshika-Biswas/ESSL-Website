@@ -415,22 +415,22 @@ export default function Hero() {
                         key={`${client.name}-${i}`}
                         className="flex-shrink-0 mx-2 sm:mx-3"
                       >
-                        <div className="flex items-center justify-center h-12 px-3 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-primary/45 hover:shadow-md transition-all duration-300 group cursor-default" style={{ minWidth: '120px' }}>
+                        <div className="flex items-center justify-center h-12 px-4 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-primary/45 hover:shadow-md transition-all duration-300 group cursor-default" style={{ minWidth: '135px' }}>
                           {client.kind === 'image' ? (
                             <Image
                               src={client.src}
                               alt={`${client.name} logo`}
                               width={client.width}
                               height={client.height}
-                              className="object-contain max-h-[26px] w-auto transition-all duration-300"
+                              className="object-contain max-h-[33px] w-auto transition-all duration-300"
                             />
                           ) : client.kind === 'svg' ? (
                             <div
-                              className="flex items-center justify-center scale-90"
+                              className="flex items-center justify-center scale-[1.15]"
                               dangerouslySetInnerHTML={{ __html: client.svg }}
                             />
                           ) : (
-                            <span className="text-[11px] font-bold text-slate-700 tracking-tight text-center leading-none">
+                            <span className="text-[13px] font-extrabold text-slate-800 tracking-tight text-center leading-none">
                               {client.name}
                             </span>
                           )}
