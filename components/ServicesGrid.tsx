@@ -91,7 +91,7 @@ export default function ServicesGrid() {
       <div className="absolute inset-0 bg-[#0f1420]" />
       <div className="absolute inset-0 z-0 pointer-events-none">
         <Image
-          src="/images/services-bg222.jpg"
+          src="/images/end-to-end-technology-bg.jpg"
           alt="Services Data Center Backdrop"
           fill
           sizes="100vw"
