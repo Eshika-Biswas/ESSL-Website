@@ -90,7 +90,7 @@ export default function ServicesGrid() {
       {/* Background Image: End to End Technology Circuit Pattern */}
       <div className="absolute inset-0 z-0 bg-[#f8fafc]">
         <Image
-          src="/images/end-to-end-technology-bg123.jpg"
+          src="/images/end-to-end.png"
           alt="End to End Technology Backdrop"
           fill
           sizes="100vw"
