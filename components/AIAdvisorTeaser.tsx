@@ -28,17 +28,20 @@ export default function AIAdvisorTeaser() {
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
       {/* Background Image with Brand Navy Tint Overlay */}
-      <div className="absolute inset-0 z-0 bg-[#0f1420]">
+      <div className="absolute inset-0 z-0 bg-[#f8fafc]">
         <Image
           src="/images/ai-advisor-bg.jpg"
           alt="AI Advisor Mesh Background"
           fill
           sizes="100vw"
-          className="object-cover opacity-90"
+          className="object-cover opacity-95"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-[#0f1420]/45 z-[1]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0f1420] via-transparent to-[#0f1420] z-[1]" />
+        {/* Very light brand navy tint to keep the mesh texture on-brand */}
+        <div className="absolute inset-0 bg-[#0f1420]/20 z-[1]" />
+        {/* Soft edge blends to sections above and below */}
+        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#0f1420] to-transparent z-[1]" />
+        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0f1420] to-transparent z-[1]" />
       </div>
 
       {/* Gradient Orbs */}
@@ -48,28 +51,28 @@ export default function AIAdvisorTeaser() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-12'}`}>
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-accent-2 border border-accent-2/20 bg-accent-2/5 mb-6">
+          <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-x-12'}`}>
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-6">
               <Sparkles className="w-3.5 h-3.5" />
               AI-Powered
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4" style={{ fontFamily: 'var(--font-display)' }}>
               Ask Our{' '}
               <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
                 AI Advisor
               </span>
             </h2>
-            <p className="text-slate-350 text-lg leading-relaxed mb-8">
+            <p className="text-slate-700 text-lg leading-relaxed mb-8">
               Get instant, intelligent answers about cybersecurity solutions, infrastructure design,
               and managed services — powered by ESSL&apos;s real service and product knowledge base.
             </p>
 
-            <div className="flex items-center gap-4 text-sm text-slate-400">
+            <div className="flex items-center gap-4 text-sm text-slate-500">
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-success animate-pulse" />
                 Available 24/7
               </div>
-              <div className="w-px h-4 bg-white/10" />
+              <div className="w-px h-4 bg-slate-300/85" />
               <div>Trained on ESSL&apos;s knowledge base</div>
             </div>
           </div>
