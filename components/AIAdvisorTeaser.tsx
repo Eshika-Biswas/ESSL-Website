@@ -27,21 +27,16 @@ export default function AIAdvisorTeaser() {
 
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
-      {/* Background Image with Brand Navy Tint Overlay */}
+      {/* Background Image at full natural brightness */}
       <div className="absolute inset-0 z-0 bg-[#f8fafc]">
         <Image
           src="/images/ai-advisor-bg.jpg"
           alt="AI Advisor Mesh Background"
           fill
           sizes="100vw"
-          className="object-cover opacity-95"
+          className="object-cover opacity-100"
           loading="lazy"
         />
-        {/* Very light brand navy tint to keep the mesh texture on-brand */}
-        <div className="absolute inset-0 bg-[#0f1420]/20 z-[1]" />
-        {/* Soft edge blends to sections above and below */}
-        <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-[#0f1420] to-transparent z-[1]" />
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-[#0f1420] to-transparent z-[1]" />
       </div>
 
       {/* Gradient Orbs */}
