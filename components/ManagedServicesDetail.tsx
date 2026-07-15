@@ -15,45 +15,55 @@ import {
   Compass,
   ShieldCheck,
   Headphones,
+  Activity,
+  HardDrive,
+  Briefcase,
+  UserCheck,
 } from 'lucide-react';
 
 // ─── Capability Cards ─────────────────────────────────────────────────────────
 const capabilities = [
   {
     number: '01',
-    title: 'Managed Network',
-    description: 'Proactive network monitoring, performance management, and incident response',
-    icon: Network,
+    title: 'NOC (Network Operations Center)',
+    description: 'Provide round-the-clock network monitoring, incident detection, and rapid issue resolution to keep operations running smoothly.',
+    icon: Activity,
   },
   {
     number: '02',
-    title: 'Managed Security',
-    description: 'NOC/SOC, 24/7 threat monitoring, detection & response',
+    title: 'SOC (Security Operations Center)',
+    description: 'Deliver continuous security monitoring, threat detection, and incident response to protect critical systems.',
     icon: Shield,
   },
   {
     number: '03',
-    title: 'Managed Cloud',
-    description: 'Cloud infrastructure monitoring, optimization, and cost management',
+    title: 'Cloud Operations',
+    description: 'Manage and optimize cloud infrastructure performance, cost, and availability across public, private, and hybrid environments.',
     icon: Cloud,
   },
   {
     number: '04',
-    title: 'Managed Workplace',
-    description: 'End-user device management, helpdesk, and workplace support',
-    icon: Monitor,
+    title: 'Infrastructure Management',
+    description: 'Proactively manage servers, storage, and network infrastructure to ensure reliability and peak performance.',
+    icon: Server,
   },
   {
     number: '05',
-    title: 'Managed Infrastructure',
-    description: 'Data center and infrastructure monitoring, patching, and maintenance',
-    icon: Server,
+    title: 'Backup',
+    description: 'Safeguard business-critical data with managed backup, monitoring, and recovery services.',
+    icon: HardDrive,
   },
   {
     number: '06',
     title: 'Professional Services',
-    description: 'SLA management, proactive support, and dedicated service delivery',
-    icon: Users,
+    description: 'Deliver expert project-based technical services tailored to your specific infrastructure and business needs.',
+    icon: Briefcase,
+  },
+  {
+    number: '07',
+    title: 'Resident Engineers',
+    description: 'Provide dedicated on-site technical experts embedded within your team for continuous, hands-on support.',
+    icon: UserCheck,
   },
 ];
 
@@ -201,12 +211,12 @@ export default function ManagedServicesDetail() {
             </p>
           </div>
 
-          {/* 6 cards grid */}
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {/* 7 cards — 3-column × 3-row grid (7 cards: 3+3+1, 7th left-aligned) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {capabilities.map((card, index) => (
               <div
                 key={card.title}
-                className={`group relative rounded-2xl bg-white border border-slate-200/60 p-8 sm:p-10 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                className={`group relative rounded-2xl bg-white border border-slate-200/60 p-8 sm:p-10 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${index === 6 ? 'lg:col-start-1' : ''} ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
                 style={{ transitionDelay: `${(index % 3) * 100}ms` }}
               >
                 {/* Numbered badge top-right */}

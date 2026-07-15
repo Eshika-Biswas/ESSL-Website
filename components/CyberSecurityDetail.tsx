@@ -6,7 +6,17 @@ import Link from 'next/link';
 import {
   Laptop,
   MonitorCheck,
-  ClipboardCheck,
+  Layers,
+  Headset,
+  BarChart2,
+  Zap,
+  Lock,
+  Globe,
+  Eye,
+  Target,
+  AlertTriangle,
+  Brain,
+  Cloud,
   ArrowRight,
   Search,
   Compass,
@@ -18,22 +28,82 @@ import {
 // ─── Capability Cards ─────────────────────────────────────────────────────────
 const capabilities = [
   {
-    title: 'Endpoint Security',
+    title: 'Endpoint Protection',
     description:
-      'Endpoint Protection, Endpoint Detection & Response (EDR), Extended Detection & Response (XDR), Managed Detection & Response (MDR)',
+      'Defend laptops, desktops, servers, and mobile devices against malware, ransomware, and known threats.',
     icon: Laptop,
   },
   {
-    title: 'Security Operations',
+    title: 'Endpoint Detection & Response (EDR)',
     description:
-      'Security Operations Center (SOC), SIEM, SOAR',
+      'Continuously monitor endpoints to detect, investigate, and rapidly respond to advanced cyber threats.',
     icon: MonitorCheck,
   },
   {
-    title: 'Risk & Compliance',
+    title: 'Extended Detection & Response (XDR)',
     description:
-      'Vulnerability Assessment, Penetration Testing, Security Audit, Risk Assessment, Compliance Consulting',
-    icon: ClipboardCheck,
+      'Correlate security data across endpoints, networks, cloud, and email for unified threat detection and response.',
+    icon: Layers,
+  },
+  {
+    title: 'Managed Detection & Response (MDR)',
+    description:
+      'Provide 24×7 expert threat monitoring, investigation, and incident response through managed security services.',
+    icon: Headset,
+  },
+  {
+    title: 'SIEM (Security Information & Event Management)',
+    description:
+      'Collect, analyze, and correlate security logs to identify threats and support compliance requirements.',
+    icon: BarChart2,
+  },
+  {
+    title: 'SOAR (Security Orchestration, Automation & Response)',
+    description:
+      'Automate security workflows, accelerate incident response, and improve operational efficiency.',
+    icon: Zap,
+  },
+  {
+    title: 'Data Loss Prevention (DLP)',
+    description:
+      'Prevent sensitive data from unauthorized access, sharing, or accidental leakage across your organization.',
+    icon: Lock,
+  },
+  {
+    title: 'Secure Browsing',
+    description:
+      'Protect users from malicious websites, phishing attacks, and unsafe online content with secure web access.',
+    icon: Globe,
+  },
+  {
+    title: 'Threat Intelligence',
+    description:
+      'Gain actionable insights into emerging threats, attacker tactics, and vulnerabilities to strengthen your defenses.',
+    icon: Eye,
+  },
+  {
+    title: 'Attack Surface Management',
+    description:
+      'Continuously discover, assess, and reduce external attack surfaces to minimize cyber risk.',
+    icon: Target,
+  },
+  {
+    title: 'Dark Web Monitoring',
+    description:
+      'Monitor dark web sources for leaked credentials, sensitive information, and indicators of compromise.',
+    icon: AlertTriangle,
+  },
+  {
+    title: 'AI-Driven Detection & Response (AIDR)',
+    description:
+      'Leverage artificial intelligence to detect sophisticated threats, prioritize alerts, and automate response actions.',
+    icon: Brain,
+  },
+  {
+    title: 'Cloud Security',
+    description:
+      'Secure cloud workloads, applications, identities, and data across public, private, and hybrid cloud environments.',
+    icon: Cloud,
   },
 ];
 
@@ -247,15 +317,17 @@ export default function CyberSecurityDetail() {
             </p>
           </div>
 
-          {/* 3-card grid — single filled row */}
-          <div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
+          {/* 13-card grid — 3 cols × 5 rows; 13th card left-aligned via justify-items-start on last row */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {capabilities.map((card, index) => (
               <div
                 key={card.title}
                 className={`group relative rounded-2xl bg-white border border-slate-200/60 p-8 sm:p-10 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${
+                  index === 12 ? 'lg:col-start-1' : ''
+                } ${
                   gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
-                style={{ transitionDelay: `${index * 120}ms` }}
+                style={{ transitionDelay: `${(index % 3) * 100}ms` }}
               >
                 {/* Icon */}
                 <card.icon className="w-8 h-8 text-[rgb(20,109,174)] mb-4 shrink-0" />

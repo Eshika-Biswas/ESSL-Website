@@ -3,64 +3,80 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Network, Shield, Wifi, Activity, Globe, Lock, Mail, ArrowRight, Search, Compass, Server, ShieldCheck, Headphones } from 'lucide-react';
+import { Network, Shield, Wifi, Activity, Globe, Lock, Mail, ArrowRight, Search, Compass, Server, ShieldCheck, Headphones, Cpu, GitBranch, UserCheck, ShieldAlert, BarChart2 } from 'lucide-react';
 
 const capabilities = [
   {
     number: '01',
-    title: 'Enterprise Networking',
-    category: 'Networking',
-    description: 'Campus Network, Branch Networking, Enterprise Routing & Switching, Software Defined Networking (SDN)',
-    image: '/images/network-security/enterprise-networking.jpg',
+    title: 'Campus Network',
+    description: 'Enterprise LAN, Core, Distribution & Access Network',
     icon: Network,
   },
   {
     number: '02',
-    title: 'Secure Connectivity',
-    category: 'Connectivity',
-    description: 'SD-WAN, Zero Trust Network Access (ZTNA), Network Access Control (NAC)',
-    image: '/images/network-security/secure-connectivity.jpg',
-    icon: Shield,
-  },
-  {
-    number: '03',
-    title: 'Wireless & Mobility',
-    category: 'Wireless',
-    description: 'Enterprise Wi-Fi, Wireless Site Survey, Guest Access Solutions',
-    image: '/images/network-security/wireless-mobility.webp',
+    title: 'Enterprise Wi-Fi',
+    description: 'Secure Wireless Connectivity',
     icon: Wifi,
   },
   {
+    number: '03',
+    title: 'Software Defined Networking (SDN)',
+    description: 'Centralized Network Management & Automation',
+    icon: Cpu,
+  },
+  {
     number: '04',
-    title: 'Network Visibility',
-    category: 'Visibility',
-    description: 'Network Monitoring, Network Performance Management, DNS & DHCP Solutions',
-    image: '/images/network-security/network-visibility.jpg',
-    icon: Activity,
+    title: 'SD-WAN',
+    description: 'Secure Branch & Cloud Connectivity',
+    icon: GitBranch,
   },
   {
     number: '05',
-    title: 'Application Delivery',
-    category: 'Delivery',
-    description: 'Load Balancing, Application Delivery Controller (ADC), WAN Optimization',
-    image: '/images/network-security/application-delivery.avif',
-    icon: Globe,
+    title: 'Network Access Control (NAC)',
+    description: 'Device Authentication & Access Control',
+    icon: UserCheck,
   },
   {
     number: '06',
-    title: 'Perimeter Security',
-    category: 'Security',
-    description: 'Next Generation Firewall (NGFW), Secure Web Gateway (SWG), Web Application Firewall (WAF), DDoS Protection, API Security',
-    image: '/images/network-security/perimeter-security.avif',
-    icon: Lock,
+    title: 'Zero Trust Network Access (ZTNA)',
+    description: 'Identity-Based Secure Access',
+    icon: ShieldCheck,
   },
   {
     number: '07',
+    title: 'Next Generation Firewall (NGFW)',
+    description: 'Network Threat Prevention',
+    icon: Shield,
+  },
+  {
+    number: '08',
+    title: 'Web Application Firewall (WAF)',
+    description: 'Web Application Protection',
+    icon: Lock,
+  },
+  {
+    number: '09',
+    title: 'DDoS Protection',
+    description: 'Availability & Attack Mitigation',
+    icon: ShieldAlert,
+  },
+  {
+    number: '10',
     title: 'Email Security',
-    category: 'Security',
-    description: 'Email Security',
-    image: '/images/network-security/email-security.png',
+    description: 'Phishing, Spam & Malware Protection',
     icon: Mail,
+  },
+  {
+    number: '11',
+    title: 'Application Delivery Controller (ADC)',
+    description: 'Load Balancing & Application Optimization',
+    icon: Server,
+  },
+  {
+    number: '12',
+    title: 'Network Performance Management',
+    description: 'Monitoring, Analytics & Optimization',
+    icon: BarChart2,
   },
 ];
 
@@ -324,8 +340,8 @@ export default function NetworkSecurityDetail() {
             </p>
           </div>
 
-          {/* Cards Grid (7 Cards, responsive with left-aligned 7th card) */}
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {/* Cards Grid (12 Cards — 4×3 on desktop, 2-col on tablet, 1-col on mobile) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
             {capabilities.map((card, index) => (
               <div
                 key={card.number}

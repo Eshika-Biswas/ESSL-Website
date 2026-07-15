@@ -13,33 +13,56 @@ import {
   Compass,
   ShieldCheck,
   Headphones,
+  BatteryCharging,
+  Camera,
+  Volume2,
+  Thermometer,
+  Key,
 } from 'lucide-react';
 
 // ─── Capability Cards ─────────────────────────────────────────────────────────
 const capabilities = [
   {
     number: '01',
-    title: 'Structured Cabling',
-    description: 'Copper Cabling, Fiber Optic Cabling, Campus Cabling',
+    title: 'Structured Cabling (UTP/Fiber)',
+    description: 'Deploy reliable copper and fiber optic cabling infrastructure engineered for high-speed, future-ready connectivity.',
     icon: Cable,
   },
   {
     number: '02',
-    title: 'Data Center Infrastructure',
-    description: 'Rack & Cabinet, Raised Floor, Cabling Management',
-    icon: Server,
+    title: 'UPS Solutions',
+    description: 'Ensure uninterrupted power with enterprise-grade UPS systems safeguarding critical infrastructure from outages.',
+    icon: BatteryCharging,
   },
   {
     number: '03',
-    title: 'Power Infrastructure',
-    description: 'UPS Solutions, Power Distribution',
+    title: 'Power Distribution',
+    description: 'Deliver reliable, scalable power distribution designed for demanding data center and facility environments.',
     icon: Zap,
   },
   {
     number: '04',
-    title: 'Physical Security',
-    description: 'CCTV, Access Control, Environmental Monitoring, Smart Infrastructure',
-    icon: Lock,
+    title: 'IP Surveillance',
+    description: 'Protect your premises with intelligent, high-resolution IP camera systems for continuous monitoring.',
+    icon: Camera,
+  },
+  {
+    number: '05',
+    title: 'PA System',
+    description: 'Enable clear, reliable public address and emergency communication across facilities and campuses.',
+    icon: Volume2,
+  },
+  {
+    number: '06',
+    title: 'Environmental Monitoring',
+    description: 'Monitor temperature, humidity, water leaks, and environmental conditions to protect critical equipment from damage.',
+    icon: Thermometer,
+  },
+  {
+    number: '07',
+    title: 'Access Control',
+    description: 'Secure facilities and restricted rooms with biometric, card-reader, and electronic door authorization systems.',
+    icon: Key,
   },
 ];
 
@@ -187,13 +210,13 @@ export default function PassiveInfrastructureDetail() {
             </p>
           </div>
 
-          {/* 4 cards grid */}
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8">
+          {/* 7 cards — 3-column × 3-row grid (7 cards: 3+3+1, 7th left-aligned) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {capabilities.map((card, index) => (
               <div
                 key={card.title}
-                className={`group relative rounded-2xl bg-white border border-slate-200/60 p-8 sm:p-10 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
-                style={{ transitionDelay: `${(index % 4) * 100}ms` }}
+                className={`group relative rounded-2xl bg-white border border-slate-200/60 p-8 sm:p-10 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${index === 6 ? 'lg:col-start-1' : ''} ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
+                style={{ transitionDelay: `${(index % 3) * 100}ms` }}
               >
                 {/* Numbered badge top-right */}
                 <div className="absolute top-8 right-8 text-xs font-mono font-bold text-slate-400 group-hover:text-[rgb(20,109,174)]/45 transition-colors duration-300">

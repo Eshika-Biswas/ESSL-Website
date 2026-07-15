@@ -15,39 +15,88 @@ import {
   Compass,
   ShieldCheck,
   Headphones,
+  Box,
+  Cpu,
+  HardDrive,
+  Shield,
+  HardDriveDownload,
+  Lock,
+  CloudUpload,
+  Grid,
+  GitBranch,
 } from 'lucide-react';
 
 // ─── Capability Cards ─────────────────────────────────────────────────────────
 const capabilities = [
   {
-    title: 'Compute',
-    description: 'Enterprise Servers, Hyper-Converged Infrastructure (HCI), GPU Infrastructure',
+    title: 'Enterprise Servers',
+    description: 'Deploy high-performance enterprise servers to power mission-critical applications and business workloads.',
     icon: Server,
   },
   {
-    title: 'Storage',
-    description: 'SAN Storage, NAS Storage, Object Storage',
-    icon: Database,
+    title: 'Hyper-Converged Infrastructure (HCI)',
+    description: 'Simplify IT operations by combining compute, storage, networking, and virtualization into a unified platform.',
+    icon: Box,
   },
   {
-    title: 'Virtualization',
-    description: 'Server Virtualization, Private Cloud',
+    title: 'GPU Infrastructure',
+    description: 'Accelerate AI, machine learning, virtualization, and high-performance computing with enterprise-grade GPU solutions.',
+    icon: Cpu,
+  },
+  {
+    title: 'SAN Storage',
+    description: 'Deliver centralized, high-speed, and highly available storage for enterprise applications and critical data.',
+    icon: HardDrive,
+  },
+  {
+    title: 'Server Virtualization',
+    description: 'Optimize resource utilization, reduce infrastructure costs, and improve workload flexibility through virtualization.',
     icon: Layers,
   },
   {
-    title: 'Backup & Disaster Recovery',
-    description: 'Backup Solutions, Disaster Recovery, Business Continuity, Immutable Backup',
-    icon: RefreshCw,
+    title: 'Private Cloud',
+    description: 'Build secure, scalable private cloud environments with greater control, performance, and data sovereignty.',
+    icon: Shield,
   },
   {
-    title: 'Hybrid Cloud',
-    description: 'Cloud Migration, AWS Solutions, Microsoft Azure Solutions, Google Cloud Solutions, Hybrid Cloud Architecture',
+    title: 'Backup Solutions',
+    description: 'Protect business-critical data with reliable backup, recovery, and long-term data retention solutions.',
+    icon: HardDriveDownload,
+  },
+  {
+    title: 'Business Continuity',
+    description: 'Ensure uninterrupted business operations with disaster recovery, failover, and resilience strategies.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Immutable Backup',
+    description: 'Safeguard backups from ransomware and unauthorized changes using tamper-proof, immutable storage.',
+    icon: Lock,
+  },
+  {
+    title: 'Cloud Migration',
+    description: 'Seamlessly migrate applications, workloads, and data to the cloud with minimal downtime and risk.',
+    icon: CloudUpload,
+  },
+  {
+    title: 'Cloud Solutions',
+    description: 'Design and manage secure, scalable cloud environments across public, private, and hybrid cloud platforms.',
     icon: Cloud,
   },
   {
-    title: 'Cloud Modernization',
-    description: 'Container Platform, Kubernetes Platform, Cloud Native Infrastructure',
+    title: 'Container Platform',
+    description: 'Deploy and manage containerized applications with modern, scalable, and portable container platforms.',
     icon: Package,
+  },
+  {
+    title: 'Kubernetes Platform',
+    description: 'Automate container orchestration, scaling, and lifecycle management using enterprise Kubernetes.',
+    icon: Grid,
+  },
+  {
+    title: 'Cloud Native Infrastructure',
+    description: 'Build cloud-native applications with microservices, automation, and DevOps-ready infrastructure for maximum agility.',
+    icon: GitBranch,
   },
 ];
 
@@ -210,8 +259,8 @@ export default function DataCenterCloudDetail() {
             </p>
           </div>
 
-          {/* 6 cards — 3-column × 2-row */}
-          <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
+          {/* 14 cards — 3-column × 5-row (14 cards: 3+3+3+3+2) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {capabilities.map((card, index) => (
               <div
                 key={card.title}

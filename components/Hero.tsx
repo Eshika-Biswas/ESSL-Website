@@ -112,107 +112,62 @@ interface SvgLogo {
   name: string;
   svg: string;
 }
-type ClientLogo = ImageLogo | SvgLogo;
+interface TextLogo {
+  kind: 'text';
+  name: string;
+}
+type ClientLogo = ImageLogo | SvgLogo | TextLogo;
 
 // ─── Client list ─────────────────────────────────────────────────────────────
+// NOTE: Only IPDC Finance does not have an image asset provided yet.
+// We use a clean text-based placeholder treatment for it until its logo asset is supplied.
 const BASE_CLIENTS: ClientLogo[] = [
   {
-    kind: 'image', name: 'AKIJ Insaf', src: '/logos/Akij-Insaf-logo.472a84eedbb63231b165.png',
+    kind: 'image', name: 'IDLC Finance', src: '/logos/idlc-finance.png',
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Navana Group', src: '/logos/navana_logo-1.svg',
+    kind: 'text', name: 'IPDC Finance',
+  },
+  {
+    kind: 'image', name: 'Berger Paints', src: '/logos/berger-paints.png',
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Rahimafrooz', src: '/logos/rahimafrooz.png',
+    kind: 'image', name: 'Aristo Pharma', src: '/logos/aristo-pharma.png',
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Snowtex', src: '/logos/snowtex.png',
+    kind: 'image', name: 'Opsonin Pharma', src: '/logos/opsonin-pharma.png',
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'United Group', src: '/logos/united.png',
+    kind: 'image', name: 'ACI', src: '/logos/aci-plc.png',
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'TK Group', src: '/logos/TK-Group-1-2.png',
+    kind: 'image', name: 'Brac University', src: '/logos/brac-university.svg',
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Savoy', src: '/logos/savoy.png',
+    kind: 'image', name: 'UIU', src: '/logos/uiu.png',
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Masco Group', src: '/logos/masco.png',
+    kind: 'image', name: 'Evercare Hospital', src: '/logos/evercare-hospita-logo.webp',
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Partex Star Group', src: '/logos/partex-star.png',
+    kind: 'image', name: 'Aarong', src: '/logos/aarong.png',
     width: 110, height: 40,
   },
   {
-    kind: 'svg', name: 'Standard Chartered',
-    svg: `<svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" width="110" height="36">
-      <path d="M6,20 C6,11 14,11 19,18 C24,11 32,11 32,20 C32,29 24,29 19,22 C14,29 6,29 6,20Z" fill="none" stroke="#009A44" stroke-width="3"/>
-      <text x="38" y="22" fill="#009A44" font-family="sans-serif" font-weight="700" font-size="12">Standard</text>
-      <text x="38" y="34" fill="#005A9C" font-family="sans-serif" font-weight="600" font-size="10">Chartered</text>
-    </svg>`,
+    kind: 'image', name: 'Buro Bangladesh', src: '/logos/buro-bangladesh.svg',
+    width: 110, height: 40,
   },
   {
-    kind: 'svg', name: 'BRAC Bank',
-    svg: `<svg viewBox="0 0 110 40" xmlns="http://www.w3.org/2000/svg" width="100" height="36">
-      <rect x="4" y="4" width="30" height="30" rx="5" fill="#FFC72C"/>
-      <text x="19" y="26" fill="#003594" font-family="sans-serif" font-weight="900" font-size="20" text-anchor="middle">b</text>
-      <text x="40" y="20" fill="#003594" font-family="sans-serif" font-weight="700" font-size="13">BRAC</text>
-      <text x="40" y="32" fill="#003594" font-family="sans-serif" font-weight="500" font-size="9" letter-spacing="1">BANK</text>
-    </svg>`,
-  },
-  {
-    kind: 'svg', name: 'Biman Airlines',
-    svg: `<svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" width="110" height="36">
-      <path d="M4,28 C10,12 26,12 34,20 L28,18 L34,28Z" fill="#006A4E"/>
-      <circle cx="16" cy="22" r="4" fill="#F42A41"/>
-      <text x="40" y="21" fill="#006A4E" font-family="sans-serif" font-weight="700" font-size="12">Biman</text>
-      <text x="40" y="33" fill="#555" font-family="sans-serif" font-weight="400" font-size="9">Bangladesh Airlines</text>
-    </svg>`,
-  },
-  {
-    kind: 'svg', name: 'Bangladesh Parliament',
-    svg: `<svg viewBox="0 0 130 40" xmlns="http://www.w3.org/2000/svg" width="120" height="36">
-      <ellipse cx="20" cy="14" rx="12" ry="7" fill="#006A4E"/>
-      <ellipse cx="20" cy="14" rx="6" ry="3.5" fill="#F42A41"/>
-      <rect x="9" y="22" width="22" height="4" fill="#006A4E"/>
-      <rect x="13" y="28" width="14" height="4" fill="#006A4E"/>
-      <text x="37" y="20" fill="#006A4E" font-family="sans-serif" font-weight="700" font-size="10">Bangladesh</text>
-      <text x="37" y="33" fill="#555" font-family="sans-serif" font-weight="500" font-size="9">Parliament</text>
-    </svg>`,
-  },
-  {
-    kind: 'svg', name: 'Samsung',
-    svg: `<svg viewBox="0 0 110 40" xmlns="http://www.w3.org/2000/svg" width="100" height="36">
-      <ellipse cx="55" cy="20" rx="50" ry="17" fill="#0A5CA6"/>
-      <text x="55" y="26" fill="#FFFFFF" font-family="sans-serif" font-weight="900" font-size="14" text-anchor="middle" letter-spacing="-0.5">SAMSUNG</text>
-    </svg>`,
-  },
-  {
-    kind: 'svg', name: 'Eastern Bank EBL',
-    svg: `<svg viewBox="0 0 90 40" xmlns="http://www.w3.org/2000/svg" width="80" height="36">
-      <rect x="4" y="6" width="19" height="7" fill="#005A9C"/>
-      <rect x="4" y="15" width="14" height="7" fill="#005A9C"/>
-      <rect x="4" y="24" width="19" height="7" fill="#005A9C"/>
-      <text x="28" y="26" fill="#005A9C" font-family="sans-serif" font-weight="700" font-size="18" letter-spacing="0.5">EBL</text>
-    </svg>`,
-  },
-  {
-    kind: 'svg', name: 'Dhaka Bank',
-    svg: `<svg viewBox="0 0 120 40" xmlns="http://www.w3.org/2000/svg" width="110" height="36">
-      <rect x="4" y="4" width="30" height="30" fill="#00843D"/>
-      <circle cx="19" cy="19" r="9" fill="#002D62"/>
-      <text x="40" y="22" fill="#002D62" font-family="sans-serif" font-weight="700" font-size="13">DHAKA</text>
-      <text x="40" y="34" fill="#00843D" font-family="sans-serif" font-weight="500" font-size="10">BANK</text>
-    </svg>`,
+    kind: 'image', name: 'Bangladesh Biman', src: '/logos/biman-logo-english-copy.svg',
+    width: 110, height: 40,
   },
 ];
 
@@ -334,8 +289,8 @@ export default function Hero() {
                   {/* Overlays */}
                   {isLight ? (
                     /* Smooth, full-screen color-matched light gradient vignette to prevent hard edges */
-                    <div 
-                      className="absolute inset-0 bg-gradient-to-r z-[1]" 
+                    <div
+                      className="absolute inset-0 bg-gradient-to-r z-[1]"
                       style={{
                         backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, 0.95) 0%, rgba(${slide.overlayColor}, 0.9) 35%, rgba(${slide.overlayColor}, 0.75) 55%, rgba(${slide.overlayColor}, 0.2) 75%, transparent 100%)`
                       }}
@@ -343,14 +298,14 @@ export default function Hero() {
                   ) : (
                     <>
                       {/* Directional Overlay (left shadow, transparent right) */}
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-r z-[1]" 
+                      <div
+                        className="absolute inset-0 bg-gradient-to-r z-[1]"
                         style={{
                           backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.darkOpacityRange?.[0] || 0.95}) 0%, rgba(${slide.overlayColor}, ${slide.darkOpacityRange?.[1] || 0.5}) 50%, transparent 100%)`
                         }}
                       />
-                      <div 
-                        className="absolute inset-0 bg-gradient-to-b z-[1]" 
+                      <div
+                        className="absolute inset-0 bg-gradient-to-b z-[1]"
                         style={{
                           backgroundImage: `linear-gradient(to bottom, rgba(${slide.overlayColor}, 0.3) 0%, transparent 40%, transparent 70%, rgba(${slide.overlayColor}, 0.5) 100%)`
                         }}
@@ -364,15 +319,13 @@ export default function Hero() {
                   <div className="max-w-4xl text-left">
 
                     {/* Eyebrow badge */}
-                    <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-8 ${
-                      isLight 
-                        ? 'border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/5' 
+                    <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-8 ${isLight
+                        ? 'border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/5'
                         : 'border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5'
-                    }`}>
-                      <div className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
-                      <span className={`text-xs uppercase tracking-widest font-semibold ${
-                        isLight ? 'text-[#0f1420]/80' : 'text-primary-light'
                       }`}>
+                      <div className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
+                      <span className={`text-xs uppercase tracking-widest font-semibold ${isLight ? 'text-[#0f1420]/80' : 'text-primary-light'
+                        }`}>
                         Business Unit
                       </span>
                     </div>
@@ -388,9 +341,8 @@ export default function Hero() {
                     </h1>
 
                     {/* Tagline */}
-                    <p className={`text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 ${
-                      isLight ? 'text-slate-800' : 'text-slate-200'
-                    }`}>
+                    <p className={`text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 ${isLight ? 'text-slate-800' : 'text-slate-200'
+                      }`}>
                       {slide.description}
                     </p>
 
@@ -472,17 +424,30 @@ export default function Hero() {
                               height={client.height}
                               className="object-contain max-h-[26px] w-auto transition-all duration-300"
                             />
-                          ) : (
+                          ) : client.kind === 'svg' ? (
                             <div
                               className="flex items-center justify-center scale-90"
                               dangerouslySetInnerHTML={{ __html: client.svg }}
                             />
+                          ) : (
+                            <span className="text-[11px] font-bold text-slate-700 tracking-tight text-center leading-none">
+                              {client.name}
+                            </span>
                           )}
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
+              </div>
+              <div className="mt-4 flex justify-end">
+                <Link
+                  href="/clients"
+                  className="inline-flex items-center gap-1 text-xs font-semibold text-[rgb(20,109,174)] hover:text-[#0b4e82] transition-colors group/link"
+                >
+                  <span>View All Clients</span>
+                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" />
+                </Link>
               </div>
             </div>
 
