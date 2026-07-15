@@ -66,7 +66,7 @@ const businessUnits = [
     title: 'AI & Automation',
     category: 'Artificial Intelligence',
     description: 'Intelligent automation, ML pipelines, AI-powered analytics, and process optimization.',
-    image: '/images/ai-automation-card.png',
+    image: '/images/ai-integrated.jpg',
     href: '/business-units/ai-automation',
     pillColor: 'text-fuchsia-400 border-fuchsia-500/30 bg-slate-950/70',
   },
