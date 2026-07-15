@@ -50,23 +50,34 @@ export default function BlogPreview() {
 
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden section-transition">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[#f8fafc]" />
+      {/* Background Image: Latest Insights */}
+      <div className="absolute inset-0 z-0 bg-[#f8fafc]">
+        <Image
+          src="/images/latest-insights-bg.jpg"
+          alt="Latest Insights Backdrop"
+          fill
+          sizes="100vw"
+          className="object-cover object-center opacity-100"
+          loading="lazy"
+        />
+        {/* Soft edge blends and gradient overlay for readability if needed */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/25 via-transparent to-[#f8fafc]/25 z-[1]" />
+      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className={`flex flex-col sm:flex-row sm:items-end sm:justify-between mb-14 gap-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`flex flex-col sm:flex-row sm:items-end sm:justify-between mb-14 gap-6 relative z-10 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <div>
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#1B6BA8] border border-[#1B6BA8]/20 bg-[#1B6BA8]/5 mb-6">
               Insights & Blog
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-slate-900" style={{ fontFamily: 'var(--font-display)' }}>
+            <h2 className="text-3xl sm:text-4xl font-bold text-[#0f1420]" style={{ fontFamily: 'var(--font-display)' }}>
               Latest Insights
             </h2>
           </div>
           <Link
             href="/insights"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-primary-light transition-colors group"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-[#1B6BA8] hover:text-[#1B6BA8]/80 transition-colors group z-10"
           >
             View all articles
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
