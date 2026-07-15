@@ -154,30 +154,18 @@ export default function VendorStrip() {
 
   return (
     <section ref={sectionRef} className="relative w-full py-20 overflow-hidden section-transition">
-      {/* Background Globe Video Loop (rendered only when scrolled near/into view) */}
+      {/* Background Image: World's Leading Vendors */}
       <div className="absolute inset-0 z-0 bg-[#0c0f17]">
-        {isVisible ? (
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            className="w-full h-full object-cover opacity-[0.25]"
-            poster="/images/earth-fallback.png"
-          >
-            <source src="/videos/earth-loop.webm" type="video/webm" />
-            <source src="/videos/earth-loop.mp4" type="video/mp4" />
-          </video>
-        ) : (
-          /* Static Fallback Poster Image */
-          <div 
-            className="w-full h-full bg-cover bg-center opacity-[0.25]" 
-            style={{ backgroundImage: "url('/images/earth-fallback.png')" }}
-          />
-        )}
-        
-        {/* Dark overlay/gradient to keep partner logos and text readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17] via-[#0c0f17]/85 to-[#0c0f17]" />
+        <Image
+          src="/images/worlds-leading-vendors-bg.jpg"
+          alt="World's Leading Vendors Background"
+          fill
+          sizes="100vw"
+          className="object-cover opacity-70"
+          loading="lazy"
+        />
+        {/* Subtle gradient overlay to blend edges and maintain readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17]/90 via-[#0c0f17]/25 to-[#0c0f17]/90 z-[1]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
