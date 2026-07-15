@@ -155,17 +155,15 @@ export default function VendorStrip() {
   return (
     <section ref={sectionRef} className="relative w-full py-20 overflow-hidden section-transition">
       {/* Background Image: World's Leading Vendors */}
-      <div className="absolute inset-0 z-0 bg-[#0c0f17]">
+      <div className="absolute inset-0 z-0 bg-[#f8fafc]">
         <Image
           src="/images/worlds-leading-vendors-bg.jpg"
           alt="World's Leading Vendors Background"
           fill
           sizes="100vw"
-          className="object-cover opacity-70"
+          className="object-cover opacity-100"
           loading="lazy"
         />
-        {/* Subtle gradient overlay to blend edges and maintain readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0c0f17]/90 via-[#0c0f17]/25 to-[#0c0f17]/90 z-[1]" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -173,14 +171,14 @@ export default function VendorStrip() {
         <div className={`text-center mb-14 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <Link
             href="/about/partners"
-            className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 hover:bg-primary/10 hover:border-primary/40 mb-6 transition-all duration-300"
+            className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#1B6BA8] border border-[#1B6BA8]/20 bg-[#1B6BA8]/5 hover:bg-[#1B6BA8]/10 hover:border-[#1B6BA8]/40 mb-6 transition-all duration-300"
           >
             Technology Partners
           </Link>
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3" style={{ fontFamily: 'var(--font-display)' }}>
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-[#0f1420] mb-3" style={{ fontFamily: 'var(--font-display)' }}>
             Certified Partner of the World&apos;s Leading Vendors
           </h2>
-          <p className="text-slate-400 text-base max-w-xl mx-auto">
+          <p className="text-slate-650 text-base max-w-xl mx-auto">
             We hold the highest certifications from 12+ global technology leaders
           </p>
         </div>
@@ -210,7 +208,7 @@ export default function VendorStrip() {
         <div className={`text-center mt-10 transition-all duration-700 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
           <Link
             href="/about/partners"
-            className="inline-flex items-center text-sm font-semibold tracking-wider uppercase font-mono text-slate-400 hover:text-white hover:gap-2 transition-all duration-300 gap-1.5"
+            className="inline-flex items-center text-sm font-semibold tracking-wider uppercase font-mono text-slate-600 hover:text-[#0f1420] hover:gap-2 transition-all duration-300 gap-1.5"
           >
             <span>View All Partners</span>
             <span className="text-xs">→</span>
