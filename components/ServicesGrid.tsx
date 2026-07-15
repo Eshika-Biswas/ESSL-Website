@@ -95,25 +95,29 @@ export default function ServicesGrid() {
           alt="Services Data Center Backdrop"
           fill
           sizes="100vw"
-          className="object-cover opacity-[0.4]"
+          className="object-cover opacity-[0.80]"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-dark-950/80 via-dark-950/20 to-dark-950/95" />
-        <div className="absolute inset-0 radial-glow-blue z-0 opacity-40" />
+        {/* Soft edge blends and subtle overlay to blend with ESSL's navy scheme */}
+        <div className="absolute inset-0 bg-[#0f1420]/20" />
+        <div className="absolute inset-0 radial-glow-blue z-0 opacity-20" />
       </div>
       <div className="absolute inset-0 grid-bg opacity-15 pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-          <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
-            What We Do
-          </span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
-            End To End Technology
-          </h2>
-          <p className="text-muted text-lg max-w-2xl mx-auto">
-            Eight specialised business units delivering comprehensive technology services across every domain.
-          </p>
+        {/* Section Header with localized dark gradient overlay for text legibility */}
+        <div className="relative max-w-3xl mx-auto mb-16 text-center z-10">
+          <div className="absolute inset-0 -mx-10 -my-6 bg-dark-950/45 blur-2xl rounded-3xl pointer-events-none" />
+          <div className={`relative transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
+              What We Do
+            </span>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4" style={{ fontFamily: 'var(--font-display)' }}>
+              End To End Technology
+            </h2>
+            <p className="text-muted text-lg max-w-2xl mx-auto">
+              Eight specialised business units delivering comprehensive technology services across every domain.
+            </p>
+          </div>
         </div>
 
         {/* 8-card grid — 4 cols on desktop, 2 on tablet, 1 on mobile */}
