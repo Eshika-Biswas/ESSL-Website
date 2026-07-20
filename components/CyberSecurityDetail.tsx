@@ -236,7 +236,7 @@ export default function CyberSecurityDetail() {
               >
                 <div className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
                 <span className="text-xs uppercase tracking-widest text-primary-light font-semibold">
-                  Business Unit
+                  Capability
                 </span>
               </div>
 

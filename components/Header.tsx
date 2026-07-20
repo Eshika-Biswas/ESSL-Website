@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
+import AboutMegaMenu from './AboutMegaMenu';
 import BusinessUnitsMegaMenu, { businessUnits } from './BusinessUnitsMegaMenu';
 import SolutionsMegaMenu, { solutions } from './SolutionsMegaMenu';
 import IndustriesMegaMenu, { industries } from './IndustriesMegaMenu';
@@ -51,17 +52,27 @@ export default function Header() {
             {/* Home Link */}
             <NavLink href="/" label="Home" active={pathname === '/'} />
 
-            {/* About ESS Link */}
-            <NavLink href="/about" label="About ESS" active={pathname === '/about'} />
+            {/* About ESS Dropdown */}
+            <div
+              className="nav-item relative"
+              onMouseEnter={() => setActiveDropdown('about-ess')}
+              onMouseLeave={() => setActiveDropdown(null)}
+            >
+              <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5 font-medium">
+                About ESS
+                <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'about-ess' ? 'rotate-180' : ''}`} />
+              </button>
+              <AboutMegaMenu isOpen={activeDropdown === 'about-ess'} onClose={() => setActiveDropdown(null)} />
+            </div>
 
-            {/* Business Units Dropdown */}
+            {/* Capabilities Dropdown */}
             <div
               className="nav-item relative"
               onMouseEnter={() => setActiveDropdown('business-units')}
               onMouseLeave={() => setActiveDropdown(null)}
             >
               <button className="flex items-center gap-1 px-4 py-2 text-sm text-slate-300 hover:text-white transition-colors rounded-lg hover:bg-white/5 font-medium">
-                Business Units
+                Capabilities
                 <ChevronDown className={`w-3.5 h-3.5 transition-transform ${activeDropdown === 'business-units' ? 'rotate-180' : ''}`} />
               </button>
               <BusinessUnitsMegaMenu isOpen={activeDropdown === 'business-units'} onClose={() => setActiveDropdown(null)} />
@@ -115,10 +126,20 @@ export default function Header() {
       >
         <div className="px-4 py-6 space-y-2">
           <MobileLink href="/" label="Home" onClick={() => setMobileMenuOpen(false)} />
-          <MobileLink href="/about" label="About ESS" onClick={() => setMobileMenuOpen(false)} />
+          <MobileAccordion
+            title="About ESS"
+            items={[
+              { name: 'Why ESS', href: '/about/why-ess' },
+              { name: 'Our Team', href: '/about/leadership' },
+              { name: 'Our Partners', href: '/about/partners' },
+              { name: 'Careers', href: '/about/careers' },
+              { name: 'Insights', href: '/insights' },
+            ]}
+            onItemClick={() => setMobileMenuOpen(false)}
+          />
           
           <MobileAccordion
-            title="Business Units"
+            title="Capabilities"
             items={businessUnits.map(b => ({ name: b.name, href: b.href }))}
             onItemClick={() => setMobileMenuOpen(false)}
           />

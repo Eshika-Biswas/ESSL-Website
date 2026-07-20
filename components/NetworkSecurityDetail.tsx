@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Network, Shield, Wifi, Activity, Globe, Lock, Mail, ArrowRight, Search, Compass, Server, ShieldCheck, Headphones, Cpu, GitBranch, UserCheck, ShieldAlert, BarChart2 } from 'lucide-react';
+import { Network, Shield, Wifi, Activity, Globe, Lock, Mail, ArrowRight, Search, Compass, Server, ShieldCheck, Headphones, Cpu, GitBranch, UserCheck, ShieldAlert, BarChart2, ClipboardList, CheckSquare, Rocket, FlaskConical, Settings } from 'lucide-react';
 
 const capabilities = [
   {
@@ -80,31 +80,79 @@ const capabilities = [
   },
 ];
 
+const whyChooseItems = [
+  {
+    number: '01',
+    title: 'Enterprise Architecture',
+    description: 'Designing scalable, future-ready network infrastructures aligned with your business objectives.',
+    icon: Network,
+  },
+  {
+    number: '02',
+    title: 'End-to-End Delivery',
+    description: 'From consulting and solution design to deployment, optimization, and managed services.',
+    icon: GitBranch,
+  },
+  {
+    number: '03',
+    title: 'Multi-Vendor Expertise',
+    description: 'Certified professionals across Cisco, Fortinet, Palo Alto, Sophos, F5, Ruckus, Cambium, CommScope, and other leading platforms.',
+    icon: Cpu,
+  },
+  {
+    number: '04',
+    title: '24×7 Support & Managed Services',
+    description: 'Proactive monitoring, incident response, and continuous optimization to maximize uptime and business continuity.',
+    icon: Headphones,
+  },
+  {
+    number: '05',
+    title: 'Industry Experience',
+    description: 'Proven success across Banking & Financial Services, Government, Healthcare, Manufacturing, Education, NGOs, and Enterprise organizations.',
+    icon: Globe,
+  },
+];
+
 const steps = [
   {
-    title: 'Assess',
+    title: 'Discover',
     icon: Search,
-    description: 'Network audit & requirements gathering',
+    description: 'Network audit & business goal mapping',
+  },
+  {
+    title: 'Assess',
+    icon: ClipboardList,
+    description: 'Posture assessment & gap analysis',
   },
   {
     title: 'Design',
     icon: Compass,
-    description: 'Architecture, topology & SDN blueprints',
+    description: 'Architecture & technical topology blueprints',
+  },
+  {
+    title: 'Validate',
+    icon: CheckSquare,
+    description: 'Solution validation & design verification',
   },
   {
     title: 'Deploy',
     icon: Server,
-    description: 'Hardware/software provisioning & configuration',
+    description: 'Hardware provisioning & configuration',
   },
   {
-    title: 'Secure & Optimize',
-    icon: ShieldCheck,
-    description: 'Hardening, testing, performance tuning',
+    title: 'Test',
+    icon: FlaskConical,
+    description: 'Performance testing & failover validation',
   },
   {
-    title: 'Support',
-    icon: Headphones,
-    description: '24/7 monitoring & knowledge transfer',
+    title: 'Go Live',
+    icon: Globe,
+    description: 'Production transition & traffic migration',
+  },
+  {
+    title: 'Optimize',
+    icon: Settings,
+    description: 'Continuous tuning & capacity audits',
   },
 ];
 
@@ -114,6 +162,10 @@ export default function NetworkSecurityDetail() {
   const heroRef = useRef<HTMLElement>(null);
   const gridRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+
+  // Why Choose ESSL states
+  const whyChooseRef = useRef<HTMLElement>(null);
+  const [whyChooseVisible, setWhyChooseVisible] = useState(false);
 
   // Methodology Timeline states
   const [activeSteps, setActiveSteps] = useState(0);
@@ -146,6 +198,21 @@ export default function NetworkSecurityDetail() {
     const currentGridRef = gridRef.current;
     if (currentGridRef) {
       gridObserver.observe(currentGridRef);
+    }
+
+    // Why Choose ESSL observer
+    const whyChooseObserver = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setWhyChooseVisible(true);
+        }
+      },
+      { threshold: 0.05 }
+    );
+
+    const currentWhyChooseRef = whyChooseRef.current;
+    if (currentWhyChooseRef) {
+      whyChooseObserver.observe(currentWhyChooseRef);
     }
 
     // Timeline observer
@@ -183,6 +250,9 @@ export default function NetworkSecurityDetail() {
       if (currentGridRef) {
         gridObserver.disconnect();
       }
+      if (currentWhyChooseRef) {
+        whyChooseObserver.disconnect();
+      }
       if (currentJourneyRef) {
         journeyObserver.disconnect();
       }
@@ -194,19 +264,15 @@ export default function NetworkSecurityDetail() {
 
   // Sequential transition trigger for methodology steps
   useEffect(() => {
-    if (journeyVisible && activeSteps < 5) {
-      const interval = setInterval(() => {
-        setActiveSteps((prev) => {
-          if (prev >= 5) {
-            clearInterval(interval);
-            return 5;
-          }
-          return prev + 1;
-        });
-      }, 500);
-      return () => clearInterval(interval);
-    }
-  }, [journeyVisible, activeSteps]);
+    if (!journeyVisible) return;
+    const interval = setInterval(() => {
+      setActiveSteps((prev) => {
+        if (prev >= 8) return prev;
+        return prev + 1;
+      });
+    }, 350);
+    return () => clearInterval(interval);
+  }, [journeyVisible]);
 
   const gridBgStyle = {
     backgroundColor: '#f8fafc',
@@ -259,7 +325,7 @@ export default function NetworkSecurityDetail() {
               >
                 <div className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
                 <span className="text-xs uppercase tracking-widest text-primary-light font-semibold">
-                  Business Unit
+                  Capability
                 </span>
               </div>
 
@@ -335,7 +401,7 @@ export default function NetworkSecurityDetail() {
             >
               Complete Coverage Across Every Domain
             </h2>
-            <p className="text-slate-650 text-lg max-w-2xl mx-auto">
+            <p className="text-slate-655 text-lg max-w-2xl mx-auto">
               Our network and security capabilities span every critical domain — ensuring nothing is missed.
             </p>
           </div>
@@ -366,6 +432,83 @@ export default function NetworkSecurityDetail() {
                 </p>
               </div>
             ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────
+          NEW PART — "WHY CHOOSE ESSL" LIGHTWEIGHT SECTION
+         ───────────────────────────────────────────────────────── */}
+      <section 
+        ref={whyChooseRef}
+        id="why-choose-essl"
+        className="relative w-full py-24 overflow-hidden border-t border-slate-200"
+      >
+        {/* Soft, subtle light backdrop pattern */}
+        <div className="absolute inset-0 z-0 bg-[#f8fafc]">
+          <Image
+            src="/images/end-to-end-tech-bg.png"
+            alt="Strength Backdrop Grid"
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-60 pointer-events-none"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/30 via-transparent to-[#f8fafc]/40" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Side-by-side layout: left = header (vertically centered), right = stacked list */}
+          <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+
+            {/* Left: Section header — left-aligned text, vertically centered via items-center on parent */}
+            <div className={`w-full md:w-2/5 shrink-0 transition-all duration-700 ${whyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#1B6BA8] border border-[#1B6BA8]/20 bg-[#1B6BA8]/5 mb-6">
+                ESSL STRENGTH
+              </span>
+              <h2
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                Why Choose ESSL for Network & Security
+              </h2>
+              <p className="text-slate-655 text-base sm:text-lg leading-relaxed">
+                Building secure, resilient, and enterprise-grade networking solutions grounded in operational reality and proven technical excellence.
+              </p>
+            </div>
+
+            {/* Right: Stacked icon list */}
+            <div className="w-full md:w-3/5 space-y-8">
+              {whyChooseItems.map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <div
+                    key={item.number}
+                    className={`flex items-start gap-5 transition-all duration-700 ${
+                      whyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                    }`}
+                    style={{ transitionDelay: `${index * 100}ms` }}
+                  >
+                    {/* Icon badge */}
+                    <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 flex items-center justify-center shrink-0 mt-1">
+                      <IconComponent className="w-5 h-5 text-[rgb(20,109,174)]" />
+                    </div>
+                    {/* Content */}
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 mb-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
           </div>
 
         </div>
@@ -405,7 +548,7 @@ export default function NetworkSecurityDetail() {
             >
               Deployment Journey
             </h2>
-            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+            <p className="text-slate-655 text-lg max-w-2xl mx-auto">
               A structured, client-centric engineering path to secure, high-performance network integration.
             </p>
           </div>
@@ -417,7 +560,7 @@ export default function NetworkSecurityDetail() {
             <div className="absolute top-[28px] left-[10%] right-[10%] h-[3px] bg-slate-200 hidden md:block z-0">
               <div 
                 className="h-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out"
-                style={{ width: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * 25}%` }}
+                style={{ width: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * (100 / 7)}%` }}
               />
             </div>
 
@@ -425,12 +568,12 @@ export default function NetworkSecurityDetail() {
             <div className="absolute top-[28px] bottom-[28px] left-[52px] md:left-[28px] w-[3px] bg-slate-200 md:hidden z-0">
               <div 
                 className="w-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out"
-                style={{ height: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * 25}%` }}
+                style={{ height: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * (100 / 7)}%` }}
               />
             </div>
 
             {/* Steps Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-4 lg:gap-6 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-8 gap-12 md:gap-2 lg:gap-4 relative z-10">
               {steps.map((step, index) => {
                 const stepNum = index + 1;
                 const isActive = activeSteps >= stepNum;
@@ -441,7 +584,7 @@ export default function NetworkSecurityDetail() {
                     className={`flex md:flex-col items-start md:items-center gap-6 md:gap-6 transition-all duration-700 ${
                       journeyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                     }`}
-                    style={{ transitionDelay: `${index * 150}ms` }}
+                    style={{ transitionDelay: `${index * 100}ms` }}
                   >
                     {/* Circle icon badge */}
                     <div className="relative shrink-0 z-10">
@@ -458,15 +601,15 @@ export default function NetworkSecurityDetail() {
 
                     {/* Text Content */}
                     <div className="flex flex-col md:items-center md:text-center pt-2 md:pt-0">
-                      <span className={`text-[10px] font-mono font-bold uppercase tracking-widest mb-1.5 transition-colors duration-500 ${
+                      <span className={`text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest mb-1 transition-colors duration-500 ${
                         isActive ? 'text-[rgb(20,109,174)]' : 'text-slate-400'
                       }`}>
                         Step 0{stepNum}
                       </span>
-                      <h4 className="text-base font-bold text-slate-900 mb-2 leading-tight">
+                      <h4 className="text-sm md:text-base font-bold text-slate-900 mb-1.5 leading-tight">
                         {step.title}
                       </h4>
-                      <p className="text-sm text-slate-500 leading-relaxed max-w-[200px] md:mx-auto">
+                      <p className="text-xs md:text-sm text-slate-500 leading-relaxed max-w-[150px] md:mx-auto">
                         {step.description}
                       </p>
                     </div>

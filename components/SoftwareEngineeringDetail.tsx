@@ -130,7 +130,7 @@ export default function SoftwareEngineeringDetail() {
 
               <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-8 transition-all duration-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
                 <div className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
-                <span className="text-xs uppercase tracking-widest text-primary-light font-semibold">Business Unit</span>
+                <span className="text-xs uppercase tracking-widest text-primary-light font-semibold">Capability</span>
               </div>
 
               <h1
