@@ -281,7 +281,7 @@ export default function Hero() {
     <>
       <section
         id="hero-section"
-        className="relative min-h-[85vh] sm:min-h-screen flex items-center overflow-hidden bg-[#0f1420]"
+        className="relative min-h-[95vh] sm:min-h-screen flex items-center overflow-hidden bg-[#0f1420]"
       >
         {/* Slides Container */}
         <div
@@ -306,7 +306,7 @@ export default function Hero() {
                     alt={`${slide.title} backdrop`}
                     fill
                     sizes="100vw"
-                    className="object-cover object-right"
+                    className="object-cover object-[center_top] sm:object-right"
                     style={{ opacity: slide.imageOpacity }}
                     priority={index === 0}
                   />
@@ -323,7 +323,7 @@ export default function Hero() {
                   <div
                     className="block sm:hidden absolute inset-0 bg-gradient-to-r z-[1]"
                     style={{
-                      backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.opacityRange[0]}) 0%, rgba(${slide.overlayColor}, ${slide.opacityRange[0] * 0.95}) 50%, rgba(${slide.overlayColor}, 0.6) 100%)`
+                      backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.opacityRange[0]}) 0%, rgba(${slide.overlayColor}, ${slide.opacityRange[0] * 0.95}) 50%, rgba(${slide.overlayColor}, 0.72) 100%)`
                     }}
                   />
 
