@@ -132,29 +132,29 @@ const steps = [
 
 // ─── Partner Logos ────────────────────────────────────────────────────────────
 const partners = [
-  { name: 'AWS', src: '/logos/partners/aws.svg' },
-  { name: 'Microsoft Azure', src: '/logos/partners/azure.svg' },
-  { name: 'Dell', src: '/logos/partners/dell.svg' },
-  { name: 'VMware', src: '/logos/partners/vmware.svg' },
-  { name: 'Cohesity', src: '/logos/partners/cohesity.svg' },
-  { name: 'NetApp', src: '/logos/partners/netapp.svg' },
-  { name: 'Veeam', src: '/logos/partners/veeam.svg' },
-  { name: 'Red Hat', src: '/logos/partners/redhat.svg' },
+  { name: 'AWS',             src: '/logos/partners/aws.svg'       },
+  { name: 'Microsoft Azure', src: '/logos/partners/azure.svg'     },
+  { name: 'Dell',            src: '/logos/partners/dell.svg'      },
+  { name: 'VMware',          src: '/logos/partners/vmware.svg'    },
+  { name: 'Cohesity',        src: '/logos/partners/cohesity.svg'  },
+  { name: 'NetApp',          src: '/logos/partners/netapp.svg'    },
+  { name: 'Veeam',           src: '/logos/partners/veeam.svg'     },
+  { name: 'Red Hat',         src: '/logos/partners/redhat.svg'    },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function DataCenterCloudDetail() {
-  const [heroVisible, setHeroVisible] = useState(false);
-  const [gridVisible, setGridVisible] = useState(false);
+  const [heroVisible,      setHeroVisible]      = useState(false);
+  const [gridVisible,      setGridVisible]      = useState(false);
   const [whyChooseVisible, setWhyChooseVisible] = useState(false);
-  const [journeyVisible, setJourneyVisible] = useState(false);
+  const [journeyVisible,   setJourneyVisible]   = useState(false);
   const [ecosystemVisible, setEcosystemVisible] = useState(false);
-  const [activeSteps, setActiveSteps] = useState(0);
+  const [activeSteps,      setActiveSteps]      = useState(0);
 
-  const heroRef = useRef<HTMLElement>(null);
-  const gridRef = useRef<HTMLElement>(null);
+  const heroRef      = useRef<HTMLElement>(null);
+  const gridRef      = useRef<HTMLElement>(null);
   const whyChooseRef = useRef<HTMLElement>(null);
-  const journeyRef = useRef<HTMLElement>(null);
+  const journeyRef   = useRef<HTMLElement>(null);
   const ecosystemRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -165,15 +165,15 @@ export default function DataCenterCloudDetail() {
         if (entry.isIntersecting) setter(true);
       }, { threshold });
 
-    const gridObs = makeObserver(setGridVisible, 0.05);
+    const gridObs      = makeObserver(setGridVisible,      0.05);
     const whyChooseObs = makeObserver(setWhyChooseVisible, 0.05);
-    const journeyObs = makeObserver(setJourneyVisible, 0.15);
+    const journeyObs   = makeObserver(setJourneyVisible,   0.15);
     const ecosystemObs = makeObserver(setEcosystemVisible, 0.1);
 
     const refs = [
-      { obs: gridObs, ref: gridRef.current },
+      { obs: gridObs,      ref: gridRef.current      },
       { obs: whyChooseObs, ref: whyChooseRef.current },
-      { obs: journeyObs, ref: journeyRef.current },
+      { obs: journeyObs,   ref: journeyRef.current   },
       { obs: ecosystemObs, ref: ecosystemRef.current },
     ];
     refs.forEach(({ obs, ref }) => { if (ref) obs.observe(ref); });
