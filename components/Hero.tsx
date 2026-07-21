@@ -106,15 +106,18 @@ interface ImageLogo {
   src: string;
   width: number;
   height: number;
+  needsBacking?: boolean;
 }
 interface SvgLogo {
   kind: 'svg';
   name: string;
   svg: string;
+  needsBacking?: boolean;
 }
 interface TextLogo {
   kind: 'text';
   name: string;
+  needsBacking?: boolean;
 }
 type ClientLogo = ImageLogo | SvgLogo | TextLogo;
 
@@ -125,6 +128,7 @@ const BASE_CLIENTS: ClientLogo[] = [
   {
     kind: 'image', name: 'IDLC Finance', src: '/logos/idlc-finance.png',
     width: 110, height: 40,
+    needsBacking: true,
   },
   {
     kind: 'text', name: 'IPDC Finance',
@@ -132,22 +136,27 @@ const BASE_CLIENTS: ClientLogo[] = [
   {
     kind: 'image', name: 'Berger Paints', src: '/logos/berger-paints.png',
     width: 110, height: 40,
+    needsBacking: true,
   },
   {
     kind: 'image', name: 'Aristo Pharma', src: '/logos/aristo-pharma.png',
     width: 110, height: 40,
+    needsBacking: true,
   },
   {
     kind: 'image', name: 'Opsonin Pharma', src: '/logos/opsonin-pharma.png',
     width: 110, height: 40,
+    needsBacking: true,
   },
   {
     kind: 'image', name: 'ACI', src: '/logos/aci-plc.png',
     width: 110, height: 40,
+    needsBacking: true,
   },
   {
     kind: 'image', name: 'Brac University', src: '/logos/brac-university.svg',
     width: 110, height: 40,
+    needsBacking: true,
   },
   {
     kind: 'image', name: 'UIU', src: '/logos/uiu.png',
@@ -160,6 +169,7 @@ const BASE_CLIENTS: ClientLogo[] = [
   {
     kind: 'image', name: 'Aarong', src: '/logos/aarong.png',
     width: 110, height: 40,
+    needsBacking: true,
   },
   {
     kind: 'image', name: 'Buro Bangladesh', src: '/logos/buro-bangladesh.svg',
@@ -395,74 +405,73 @@ export default function Hero() {
         </div>
       </section>
 
-      {/* Combined Floating Bottom Bar (Stats + Trusted Logos) */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 -mt-20 sm:-mt-24 mb-16">
-        <div className="bg-white rounded-2xl border border-slate-200/80 shadow-2xl p-6 sm:p-8 text-slate-800">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+      {/* Standalone Full-Width Stats Bar (overlapping the bottom of the hero carousel) */}
+      <div className="relative z-20 w-full bg-white border-y border-slate-200/80 shadow-lg -mt-20 sm:-mt-24 mb-10 py-6 sm:py-8 text-slate-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+            <StatItem target={10} suffix="+" label="Years of Experience" icon={Calendar} />
+            <StatItem target={310} suffix="+" label="Enterprise Clients" icon={Building} />
+            <StatItem target={11500} suffix="+" label="Projects Delivered" icon={CheckCircle} />
+            <StatItem target={116000} suffix="+" label="Support Cases Resolved" icon={Headphones} />
+          </div>
+        </div>
+      </div>
 
-            {/* LEFT SIDE: Stats */}
-            <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-6 border-b lg:border-b-0 lg:border-r border-slate-100 pb-6 lg:pb-0 lg:pr-8">
-              <StatItem target={10} suffix="+" label="Years of Experience" icon={Calendar} />
-              <StatItem target={310} suffix="+" label="Enterprise Clients" icon={Building} />
-              <StatItem target={11500} suffix="+" label="Projects Delivered" icon={CheckCircle} />
-              <StatItem target={116000} suffix="+" label="Support Cases Resolved" icon={Headphones} />
-            </div>
+      {/* Standalone Trusted Logos Section (Unboxed & Centered Ticker below the stats bar) */}
+      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 w-full py-4 flex flex-col items-center gap-8">
+        {/* Centered label */}
+        <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold font-mono text-center">
+          Trusted by leading enterprises
+        </p>
 
-            {/* RIGHT SIDE: Trusted Logos */}
-            <div className="lg:col-span-5 flex flex-col justify-center overflow-hidden w-full">
-              <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold mb-3 font-mono">
-                Trusted by leading enterprises
-              </p>
+        {/* Scrolling logo row */}
+        <div className="relative w-full overflow-hidden">
+          {/* Fade edges to match the dark background #0f1420 */}
+          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#0f1420] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#0f1420] to-transparent z-10 pointer-events-none" />
 
-              <div className="relative w-full">
-                {/* Fade edges */}
-                <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
-                <div className="overflow-hidden">
-                  <div className="flex animate-ticker">
-                    {CLIENTS.map((client, i) => (
+          <div className="overflow-hidden">
+            <div className="flex animate-ticker w-max">
+              {CLIENTS.map((client, i) => (
+                <div
+                  key={`${client.name}-${i}`}
+                  className="flex-shrink-0 mx-2 sm:mx-3"
+                >
+                  <div className="flex items-center justify-center h-12 px-4 rounded-xl border border-slate-100 bg-white hover:shadow-md transition-all duration-300 group cursor-default" style={{ minWidth: '135px' }}>
+                    {client.kind === 'image' ? (
+                      <Image
+                        src={client.src}
+                        alt={`${client.name} logo`}
+                        width={client.width}
+                        height={client.height}
+                        className="object-contain max-h-[33px] w-auto transition-all duration-300"
+                      />
+                    ) : client.kind === 'svg' ? (
                       <div
-                        key={`${client.name}-${i}`}
-                        className="flex-shrink-0 mx-2 sm:mx-3"
-                      >
-                        <div className="flex items-center justify-center h-12 px-4 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white hover:border-primary/45 hover:shadow-md transition-all duration-300 group cursor-default" style={{ minWidth: '135px' }}>
-                          {client.kind === 'image' ? (
-                            <Image
-                              src={client.src}
-                              alt={`${client.name} logo`}
-                              width={client.width}
-                              height={client.height}
-                              className="object-contain max-h-[33px] w-auto transition-all duration-300"
-                            />
-                          ) : client.kind === 'svg' ? (
-                            <div
-                              className="flex items-center justify-center scale-[1.15]"
-                              dangerouslySetInnerHTML={{ __html: client.svg }}
-                            />
-                          ) : (
-                            <span className="text-[13px] font-extrabold text-slate-800 tracking-tight text-center leading-none">
-                              {client.name}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    ))}
+                        className="flex items-center justify-center scale-[1.15]"
+                        dangerouslySetInnerHTML={{ __html: client.svg }}
+                      />
+                    ) : (
+                      <span className="text-[13px] font-extrabold text-slate-800 tracking-tight text-center leading-none">
+                        {client.name}
+                      </span>
+                    )}
                   </div>
                 </div>
-              </div>
-              <div className="mt-4 flex justify-end">
-                <Link
-                  href="/clients"
-                  className="inline-flex items-center gap-1 text-xs font-semibold text-[rgb(20,109,174)] hover:text-[#0b4e82] transition-colors group/link"
-                >
-                  <span>View All Clients</span>
-                  <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" />
-                </Link>
-              </div>
+              ))}
             </div>
-
           </div>
+        </div>
+
+        {/* Centered View All link below logo row */}
+        <div className="text-center mt-2">
+          <Link
+            href="/clients"
+            className="inline-flex items-center gap-1 text-xs font-semibold text-[#3f94cf] hover:text-white transition-colors group/link"
+          >
+            <span>View All Clients</span>
+            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" />
+          </Link>
         </div>
       </div>
     </>
