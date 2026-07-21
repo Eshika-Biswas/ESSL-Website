@@ -21,8 +21,10 @@ const slides = [
     description: "High-performance networking solutions for a connected enterprise.",
     href: "/business-units/network-security",
     image: "/images/hero/network123.png",
-    overlayType: "light",
-    overlayColor: "239, 247, 251",
+    overlayColor: "15, 20, 32",
+    opacityRange: [0.85, 0.45],
+    textColor: "light",
+    imageOpacity: 0.95,
   },
   {
     title: "Cyber Security",
@@ -31,8 +33,10 @@ const slides = [
     description: "Protect what matters most with advanced solutions and services.",
     href: "/business-units/cyber-security",
     image: "/images/hero/cyber-security.jpg",
-    overlayType: "light",
-    overlayColor: "234, 237, 244",
+    overlayColor: "15, 20, 32",
+    opacityRange: [0.82, 0.40],
+    textColor: "light",
+    imageOpacity: 0.90,
   },
   {
     title: "Data Center & Cloud",
@@ -41,8 +45,10 @@ const slides = [
     description: "Modernize your data center and accelerate your journey to cloud.",
     href: "/business-units/data-center-cloud",
     image: "/images/hero/data-center-cloud123.png",
-    overlayType: "light",
-    overlayColor: "233, 245, 252",
+    overlayColor: "15, 20, 32",
+    opacityRange: [0.85, 0.45],
+    textColor: "light",
+    imageOpacity: 0.95,
   },
   {
     title: "Passive Infrastructure",
@@ -51,9 +57,10 @@ const slides = [
     description: "Structured, reliable and future-ready physical infrastructure.",
     href: "/business-units/passive-infrastructure",
     image: "/images/hero/passive-infrastructure.png",
-    overlayType: "dark",
     overlayColor: "15, 20, 32",
-    darkOpacityRange: [0.4, 0.2],
+    opacityRange: [0.70, 0.25],
+    textColor: "light",
+    imageOpacity: 0.85,
   },
   {
     title: "Technology Consulting",
@@ -62,9 +69,10 @@ const slides = [
     description: "Strategic guidance to architect the right technology roadmap for your business.",
     href: "/business-units/technology-consulting",
     image: "/images/hero/technology-consulting.png",
-    overlayType: "dark",
     overlayColor: "15, 20, 32",
-    darkOpacityRange: [0.65, 0.35],
+    opacityRange: [0.75, 0.30],
+    textColor: "light",
+    imageOpacity: 0.85,
   },
   {
     title: "Managed Services",
@@ -73,9 +81,10 @@ const slides = [
     description: "24×7 monitoring, support, and optimization for your critical systems.",
     href: "/business-units/managed-services",
     image: "/images/hero/managed-services.png",
-    overlayType: "dark",
     overlayColor: "15, 20, 32",
-    darkOpacityRange: [0.8, 0.45],
+    opacityRange: [0.80, 0.40],
+    textColor: "light",
+    imageOpacity: 0.85,
   },
   {
     title: "Software Engineering",
@@ -84,8 +93,10 @@ const slides = [
     description: "Custom software solutions and seamless integrations built for your business.",
     href: "/business-units/software-engineering",
     image: "/images/hero/software-engineering.png",
-    overlayType: "light",
-    overlayColor: "221, 232, 236",
+    overlayColor: "15, 20, 32",
+    opacityRange: [0.85, 0.45],
+    textColor: "light",
+    imageOpacity: 0.95,
   },
   {
     title: "AI & Automation",
@@ -94,8 +105,10 @@ const slides = [
     description: "Intelligent automation and AI-driven solutions that transform how you work.",
     href: "/business-units/ai-automation",
     image: "/images/hero/ai-automation.png",
-    overlayType: "light",
-    overlayColor: "233, 242, 245",
+    overlayColor: "15, 20, 32",
+    opacityRange: [0.85, 0.45],
+    textColor: "light",
+    imageOpacity: 0.95,
   },
 ];
 
@@ -262,7 +275,7 @@ export default function Hero() {
   }, [currentSlide, isHovered]);
 
   const activeSlide = slides[currentSlide];
-  const isCurrentSlideLight = activeSlide?.overlayType === 'light';
+  const isCurrentSlideLight = activeSlide?.textColor === 'dark';
 
   return (
     <>
@@ -279,7 +292,7 @@ export default function Hero() {
         >
           {slides.map((slide, index) => {
             const isActive = index === currentSlide;
-            const isLight = slide.overlayType === 'light';
+            const isLight = slide.textColor === 'dark';
             return (
               <div
                 key={slide.title}
@@ -293,34 +306,35 @@ export default function Hero() {
                     alt={`${slide.title} backdrop`}
                     fill
                     sizes="100vw"
-                    className={`object-cover ${isLight ? 'opacity-100 object-right' : 'opacity-80'}`}
+                    className="object-cover object-right"
+                    style={{ opacity: slide.imageOpacity }}
                     priority={index === 0}
                   />
                   {/* Overlays */}
-                  {isLight ? (
-                    /* Localized light gradient scrim on the left side (left ~40-45% of the section, light→transparent left-to-right) behind the text */
+                  {/* Desktop Gradient Overlay (left-to-right, transparent on the right to keep image fully visible) */}
+                  <div
+                    className="hidden sm:block absolute inset-0 bg-gradient-to-r z-[1]"
+                    style={{
+                      backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.opacityRange[0]}) 0%, rgba(${slide.overlayColor}, ${slide.opacityRange[0] * 0.9}) 30%, rgba(${slide.overlayColor}, ${slide.opacityRange[1]}) 42%, transparent 50%)`
+                    }}
+                  />
+                  
+                  {/* Mobile Gradient Overlay (slower fading to keep full-width text readable on narrow screens) */}
+                  <div
+                    className="block sm:hidden absolute inset-0 bg-gradient-to-r z-[1]"
+                    style={{
+                      backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.opacityRange[0]}) 0%, rgba(${slide.overlayColor}, ${slide.opacityRange[0] * 0.95}) 50%, rgba(${slide.overlayColor}, 0.6) 100%)`
+                    }}
+                  />
+
+                  {/* Vertical shadow overlay for depth (only for light text support) */}
+                  {slide.textColor === 'light' && (
                     <div
-                      className="absolute inset-0 bg-gradient-to-r z-[1]"
+                      className="absolute inset-0 bg-gradient-to-b z-[1]"
                       style={{
-                        backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, 0.98) 0%, rgba(${slide.overlayColor}, 0.92) 30%, rgba(${slide.overlayColor}, 0.4) 40%, transparent 45%)`
+                        backgroundImage: `linear-gradient(to bottom, rgba(${slide.overlayColor}, 0.2) 0%, transparent 30%, transparent 70%, rgba(${slide.overlayColor}, 0.45) 100%)`
                       }}
                     />
-                  ) : (
-                    <>
-                      {/* Localized dark gradient scrim on the left side (left ~40-45% of the section, dark→transparent left-to-right) behind the text */}
-                      <div
-                        className="absolute inset-0 bg-gradient-to-r z-[1]"
-                        style={{
-                          backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.darkOpacityRange?.[0] || 0.95}) 0%, rgba(${slide.overlayColor}, 0.7) 30%, rgba(${slide.overlayColor}, 0.3) 40%, transparent 45%)`
-                        }}
-                      />
-                      <div
-                        className="absolute inset-0 bg-gradient-to-b z-[1]"
-                        style={{
-                          backgroundImage: `linear-gradient(to bottom, rgba(${slide.overlayColor}, 0.2) 0%, transparent 30%, transparent 70%, rgba(${slide.overlayColor}, 0.4) 100%)`
-                        }}
-                      />
-                    </>
                   )}
                 </div>
 
