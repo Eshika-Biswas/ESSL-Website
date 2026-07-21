@@ -423,10 +423,10 @@ export default function Hero() {
       <div className="relative z-20 w-full bg-white border-y border-slate-200/80 shadow-lg -mt-20 sm:-mt-24 mb-10 py-6 sm:py-8 text-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-            <StatItem target={10} suffix="+" label="Years of Experience" icon={Calendar} />
-            <StatItem target={200} suffix="+" label="Enterprise Clients" icon={Building} />
-            <StatItem target={2000} suffix="+" label="Projects Delivered" icon={CheckCircle} />
-            <StatItem customValue="24×7" label="Support" icon={Headphones} />
+            <StatItem value="10+" label="Years of Experience" icon={Calendar} />
+            <StatItem value="200+" label="Enterprise Clients" icon={Building} />
+            <StatItem value="2000+" label="Projects Delivered" icon={CheckCircle} />
+            <StatItem value="24×7" label="Support" icon={Headphones} />
           </div>
         </div>
       </div>
@@ -493,7 +493,20 @@ export default function Hero() {
 }
 
 // ─── Stat Item Helper Component ──────────────────────────────────────────────
-function StatItem({ target, suffix = '', label, icon: Icon, customValue }: { target?: number; suffix?: string; label: string; icon: any; customValue?: string }) {
+function parseStatValue(value: string) {
+  const cleanValue = value.replace(/,/g, '');
+  const match = cleanValue.match(/^(\d+(?:\.\d+)?)\s*([^0-9]*)$/);
+  if (match) {
+    const numericPart = parseFloat(match[1]);
+    const suffixPart = match[2];
+    return { isNumeric: true, numericValue: numericPart, suffix: suffixPart };
+  }
+  return { isNumeric: false, numericValue: 0, suffix: value };
+}
+
+function StatItem({ value, label, icon: Icon }: { value: string; label: string; icon: any }) {
+  const { isNumeric, numericValue, suffix } = parseStatValue(value);
+
   return (
     <div className="flex items-start gap-3">
       <div className="p-2 rounded-lg bg-blue-50 text-[rgb(20,109,174)] shrink-0">
@@ -501,10 +514,10 @@ function StatItem({ target, suffix = '', label, icon: Icon, customValue }: { tar
       </div>
       <div>
         <div className="text-xl sm:text-2xl font-bold text-slate-900 leading-none">
-          {customValue ? (
-            <span>{customValue}</span>
+          {isNumeric ? (
+            <AnimatedCounter target={numericValue} suffix={suffix} />
           ) : (
-            <AnimatedCounter target={target || 0} suffix={suffix} />
+            <span>{value}</span>
           )}
         </div>
         <div className="text-[10px] sm:text-[11px] font-bold text-slate-555 mt-1 uppercase tracking-wider leading-tight">
