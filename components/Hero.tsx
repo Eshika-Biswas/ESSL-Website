@@ -424,9 +424,9 @@ export default function Hero() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             <StatItem target={10} suffix="+" label="Years of Experience" icon={Calendar} />
-            <StatItem target={310} suffix="+" label="Enterprise Clients" icon={Building} />
-            <StatItem target={11500} suffix="+" label="Projects Delivered" icon={CheckCircle} />
-            <StatItem target={116000} suffix="+" label="Support Cases Resolved" icon={Headphones} />
+            <StatItem target={200} suffix="+" label="Enterprise Clients" icon={Building} />
+            <StatItem target={2000} suffix="+" label="Projects Delivered" icon={CheckCircle} />
+            <StatItem customValue="24×7" label="Support" icon={Headphones} />
           </div>
         </div>
       </div>
@@ -493,7 +493,7 @@ export default function Hero() {
 }
 
 // ─── Stat Item Helper Component ──────────────────────────────────────────────
-function StatItem({ target, suffix = '', label, icon: Icon }: { target: number; suffix?: string; label: string; icon: any }) {
+function StatItem({ target, suffix = '', label, icon: Icon, customValue }: { target?: number; suffix?: string; label: string; icon: any; customValue?: string }) {
   return (
     <div className="flex items-start gap-3">
       <div className="p-2 rounded-lg bg-blue-50 text-[rgb(20,109,174)] shrink-0">
@@ -501,7 +501,11 @@ function StatItem({ target, suffix = '', label, icon: Icon }: { target: number; 
       </div>
       <div>
         <div className="text-xl sm:text-2xl font-bold text-slate-900 leading-none">
-          <AnimatedCounter target={target} suffix={suffix} />
+          {customValue ? (
+            <span>{customValue}</span>
+          ) : (
+            <AnimatedCounter target={target || 0} suffix={suffix} />
+          )}
         </div>
         <div className="text-[10px] sm:text-[11px] font-bold text-slate-555 mt-1 uppercase tracking-wider leading-tight">
           {label}
