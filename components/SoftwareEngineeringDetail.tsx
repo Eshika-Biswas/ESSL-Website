@@ -10,9 +10,12 @@ import {
   ArrowRight,
   Search,
   Compass,
-  Server,
-  ShieldCheck,
-  Headphones,
+  BarChart2,
+  CheckSquare,
+  Rocket,
+  Eye,
+  Zap,
+  Settings,
 } from 'lucide-react';
 
 // ─── Capability Cards ─────────────────────────────────────────────────────────
@@ -39,11 +42,14 @@ const capabilities = [
 
 // ─── Methodology Steps ────────────────────────────────────────────────────────
 const steps = [
-  { title: 'Assess',            icon: Search,      description: 'Infrastructure audit & requirements gathering' },
-  { title: 'Design',            icon: Compass,     description: 'Architecture, topology & physical blueprints' },
-  { title: 'Deploy',            icon: Server,      description: 'Hardware/software provisioning & configuration' },
-  { title: 'Secure & Optimize', icon: ShieldCheck, description: 'Hardening, testing, performance tuning' },
-  { title: 'Support',           icon: Headphones,  description: '24/7 monitoring & knowledge transfer' },
+  { title: 'Discover', icon: Search, description: 'Discovery workshops and business goal mapping' },
+  { title: 'Assess', icon: BarChart2, description: 'Current-state assessment and gap analysis' },
+  { title: 'Design', icon: Compass, description: 'Architecture and technical topology blueprints' },
+  { title: 'Validate', icon: CheckSquare, description: 'Solution validation and design verification' },
+  { title: 'Deploy', icon: Rocket, description: 'Implementation, provisioning, and configuration' },
+  { title: 'Monitor', icon: Eye, description: 'Real-time monitoring and service oversight' },
+  { title: 'Respond', icon: Zap, description: 'Rapid incident response and service continuity' },
+  { title: 'Optimize', icon: Settings, description: 'Continuous tuning and capacity optimization' },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -81,13 +87,13 @@ export default function SoftwareEngineeringDetail() {
   }, []);
 
   useEffect(() => {
-    if (journeyVisible && activeSteps < 5) {
+    if (journeyVisible && activeSteps < 8) {
       const interval = setInterval(() => {
         setActiveSteps((prev) => {
-          if (prev >= 5) { clearInterval(interval); return 5; }
+          if (prev >= 8) { clearInterval(interval); return 8; }
           return prev + 1;
         });
-      }, 500);
+      }, 350);
       return () => clearInterval(interval);
     }
   }, [journeyVisible, activeSteps]);
@@ -232,14 +238,14 @@ export default function SoftwareEngineeringDetail() {
           <div className="relative mt-16 max-w-6xl mx-auto px-6">
             {/* Horizontal line (desktop) */}
             <div className="absolute top-[28px] left-[10%] right-[10%] h-[3px] bg-slate-200 hidden md:block z-0">
-              <div className="h-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out" style={{ width: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * 25}%` }} />
+              <div className="h-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out" style={{ width: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * (100 / 7)}%` }} />
             </div>
             {/* Vertical line (mobile) */}
             <div className="absolute top-[28px] bottom-[28px] left-[52px] md:left-[28px] w-[3px] bg-slate-200 md:hidden z-0">
-              <div className="w-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out" style={{ height: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * 25}%` }} />
+              <div className="w-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out" style={{ height: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * (100 / 7)}%` }} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-4 lg:gap-6 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-8 gap-12 md:gap-2 lg:gap-4 relative z-10">
               {steps.map((step, index) => {
                 const stepNum = index + 1;
                 const isActive = activeSteps >= stepNum;

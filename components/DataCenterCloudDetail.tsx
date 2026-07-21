@@ -5,7 +5,6 @@ import Image from 'next/image';
 import Link from 'next/link';
 import {
   Server,
-  Database,
   Layers,
   RefreshCw,
   Cloud,
@@ -13,125 +12,149 @@ import {
   ArrowRight,
   Search,
   Compass,
-  ShieldCheck,
-  Headphones,
+  BarChart2,
+  CheckSquare,
+  Globe,
+  Settings,
   Box,
   Cpu,
   HardDrive,
   Shield,
+  ShieldCheck,
   HardDriveDownload,
   Lock,
   CloudUpload,
   Grid,
   GitBranch,
+  BadgeCheck,
+  Users,
+  Workflow,
+  Headset,
 } from 'lucide-react';
 
 // ─── Capability Cards ─────────────────────────────────────────────────────────
 const capabilities = [
   {
     title: 'Enterprise Servers',
-    description: 'Deploy high-performance enterprise servers to power mission-critical applications and business workloads.',
+    description: 'Deploy enterprise-grade server platforms designed to power mission-critical applications with exceptional performance, reliability, and scalability. Build a secure foundation for your digital infrastructure.',
     icon: Server,
   },
   {
     title: 'Hyper-Converged Infrastructure (HCI)',
-    description: 'Simplify IT operations by combining compute, storage, networking, and virtualization into a unified platform.',
+    description: 'Simplify data center operations by integrating compute, storage, virtualization, and networking into a single intelligent platform. Reduce complexity while improving agility and operational efficiency.',
     icon: Box,
   },
   {
     title: 'GPU Infrastructure',
-    description: 'Accelerate AI, machine learning, virtualization, and high-performance computing with enterprise-grade GPU solutions.',
+    description: 'Accelerate AI, machine learning, analytics, visualization, and high-performance computing with enterprise GPU infrastructure designed for demanding modern workloads.',
     icon: Cpu,
   },
   {
     title: 'SAN Storage',
-    description: 'Deliver centralized, high-speed, and highly available storage for enterprise applications and critical data.',
+    description: 'Deliver secure, high-performance, and highly available enterprise storage solutions that protect critical business data while supporting future capacity growth.',
     icon: HardDrive,
   },
   {
     title: 'Server Virtualization',
-    description: 'Optimize resource utilization, reduce infrastructure costs, and improve workload flexibility through virtualization.',
+    description: 'Maximize infrastructure utilization through server virtualization that improves flexibility, reduces operational costs, and simplifies workload management.',
     icon: Layers,
   },
   {
     title: 'Private Cloud',
-    description: 'Build secure, scalable private cloud environments with greater control, performance, and data sovereignty.',
+    description: 'Build secure and scalable private cloud environments that provide greater control, automation, and resource efficiency while supporting business-critical applications.',
     icon: Shield,
   },
   {
     title: 'Backup Solutions',
-    description: 'Protect business-critical data with reliable backup, recovery, and long-term data retention solutions.',
+    description: 'Protect business-critical data with automated backup solutions that ensure fast recovery, operational continuity, and protection against accidental loss or cyber threats.',
     icon: HardDriveDownload,
   },
   {
     title: 'Business Continuity',
-    description: 'Ensure uninterrupted business operations with disaster recovery, failover, and resilience strategies.',
+    description: 'Minimize operational disruption through resilient disaster recovery and business continuity solutions that keep your critical services available when they matter most.',
     icon: ShieldCheck,
   },
   {
     title: 'Immutable Backup',
-    description: 'Safeguard backups from ransomware and unauthorized changes using tamper-proof, immutable storage.',
+    description: 'Strengthen cyber resilience with immutable backup technology that safeguards data from ransomware, malicious modification, and accidental deletion.',
     icon: Lock,
   },
   {
     title: 'Cloud Migration',
-    description: 'Seamlessly migrate applications, workloads, and data to the cloud with minimal downtime and risk.',
+    description: 'Seamlessly migrate applications, workloads, and data to cloud environments with minimal business disruption while maximizing performance, security, and cost efficiency.',
     icon: CloudUpload,
   },
   {
     title: 'Cloud Solutions',
-    description: 'Design and manage secure, scalable cloud environments across public, private, and hybrid cloud platforms.',
+    description: 'Accelerate digital transformation with secure public, private, hybrid, and multi-cloud solutions designed for agility, scalability, and operational excellence.',
     icon: Cloud,
   },
   {
     title: 'Container Platform',
-    description: 'Deploy and manage containerized applications with modern, scalable, and portable container platforms.',
+    description: 'Modernize application deployment using enterprise container platforms that enable portability, automation, and efficient application lifecycle management.',
     icon: Package,
   },
   {
     title: 'Kubernetes Platform',
-    description: 'Automate container orchestration, scaling, and lifecycle management using enterprise Kubernetes.',
+    description: 'Deploy and manage containerized applications at scale using Kubernetes for automated orchestration, resilience, scalability, and cloud-native operations.',
     icon: Grid,
   },
   {
     title: 'Cloud Native Infrastructure',
-    description: 'Build cloud-native applications with microservices, automation, and DevOps-ready infrastructure for maximum agility.',
+    description: 'Build modern cloud-native platforms using microservices, automation, containers, and DevOps practices to accelerate innovation and business agility.',
     icon: GitBranch,
   },
 ];
 
+// ─── Why Choose ESSL ──────────────────────────────────────────────────────────
+const whyChooseItems = [
+  { title: 'Expert Data Center & Cloud Architects', description: 'Deep technical expertise designing infrastructure that scales with your business.', icon: Users },
+  { title: 'Cloud & Infrastructure Consulting', description: 'Strategic guidance to align infrastructure investment with business objectives.', icon: Compass },
+  { title: 'Enterprise Solution Design', description: 'Tailored architectures built for performance, resilience, and growth.', icon: Server },
+  { title: 'Certified Implementation Specialists', description: 'Certified engineers delivering proven, standards-based deployments.', icon: BadgeCheck },
+  { title: 'Hybrid & Multi-Cloud Expertise', description: 'Flexible design across public, private, and multi-cloud environments.', icon: Cloud },
+  { title: 'Business Continuity & Cyber Resilience', description: 'Resilient architectures that keep critical services running.', icon: ShieldCheck },
+  { title: 'End-to-End Project Delivery', description: 'From consulting and design to deployment and optimization.', icon: Workflow },
+  { title: '24×7 Managed Infrastructure Services', description: 'Round-the-clock monitoring and support for continuous uptime.', icon: Headset },
+];
+
 // ─── Methodology Steps ────────────────────────────────────────────────────────
 const steps = [
-  { title: 'Assess',            icon: Search,      description: 'Infrastructure audit & requirements gathering' },
-  { title: 'Design',            icon: Layers,      description: 'Architecture, topology & cloud blueprints' },
-  { title: 'Deploy',            icon: Server,      description: 'Hardware/software provisioning & configuration' },
-  { title: 'Secure & Optimize', icon: ShieldCheck, description: 'Hardening, testing, performance tuning' },
-  { title: 'Support',           icon: Headphones,  description: '24/7 monitoring & knowledge transfer' },
+  { title: 'Discover', icon: Search, description: 'Discovery workshops and business goal mapping' },
+  { title: 'Assess', icon: BarChart2, description: 'Current-state assessment and gap analysis' },
+  { title: 'Design', icon: Compass, description: 'Architecture and technical topology blueprints' },
+  { title: 'Validate', icon: CheckSquare, description: 'Solution validation and design verification' },
+  { title: 'Deploy', icon: Server, description: 'Implementation, provisioning, and configuration' },
+  { title: 'Migrate', icon: RefreshCw, description: 'Workload and data migration with minimal disruption' },
+  { title: 'Go Live', icon: Globe, description: 'Production transition and service cutover' },
+  { title: 'Optimize & Manage', icon: Settings, description: 'Continuous tuning, monitoring, and capacity management' },
 ];
 
 // ─── Partner Logos ────────────────────────────────────────────────────────────
 const partners = [
-  { name: 'AWS',             src: '/logos/partners/aws.svg'       },
-  { name: 'Microsoft Azure', src: '/logos/partners/azure.svg'     },
-  { name: 'Dell',            src: '/logos/partners/dell.svg'      },
-  { name: 'VMware',          src: '/logos/partners/vmware.svg'    },
-  { name: 'Cohesity',        src: '/logos/partners/cohesity.svg'  },
-  { name: 'NetApp',          src: '/logos/partners/netapp.svg'    },
-  { name: 'Veeam',           src: '/logos/partners/veeam.svg'     },
-  { name: 'Red Hat',         src: '/logos/partners/redhat.svg'    },
+  { name: 'AWS', src: '/logos/partners/aws.svg' },
+  { name: 'Microsoft Azure', src: '/logos/partners/azure.svg' },
+  { name: 'Dell', src: '/logos/partners/dell.svg' },
+  { name: 'VMware', src: '/logos/partners/vmware.svg' },
+  { name: 'Cohesity', src: '/logos/partners/cohesity.svg' },
+  { name: 'NetApp', src: '/logos/partners/netapp.svg' },
+  { name: 'Veeam', src: '/logos/partners/veeam.svg' },
+  { name: 'Red Hat', src: '/logos/partners/redhat.svg' },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function DataCenterCloudDetail() {
-  const [heroVisible,      setHeroVisible]      = useState(false);
-  const [gridVisible,      setGridVisible]      = useState(false);
-  const [journeyVisible,   setJourneyVisible]   = useState(false);
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [gridVisible, setGridVisible] = useState(false);
+  const [whyChooseVisible, setWhyChooseVisible] = useState(false);
+  const [journeyVisible, setJourneyVisible] = useState(false);
   const [ecosystemVisible, setEcosystemVisible] = useState(false);
-  const [activeSteps,      setActiveSteps]      = useState(0);
+  const [activeSteps, setActiveSteps] = useState(0);
 
-  const heroRef      = useRef<HTMLElement>(null);
-  const gridRef      = useRef<HTMLElement>(null);
-  const journeyRef   = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLElement>(null);
+  const whyChooseRef = useRef<HTMLElement>(null);
+  const journeyRef = useRef<HTMLElement>(null);
   const ecosystemRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -142,13 +165,15 @@ export default function DataCenterCloudDetail() {
         if (entry.isIntersecting) setter(true);
       }, { threshold });
 
-    const gridObs      = makeObserver(setGridVisible,      0.05);
-    const journeyObs   = makeObserver(setJourneyVisible,   0.15);
+    const gridObs = makeObserver(setGridVisible, 0.05);
+    const whyChooseObs = makeObserver(setWhyChooseVisible, 0.05);
+    const journeyObs = makeObserver(setJourneyVisible, 0.15);
     const ecosystemObs = makeObserver(setEcosystemVisible, 0.1);
 
     const refs = [
-      { obs: gridObs,      ref: gridRef.current      },
-      { obs: journeyObs,   ref: journeyRef.current   },
+      { obs: gridObs, ref: gridRef.current },
+      { obs: whyChooseObs, ref: whyChooseRef.current },
+      { obs: journeyObs, ref: journeyRef.current },
       { obs: ecosystemObs, ref: ecosystemRef.current },
     ];
     refs.forEach(({ obs, ref }) => { if (ref) obs.observe(ref); });
@@ -160,13 +185,13 @@ export default function DataCenterCloudDetail() {
   }, []);
 
   useEffect(() => {
-    if (journeyVisible && activeSteps < 5) {
+    if (journeyVisible && activeSteps < 8) {
       const interval = setInterval(() => {
         setActiveSteps((prev) => {
-          if (prev >= 5) { clearInterval(interval); return 5; }
+          if (prev >= 8) { clearInterval(interval); return 8; }
           return prev + 1;
         });
-      }, 500);
+      }, 350);
       return () => clearInterval(interval);
     }
   }, [journeyVisible, activeSteps]);
@@ -188,7 +213,6 @@ export default function DataCenterCloudDetail() {
         ref={heroRef}
         className="relative min-h-[85vh] flex items-center overflow-hidden"
       >
-        {/* Static image placeholder — swap for video when asset is available */}
         <div className="absolute inset-0 z-0 bg-[#0a0e17]">
           <Image
             src="/images/cloud-card.png"
@@ -278,6 +302,67 @@ export default function DataCenterCloudDetail() {
         </div>
       </section>
 
+      {/* ─── NEW PART — "WHY CHOOSE ESSL" LIGHTWEIGHT SECTION ──────────────── */}
+      <section
+        ref={whyChooseRef}
+        id="why-choose-essl"
+        className="relative w-full py-24 overflow-hidden border-t border-slate-200"
+      >
+        <div className="absolute inset-0 z-0 bg-[#f8fafc]">
+          <Image
+            src="/images/end-to-end-tech-bg.png"
+            alt="Strength Backdrop Grid"
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-60 pointer-events-none"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/30 via-transparent to-[#f8fafc]/40" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+
+            <div className={`w-full md:w-2/5 shrink-0 transition-all duration-700 ${whyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#1B6BA8] border border-[#1B6BA8]/20 bg-[#1B6BA8]/5 mb-6">
+                ESSL STRENGTH
+              </span>
+              <h2
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                Why Organizations Choose ESSL
+              </h2>
+              <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+                Modernizing data center and cloud infrastructure with proven expertise, certified delivery, and round-the-clock reliability.
+              </p>
+            </div>
+
+            <div className="w-full md:w-3/5 space-y-8">
+              {whyChooseItems.map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className={`flex items-start gap-5 transition-all duration-700 ${whyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
+                    style={{ transitionDelay: `${index * 100}ms` }}
+                  >
+                    <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 flex items-center justify-center shrink-0 mt-1">
+                      <IconComponent className="w-5 h-5 text-[rgb(20,109,174)]" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 mb-1">{item.title}</h3>
+                      <p className="text-slate-600 text-sm sm:text-base leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
+          </div>
+        </div>
+      </section>
+
       {/* ─── PART 3 — DEPLOYMENT JOURNEY ───────────────────────────────────── */}
       <section
         ref={journeyRef}
@@ -305,14 +390,14 @@ export default function DataCenterCloudDetail() {
           <div className="relative mt-16 max-w-6xl mx-auto px-6">
             {/* Horizontal line (desktop) */}
             <div className="absolute top-[28px] left-[10%] right-[10%] h-[3px] bg-slate-200 hidden md:block z-0">
-              <div className="h-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out" style={{ width: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * 25}%` }} />
+              <div className="h-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out" style={{ width: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * (100 / 7)}%` }} />
             </div>
             {/* Vertical line (mobile) */}
             <div className="absolute top-[28px] bottom-[28px] left-[52px] md:left-[28px] w-[3px] bg-slate-200 md:hidden z-0">
-              <div className="w-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out" style={{ height: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * 25}%` }} />
+              <div className="w-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out" style={{ height: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * (100 / 7)}%` }} />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-4 lg:gap-6 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-8 gap-12 md:gap-2 lg:gap-4 relative z-10">
               {steps.map((step, index) => {
                 const stepNum = index + 1;
                 const isActive = activeSteps >= stepNum;
@@ -320,7 +405,7 @@ export default function DataCenterCloudDetail() {
                   <div
                     key={step.title}
                     className={`flex md:flex-col items-start md:items-center gap-6 transition-all duration-700 ${journeyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'}`}
-                    style={{ transitionDelay: `${index * 150}ms` }}
+                    style={{ transitionDelay: `${index * 100}ms` }}
                   >
                     <div className="relative shrink-0 z-10">
                       <div className={`w-14 h-14 rounded-full border-2 flex items-center justify-center bg-white transition-all duration-500 ${isActive ? 'border-[rgb(20,109,174)] bg-[rgb(20,109,174)]/5 text-[rgb(20,109,174)] shadow-[0_0_15px_rgba(20,109,174,0.25)] scale-110' : 'border-slate-200 bg-white text-slate-400'}`}>
@@ -328,9 +413,9 @@ export default function DataCenterCloudDetail() {
                       </div>
                     </div>
                     <div className="flex flex-col md:items-center md:text-center pt-2 md:pt-0">
-                      <span className={`text-[10px] font-mono font-bold uppercase tracking-widest mb-1.5 transition-colors duration-500 ${isActive ? 'text-[rgb(20,109,174)]' : 'text-slate-400'}`}>Step 0{stepNum}</span>
-                      <h4 className="text-base font-bold text-slate-900 mb-2 leading-tight">{step.title}</h4>
-                      <p className="text-sm text-slate-500 leading-relaxed max-w-[200px] md:mx-auto">{step.description}</p>
+                      <span className={`text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest mb-1 transition-colors duration-500 ${isActive ? 'text-[rgb(20,109,174)]' : 'text-slate-400'}`}>Step 0{stepNum}</span>
+                      <h4 className="text-sm md:text-base font-bold text-slate-900 mb-1.5 leading-tight">{step.title}</h4>
+                      <p className="text-xs md:text-sm text-slate-500 leading-relaxed max-w-[150px] md:mx-auto">{step.description}</p>
                     </div>
                   </div>
                 );

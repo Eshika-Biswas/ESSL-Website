@@ -20,9 +20,14 @@ import {
   ArrowRight,
   Search,
   Compass,
-  Server,
   ShieldCheck,
-  Headphones,
+  BadgeCheck,
+  ClipboardCheck,
+  Workflow,
+  AlertCircle,
+  CheckSquare,
+  Rocket,
+  Settings,
 } from 'lucide-react';
 
 // ─── Capability Cards ─────────────────────────────────────────────────────────
@@ -30,90 +35,117 @@ const capabilities = [
   {
     title: 'Endpoint Protection',
     description:
-      'Defend laptops, desktops, servers, and mobile devices against malware, ransomware, and known threats.',
+      'Protect desktops, laptops, and servers against malware, ransomware, and advanced cyber threats using next-generation endpoint security. Ensure continuous protection with centralized management and real-time threat prevention.',
     icon: Laptop,
   },
   {
     title: 'Endpoint Detection & Response (EDR)',
     description:
-      'Continuously monitor endpoints to detect, investigate, and rapidly respond to advanced cyber threats.',
+      'Detect, investigate, and respond to sophisticated endpoint threats through continuous monitoring, behavioral analytics, and automated incident response. Minimize dwell time and accelerate threat remediation.',
     icon: MonitorCheck,
   },
   {
     title: 'Extended Detection & Response (XDR)',
     description:
-      'Correlate security data across endpoints, networks, cloud, and email for unified threat detection and response.',
+      'Correlate security data across endpoints, networks, email, cloud, and identity platforms to deliver unified threat detection and faster incident response. Improve visibility while reducing alert fatigue.',
     icon: Layers,
   },
   {
     title: 'Managed Detection & Response (MDR)',
     description:
-      'Provide 24×7 expert threat monitoring, investigation, and incident response through managed security services.',
+      'Strengthen your cyber defense with 24×7 expert threat monitoring, threat hunting, incident investigation, and rapid response delivered by experienced security professionals.',
     icon: Headset,
   },
   {
-    title: 'SIEM (Security Information & Event Management)',
+    title: 'Next-Generation SIEM (NG-SIEM)',
     description:
-      'Collect, analyze, and correlate security logs to identify threats and support compliance requirements.',
+      'Centralize security monitoring by collecting, correlating, and analyzing logs from across your IT environment. Gain actionable insights and accelerate security incident detection and compliance reporting.',
     icon: BarChart2,
   },
   {
-    title: 'SOAR (Security Orchestration, Automation & Response)',
+    title: 'Security Orchestration, Automation & Response (SOAR)',
     description:
-      'Automate security workflows, accelerate incident response, and improve operational efficiency.',
+      'Automate repetitive security workflows, streamline incident response, and improve operational efficiency through intelligent orchestration and automated playbooks.',
     icon: Zap,
+  },
+  {
+    title: 'Identity Security',
+    description:
+      'Protect digital identities with secure authentication, identity governance, and adaptive access controls. Ensure only authorized users can access critical business resources.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Privileged Access Management (PAM)',
+    description:
+      'Secure privileged accounts, administrator credentials, and critical systems with centralized privilege management, session monitoring, and least-privilege access controls.',
+    icon: Lock,
   },
   {
     title: 'Data Loss Prevention (DLP)',
     description:
-      'Prevent sensitive data from unauthorized access, sharing, or accidental leakage across your organization.',
+      'Protect sensitive business information by monitoring, controlling, and preventing unauthorized data access, sharing, and exfiltration across endpoints, email, and cloud platforms.',
     icon: Lock,
   },
   {
     title: 'Secure Browsing',
     description:
-      'Protect users from malicious websites, phishing attacks, and unsafe online content with secure web access.',
+      'Safeguard users against malicious websites, phishing attacks, and web-based threats with intelligent web filtering and secure internet access technologies.',
     icon: Globe,
   },
   {
     title: 'Threat Intelligence',
     description:
-      'Gain actionable insights into emerging threats, attacker tactics, and vulnerabilities to strengthen your defenses.',
+      'Leverage real-time global threat intelligence to proactively identify emerging cyber threats, improve security visibility, and strengthen your organization’s cyber resilience.',
     icon: Eye,
   },
   {
     title: 'Attack Surface Management',
     description:
-      'Continuously discover, assess, and reduce external attack surfaces to minimize cyber risk.',
+      'Continuously discover, assess, and monitor internet-facing assets to identify vulnerabilities and reduce your organization’s external attack surface.',
     icon: Target,
   },
   {
     title: 'Dark Web Monitoring',
     description:
-      'Monitor dark web sources for leaked credentials, sensitive information, and indicators of compromise.',
+      'Monitor the dark web for leaked credentials, sensitive business information, and compromised assets to detect potential threats before they impact your organization.',
     icon: AlertTriangle,
   },
   {
     title: 'AI-Driven Detection & Response (AIDR)',
     description:
-      'Leverage artificial intelligence to detect sophisticated threats, prioritize alerts, and automate response actions.',
+      'Harness artificial intelligence and machine learning to detect advanced threats, automate investigations, and accelerate incident response with greater accuracy.',
     icon: Brain,
   },
   {
     title: 'Cloud Security',
     description:
-      'Secure cloud workloads, applications, identities, and data across public, private, and hybrid cloud environments.',
+      'Protect cloud workloads, applications, identities, and data across public, private, and hybrid cloud environments with comprehensive cloud-native security solutions.',
     icon: Cloud,
   },
 ];
 
+// ─── Why Choose ESSL (rendered below, matching Network & Security's simplified layout) ────
+const whyChooseItems = [
+  { title: 'Expert Cyber Security Team', description: 'Experienced analysts and engineers protecting critical operations.', icon: ShieldCheck },
+  { title: 'Certified Security Consultants & Solution Architects', description: 'Deep expertise across modern security platforms and frameworks.', icon: BadgeCheck },
+  { title: '24×7 Security Operations & Managed Services', description: 'Round-the-clock monitoring, response, and operational resilience.', icon: Headset },
+  { title: 'Multi-Vendor Security Expertise', description: 'Flexible design across leading security ecosystems.', icon: Layers },
+  { title: 'Zero Trust & Defense-in-Depth Architecture', description: 'Layered controls aligned to business-critical risks.', icon: Lock },
+  { title: 'Compliance & Risk Management', description: 'Governance-ready solutions for regulatory and policy requirements.', icon: ClipboardCheck },
+  { title: 'End-to-End Security Implementation', description: 'From assessment to deployment and continuous optimization.', icon: Workflow },
+  { title: 'Rapid Incident Response & Continuous Optimization', description: 'Focused response and sustained hardening in every engagement.', icon: AlertCircle },
+];
+
 // ─── Methodology Steps ────────────────────────────────────────────────────────
 const steps = [
-  { title: 'Assess',            icon: Search,      description: 'Security audit & risk requirements gathering' },
-  { title: 'Design',            icon: Compass,     description: 'Security architecture & control blueprints' },
-  { title: 'Deploy',            icon: Server,      description: 'Tool provisioning, integration & configuration' },
-  { title: 'Secure & Optimize', icon: ShieldCheck, description: 'Hardening, testing, and tuning' },
-  { title: 'Support',           icon: Headphones,  description: '24/7 SOC monitoring & knowledge transfer' },
+  { title: 'Discover', icon: Search, description: 'Discovery workshops and business goal mapping' },
+  { title: 'Assess', icon: BarChart2, description: 'Current-state assessment and gap analysis' },
+  { title: 'Design', icon: Compass, description: 'Security architecture and control blueprints' },
+  { title: 'Validate', icon: CheckSquare, description: 'Design verification and control validation' },
+  { title: 'Deploy', icon: Rocket, description: 'Tool provisioning, integration and configuration' },
+  { title: 'Monitor', icon: Eye, description: 'Continuous monitoring and service oversight' },
+  { title: 'Respond', icon: Zap, description: 'Rapid incident response and containment' },
+  { title: 'Optimize', icon: Settings, description: 'Ongoing tuning and operational improvement' },
 ];
 
 // ─── Partner Logos ────────────────────────────────────────────────────────────
@@ -131,12 +163,14 @@ const partners = [
 export default function CyberSecurityDetail() {
   const [heroVisible,      setHeroVisible]      = useState(false);
   const [gridVisible,      setGridVisible]      = useState(false);
+  const [whyChooseVisible, setWhyChooseVisible] = useState(false);
   const [journeyVisible,   setJourneyVisible]   = useState(false);
   const [ecosystemVisible, setEcosystemVisible] = useState(false);
   const [activeSteps,      setActiveSteps]      = useState(0);
 
   const heroRef      = useRef<HTMLElement>(null);
   const gridRef      = useRef<HTMLElement>(null);
+  const whyChooseRef = useRef<HTMLElement>(null);
   const journeyRef   = useRef<HTMLElement>(null);
   const ecosystemRef = useRef<HTMLElement>(null);
   const videoRef     = useRef<HTMLVideoElement>(null);
@@ -159,11 +193,13 @@ export default function CyberSecurityDetail() {
       }, { threshold });
 
     const gridObs      = makeObserver(setGridVisible,      0.05);
+    const whyChooseObs = makeObserver(setWhyChooseVisible, 0.05);
     const journeyObs   = makeObserver(setJourneyVisible,   0.15);
     const ecosystemObs = makeObserver(setEcosystemVisible, 0.1);
 
     const refs = [
       { obs: gridObs,      ref: gridRef.current      },
+      { obs: whyChooseObs, ref: whyChooseRef.current },
       { obs: journeyObs,   ref: journeyRef.current   },
       { obs: ecosystemObs, ref: ecosystemRef.current },
     ];
@@ -178,13 +214,13 @@ export default function CyberSecurityDetail() {
 
   // Sequential step activation
   useEffect(() => {
-    if (journeyVisible && activeSteps < 5) {
+    if (journeyVisible && activeSteps < 8) {
       const interval = setInterval(() => {
         setActiveSteps((prev) => {
-          if (prev >= 5) { clearInterval(interval); return 5; }
+          if (prev >= 8) { clearInterval(interval); return 8; }
           return prev + 1;
         });
-      }, 500);
+      }, 350);
       return () => clearInterval(interval);
     }
   }, [journeyVisible, activeSteps]);
@@ -317,14 +353,12 @@ export default function CyberSecurityDetail() {
             </p>
           </div>
 
-          {/* 13-card grid — 3 cols × 5 rows; 13th card left-aligned via justify-items-start on last row */}
+          {/* 15-card grid — 3 cols; 15th card completes the last row evenly */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {capabilities.map((card, index) => (
               <div
                 key={card.title}
                 className={`group relative rounded-2xl bg-white border border-slate-200/60 p-8 sm:p-10 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${
-                  index === 12 ? 'lg:col-start-1' : ''
-                } ${
                   gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${(index % 3) * 100}ms` }}
@@ -341,6 +375,83 @@ export default function CyberSecurityDetail() {
                 </p>
               </div>
             ))}
+          </div>
+
+        </div>
+      </section>
+
+      {/* ─────────────────────────────────────────────────────────
+          NEW PART — "WHY CHOOSE ESSL" LIGHTWEIGHT SECTION
+          (matches Network & Security's simplified, icon-led layout)
+         ───────────────────────────────────────────────────────── */}
+      <section
+        ref={whyChooseRef}
+        id="why-choose-essl"
+        className="relative w-full py-24 overflow-hidden border-t border-slate-200"
+      >
+        {/* Soft, subtle light backdrop pattern */}
+        <div className="absolute inset-0 z-0 bg-[#f8fafc]">
+          <Image
+            src="/images/end-to-end-tech-bg.png"
+            alt="Strength Backdrop Grid"
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-60 pointer-events-none"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/30 via-transparent to-[#f8fafc]/40" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+          {/* Side-by-side layout: left = header (vertically centered), right = stacked list */}
+          <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
+
+            {/* Left: Section header — left-aligned text, vertically centered via items-center on parent */}
+            <div className={`w-full md:w-2/5 shrink-0 transition-all duration-700 ${whyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#1B6BA8] border border-[#1B6BA8]/20 bg-[#1B6BA8]/5 mb-6">
+                ESSL STRENGTH
+              </span>
+              <h2
+                className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                Why Choose ESSL for Cyber Security
+              </h2>
+              <p className="text-slate-600 text-base sm:text-lg leading-relaxed">
+                Protecting your business with certified expertise, round-the-clock operations, and a security posture built to last.
+              </p>
+            </div>
+
+            {/* Right: Stacked icon list */}
+            <div className="w-full md:w-3/5 space-y-8">
+              {whyChooseItems.map((item, index) => {
+                const IconComponent = item.icon;
+                return (
+                  <div
+                    key={item.title}
+                    className={`flex items-start gap-5 transition-all duration-700 ${whyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                      }`}
+                    style={{ transitionDelay: `${index * 100}ms` }}
+                  >
+                    {/* Icon badge */}
+                    <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 flex items-center justify-center shrink-0 mt-1">
+                      <IconComponent className="w-5 h-5 text-[rgb(20,109,174)]" />
+                    </div>
+                    {/* Content */}
+                    <div>
+                      <h3 className="text-lg font-bold text-slate-900 mb-1">
+                        {item.title}
+                      </h3>
+                      <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+
           </div>
 
         </div>
@@ -391,7 +502,7 @@ export default function CyberSecurityDetail() {
             <div className="absolute top-[28px] left-[10%] right-[10%] h-[3px] bg-slate-200 hidden md:block z-0">
               <div
                 className="h-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out"
-                style={{ width: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * 25}%` }}
+                style={{ width: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * (100 / 7)}%` }}
               />
             </div>
 
@@ -399,12 +510,12 @@ export default function CyberSecurityDetail() {
             <div className="absolute top-[28px] bottom-[28px] left-[52px] md:left-[28px] w-[3px] bg-slate-200 md:hidden z-0">
               <div
                 className="w-full bg-[rgb(20,109,174)] shadow-[0_0_8px_rgba(20,109,174,0.4)] transition-all duration-700 ease-out"
-                style={{ height: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * 25}%` }}
+                style={{ height: `${activeSteps <= 1 ? 0 : (activeSteps - 1) * (100 / 7)}%` }}
               />
             </div>
 
             {/* Steps */}
-            <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-4 lg:gap-6 relative z-10">
+            <div className="grid grid-cols-1 md:grid-cols-8 gap-12 md:gap-2 lg:gap-4 relative z-10">
               {steps.map((step, index) => {
                 const stepNum = index + 1;
                 const isActive = activeSteps >= stepNum;
@@ -414,7 +525,7 @@ export default function CyberSecurityDetail() {
                     className={`flex md:flex-col items-start md:items-center gap-6 md:gap-6 transition-all duration-700 ${
                       journeyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                     }`}
-                    style={{ transitionDelay: `${index * 150}ms` }}
+                    style={{ transitionDelay: `${index * 100}ms` }}
                   >
                     {/* Circle badge */}
                     <div className="relative shrink-0 z-10">
@@ -431,13 +542,13 @@ export default function CyberSecurityDetail() {
 
                     {/* Text */}
                     <div className="flex flex-col md:items-center md:text-center pt-2 md:pt-0">
-                      <span className={`text-[10px] font-mono font-bold uppercase tracking-widest mb-1.5 transition-colors duration-500 ${isActive ? 'text-[rgb(20,109,174)]' : 'text-slate-400'}`}>
+                      <span className={`text-[9px] md:text-[10px] font-mono font-bold uppercase tracking-widest mb-1 transition-colors duration-500 ${isActive ? 'text-[rgb(20,109,174)]' : 'text-slate-400'}`}>
                         Step 0{stepNum}
                       </span>
-                      <h4 className="text-base font-bold text-slate-900 mb-2 leading-tight">
+                      <h4 className="text-sm md:text-base font-bold text-slate-900 mb-1.5 leading-tight">
                         {step.title}
                       </h4>
-                      <p className="text-sm text-slate-500 leading-relaxed max-w-[200px] md:mx-auto">
+                      <p className="text-xs md:text-sm text-slate-500 leading-relaxed max-w-[150px] md:mx-auto">
                         {step.description}
                       </p>
                     </div>
