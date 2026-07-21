@@ -20,7 +20,7 @@ const slides = [
     titleColor: "Security",
     description: "High-performance networking solutions for a connected enterprise.",
     href: "/business-units/network-security",
-    image: "/images/hero/network.png",
+    image: "/images/hero/network123.png",
     overlayType: "light",
     overlayColor: "239, 247, 251",
   },
@@ -40,7 +40,7 @@ const slides = [
     titleColor: "& Cloud",
     description: "Modernize your data center and accelerate your journey to cloud.",
     href: "/business-units/data-center-cloud",
-    image: "/images/hero/data-center-cloud.png",
+    image: "/images/hero/data-center-cloud123.png",
     overlayType: "light",
     overlayColor: "233, 245, 252",
   },
@@ -288,26 +288,26 @@ export default function Hero() {
                   />
                   {/* Overlays */}
                   {isLight ? (
-                    /* Smooth, full-screen color-matched light gradient vignette to prevent hard edges */
+                    /* Localized light gradient scrim on the left side (left ~40-45% of the section, light→transparent left-to-right) behind the text */
                     <div
                       className="absolute inset-0 bg-gradient-to-r z-[1]"
                       style={{
-                        backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, 0.95) 0%, rgba(${slide.overlayColor}, 0.9) 35%, rgba(${slide.overlayColor}, 0.75) 55%, rgba(${slide.overlayColor}, 0.2) 75%, transparent 100%)`
+                        backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, 0.98) 0%, rgba(${slide.overlayColor}, 0.92) 30%, rgba(${slide.overlayColor}, 0.4) 40%, transparent 45%)`
                       }}
                     />
                   ) : (
                     <>
-                      {/* Directional Overlay (left shadow, transparent right) */}
+                      {/* Localized dark gradient scrim on the left side (left ~40-45% of the section, dark→transparent left-to-right) behind the text */}
                       <div
                         className="absolute inset-0 bg-gradient-to-r z-[1]"
                         style={{
-                          backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.darkOpacityRange?.[0] || 0.95}) 0%, rgba(${slide.overlayColor}, ${slide.darkOpacityRange?.[1] || 0.5}) 50%, transparent 100%)`
+                          backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.darkOpacityRange?.[0] || 0.95}) 0%, rgba(${slide.overlayColor}, 0.7) 30%, rgba(${slide.overlayColor}, 0.3) 40%, transparent 45%)`
                         }}
                       />
                       <div
                         className="absolute inset-0 bg-gradient-to-b z-[1]"
                         style={{
-                          backgroundImage: `linear-gradient(to bottom, rgba(${slide.overlayColor}, 0.3) 0%, transparent 40%, transparent 70%, rgba(${slide.overlayColor}, 0.5) 100%)`
+                          backgroundImage: `linear-gradient(to bottom, rgba(${slide.overlayColor}, 0.2) 0%, transparent 30%, transparent 70%, rgba(${slide.overlayColor}, 0.4) 100%)`
                         }}
                       />
                     </>
@@ -333,16 +333,27 @@ export default function Hero() {
                     {/* Headline */}
                     <h1
                       className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] tracking-tight mb-6"
-                      style={{ fontFamily: 'var(--font-display)' }}
+                      style={{
+                        fontFamily: 'var(--font-display)',
+                        textShadow: isLight
+                          ? '0 1px 4px rgba(255, 255, 255, 0.8)'
+                          : '0 2px 8px rgba(0, 0, 0, 0.4)'
+                      }}
                     >
                       <span className={isLight ? 'text-[#0f1420]' : 'text-white'}>{slide.titleLight} </span>
                       <br className="hidden sm:inline" />
-                      <span className="text-[rgb(20,109,174)]">{slide.titleColor}</span>
+                      <span className={isLight ? 'text-[rgb(16,98,157)]' : 'text-[rgb(20,109,174)]'}>{slide.titleColor}</span>
                     </h1>
 
                     {/* Tagline */}
-                    <p className={`text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 ${isLight ? 'text-slate-800' : 'text-slate-200'
-                      }`}>
+                    <p
+                      className={`text-lg sm:text-xl max-w-2xl leading-relaxed mb-10 ${isLight ? 'text-slate-900' : 'text-slate-200'}`}
+                      style={{
+                        textShadow: isLight
+                          ? '0 1px 4px rgba(255, 255, 255, 0.8)'
+                          : '0 2px 8px rgba(0, 0, 0, 0.3)'
+                      }}
+                    >
                       {slide.description}
                     </p>
 
