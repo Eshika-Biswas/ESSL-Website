@@ -21,10 +21,10 @@ const slides = [
     description: "High-performance networking solutions for a connected enterprise.",
     href: "/business-units/network-security",
     image: "/images/hero/network123.png",
-    overlayColor: "15, 20, 32",
-    opacityRange: [0.85, 0.45],
+    overlayColor: "10, 20, 35",
+    opacityRange: [0.55, 0.05],
     textColor: "light",
-    imageOpacity: 0.95,
+    imageOpacity: 1.0,
   },
   {
     title: "Cyber Security",
@@ -33,10 +33,10 @@ const slides = [
     description: "Protect what matters most with advanced solutions and services.",
     href: "/business-units/cyber-security",
     image: "/images/hero/cyber-security.jpg",
-    overlayColor: "15, 20, 32",
-    opacityRange: [0.82, 0.40],
+    overlayColor: "10, 20, 35",
+    opacityRange: [0.55, 0.05],
     textColor: "light",
-    imageOpacity: 0.90,
+    imageOpacity: 1.0,
   },
   {
     title: "Data Center & Cloud",
@@ -45,10 +45,10 @@ const slides = [
     description: "Modernize your data center and accelerate your journey to cloud.",
     href: "/business-units/data-center-cloud",
     image: "/images/hero/data-center-cloud123.png",
-    overlayColor: "15, 20, 32",
-    opacityRange: [0.85, 0.45],
+    overlayColor: "10, 20, 35",
+    opacityRange: [0.55, 0.05],
     textColor: "light",
-    imageOpacity: 0.95,
+    imageOpacity: 1.0,
   },
   {
     title: "Passive Infrastructure",
@@ -57,10 +57,10 @@ const slides = [
     description: "Structured, reliable and future-ready physical infrastructure.",
     href: "/business-units/passive-infrastructure",
     image: "/images/hero/passive-infrastructure.png",
-    overlayColor: "15, 20, 32",
-    opacityRange: [0.70, 0.25],
+    overlayColor: "10, 20, 35",
+    opacityRange: [0.55, 0.05],
     textColor: "light",
-    imageOpacity: 0.85,
+    imageOpacity: 1.0,
   },
   {
     title: "Technology Consulting",
@@ -69,10 +69,10 @@ const slides = [
     description: "Strategic guidance to architect the right technology roadmap for your business.",
     href: "/business-units/technology-consulting",
     image: "/images/hero/technology-consulting.png",
-    overlayColor: "15, 20, 32",
-    opacityRange: [0.75, 0.30],
+    overlayColor: "10, 20, 35",
+    opacityRange: [0.55, 0.05],
     textColor: "light",
-    imageOpacity: 0.85,
+    imageOpacity: 1.0,
   },
   {
     title: "Managed Services",
@@ -81,10 +81,10 @@ const slides = [
     description: "24×7 monitoring, support, and optimization for your critical systems.",
     href: "/business-units/managed-services",
     image: "/images/hero/managed-services.png",
-    overlayColor: "15, 20, 32",
-    opacityRange: [0.80, 0.40],
+    overlayColor: "10, 20, 35",
+    opacityRange: [0.55, 0.05],
     textColor: "light",
-    imageOpacity: 0.85,
+    imageOpacity: 1.0,
   },
   {
     title: "Software Engineering",
@@ -93,10 +93,10 @@ const slides = [
     description: "Custom software solutions and seamless integrations built for your business.",
     href: "/business-units/software-engineering",
     image: "/images/hero/software-engineering.png",
-    overlayColor: "15, 20, 32",
-    opacityRange: [0.85, 0.45],
+    overlayColor: "10, 20, 35",
+    opacityRange: [0.55, 0.05],
     textColor: "light",
-    imageOpacity: 0.95,
+    imageOpacity: 1.0,
   },
   {
     title: "AI & Automation",
@@ -105,10 +105,10 @@ const slides = [
     description: "Intelligent automation and AI-driven solutions that transform how you work.",
     href: "/business-units/ai-automation",
     image: "/images/hero/ai-automation.png",
-    overlayColor: "15, 20, 32",
-    opacityRange: [0.85, 0.45],
+    overlayColor: "10, 20, 35",
+    opacityRange: [0.55, 0.05],
     textColor: "light",
-    imageOpacity: 0.95,
+    imageOpacity: 1.0,
   },
 ];
 
@@ -196,6 +196,12 @@ const BASE_CLIENTS: ClientLogo[] = [
 
 // Duplicate for seamless infinite scroll
 const CLIENTS = [...BASE_CLIENTS, ...BASE_CLIENTS];
+
+const getMobileImageSrc = (src: string) => {
+  const lastDot = src.lastIndexOf('.');
+  if (lastDot === -1) return src;
+  return `${src.substring(0, lastDot)}-mobile${src.substring(lastDot)}`;
+};
 
 // ─── Rebuilt Hero Component ──────────────────────────────────────────────────
 export default function Hero() {
@@ -301,41 +307,40 @@ export default function Hero() {
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
-                  <Image
-                    src={slide.image}
-                    alt={`${slide.title} backdrop`}
-                    fill
-                    sizes="100vw"
-                    className="object-cover object-[center_top] sm:object-right"
-                    style={{ opacity: slide.imageOpacity }}
-                    priority={index === 0}
-                  />
-                  {/* Overlays */}
-                  {/* Desktop Gradient Overlay (left-to-right, transparent on the right to keep image fully visible) */}
-                  <div
-                    className="hidden sm:block absolute inset-0 bg-gradient-to-r z-[1]"
-                    style={{
-                      backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.opacityRange[0]}) 0%, rgba(${slide.overlayColor}, ${slide.opacityRange[0] * 0.9}) 30%, rgba(${slide.overlayColor}, ${slide.opacityRange[1]}) 42%, transparent 50%)`
-                    }}
-                  />
-                  
-                  {/* Mobile Gradient Overlay (slower fading to keep full-width text readable on narrow screens) */}
-                  <div
-                    className="block sm:hidden absolute inset-0 bg-gradient-to-r z-[1]"
-                    style={{
-                      backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.opacityRange[0]}) 0%, rgba(${slide.overlayColor}, ${slide.opacityRange[0] * 0.95}) 50%, rgba(${slide.overlayColor}, 0.72) 100%)`
-                    }}
-                  />
-
-                  {/* Vertical shadow overlay for depth (only for light text support) */}
-                  {slide.textColor === 'light' && (
-                    <div
-                      className="absolute inset-0 bg-gradient-to-b z-[1]"
-                      style={{
-                        backgroundImage: `linear-gradient(to bottom, rgba(${slide.overlayColor}, 0.2) 0%, transparent 30%, transparent 70%, rgba(${slide.overlayColor}, 0.45) 100%)`
-                      }}
+                  {/* Desktop Background Image (visible on md screens and up) */}
+                  <div className="hidden md:block absolute inset-0">
+                    <Image
+                      src={slide.image}
+                      alt={`${slide.title} backdrop`}
+                      fill
+                      sizes="100vw"
+                      className="object-cover object-center"
+                      style={{ opacity: slide.imageOpacity }}
+                      priority={index === 0}
                     />
-                  )}
+                  </div>
+
+                  {/* Mobile Background Image (visible on screens below md) */}
+                  <div className="block md:hidden absolute inset-0">
+                    <Image
+                      src={getMobileImageSrc(slide.image)}
+                      alt={`${slide.title} mobile backdrop`}
+                      fill
+                      sizes="100vw"
+                      className="object-cover object-center"
+                      style={{ opacity: slide.imageOpacity }}
+                      priority={index === 0}
+                    />
+                  </div>
+
+                  {/* Overlays */}
+                  {/* Unified Light Gradient Overlay (identically applied to all breakpoints) */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-r z-[1]"
+                    style={{
+                      backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.opacityRange[0]}) 0%, rgba(${slide.overlayColor}, 0.25) 50%, rgba(${slide.overlayColor}, ${slide.opacityRange[1]}) 100%)`
+                    }}
+                  />
                 </div>
 
                 {/* Content Block */}
