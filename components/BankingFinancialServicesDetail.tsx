@@ -318,8 +318,21 @@ export default function BankingFinancialServicesDetail() {
       </section>
 
       {/* ─── 3. Clients Section ("Customers") ───────────────────────────────────── */}
-      <section className="relative py-20 border-b border-slate-200" style={gridBgStyle}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="relative py-20 bg-[#f1f5f9] border-b border-slate-200 overflow-hidden">
+        {/* Background Image backdrop (Solutions BG) */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Image
+            src="/images/solutions-bg.png"
+            alt="Client Section Backdrop"
+            fill
+            sizes="100vw"
+            className="object-cover opacity-[0.08]"
+          />
+          {/* Soft light-radial glow overlay for richness */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f1f5f9]/40 via-transparent to-[#f1f5f9]/60" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-14">
