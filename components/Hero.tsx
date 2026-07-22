@@ -22,9 +22,11 @@ const slides = [
     href: "/business-units/network-security",
     image: "/images/hero/network123.png",
     overlayColor: "10, 20, 35",
-    opacityRange: [0.55, 0.05],
+    opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
+    objectPositionDesktop: "75% 50%",
+    objectPositionMobile: "85% 50%",
   },
   {
     title: "Cyber Security",
@@ -34,9 +36,11 @@ const slides = [
     href: "/business-units/cyber-security",
     image: "/images/hero/cyber-security.jpg",
     overlayColor: "10, 20, 35",
-    opacityRange: [0.55, 0.05],
+    opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
+    objectPositionDesktop: "70% 40%",
+    objectPositionMobile: "75% 30%",
   },
   {
     title: "Data Center & Cloud",
@@ -46,9 +50,11 @@ const slides = [
     href: "/business-units/data-center-cloud",
     image: "/images/hero/data-center-cloud123.png",
     overlayColor: "10, 20, 35",
-    opacityRange: [0.55, 0.05],
+    opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
+    objectPositionDesktop: "80% 50%",
+    objectPositionMobile: "85% 50%",
   },
   {
     title: "Passive Infrastructure",
@@ -58,9 +64,11 @@ const slides = [
     href: "/business-units/passive-infrastructure",
     image: "/images/hero/passive-infrastructure.png",
     overlayColor: "10, 20, 35",
-    opacityRange: [0.55, 0.05],
+    opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
+    objectPositionDesktop: "70% 50%",
+    objectPositionMobile: "75% 50%",
   },
   {
     title: "Technology Consulting",
@@ -70,9 +78,11 @@ const slides = [
     href: "/business-units/technology-consulting",
     image: "/images/hero/technology-consulting.png",
     overlayColor: "10, 20, 35",
-    opacityRange: [0.55, 0.05],
+    opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
+    objectPositionDesktop: "75% 40%",
+    objectPositionMobile: "80% 30%",
   },
   {
     title: "Managed Services",
@@ -82,9 +92,11 @@ const slides = [
     href: "/business-units/managed-services",
     image: "/images/hero/managed-services.png",
     overlayColor: "10, 20, 35",
-    opacityRange: [0.55, 0.05],
+    opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
+    objectPositionDesktop: "70% 50%",
+    objectPositionMobile: "75% 50%",
   },
   {
     title: "Software Engineering",
@@ -94,9 +106,11 @@ const slides = [
     href: "/business-units/software-engineering",
     image: "/images/hero/software-engineering.png",
     overlayColor: "10, 20, 35",
-    opacityRange: [0.55, 0.05],
+    opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
+    objectPositionDesktop: "75% 50%",
+    objectPositionMobile: "80% 50%",
   },
   {
     title: "AI & Automation",
@@ -106,9 +120,11 @@ const slides = [
     href: "/business-units/ai-automation",
     image: "/images/hero/ai-automation.png",
     overlayColor: "10, 20, 35",
-    opacityRange: [0.55, 0.05],
+    opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
+    objectPositionDesktop: "70% 50%",
+    objectPositionMobile: "75% 50%",
   },
 ];
 
@@ -314,8 +330,11 @@ export default function Hero() {
                       alt={`${slide.title} backdrop`}
                       fill
                       sizes="100vw"
-                      className="object-cover object-center"
-                      style={{ opacity: slide.imageOpacity }}
+                      className="object-cover"
+                      style={{
+                        opacity: slide.imageOpacity,
+                        objectPosition: slide.objectPositionDesktop || '70% center'
+                      }}
                       priority={index === 0}
                     />
                   </div>
@@ -323,22 +342,33 @@ export default function Hero() {
                   {/* Mobile Background Image (visible on screens below md) */}
                   <div className="block md:hidden absolute inset-0">
                     <Image
-                      src={getMobileImageSrc(slide.image)}
+                      src={slide.image}
                       alt={`${slide.title} mobile backdrop`}
                       fill
                       sizes="100vw"
-                      className="object-cover object-center"
-                      style={{ opacity: slide.imageOpacity }}
+                      className="object-cover"
+                      style={{
+                        opacity: slide.imageOpacity,
+                        objectPosition: slide.objectPositionMobile || '75% center'
+                      }}
                       priority={index === 0}
                     />
                   </div>
 
                   {/* Overlays */}
-                  {/* Unified Light Gradient Overlay (identically applied to all breakpoints) */}
+                  {/* Mobile Gradient Overlay (Strengthened on small screens for maximum readability) */}
                   <div
-                    className="absolute inset-0 bg-gradient-to-r z-[1]"
+                    className="block md:hidden absolute inset-0 z-[1]"
                     style={{
-                      backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.opacityRange[0]}) 0%, rgba(${slide.overlayColor}, 0.25) 50%, rgba(${slide.overlayColor}, ${slide.opacityRange[1]}) 100%)`
+                      backgroundImage: `linear-gradient(to right, rgba(15, 20, 32, 0.95) 0%, rgba(15, 20, 32, 0.70) 60%, rgba(15, 20, 32, 0.20) 100%)`
+                    }}
+                  />
+
+                  {/* Desktop Gradient Overlay (smooth desktop fade easing at md:) */}
+                  <div
+                    className="hidden md:block absolute inset-0 z-[1]"
+                    style={{
+                      backgroundImage: `linear-gradient(to right, rgba(${slide.overlayColor}, ${slide.opacityRange[0]}) 0%, rgba(${slide.overlayColor}, 0.35) 50%, rgba(${slide.overlayColor}, ${slide.opacityRange[1]}) 100%)`
                     }}
                   />
                 </div>

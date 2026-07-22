@@ -232,9 +232,10 @@ export default function IndustriesSection() {
           {displayIndustries.map((item, index) => {
             const Icon = item.icon;
             return (
-              <div
+              <Link
                 key={`${item.name}-${index}`}
-                className={`group relative w-[280px] sm:w-[320px] h-[240px] shrink-0 p-8 rounded-2xl bg-white border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.06)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between ${
+                href={item.href}
+                className={`group relative w-[280px] sm:w-[320px] h-[240px] shrink-0 p-8 rounded-2xl bg-white border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_-8px_rgba(0,0,0,0.06)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 flex flex-col justify-between cursor-pointer ${
                   isPaused ? 'snap-start' : ''
                 }`}
               >
@@ -258,15 +259,14 @@ export default function IndustriesSection() {
 
                 {/* Bottom left arrow button linking to page */}
                 <div className="flex justify-start">
-                  <Link
-                    href={item.href}
-                    className="w-10 h-10 rounded-full bg-[rgb(20,109,174)] hover:bg-[rgb(14,76,122)] flex items-center justify-center text-white transition-all shadow-[0_2px_8px_rgba(20,109,174,0.25)] hover:shadow-[0_4px_12px_rgba(20,109,174,0.4)] hover:scale-105 active:scale-95 cursor-pointer"
+                  <div
+                    className="w-10 h-10 rounded-full bg-[rgb(20,109,174)] group-hover:bg-[rgb(14,76,122)] flex items-center justify-center text-white transition-all shadow-[0_2px_8px_rgba(20,109,174,0.25)] group-hover:shadow-[0_4px_12px_rgba(20,109,174,0.4)] group-hover:scale-105 active:scale-95"
                     aria-label={`View ${item.name} Solutions`}
                   >
                     <ArrowRight className="w-4 h-4" />
-                  </Link>
+                  </div>
                 </div>
-              </div>
+              </Link>
             );
           })}
 
