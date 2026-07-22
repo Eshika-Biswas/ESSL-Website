@@ -107,6 +107,15 @@ const financialClients: FinancialClient[] = [
 ];
 
 export default function BankingFinancialServicesDetail() {
+  const gridBgStyle = {
+    backgroundColor: '#f8fafc',
+    backgroundImage: `
+      radial-gradient(circle at center, rgba(15, 23, 42, 0.08) 1.5px, transparent 1.5px),
+      url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none' stroke='rgba(15,23,42,0.08)' stroke-width='0.5'/%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(20,109,174,0.30)' stroke-width='1'/%3E%3C/svg%3E")
+    `,
+    backgroundSize: '40px 40px',
+  };
+
   return (
     <div className="w-full overflow-hidden bg-slate-50">
       
@@ -175,7 +184,7 @@ export default function BankingFinancialServicesDetail() {
       </section>
 
       {/* ─── 2. Industry Solutions Section (Hub & Spoke Ecosystem Diagram) ──────── */}
-      <section id="solutions" className="relative py-24 bg-[#faf9f6] border-b border-slate-200">
+      <section id="solutions" className="relative py-24 border-b border-slate-200" style={gridBgStyle}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
@@ -309,7 +318,7 @@ export default function BankingFinancialServicesDetail() {
       </section>
 
       {/* ─── 3. Clients Section ("Customers") ───────────────────────────────────── */}
-      <section className="py-20 bg-white border-b border-slate-200">
+      <section className="relative py-20 border-b border-slate-200" style={gridBgStyle}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           {/* Section Header */}
