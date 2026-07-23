@@ -109,14 +109,14 @@ export default function ManufacturingIndustrialDetail() {
     <div className="w-full overflow-hidden bg-slate-50">
       
       {/* ─── 1. Hero Section ─────────────────────────────────────────────────── */}
-      <section className="relative w-full min-h-[540px] sm:min-h-[600px] flex items-center overflow-hidden py-20 sm:py-28 border-b border-slate-200">
+      <section className="relative w-full min-h-[560px] sm:min-h-[640px] md:min-h-[700px] lg:min-h-[760px] xl:min-h-[820px] 2xl:min-h-[880px] flex items-center overflow-hidden py-20 sm:py-28 lg:py-32 border-b border-slate-200">
         <div className="absolute inset-0 z-0 w-full h-full">
           <Image
             src="/images/industries/manufacturing-industrial.png"
             alt="Manufacturing & Industrial Hero Background"
             fill
             sizes="100vw"
-            className="object-cover object-right sm:object-center"
+            className="object-cover object-top sm:object-[center_top] lg:object-[right_top]"
             priority
           />
         </div>
