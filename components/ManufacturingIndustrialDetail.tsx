@@ -1,112 +1,101 @@
 'use client';
 
-import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
-  Landmark,
+  Factory,
   ArrowRight,
   ShieldCheck,
   Server,
   Cpu,
-  Lock,
-  UserCheck,
+  Wifi,
   Eye,
   RefreshCw,
-  Cloud,
-  Monitor,
   Headphones,
-  Building,
-  CheckCircle2,
-  ChevronRight
+  Network,
+  Radio,
+  Boxes,
 } from 'lucide-react';
 
-// ─── 10 Industry Solutions ───────────────────────────────────────────────────
 const leftSolutions = [
   {
-    title: 'Branch Network Modernization',
-    description: 'High-speed, redundant SD-WAN and secure connectivity across bank branches.',
-    icon: Server,
+    title: 'Factory Network',
+    description: 'High-availability industrial-grade network backbones connecting plant floors and machinery.',
+    icon: Network,
   },
   {
-    title: 'Data Center Modernization',
-    description: 'Next-gen hybrid cloud and server infrastructure engineered for 99.999% uptime.',
-    icon: Server,
+    title: 'Industrial Wi-Fi',
+    description: 'Low-latency, high-density wireless coverage engineered for rugged manufacturing environments.',
+    icon: Wifi,
   },
   {
-    title: 'Core Banking Infrastructure',
-    description: 'High-throughput compute, low-latency storage, and high-availability database architecture.',
+    title: 'OT Security',
+    description: 'Operational technology defense isolating critical SCADA and plant automation systems.',
+    icon: ShieldCheck,
+  },
+  {
+    title: 'Smart Surveillance',
+    description: 'High-definition thermal and optical camera monitoring across production facilities.',
+    icon: Eye,
+  },
+  {
+    title: 'AI Video Analytics',
+    description: 'Real-time automated defect detection, PPE compliance checking, and perimeter safety alerts.',
     icon: Cpu,
-  },
-  {
-    title: 'Zero Trust Security',
-    description: 'Strict micro-segmentation, continuous identity verification, and multi-factor authentication.',
-    icon: Lock,
-  },
-  {
-    title: 'Identity & Access Management',
-    description: 'Centralized privilege management, role-based controls, and seamless SSO integration.',
-    icon: UserCheck,
   },
 ];
 
 const rightSolutions = [
   {
-    title: 'Security Operations Center (SOC)',
-    description: '24/7 real-time threat monitoring, automated detection, and rapid incident response.',
-    icon: Eye,
+    title: 'Data Center',
+    description: 'On-premise and edge micro data centers built for continuous 24/7 plant operations.',
+    icon: Server,
   },
   {
-    title: 'Disaster Recovery & Business Continuity',
-    description: 'Automated failover, RPO/RTO optimization, and multi-site replication.',
+    title: 'Backup & DR',
+    description: 'Automated disaster recovery protecting ERP data, production schedules, and inventory logs.',
     icon: RefreshCw,
   },
   {
-    title: 'Cloud Transformation',
-    description: 'Compliant multi-cloud migration strategies tailored for regulated financial workloads.',
-    icon: Cloud,
+    title: 'Industrial IoT Infrastructure',
+    description: 'Sensor network backplanes enabling real-time equipment telemetry and predictive maintenance.',
+    icon: Radio,
   },
   {
-    title: 'Digital Workplace',
-    description: 'Secure remote work solutions, VDI environments, and mobile banking ops tooling.',
-    icon: Monitor,
+    title: 'Smart Warehouse',
+    description: 'Automated inventory tracking, RFID reader connectivity, and logistics coordination.',
+    icon: Boxes,
   },
   {
-    title: 'Managed IT Services',
-    description: 'End-to-end 24/7 infrastructure monitoring, patching, and proactive maintenance.',
+    title: 'Managed Operations',
+    description: '24/7 proactive IT/OT monitoring and rapid response services for industrial operations.',
     icon: Headphones,
   },
 ];
 
-// ─── 17 Banking & Financial Institution Clients ──────────────────────────────
-interface FinancialClient {
+interface ClientItem {
   name: string;
   type: string;
-  logo?: string;
   initials: string;
+  logo?: string;
 }
 
-const financialClients: FinancialClient[] = [
-  { name: 'Standard Chartered', type: 'Bank', initials: 'SCB' },
-  { name: 'BRAC Bank', type: 'Bank', initials: 'BBL' },
-  { name: 'Eastern Bank (EBL)', type: 'Bank', initials: 'EBL' },
-  { name: 'Dhaka Bank', type: 'Bank', initials: 'DBL' },
-  { name: 'LankaBangla Finance', type: 'FI', initials: 'LBF' },
-  { name: 'Meghna Bank', type: 'Bank', initials: 'MBL' },
-  { name: 'NRBC Bank', type: 'Bank', initials: 'NRBC' },
-  { name: 'Southeast Bank', type: 'Bank', initials: 'SEB' },
-  { name: 'Commercial Bank', type: 'Bank', initials: 'CBC' },
-  { name: 'NCC Bank', type: 'Bank', initials: 'NCC' },
-  { name: 'IDLC Finance', type: 'FI', logo: '/logos/idlc-finance.png', initials: 'IDLC' },
-  { name: 'HBL (Habib Bank)', type: 'Bank', initials: 'HBL' },
-  { name: 'IDCOL', type: 'FI', initials: 'IDC' },
-  { name: 'IPDC Finance', type: 'FI', initials: 'IPDC' },
-  { name: 'Green Delta Insurance', type: 'Insurance', initials: 'GDI' },
-  { name: 'Pragati Life Insurance', type: 'Insurance', initials: 'PLI' },
-  { name: 'Delta Life Insurance', type: 'Insurance', initials: 'DLI' },
+const manufacturingClients: ClientItem[] = [
+  { name: 'AKIJ Insaf', type: 'Industrial Conglomerate', initials: 'AIL', logo: '/logos/Akij-Insaf-logo.472a84eedbb63231b165.png' },
+  { name: 'Navana Group', type: 'Manufacturing & Automotive', initials: 'NAV', logo: '/logos/navana_logo-1.svg' },
+  { name: 'Rahimafrooz', type: 'Energy & Industrial', initials: 'RFL', logo: '/logos/rahimafrooz.png' },
+  { name: 'Snowtex', type: 'Apparel Manufacturing', initials: 'STX', logo: '/logos/snowtex.png' },
+  { name: 'United Group', type: 'Infrastructure & Power', initials: 'UGL', logo: '/logos/united.png' },
+  { name: 'TK Group', type: 'Industrial Conglomerate', initials: 'TKG', logo: '/logos/TK-Group-1-2.png' },
+  { name: 'Masco Group', type: 'Textile & Apparel', initials: 'MSG', logo: '/logos/masco.png' },
+  { name: 'Partex Star Group', type: 'Manufacturing', initials: 'PSG', logo: '/logos/partex-star.png' },
+  { name: 'Crown Cement', type: 'Heavy Industry', initials: 'CCL' },
+  { name: 'City Group', type: 'Consumer Goods & Mfg', initials: 'CGL' },
+  { name: 'Anwar Group', type: 'Industrial Conglomerate', initials: 'AGL' },
+  { name: 'INSEE Cement', type: 'Heavy Industry', initials: 'INC' },
 ];
 
-export default function BankingFinancialServicesDetail() {
+export default function ManufacturingIndustrialDetail() {
   const gridBgStyle = {
     backgroundColor: '#f8fafc',
     backgroundImage: `
@@ -119,14 +108,12 @@ export default function BankingFinancialServicesDetail() {
   return (
     <div className="w-full overflow-hidden bg-slate-50">
       
-      {/* ─── 1. Hero Section (Full-Bleed Light Background Illustration) ───────────── */}
+      {/* ─── 1. Hero Section ─────────────────────────────────────────────────── */}
       <section className="relative w-full min-h-[540px] sm:min-h-[600px] flex items-center overflow-hidden py-20 sm:py-28 border-b border-slate-200">
-        
-        {/* Full-width, full-height background image */}
         <div className="absolute inset-0 z-0 w-full h-full">
           <Image
-            src="/images/industries/banking-financial-services.png"
-            alt="Banking & Financial Services Hero Background"
+            src="/images/industries/manufacturing-industrial.png"
+            alt="Manufacturing & Industrial Hero Background"
             fill
             sizes="100vw"
             className="object-cover object-right sm:object-center"
@@ -134,11 +121,8 @@ export default function BankingFinancialServicesDetail() {
           />
         </div>
 
-        {/* Content Overlay sitting over the empty left negative space */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="max-w-2xl text-left space-y-6">
-            
-            {/* Badge Tag */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/10 shadow-sm backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
               <span className="text-xs uppercase tracking-widest font-bold text-[rgb(20,109,174)] font-mono">
@@ -146,23 +130,20 @@ export default function BankingFinancialServicesDetail() {
               </span>
             </div>
 
-            {/* Main Heading in Dark Navy with Brand Blue Accent */}
             <h1
               className="text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight text-[#0f1420]"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Banking &{' '}
+              Manufacturing &{' '}
               <span className="text-[rgb(20,109,174)]">
-                Financial Services
+                Industrial
               </span>
             </h1>
 
-            {/* Description in Dark Slate */}
             <p className="text-lg sm:text-xl text-slate-700 leading-relaxed max-w-xl font-normal">
-              Secure, resilient, and compliant technology solutions for modern financial institutions.
+              Power smart manufacturing with reliable, secure, and connected infrastructure.
             </p>
 
-            {/* Action Buttons */}
             <div className="flex flex-wrap items-center gap-4 pt-4">
               <Link
                 href="/contact"
@@ -178,16 +159,14 @@ export default function BankingFinancialServicesDetail() {
                 Explore Solutions
               </a>
             </div>
-
           </div>
         </div>
       </section>
 
-      {/* ─── 2. Industry Solutions Section (Hub & Spoke Ecosystem Diagram) ──────── */}
+      {/* ─── 2. Industry Solutions Section (Hub & Spoke) ────────────────────── */}
       <section id="solutions" className="relative py-24 border-b border-slate-200" style={gridBgStyle}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
-          {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-4 font-mono">
               Industry Solutions
@@ -196,41 +175,31 @@ export default function BankingFinancialServicesDetail() {
               className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 tracking-tight"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Comprehensive <span className="text-[rgb(20,109,174)]">Financial Infrastructure</span> & Security
+              Smart <span className="text-[rgb(20,109,174)]">Factory & OT Infrastructure</span>
             </h2>
             <p className="text-slate-600 text-base sm:text-lg">
-              End-to-end technology capabilities engineered to meet strict regulatory standards and deliver mission-critical reliability.
+              Next-generation IT/OT convergence designed for uninterrupted plant operations, real-time analytics, and OT cyber defense.
             </p>
           </div>
 
-          {/* Hub and Spoke Interactive Layout */}
           <div className="relative my-8">
-            
-            {/* Embedded CSS for smooth, hardware-accelerated dash flow animation */}
             <style dangerouslySetInnerHTML={{ __html: `
               @keyframes dashFlow {
-                from {
-                  stroke-dashoffset: 20;
-                }
-                to {
-                  stroke-dashoffset: 0;
-                }
+                from { stroke-dashoffset: 20; }
+                to { stroke-dashoffset: 0; }
               }
               .animate-dash-flow {
                 animation: dashFlow 2.5s linear infinite;
               }
             `}} />
 
-            {/* SVG Dashed Connector Lines (visible on lg screens and up) */}
             <svg className="hidden lg:block absolute inset-0 w-full h-full pointer-events-none z-0" preserveAspectRatio="none">
-              {/* Left 5 dashed connector lines radiating from center (50%, 50%) to left cards */}
               <line x1="50%" y1="50%" x2="41%" y2="10%" stroke="rgb(20, 109, 174)" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="5 5" className="animate-dash-flow" />
               <line x1="50%" y1="50%" x2="41%" y2="30%" stroke="rgb(20, 109, 174)" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="5 5" className="animate-dash-flow" />
               <line x1="50%" y1="50%" x2="41%" y2="50%" stroke="rgb(20, 109, 174)" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="5 5" className="animate-dash-flow" />
               <line x1="50%" y1="50%" x2="41%" y2="70%" stroke="rgb(20, 109, 174)" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="5 5" className="animate-dash-flow" />
               <line x1="50%" y1="50%" x2="41%" y2="90%" stroke="rgb(20, 109, 174)" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="5 5" className="animate-dash-flow" />
 
-              {/* Right 5 dashed connector lines radiating from center (50%, 50%) to right cards */}
               <line x1="50%" y1="50%" x2="59%" y2="10%" stroke="rgb(20, 109, 174)" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="5 5" className="animate-dash-flow" />
               <line x1="50%" y1="50%" x2="59%" y2="30%" stroke="rgb(20, 109, 174)" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="5 5" className="animate-dash-flow" />
               <line x1="50%" y1="50%" x2="59%" y2="50%" stroke="rgb(20, 109, 174)" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="5 5" className="animate-dash-flow" />
@@ -240,7 +209,6 @@ export default function BankingFinancialServicesDetail() {
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
               
-              {/* Left Column (5 Solutions) */}
               <div className="lg:col-span-5 space-y-3 z-10">
                 {leftSolutions.map((item) => {
                   const IconComp = item.icon;
@@ -265,27 +233,21 @@ export default function BankingFinancialServicesDetail() {
                 })}
               </div>
 
-              {/* Center Hub Badge */}
               <div className="lg:col-span-2 flex flex-col items-center justify-center my-6 lg:my-0 z-20">
                 <div className="relative flex flex-col items-center">
-                  
-                  {/* Central Hub Circular Badge (Static) */}
                   <div className="relative w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-gradient-to-br from-[#0f1420] to-[rgb(14,76,122)] border-4 border-white shadow-xl flex flex-col items-center justify-center p-3 text-center">
                     <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-sky-300">
-                      <Landmark className="w-6 h-6" />
+                      <Factory className="w-6 h-6" />
                     </div>
                   </div>
-                  
-                  {/* Single Clean Hub Label */}
                   <div className="mt-3 px-3.5 py-1.5 rounded-full bg-white border border-slate-200/90 shadow-sm text-center">
                     <span className="text-xs font-bold text-slate-900 tracking-tight block">
-                      Banking & Financial Services
+                      Manufacturing & Industrial
                     </span>
                   </div>
                 </div>
               </div>
 
-              {/* Right Column (5 Solutions) */}
               <div className="lg:col-span-5 space-y-3 z-10">
                 {rightSolutions.map((item) => {
                   const IconComp = item.icon;
@@ -311,15 +273,12 @@ export default function BankingFinancialServicesDetail() {
               </div>
 
             </div>
-
           </div>
-
         </div>
       </section>
 
-      {/* ─── 3. Clients Section ("Customers") ───────────────────────────────────── */}
+      {/* ─── 3. Clients Section ─────────────────────────────────────────────── */}
       <section className="relative py-20 bg-[#f1f5f9] border-b border-slate-200 overflow-hidden">
-        {/* Background Image backdrop (Solutions BG) */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           <Image
             src="/images/solutions-bg.png"
@@ -328,13 +287,10 @@ export default function BankingFinancialServicesDetail() {
             sizes="100vw"
             className="object-cover opacity-[0.08]"
           />
-          {/* Soft light-radial glow overlay for richness */}
           <div className="absolute inset-0 bg-gradient-to-b from-[#f1f5f9]/40 via-transparent to-[#f1f5f9]/60" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
-          {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-14">
             <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-slate-500 border border-slate-200 bg-slate-100 mb-3 font-mono">
               Customers
@@ -343,16 +299,15 @@ export default function BankingFinancialServicesDetail() {
               className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              Trusted by Leading <span className="text-[rgb(20,109,174)]">Banking & Financial Institutions</span>
+              Trusted by Premier <span className="text-[rgb(20,109,174)]">Manufacturing & Industrial</span> Leaders
             </h2>
             <p className="text-slate-500 text-sm sm:text-base mt-2">
-              Empowering Bangladesh&apos;s premier banks, non-bank financial institutions, and insurance leaders.
+              Empowering Bangladesh&apos;s leading industrial conglomerates, apparel giants, and manufacturing enterprises.
             </p>
           </div>
 
-          {/* 17 Financial Clients Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
-            {financialClients.map((client) => (
+            {manufacturingClients.map((client) => (
               <div
                 key={client.name}
                 className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
@@ -372,7 +327,6 @@ export default function BankingFinancialServicesDetail() {
                     {client.initials}
                   </div>
                 )}
-                
                 <span className="text-xs font-bold text-slate-800 group-hover:text-[rgb(20,109,174)] transition-colors leading-tight">
                   {client.name}
                 </span>
@@ -382,13 +336,11 @@ export default function BankingFinancialServicesDetail() {
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
-      {/* ─── 4. Closing CTA Section ────────────────────────────────────────────── */}
+      {/* ─── 4. Closing CTA Section ────────────────────────────────────────── */}
       <section className="relative py-20 bg-gradient-to-br from-[#0f1420] via-[rgb(14,76,122)] to-[#0f1420] text-white overflow-hidden">
-        {/* Background grid accent */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none" />
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
@@ -396,10 +348,10 @@ export default function BankingFinancialServicesDetail() {
             className="text-3xl sm:text-4xl lg:text-5xl font-bold tracking-tight"
             style={{ fontFamily: 'var(--font-display)' }}
           >
-            Ready to Modernize Your <span className="text-sky-300">Financial Infrastructure</span>?
+            Ready to Build Your <span className="text-sky-300">Smart Factory Ecosystem</span>?
           </h2>
           <p className="text-slate-200 text-base sm:text-lg max-w-2xl mx-auto font-light leading-relaxed">
-            Connect with our banking IT specialists to architect a compliant, resilient, and future-proof digital ecosystem.
+            Consult with our industrial IT experts to deploy secure, connected, and resilient manufacturing infrastructure.
           </p>
 
           <div className="pt-4 flex justify-center">

@@ -19,7 +19,7 @@ export const industries = [
   { name: 'Manufacturing & Industrial', icon: Factory, href: '/industries/manufacturing-industrial' },
   { name: 'Education & Research', icon: GraduationCap, href: '/industries/education-research' },
   { name: 'Government & Public Sector', icon: Building2, href: '/industries/government-public-sector' },
-  { name: 'NGO & Development', icon: HeartHandshake, href: '/industries/ngo-development' },
+  { name: 'NGOs & Development', icon: HeartHandshake, href: '/industries/ngos-development' },
   { name: 'Retail & E-commerce', icon: ShoppingBag, href: '/industries/retail-ecommerce' },
   { name: 'Telecom & Media', icon: Radio, href: '/industries/telecom-media' },
 ];
