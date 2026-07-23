@@ -319,7 +319,7 @@ export default function Hero() {
                   <div
                     className="block md:hidden absolute inset-0 z-[1]"
                     style={{
-                      backgroundImage: `linear-gradient(to right, rgba(15, 20, 32, 0.95) 0%, rgba(15, 20, 32, 0.70) 60%, rgba(15, 20, 32, 0.20) 100%)`
+                      backgroundImage: `linear-gradient(to right, rgba(15, 20, 32, 0.65) 0%, rgba(15, 20, 32, 0.40) 60%, rgba(15, 20, 32, 0.10) 100%)`
                     }}
                   />
 
