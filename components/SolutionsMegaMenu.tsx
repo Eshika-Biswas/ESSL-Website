@@ -4,10 +4,10 @@ import Link from 'next/link';
 import { ArrowRight, Shield, Server, Cpu, Wrench } from 'lucide-react';
 
 export const solutions = [
-  { name: 'Secure Workplace', icon: Shield, href: '#' },
-  { name: 'Modern Data Center', icon: Server, href: '#' },
-  { name: 'AI Workplace', icon: Cpu, href: '#' },
-  { name: 'Managed Services', icon: Wrench, href: '#' },
+  { name: 'Digital Workplace', icon: Shield, href: '/solutions/digital-workplace' },
+  { name: 'Modern Data Center', icon: Server, href: '/business-units/data-center-cloud' },
+  { name: 'AI Workplace', icon: Cpu, href: '/business-units/ai-automation' },
+  { name: 'Managed Services', icon: Wrench, href: '/business-units/managed-services' },
 ];
 
 interface SolutionsMegaMenuProps {
@@ -31,9 +31,11 @@ export default function SolutionsMegaMenu({ isOpen, onClose }: SolutionsMegaMenu
           {solutions.map((item) => {
             const IconComponent = item.icon;
             return (
-              <div
+              <Link
                 key={item.name}
-                className="flex items-center gap-4 px-3 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 cursor-default group"
+                href={item.href}
+                onClick={onClose}
+                className="flex items-center gap-4 px-3 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 group"
               >
                 <div className="w-9 h-9 rounded-lg bg-[rgb(20,109,174)]/10 flex items-center justify-center group-hover:bg-[rgb(20,109,174)]/20 transition-colors shrink-0">
                   <IconComponent className="w-5 h-5 text-[rgb(20,109,174)]" />
@@ -41,7 +43,7 @@ export default function SolutionsMegaMenu({ isOpen, onClose }: SolutionsMegaMenu
                 <span className="text-base font-sans font-semibold group-hover:text-white transition-colors leading-tight">
                   {item.name}
                 </span>
-              </div>
+              </Link>
             );
           })}
         </div>
