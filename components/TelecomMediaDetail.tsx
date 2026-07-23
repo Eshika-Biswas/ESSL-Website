@@ -90,14 +90,14 @@ export default function TelecomMediaDetail() {
     <div className="w-full overflow-hidden bg-slate-50">
       
       {/* ─── 1. Hero Section ─────────────────────────────────────────────────── */}
-      <section className="relative w-full min-h-[560px] sm:min-h-[640px] md:min-h-[700px] lg:min-h-[760px] xl:min-h-[820px] 2xl:min-h-[880px] flex items-center overflow-hidden py-20 sm:py-28 lg:py-32 border-b border-slate-200">
+      <section className="relative w-full min-h-[520px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[760px] xl:min-h-[820px] 2xl:min-h-[880px] flex items-center overflow-hidden py-16 sm:py-28 lg:py-32 border-b border-slate-200 bg-[#f8fafc]">
         <div className="absolute inset-0 z-0 w-full h-full">
           <Image
             src="/images/industries/telecom-media.png"
             alt="Telecom & Media Hero Background"
             fill
             sizes="100vw"
-            className="object-cover object-top sm:object-[center_top] lg:object-[right_top]"
+            className="object-cover object-[90%_10%] md:object-top sm:object-[center_top] lg:object-[right_top]"
             priority
           />
         </div>
