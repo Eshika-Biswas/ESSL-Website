@@ -82,17 +82,8 @@ interface ClientItem {
 
 const governmentClients: ClientItem[] = [
   { name: 'Bangladesh Parliament', type: 'Legislative Body', initials: 'BAP' },
-  { name: 'Biman Bangladesh Airlines', type: 'National Carrier', initials: 'BBA' },
-  { name: 'EGCB (Electricity Generation)', type: 'Power & Energy', initials: 'EGC' },
+  { name: 'EGCB Bangladesh', type: 'Power & Energy', initials: 'EGC' },
   { name: 'BIFPCL', type: 'Energy Infra', initials: 'BIF' },
-  { name: 'National Board of Revenue', type: 'Government Body', initials: 'NBR' },
-  { name: 'BTRC', type: 'Telecom Regulator', initials: 'BTR' },
-  { name: 'ICT Division', type: 'Ministry of Posts & ICT', initials: 'ICT' },
-  { name: 'Dhaka City Corporation', type: 'Municipal Gov', initials: 'DCC' },
-  { name: 'Bangladesh Bank', type: 'Central Bank', initials: 'BB' },
-  { name: 'Ministry of Public Admin', type: 'Government Ministry', initials: 'MOPA' },
-  { name: 'DPDC', type: 'Power Utility', initials: 'DPD' },
-  { name: 'DESCO', type: 'Power Utility', initials: 'DES' },
 ];
 
 export default function GovernmentPublicSectorDetail() {
@@ -278,54 +269,56 @@ export default function GovernmentPublicSectorDetail() {
       </section>
 
       {/* ─── 3. Clients Section ─────────────────────────────────────────────── */}
-      <section className="relative py-20 bg-[#f1f5f9] border-b border-slate-200 overflow-hidden">
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <Image
-            src="/images/solutions-bg.png"
-            alt="Client Section Backdrop"
-            fill
-            sizes="100vw"
-            className="object-cover opacity-[0.08]"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#f1f5f9]/40 via-transparent to-[#f1f5f9]/60" />
-        </div>
-
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14">
-            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-slate-500 border border-slate-200 bg-slate-100 mb-3 font-mono">
-              Customers
-            </span>
-            <h2
-              className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight"
-              style={{ fontFamily: 'var(--font-display)' }}
-            >
-              Trusted by Key <span className="text-[rgb(20,109,174)]">Government & Public Sector</span> Agencies
-            </h2>
-            <p className="text-slate-500 text-sm sm:text-base mt-2">
-              Partnering with national secretariats, public utilities, regulatory commissions, and civic entities.
-            </p>
+      {governmentClients.length > 0 && (
+        <section className="relative py-20 bg-[#f1f5f9] border-b border-slate-200 overflow-hidden">
+          <div className="absolute inset-0 z-0 pointer-events-none">
+            <Image
+              src="/images/solutions-bg.png"
+              alt="Client Section Backdrop"
+              fill
+              sizes="100vw"
+              className="object-cover opacity-[0.08]"
+            />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#f1f5f9]/40 via-transparent to-[#f1f5f9]/60" />
           </div>
 
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
-            {governmentClients.map((client) => (
-              <div
-                key={client.name}
-                className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center max-w-3xl mx-auto mb-14">
+              <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-slate-500 border border-slate-200 bg-slate-100 mb-3 font-mono">
+                Customers
+              </span>
+              <h2
+                className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight"
+                style={{ fontFamily: 'var(--font-display)' }}
               >
-                <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
-                  {client.initials}
+                Trusted by Key <span className="text-[rgb(20,109,174)]">Government & Public Sector</span> Agencies
+              </h2>
+              <p className="text-slate-500 text-sm sm:text-base mt-2">
+                Partnering with national secretariats, public utilities, and civic entities.
+              </p>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
+              {governmentClients.map((client) => (
+                <div
+                  key={client.name}
+                  className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32 w-[calc(50%-0.5rem)] sm:w-56 md:w-60 shrink-0"
+                >
+                  <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
+                    {client.initials}
+                  </div>
+                  <span className="text-xs font-bold text-slate-800 group-hover:text-[rgb(20,109,174)] transition-colors leading-tight">
+                    {client.name}
+                  </span>
+                  <span className="text-[10px] font-medium text-slate-400 mt-0.5">
+                    {client.type}
+                  </span>
                 </div>
-                <span className="text-xs font-bold text-slate-800 group-hover:text-[rgb(20,109,174)] transition-colors leading-tight">
-                  {client.name}
-                </span>
-                <span className="text-[10px] font-medium text-slate-400 mt-0.5">
-                  {client.type}
-                </span>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      )}
 
       {/* ─── 4. Closing CTA Section ────────────────────────────────────────── */}
       <section className="relative py-20 bg-gradient-to-br from-[#0f1420] via-[rgb(14,76,122)] to-[#0f1420] text-white overflow-hidden">
