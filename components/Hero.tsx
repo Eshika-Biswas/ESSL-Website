@@ -20,13 +20,11 @@ const slides = [
     titleColor: "Security",
     description: "High-performance networking solutions for a connected enterprise.",
     href: "/business-units/network-security",
-    image: "/images/hero/network123.png",
+    image: "/images/hero/network-new.png",
     overlayColor: "10, 20, 35",
     opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
-    objectPositionDesktop: "75% 50%",
-    objectPositionMobile: "85% 50%",
   },
   {
     title: "Cyber Security",
@@ -34,13 +32,11 @@ const slides = [
     titleColor: "Security",
     description: "Protect what matters most with advanced solutions and services.",
     href: "/business-units/cyber-security",
-    image: "/images/hero/cyber-security.jpg",
+    image: "/images/hero/cyber-security-new.png",
     overlayColor: "10, 20, 35",
     opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
-    objectPositionDesktop: "70% 40%",
-    objectPositionMobile: "75% 30%",
   },
   {
     title: "Data Center & Cloud",
@@ -48,13 +44,11 @@ const slides = [
     titleColor: "& Cloud",
     description: "Modernize your data center and accelerate your journey to cloud.",
     href: "/business-units/data-center-cloud",
-    image: "/images/hero/data-center-cloud123.png",
+    image: "/images/hero/data-center-cloud-new.png",
     overlayColor: "10, 20, 35",
     opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
-    objectPositionDesktop: "80% 50%",
-    objectPositionMobile: "85% 50%",
   },
   {
     title: "Passive Infrastructure",
@@ -62,13 +56,11 @@ const slides = [
     titleColor: "Infrastructure",
     description: "Structured, reliable and future-ready physical infrastructure.",
     href: "/business-units/passive-infrastructure",
-    image: "/images/hero/passive-infrastructure.png",
+    image: "/images/hero/passive-infrastructure-new.png",
     overlayColor: "10, 20, 35",
     opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
-    objectPositionDesktop: "70% 50%",
-    objectPositionMobile: "75% 50%",
   },
   {
     title: "Technology Consulting",
@@ -76,13 +68,11 @@ const slides = [
     titleColor: "Consulting",
     description: "Strategic guidance to architect the right technology roadmap for your business.",
     href: "/business-units/technology-consulting",
-    image: "/images/hero/technology-consulting.png",
+    image: "/images/hero/technology-consulting-new.png",
     overlayColor: "10, 20, 35",
     opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
-    objectPositionDesktop: "75% 40%",
-    objectPositionMobile: "80% 30%",
   },
   {
     title: "Managed Services",
@@ -90,13 +80,11 @@ const slides = [
     titleColor: "Services",
     description: "24×7 monitoring, support, and optimization for your critical systems.",
     href: "/business-units/managed-services",
-    image: "/images/hero/managed-services.png",
+    image: "/images/hero/managed-services-new.png",
     overlayColor: "10, 20, 35",
     opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
-    objectPositionDesktop: "70% 50%",
-    objectPositionMobile: "75% 50%",
   },
   {
     title: "Software Engineering",
@@ -104,13 +92,11 @@ const slides = [
     titleColor: "Engineering",
     description: "Custom software solutions and seamless integrations built for your business.",
     href: "/business-units/software-engineering",
-    image: "/images/hero/software-engineering.png",
+    image: "/images/hero/software-engineering-new.png",
     overlayColor: "10, 20, 35",
     opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
-    objectPositionDesktop: "75% 50%",
-    objectPositionMobile: "80% 50%",
   },
   {
     title: "AI & Automation",
@@ -118,13 +104,11 @@ const slides = [
     titleColor: "Automation",
     description: "Intelligent automation and AI-driven solutions that transform how you work.",
     href: "/business-units/ai-automation",
-    image: "/images/hero/ai-automation.png",
+    image: "/images/hero/ai-automation-new.png",
     overlayColor: "10, 20, 35",
     opacityRange: [0.70, 0.05],
     textColor: "light",
     imageOpacity: 1.0,
-    objectPositionDesktop: "70% 50%",
-    objectPositionMobile: "75% 50%",
   },
 ];
 
@@ -212,12 +196,6 @@ const BASE_CLIENTS: ClientLogo[] = [
 
 // Duplicate for seamless infinite scroll
 const CLIENTS = [...BASE_CLIENTS, ...BASE_CLIENTS];
-
-const getMobileImageSrc = (src: string) => {
-  const lastDot = src.lastIndexOf('.');
-  if (lastDot === -1) return src;
-  return `${src.substring(0, lastDot)}-mobile${src.substring(lastDot)}`;
-};
 
 // ─── Rebuilt Hero Component ──────────────────────────────────────────────────
 export default function Hero() {
@@ -323,37 +301,18 @@ export default function Hero() {
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
-                  {/* Desktop Background Image (visible on md screens and up) */}
-                  <div className="hidden md:block absolute inset-0">
-                    <Image
-                      src={slide.image}
-                      alt={`${slide.title} backdrop`}
-                      fill
-                      sizes="100vw"
-                      className="object-cover"
-                      style={{
-                        opacity: slide.imageOpacity,
-                        objectPosition: slide.objectPositionDesktop || '70% center'
-                      }}
-                      priority={index === 0}
-                    />
-                  </div>
-
-                  {/* Mobile Background Image (visible on screens below md) */}
-                  <div className="block md:hidden absolute inset-0">
-                    <Image
-                      src={slide.image}
-                      alt={`${slide.title} mobile backdrop`}
-                      fill
-                      sizes="100vw"
-                      className="object-cover"
-                      style={{
-                        opacity: slide.imageOpacity,
-                        objectPosition: slide.objectPositionMobile || '75% center'
-                      }}
-                      priority={index === 0}
-                    />
-                  </div>
+                  <Image
+                    src={slide.image}
+                    alt={`${slide.title} backdrop`}
+                    fill
+                    sizes="100vw"
+                    className="object-cover"
+                    style={{
+                      opacity: slide.imageOpacity,
+                      objectPosition: 'center 20%',
+                    }}
+                    priority={index === 0}
+                  />
 
                   {/* Overlays */}
                   {/* Mobile Gradient Overlay (Strengthened on small screens for maximum readability) */}
