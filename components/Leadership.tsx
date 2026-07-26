@@ -40,37 +40,45 @@ export default function Leadership() {
     return () => observer.disconnect();
   }, []);
 
+  const gridBgStyle = {
+    backgroundColor: '#f8fafc',
+    backgroundImage: `
+      radial-gradient(circle at center, rgba(15, 23, 42, 0.08) 1.5px, transparent 1.5px),
+      url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none' stroke='rgba(15,23,42,0.08)' stroke-width='0.5'/%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(20,109,174,0.30)' stroke-width='1'/%3E%3C/svg%3E")
+    `,
+    backgroundSize: '40px 40px',
+  };
+
   return (
     <>
-      <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
-        <div className="absolute inset-0 bg-transparent" />
+      <section ref={sectionRef} className="relative w-full py-24 overflow-hidden bg-[#f8fafc]" style={gridBgStyle}>
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-6">
               LEADERSHIP
             </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-4 font-[family-name:var(--font-display)]">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-slate-900 mb-4 font-[family-name:var(--font-display)]">
               Our Executive Team
             </h2>
-            <p className="text-slate-400 text-lg max-w-2xl mx-auto">
-              Meet the leaders driving ensuring security, innovation, and support excellence at ESSL.
+            <p className="text-slate-600 text-lg max-w-2xl mx-auto">
+              Meet the leaders driving security, innovation, and support excellence at ESSL.
             </p>
           </div>
 
           {/* Team Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {team.map((member, index) => (
+            {team.map((member) => (
               <Link
                 href={`/about/leadership/${member.slug}`}
                 key={member.slug}
-                className={`group flex flex-col rounded-3xl glass-card p-6 hover:-translate-y-1.5 transition-all duration-300 ${
+                className={`group flex flex-col rounded-3xl bg-white border border-slate-200/80 p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-300 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                 }`}
                 style={{ transitionDelay: `${member.slug === 'golam-mostafa' ? '0ms' : member.slug === 'partha-sharathe-biswas' ? '120ms' : '240ms'}` }}
               >
                 {/* Image Container with fixed 4:5 aspect ratio and top headshot crop focus */}
-                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-6 bg-slate-800">
+                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-6 bg-slate-100">
                   <Image
                     src={member.photo}
                     alt={member.name}
@@ -83,13 +91,13 @@ export default function Leadership() {
 
                 {/* Text content */}
                 <div className="flex flex-col flex-grow text-center">
-                  <h3 className="text-xl font-bold text-white mb-1 group-hover:text-primary transition-colors">
+                  <h3 className="text-xl font-bold text-slate-900 mb-1 group-hover:text-[rgb(20,109,174)] transition-colors">
                     {member.name}
                   </h3>
-                  <p className="text-sm font-medium text-slate-400">
+                  <p className="text-sm font-medium text-slate-600">
                     {member.title}
                   </p>
-                  <span className="inline-flex items-center justify-center gap-1 mt-4 text-xs font-semibold uppercase tracking-widest text-primary opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <span className="inline-flex items-center justify-center gap-1 mt-4 text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     View Profile &rarr;
                   </span>
                 </div>
@@ -100,11 +108,9 @@ export default function Leadership() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          CTA SECTIONS (dark background wrapping container)
+          CTA SECTIONS (light background wrapping container)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full py-28 overflow-hidden"
-        style={{ background: 'var(--bg-secondary)' }}
-      >
+      <section className="relative w-full py-24 overflow-hidden border-t border-slate-200 bg-white">
         {/* Soft blue radial glow gradient blending in from the right side */}
         <div
           className="absolute pointer-events-none z-0"
@@ -115,44 +121,29 @@ export default function Leadership() {
             width: '650px',
             height: '650px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(20,109,174,0.16) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(20,109,174,0.06) 0%, transparent 70%)',
             filter: 'blur(80px)',
           }}
         />
 
-        {/* Decorative glowing dot/orbit accent in the top-right corner */}
-        <div className="absolute top-16 right-16 w-3 h-3 bg-accent rounded-full blur-[2px] opacity-45 pointer-events-none" />
-        <div className="absolute top-6 right-8 w-20 h-20 border border-accent/15 rounded-full pointer-events-none" />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-28">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
           
-          {/* Card 1: Come and Work for Us (dark card - constrained max-width) */}
-          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 text-center border border-white/[0.05] border-r-4 border-r-accent shadow-[0_0_40px_rgba(20,109,174,0.15)]"
-            style={{ background: 'var(--bg-primary)' }}
-          >
-            {/* Concentric circular orbit line pattern in background */}
-            <div className="absolute inset-0 overflow-hidden rounded-3xl pointer-events-none opacity-[0.03]">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] border border-white rounded-full" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] border border-white rounded-full" />
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[900px] border border-white rounded-full" />
-            </div>
-
+          {/* Card 1: Come and Work for Us */}
+          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 text-center border border-slate-200 bg-slate-50 shadow-sm">
             <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-              <h3 className="text-lg sm:text-xl font-bold tracking-widest text-white uppercase font-mono mb-3"
+              <h3 className="text-lg sm:text-xl font-bold tracking-widest text-slate-900 uppercase font-mono mb-3"
                 style={{ letterSpacing: '0.08em' }}
               >
                 COME AND WORK FOR US
               </h3>
-              <p className="text-xs sm:text-sm leading-relaxed mb-6"
-                style={{ color: '#D0D3DA' }}
-              >
+              <p className="text-xs sm:text-sm leading-relaxed mb-6 text-slate-600">
                 Work within a passionate team, focused on developing solutions and selling products 
-                that push the boundaries of modern threat intelligence technology. Explore our 
+                that push the boundaries of modern enterprise technology. Explore our 
                 opportunities to make an impact.
               </p>
               <Link
                 href="/about/careers"
-                className="inline-flex items-center justify-center border border-white/80 rounded-full px-8 py-2 text-[10px] font-semibold tracking-widest text-white font-mono hover:bg-white hover:text-slate-900 transition-all duration-300 hover:scale-105"
+                className="inline-flex items-center justify-center border border-slate-300 rounded-full px-8 py-2.5 text-[10px] font-semibold tracking-widest text-slate-900 font-mono hover:bg-slate-900 hover:text-white transition-all duration-300 hover:scale-105"
                 style={{ letterSpacing: '0.08em' }}
               >
                 CAREERS
@@ -160,8 +151,8 @@ export default function Leadership() {
             </div>
           </div>
 
-          {/* Card 2: Get in Touch (light card - constrained max-width) */}
-          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 shadow-2xl border border-slate-100/10 bg-gradient-to-r from-white to-slate-50/95">
+          {/* Card 2: Get in Touch */}
+          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 bg-gradient-to-r from-white to-slate-50">
             <div className="grid md:grid-cols-[2fr_1.2fr] items-center gap-6 text-left">
               <div>
                 <h3 className="text-lg sm:text-xl font-bold tracking-widest text-slate-900 uppercase font-mono mb-3"
@@ -169,7 +160,7 @@ export default function Leadership() {
                 >
                   GET IN TOUCH
                 </h3>
-                <p className="text-xs sm:text-sm leading-relaxed text-[#1f2937]">
+                <p className="text-xs sm:text-sm leading-relaxed text-slate-600">
                   Learn more about how we foster a culture of creativity, support, and innovation 
                   to create cutting-edge solutions.
                 </p>
@@ -177,8 +168,8 @@ export default function Leadership() {
               <div className="flex md:justify-end">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center justify-center rounded-full px-8 py-2.5 text-[10px] font-bold tracking-widest text-white font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
-                  style={{ background: 'var(--accent-blue)', letterSpacing: '0.08em' }}
+                  className="inline-flex items-center justify-center rounded-full px-8 py-2.5 text-[10px] font-bold tracking-widest text-white font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg bg-[rgb(20,109,174)]"
+                  style={{ letterSpacing: '0.08em' }}
                 >
                   CONTACT US
                 </Link>

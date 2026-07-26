@@ -381,13 +381,13 @@ export default function PartnersSection() {
   const networkSecurityRows = chunkArray(networkSecurityPartners, 4);
 
   return (
-    <div className="relative w-full" style={{ background: '#0A0F1D' }}>
+    <div className="relative w-full bg-[#f8fafc] text-slate-900">
 
       {/* ─────────────────────────────────────────────────────────
-          SECTION 1 — Hero (dark background, centered)
+          SECTION 1 — Hero (light background, centered)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden border-b border-dashed border-white/10">
-        {/* Soft warm orange/red radial glow blob in the top-left corner */}
+      <section className="relative w-full overflow-hidden border-b border-dashed border-slate-200">
+        {/* Soft blue radial glow blob in the top-left corner */}
         <div
           className="absolute pointer-events-none z-0"
           style={{
@@ -396,7 +396,7 @@ export default function PartnersSection() {
             width: '500px',
             height: '500px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,107,53,0.08) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(20,109,174,0.06) 0%, transparent 70%)',
             filter: 'blur(70px)',
           }}
         />
@@ -408,8 +408,8 @@ export default function PartnersSection() {
           {/* Centered Heading */}
           <Reveal delay={0} threshold={0.1} duration={700}>
             <h1
-              className="text-4xl sm:text-5xl lg:text-[3.2rem] font-bold tracking-wider uppercase mb-8 font-mono"
-              style={{ color: '#F1F5F9', letterSpacing: '0.08em' }}
+              className="text-4xl sm:text-5xl lg:text-[3.2rem] font-bold tracking-wider uppercase mb-8 font-mono text-slate-900"
+              style={{ letterSpacing: '0.08em' }}
             >
               OUR PARTNERS
             </h1>
@@ -417,15 +417,11 @@ export default function PartnersSection() {
 
           {/* Centered Paragraphs */}
           <Reveal delay={150} threshold={0.1} duration={700}>
-            <p className="text-base sm:text-lg leading-relaxed mb-4"
-              style={{ color: '#D0D3DA' }}
-            >
+            <p className="text-base sm:text-lg leading-relaxed mb-4 text-slate-600">
               We partner with leading enterprise technology vendors to provide our customers with
               a range of platform-specific and workflow-based integration options.
             </p>
-            <p className="text-base sm:text-lg leading-relaxed mb-10"
-              style={{ color: '#D0D3DA' }}
-            >
+            <p className="text-base sm:text-lg leading-relaxed mb-10 text-slate-600">
               ESSL&apos;s partnerships span networking, security, cloud, and infrastructure —
               enabling us to deliver best-in-class solutions tailored to each client&apos;s environment.
             </p>
@@ -449,15 +445,15 @@ export default function PartnersSection() {
       {/* ─────────────────────────────────────────────────────────
           SECTION 2 — Technology Partnership categorized grids
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full py-24 overflow-hidden border-b border-dashed border-white/10">
+      <section className="relative w-full py-24 overflow-hidden border-b border-dashed border-slate-200">
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           
           {/* Sub-section 1 — NETWORK & SECURITY SOLUTIONS */}
           <div className="mb-20">
             <Reveal delay={0} threshold={0.15} duration={700}>
               <h2
-                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono"
-                style={{ color: '#FFFFFF', letterSpacing: '0.08em' }}
+                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono text-slate-900"
+                style={{ letterSpacing: '0.08em' }}
               >
                 NETWORK & SECURITY SOLUTIONS
               </h2>
@@ -475,14 +471,14 @@ export default function PartnersSection() {
           </div>
 
           {/* Divider 1 */}
-          <div className="border-t border-dashed border-white/10 w-full my-20" />
+          <div className="border-t border-dashed border-slate-200 w-full my-20" />
 
           {/* Sub-section 2 — CYBER SECURITY SOLUTIONS */}
           <div className="mb-20">
             <Reveal delay={0} threshold={0.15} duration={700}>
               <h2
-                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono"
-                style={{ color: '#FFFFFF', letterSpacing: '0.08em' }}
+                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono text-slate-900"
+                style={{ letterSpacing: '0.08em' }}
               >
                 CYBER SECURITY SOLUTIONS
               </h2>
@@ -500,14 +496,14 @@ export default function PartnersSection() {
           </div>
 
           {/* Divider 2 */}
-          <div className="border-t border-dashed border-white/10 w-full my-20" />
+          <div className="border-t border-dashed border-slate-200 w-full my-20" />
 
           {/* Sub-section 3 — DATA CENTER & VIRTUALIZATION */}
           <div>
             <Reveal delay={0} threshold={0.15} duration={700}>
               <h2
-                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono"
-                style={{ color: '#FFFFFF', letterSpacing: '0.08em' }}
+                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono text-slate-900"
+                style={{ letterSpacing: '0.08em' }}
               >
                 DATA CENTER & VIRTUALIZATION
               </h2>
@@ -530,8 +526,8 @@ export default function PartnersSection() {
       {/* ─────────────────────────────────────────────────────────
           SECTION 3 — Collaborate With Us CTA (light card)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full py-28 overflow-hidden">
-        {/* Soft blue radial glow accent on the dark background near the top-right */}
+      <section className="relative w-full py-28 overflow-hidden bg-white">
+        {/* Soft blue radial glow accent near top-right */}
         <div
           className="absolute pointer-events-none z-0"
           style={{
@@ -540,21 +536,21 @@ export default function PartnersSection() {
             width: '500px',
             height: '500px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(23,108,167,0.14) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(23,108,167,0.06) 0%, transparent 70%)',
             filter: 'blur(70px)',
           }}
         />
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           {/* Centered narrower card layout */}
-          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-8 sm:p-12 shadow-2xl border border-slate-100/10 bg-gradient-to-r from-white to-slate-50/95 text-center">
+          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-8 sm:p-12 shadow-sm border border-slate-200 bg-slate-50 text-center">
             <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
               <h3 className="text-xl sm:text-2xl font-bold tracking-widest text-slate-900 uppercase font-mono mb-4"
                 style={{ letterSpacing: '0.08em' }}
               >
                 COLLABORATE WITH US
               </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-[#1f2937] mb-8 max-w-xl">
+              <p className="text-sm sm:text-base leading-relaxed text-slate-600 mb-8 max-w-xl">
                 We&apos;re always looking for new technology and channel partnerships.
                 Get in touch to discuss how we can work together to deliver better outcomes for our clients.
               </p>

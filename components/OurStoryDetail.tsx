@@ -159,15 +159,22 @@ const cards = [
    ================================================================ */
 
 export default function OurStoryDetail() {
+  const gridBgStyle = {
+    backgroundColor: '#f8fafc',
+    backgroundImage: `
+      radial-gradient(circle at center, rgba(15, 23, 42, 0.08) 1.5px, transparent 1.5px),
+      url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none' stroke='rgba(15,23,42,0.08)' stroke-width='0.5'/%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(20,109,174,0.30)' stroke-width='1'/%3E%3C/svg%3E")
+    `,
+    backgroundSize: '40px 40px',
+  };
+
   return (
-    <div className="relative w-full">
+    <div className="relative w-full bg-[#f8fafc] text-slate-900">
 
       {/* ─────────────────────────────────────────────────────────
-          SECTION 1 — Hero (dark background, centered)
+          SECTION 1 — Hero (light background, centered)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden"
-        style={{ background: 'linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%)' }}
-      >
+      <section className="relative w-full overflow-hidden bg-[#f8fafc]" style={gridBgStyle}>
         {/* Decorative radial glow */}
         <div
           className="absolute pointer-events-none"
@@ -177,28 +184,16 @@ export default function OurStoryDetail() {
             width: 420,
             height: 420,
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(20,109,174,0.18) 0%, transparent 70%)',
-          }}
-        />
-        {/* Faint ring decoration */}
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            top: '18%',
-            right: '16%',
-            width: 260,
-            height: 260,
-            borderRadius: '50%',
-            border: '1px solid rgba(20,109,174,0.12)',
+            background: 'radial-gradient(circle, rgba(20,109,174,0.08) 0%, transparent 70%)',
           }}
         />
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 pt-36 pb-28 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 pt-36 pb-24 text-center">
           {/* Heading */}
           <Reveal delay={0} threshold={0.1} duration={700}>
             <h1
-              className="text-4xl sm:text-5xl lg:text-[3.4rem] font-bold tracking-tight leading-tight mb-8"
-              style={{ color: '#F1F5F9', fontFamily: 'var(--font-display)' }}
+              className="text-4xl sm:text-5xl lg:text-[3.4rem] font-bold tracking-tight leading-tight mb-8 text-slate-900"
+              style={{ fontFamily: 'var(--font-display)' }}
             >
               About Ensure Support Services Ltd.
             </h1>
@@ -206,15 +201,13 @@ export default function OurStoryDetail() {
 
           {/* Founding paragraph */}
           <Reveal delay={150} threshold={0.1} duration={700}>
-            <p className="text-base sm:text-lg leading-relaxed max-w-3xl mx-auto mb-10"
-              style={{ color: 'rgba(203,213,225,0.85)' }}
-            >
+            <p className="text-base sm:text-lg leading-relaxed max-w-3xl mx-auto mb-10 text-slate-600">
               Ensure Support Services Ltd. was founded in 2016 in Dhaka, Bangladesh, to provide
               exceptional value, innovation, assurance, and integrity in the support of emerging
               information technology solutions. Our main focus on IT support services provides
               exceptional value and improves our clients&apos; businesses, not just their IT
               environment. We truly do{' '}
-              <strong className="text-white">&quot;Think Globally and Act Locally.&quot;</strong>
+              <strong className="text-slate-900 font-bold">&quot;Think Globally and Act Locally.&quot;</strong>
             </p>
           </Reveal>
 
@@ -222,12 +215,7 @@ export default function OurStoryDetail() {
           <Reveal delay={300} threshold={0.1} duration={700}>
             <Link
               href="/contact"
-              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold uppercase tracking-widest border transition-all duration-300 hover:scale-105"
-              style={{
-                color: 'var(--accent-blue)',
-                borderColor: 'var(--accent-blue)',
-                background: 'transparent',
-              }}
+              className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold uppercase tracking-widest border transition-all duration-300 hover:scale-105 hover:bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] border-[rgb(20,109,174)]"
             >
               Explore Our Solutions
             </Link>
@@ -236,30 +224,16 @@ export default function OurStoryDetail() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          SECTION 2 — Our Vision (two-column, dark background)
+          SECTION 2 — Our Vision (two-column, light background)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden"
-        style={{ background: 'var(--bg-primary)' }}
-      >
-        {/* Diagonal gradient accent — bottom-right, behind content */}
-        <div
-          className="absolute pointer-events-none"
-          style={{
-            bottom: 0,
-            right: 0,
-            width: '55%',
-            height: '100%',
-            background: 'linear-gradient(135deg, transparent 40%, rgba(23,108,167,0.08) 70%, rgba(23,108,167,0.15) 100%)',
-          }}
-        />
-
+      <section className="relative w-full overflow-hidden bg-white border-t border-slate-200">
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 sm:py-32">
           <div className="grid md:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-start">
             {/* Left — heading */}
             <Reveal delay={0} threshold={0.2} duration={700}>
               <h2
-                className="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold tracking-tight leading-tight"
-                style={{ color: '#F1F5F9', fontFamily: 'var(--font-display)' }}
+                className="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold tracking-tight leading-tight text-slate-900"
+                style={{ fontFamily: 'var(--font-display)' }}
               >
                 OUR VISION
               </h2>
@@ -268,17 +242,13 @@ export default function OurStoryDetail() {
             {/* Right — text with highlighted clause */}
             <div>
               <Reveal delay={150} threshold={0.2} duration={900}>
-                <p className="text-lg sm:text-xl leading-relaxed font-semibold mb-5"
-                  style={{ color: 'var(--accent-blue)' }}
-                >
+                <p className="text-lg sm:text-xl leading-relaxed font-semibold mb-5 text-[rgb(20,109,174)]">
                   Our vision is to provide greater value to our clients by providing complete
                   competitive solutions &amp; Services that are responsive to dynamic markets,
                 </p>
               </Reveal>
               <Reveal delay={300} threshold={0.2} duration={600}>
-                <p className="text-base sm:text-lg leading-relaxed"
-                  style={{ color: 'rgba(203,213,225,0.8)' }}
-                >
+                <p className="text-base sm:text-lg leading-relaxed text-slate-600">
                   as well as treat clients, suppliers, and other associates with the utmost respect.
                 </p>
               </Reveal>
@@ -288,26 +258,15 @@ export default function OurStoryDetail() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          SECTION 3 — Our Mission (full-width single-column, dark background)
+          SECTION 3 — Our Mission (full-width single-column, light background)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden"
-        style={{ background: 'var(--bg-secondary)' }}
-      >
-        {/* Decorative background vertical grid lines */}
-        <div className="absolute inset-0 z-0 flex justify-between pointer-events-none max-w-6xl mx-auto px-6">
-          <div className="w-px h-full bg-white/[0.04]" />
-          <div className="w-px h-full bg-white/[0.04] hidden sm:block" />
-          <div className="w-px h-full bg-white/[0.04] hidden md:block" />
-          <div className="w-px h-full bg-white/[0.04] hidden md:block" />
-          <div className="w-px h-full bg-white/[0.04]" />
-        </div>
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6 py-28 sm:py-36 text-left">
+      <section className="relative w-full overflow-hidden bg-[#f8fafc] border-t border-slate-200">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 sm:py-32 text-left">
           {/* Top-aligned heading with monospace tech-style font */}
           <Reveal delay={0} threshold={0.2} duration={700}>
             <h2
-              className="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold tracking-wider uppercase mb-10 font-mono"
-              style={{ color: '#F1F5F9', letterSpacing: '0.08em' }}
+              className="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold tracking-wider uppercase mb-10 font-mono text-slate-900"
+              style={{ letterSpacing: '0.08em' }}
             >
               OUR MISSION
             </h2>
@@ -315,9 +274,7 @@ export default function OurStoryDetail() {
 
           {/* Body paragraph text left-aligned in the same column */}
           <Reveal delay={150} threshold={0.2} duration={600}>
-            <p className="text-base sm:text-lg leading-relaxed max-w-3xl"
-              style={{ color: '#D0D3DA' }}
-            >
+            <p className="text-base sm:text-lg leading-relaxed max-w-3xl text-slate-600">
               To build long-term relationships with our customers and provide exceptional
               customer services by pursuing business through innovation and advanced technology
               for both on-premises and in the cloud.
@@ -327,45 +284,35 @@ export default function OurStoryDetail() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          SECTION 4 — Cross-link card grid (2×2, dark background)
+          SECTION 4 — Cross-link card grid (2×2, light background)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden"
-        style={{ background: 'var(--bg-primary)' }}
-      >
-        {/* Subtle top divider — grid of thin lines */}
-        <div className="absolute top-0 left-0 right-0 h-px"
-          style={{ background: 'rgba(20,109,174,0.1)' }}
-        />
-
-        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-8 pb-28 sm:pb-36">
+      <section className="relative w-full overflow-hidden bg-white border-t border-slate-200">
+        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-16 pb-28 sm:pb-36">
           <StaggeredGrid
             staggerMs={120}
             threshold={0.15}
             className="grid sm:grid-cols-2 gap-x-10 gap-y-14"
           >
             {cards.map((card) => (
-              <div key={card.heading} className="flex flex-col">
+              <div key={card.heading} className="flex flex-col p-6 rounded-2xl bg-slate-50 border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
                 {/* Icon */}
                 <div className="mb-5">
                   <card.icon
-                    className="w-7 h-7"
-                    style={{ color: 'rgba(203,213,225,0.5)' }}
+                    className="w-7 h-7 text-[rgb(20,109,174)]"
                     strokeWidth={1.5}
                   />
                 </div>
 
                 {/* Heading */}
                 <h3
-                  className="text-lg sm:text-xl font-bold tracking-wide mb-3"
-                  style={{ color: 'var(--accent-blue)', fontFamily: 'var(--font-display)' }}
+                  className="text-lg sm:text-xl font-bold tracking-wide mb-3 text-[rgb(20,109,174)]"
+                  style={{ fontFamily: 'var(--font-display)' }}
                 >
                   {card.heading}
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm leading-relaxed mb-5"
-                  style={{ color: 'rgba(203,213,225,0.7)' }}
-                >
+                <p className="text-sm leading-relaxed mb-5 text-slate-600">
                   {card.desc}
                 </p>
 
@@ -374,17 +321,11 @@ export default function OurStoryDetail() {
                   href={card.href}
                   className="group inline-flex items-center gap-3 mt-auto"
                 >
-                  <span
-                    className="text-xs font-semibold uppercase tracking-widest transition-colors duration-200 group-hover:text-white"
-                    style={{ color: 'rgba(241,245,249,0.7)' }}
-                  >
+                  <span className="text-xs font-semibold uppercase tracking-widest transition-colors duration-200 text-slate-900 group-hover:text-[rgb(20,109,174)]">
                     {card.linkText}
                   </span>
-                  <span
-                    className="inline-flex items-center justify-center w-7 h-7 rounded-full border transition-all duration-300 group-hover:translate-x-1 group-hover:border-white/40"
-                    style={{ borderColor: 'rgba(241,245,249,0.25)' }}
-                  >
-                    <ArrowRight className="w-3.5 h-3.5" style={{ color: 'rgba(241,245,249,0.7)' }} />
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full border border-slate-300 transition-all duration-300 group-hover:translate-x-1 group-hover:border-[rgb(20,109,174)]">
+                    <ArrowRight className="w-3.5 h-3.5 text-slate-700 group-hover:text-[rgb(20,109,174)]" />
                   </span>
                 </Link>
               </div>
