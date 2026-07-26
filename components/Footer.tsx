@@ -1,31 +1,32 @@
 'use client';
 
 import Link from 'next/link';
-import { Shield, Mail, Phone, MapPin } from 'lucide-react';
+import Image from 'next/image';
+import { Mail, Phone, MapPin } from 'lucide-react';
 
 const solutions = [
   { name: 'Network & Security', href: '/business-units/network-security' },
-  { name: 'Cyber Security', href: '#' },
-  { name: 'Data Center & Cloud', href: '#' },
-  { name: 'Passive Infrastructure', href: '#' },
-  { name: 'Managed Services', href: '#' },
-  { name: 'Technology Consulting', href: '#' },
-  { name: 'Software & AI', href: '#' },
-  { name: 'Cloud & DevOps', href: '#' },
+  { name: 'Cyber Security', href: '/business-units/cyber-security' },
+  { name: 'Data Center & Cloud', href: '/business-units/data-center-cloud' },
+  { name: 'Passive Infrastructure', href: '/business-units/passive-infrastructure' },
+  { name: 'Managed Services', href: '/business-units/managed-services' },
+  { name: 'Technology Consulting', href: '/business-units/technology-consulting' },
+  { name: 'Software & AI', href: '/business-units/software-engineering' },
+  { name: 'Cloud & DevOps', href: '/solutions/cloud-transformation' },
 ];
 
 const services = [
-  { name: 'Technology Consulting', href: '#' },
-  { name: 'System Integration', href: '#' },
-  { name: 'Managed Services', href: '#' },
+  { name: 'Technology Consulting', href: '/business-units/technology-consulting' },
+  { name: 'System Integration', href: '/solutions/digital-transformation' },
+  { name: 'Managed Services', href: '/business-units/managed-services' },
 ];
 
 const company = [
-  { name: 'About Us', href: '/about' },
-  { name: 'Case Studies', href: '/case-studies' },
+  { name: 'About Us', href: '/about/why-ess' },
+  { name: 'Case Studies', href: '/insights' },
   { name: 'Insights', href: '/insights' },
   { name: 'Our Clients', href: '/clients' },
-  { name: 'Careers', href: '#' },
+  { name: 'Careers', href: '/about/careers' },
   { name: 'Contact Us', href: '/contact' },
 ];
 
@@ -37,55 +38,58 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer className="relative w-full border-t border-white/5">
-      {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0e17]" />
+    <footer className="relative w-full border-t border-white/10 bg-[#0a0e17] text-slate-300">
+      {/* Background radial glow */}
       <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-[radial-gradient(circle_at_bottom_right,rgba(20,109,174,0.15),transparent_70%)] pointer-events-none" />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Main Footer */}
-        <div className="py-16 grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-8 lg:gap-12">
-          {/* Brand Column */}
-          <div className="col-span-2 md:col-span-4 lg:col-span-1">
-            <Link href="/" className="flex items-center gap-3 mb-6 group">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                <Shield className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <span className="text-xl font-bold text-white">ESSL</span>
-                <span className="block text-[10px] text-slate-400 tracking-widest uppercase -mt-1">
-                  Ensure Support Service
-                </span>
-              </div>
+        {/* Main Footer Grid */}
+        <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
+          
+          {/* Left Column: Company Logo + Contact Details */}
+          <div className="lg:col-span-4 space-y-6">
+            <Link href="/" className="inline-block group">
+              <Image
+                src="/logos/essl-logo-transparent.png"
+                alt="ESS - Ensure Support Services"
+                width={200}
+                height={74}
+                className="h-12 w-auto object-contain"
+              />
             </Link>
-            <p className="text-sm text-slate-400 leading-relaxed mb-6">
+
+            <p className="text-sm text-slate-400 leading-relaxed max-w-sm">
               Bangladesh&apos;s trusted enterprise IT infrastructure and cybersecurity integration partner.
             </p>
 
-            {/* Contact Info */}
-            <div className="space-y-3 text-sm text-slate-450">
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-primary" />
-                <a href="mailto:info@ensure-bd.com" className="hover:text-white transition-colors">info@ensure-bd.com</a>
+            {/* Vertical Stacked Contact Info */}
+            <div className="space-y-3.5 text-sm text-slate-300">
+              <div className="flex items-start gap-3">
+                <MapPin className="w-5 h-5 text-[rgb(20,109,174)] shrink-0 mt-0.5" />
+                <span className="leading-snug">JJR Heritage, L-4 147/D, 1 Green Rd, Dhaka 1215</span>
               </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-4 h-4 text-primary" />
-                <span>+880-2-XXXXXXXX</span>
+              <div className="flex items-center gap-3">
+                <Mail className="w-5 h-5 text-[rgb(20,109,174)] shrink-0" />
+                <a href="mailto:sales@ensure-bd.com" className="hover:text-white transition-colors">
+                  sales@ensure-bd.com
+                </a>
               </div>
-              <div className="flex items-start gap-2">
-                <MapPin className="w-4 h-4 text-primary mt-0.5" />
-                <span>Dhaka, Bangladesh</span>
+              <div className="flex items-center gap-3">
+                <Phone className="w-5 h-5 text-[rgb(20,109,174)] shrink-0" />
+                <a href="tel:+8801818399642" className="hover:text-white transition-colors">
+                  +8801818399642
+                </a>
               </div>
             </div>
           </div>
 
-          {/* Solutions */}
-          <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Solutions</h4>
-            <ul className="space-y-2.5">
+          {/* Column 2: Solutions */}
+          <div className="lg:col-span-3">
+            <h4 className="text-base font-bold text-white uppercase tracking-wider mb-5">Solutions</h4>
+            <ul className="space-y-3">
               {solutions.map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-slate-400 hover:text-primary-light transition-colors">
+                  <Link href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">
                     {item.name}
                   </Link>
                 </li>
@@ -93,53 +97,54 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Services</h4>
-            <ul className="space-y-2.5">
+          {/* Column 3: Services & Products */}
+          <div className="lg:col-span-3">
+            <h4 className="text-base font-bold text-white uppercase tracking-wider mb-5">Services</h4>
+            <ul className="space-y-3 mb-8">
               {services.map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-slate-400 hover:text-primary-light transition-colors">
+                  <Link href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">
                     {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mt-8 mb-4">Products</h4>
-            <Link href="#" className="text-sm text-slate-400 hover:text-primary-light transition-colors">
-              View All Products →
+            <h4 className="text-base font-bold text-white uppercase tracking-wider mb-3">Products</h4>
+            <Link href="/solutions/smart-infrastructure" className="text-sm font-medium text-[rgb(20,109,174)] hover:text-white transition-colors inline-flex items-center gap-1">
+              View All Products &rarr;
             </Link>
           </div>
 
-          {/* Company */}
-          <div>
-            <h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">Company</h4>
-            <ul className="space-y-2.5">
+          {/* Column 4: Company */}
+          <div className="lg:col-span-2">
+            <h4 className="text-base font-bold text-white uppercase tracking-wider mb-5">Company</h4>
+            <ul className="space-y-3">
               {company.map((item) => (
                 <li key={item.name}>
-                  <Link href={item.href} className="text-sm text-slate-400 hover:text-primary-light transition-colors">
+                  <Link href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">
                     {item.name}
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
+
         </div>
 
         {/* Bottom Bar */}
-        <div className="py-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-sm text-slate-500">
+        <div className="py-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-sm text-slate-400">
             © {new Date().getFullYear()} Ensure Support Service Limited. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <Link href="#" className="text-xs text-slate-500 hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="text-xs text-slate-500 hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="#" className="text-xs text-slate-400 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="#" className="text-xs text-slate-400 hover:text-white transition-colors">Terms of Service</Link>
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
                 <Link
                   key={social.name}
                   href={social.href}
-                  className="w-8 h-8 rounded-lg border border-white/10 bg-white/5 hover:bg-primary/10 hover:border-primary/30 flex items-center justify-center text-slate-400 hover:text-primary transition-all"
+                  className="w-8 h-8 rounded-lg border border-white/10 bg-white/5 hover:bg-[rgb(20,109,174)]/20 hover:border-[rgb(20,109,174)]/40 flex items-center justify-center text-slate-400 hover:text-white transition-all"
                   aria-label={social.name}
                 >
                   <span className="text-xs font-bold">{social.icon}</span>
