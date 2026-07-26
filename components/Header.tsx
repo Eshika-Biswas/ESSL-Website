@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { Menu, X, ChevronDown } from 'lucide-react';
 
-import AboutMegaMenu from './AboutMegaMenu';
+import AboutMegaMenu, { aboutItems } from './AboutMegaMenu';
 import BusinessUnitsMegaMenu, { businessUnits } from './BusinessUnitsMegaMenu';
 import SolutionsMegaMenu, { solutions } from './SolutionsMegaMenu';
 import IndustriesMegaMenu, { industries } from './IndustriesMegaMenu';
@@ -128,13 +128,7 @@ export default function Header() {
           <MobileLink href="/" label="Home" onClick={() => setMobileMenuOpen(false)} />
           <MobileAccordion
             title="About ESS"
-            items={[
-              { name: 'Why ESS', href: '/about/why-ess' },
-              { name: 'Our Team', href: '/about/leadership' },
-              { name: 'Our Partners', href: '/about/partners' },
-              { name: 'Careers', href: '/about/careers' },
-              { name: 'Insights', href: '/insights' },
-            ]}
+            items={aboutItems.map(a => ({ name: a.name, href: a.href }))}
             onItemClick={() => setMobileMenuOpen(false)}
           />
           

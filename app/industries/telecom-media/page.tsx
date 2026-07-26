@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function TelecomMediaPage() {
-  return (
-    <div className="pt-20">
-      <TelecomMediaDetail />
-    </div>
-  );
+  return <TelecomMediaDetail />;
 }

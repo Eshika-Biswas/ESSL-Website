@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ManufacturingIndustrialPage() {
-  return (
-    <div className="pt-20">
-      <ManufacturingIndustrialDetail />
-    </div>
-  );
+  return <ManufacturingIndustrialDetail />;
 }

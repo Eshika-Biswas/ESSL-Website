@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function AIAutomationPage() {
-  return (
-    <div className="pt-20">
-      <AIAutomationDetail />
-    </div>
-  );
+  return <AIAutomationDetail />;
 }

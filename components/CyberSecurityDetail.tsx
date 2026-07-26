@@ -260,7 +260,7 @@ export default function CyberSecurityDetail() {
         </div>
 
         {/* Content */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 w-full">
           <div className="grid lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-7 text-left">
 

@@ -89,7 +89,7 @@ export default function HealthcarePharmaceuticalsDetail() {
     <div className="w-full overflow-hidden bg-slate-50">
       
       {/* ─── 1. Hero Section ─────────────────────────────────────────────────── */}
-      <section className="relative w-full min-h-[520px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[760px] xl:min-h-[820px] 2xl:min-h-[880px] flex items-center overflow-hidden py-16 sm:py-28 lg:py-32 border-b border-slate-200 bg-[#f8fafc]">
+      <section className="relative w-full min-h-[520px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[760px] xl:min-h-[820px] 2xl:min-h-[880px] flex items-center overflow-hidden border-b border-slate-200 bg-[#f8fafc]">
         <div className="absolute inset-0 z-0 w-full h-full">
           <Image
             src="/images/industries/healthcare-pharmaceuticals.png"
@@ -101,7 +101,7 @@ export default function HealthcarePharmaceuticalsDetail() {
           />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 w-full">
           <div className="max-w-2xl text-left space-y-6">
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/10 shadow-sm backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />

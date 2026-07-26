@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function GovernmentPublicSectorPage() {
-  return (
-    <div className="pt-20">
-      <GovernmentPublicSectorDetail />
-    </div>
-  );
+  return <GovernmentPublicSectorDetail />;
 }

@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function ManagedServicesPage() {
-  return (
-    <div className="pt-20">
-      <ManagedServicesDetail />
-    </div>
-  );
+  return <ManagedServicesDetail />;
 }

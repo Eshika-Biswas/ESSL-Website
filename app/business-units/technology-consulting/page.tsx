@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function TechnologyConsultingPage() {
-  return (
-    <div className="pt-20">
-      <TechnologyConsultingDetail />
-    </div>
-  );
+  return <TechnologyConsultingDetail />;
 }

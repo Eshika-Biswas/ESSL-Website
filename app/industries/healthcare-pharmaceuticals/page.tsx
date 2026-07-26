@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function HealthcarePharmaceuticalsPage() {
-  return (
-    <div className="pt-20">
-      <HealthcarePharmaceuticalsDetail />
-    </div>
-  );
+  return <HealthcarePharmaceuticalsDetail />;
 }

@@ -120,7 +120,7 @@ export default function BankingFinancialServicesDetail() {
     <div className="w-full overflow-hidden bg-slate-50">
       
       {/* ─── 1. Hero Section (Full-Bleed Light Background Illustration) ───────────── */}
-      <section className="relative w-full min-h-[520px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[760px] xl:min-h-[820px] 2xl:min-h-[880px] flex items-center overflow-hidden py-16 sm:py-28 lg:py-32 border-b border-slate-200 bg-[#f8fafc]">
+      <section className="relative w-full min-h-[520px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[760px] xl:min-h-[820px] 2xl:min-h-[880px] flex items-center overflow-hidden border-b border-slate-200 bg-[#f8fafc]">
         
         {/* Full-width, full-height background image */}
         <div className="absolute inset-0 z-0 w-full h-full">
@@ -135,7 +135,7 @@ export default function BankingFinancialServicesDetail() {
         </div>
 
         {/* Content Overlay sitting over the empty left negative space */}
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 w-full">
           <div className="max-w-2xl text-left space-y-6">
             
             {/* Badge Tag */}

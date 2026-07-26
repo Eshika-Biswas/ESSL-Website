@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function BankingFinancialServicesPage() {
-  return (
-    <div className="pt-20">
-      <BankingFinancialServicesDetail />
-    </div>
-  );
+  return <BankingFinancialServicesDetail />;
 }

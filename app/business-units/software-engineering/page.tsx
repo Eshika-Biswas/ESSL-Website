@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function SoftwareEngineeringPage() {
-  return (
-    <div className="pt-20">
-      <SoftwareEngineeringDetail />
-    </div>
-  );
+  return <SoftwareEngineeringDetail />;
 }

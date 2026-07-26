@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Network, Shield, Server, Building, Cpu, Wrench, Code, MonitorCog } from 'lucide-react';
+import { Network, Shield, Server, Building, Cpu, Wrench, Code, MonitorCog } from 'lucide-react';
 
 export const businessUnits = [
   { name: 'Network & Security', icon: Network, href: '/business-units/network-security' },
@@ -50,17 +50,6 @@ export default function BusinessUnitsMegaMenu({ isOpen, onClose }: BusinessUnits
               </Link>
             );
           })}
-        </div>
-
-        <div className="mt-2 pt-4 border-t border-white/5 px-3">
-          <Link
-            href="#"
-            onClick={onClose}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[rgb(20,109,174)] hover:text-white transition-colors duration-200 group/all"
-          >
-            View All Business Units
-            <ArrowRight className="w-4 h-4 group-hover/all:translate-x-1 transition-transform" />
-          </Link>
         </div>
       </div>
     </div>

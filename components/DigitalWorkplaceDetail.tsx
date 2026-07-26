@@ -63,8 +63,8 @@ const securityTopics = [
   },
   {
     number: '06',
-    acronym: 'SIEM',
-    title: 'Security Information & Event Mgmt',
+    acronym: 'NIEM',
+    title: 'Network Information & Event Management',
     description: 'Centralized log aggregation, real-time security event analytics, automated compliance reporting, and threat intelligence correlation at scale.',
     icon: Activity,
   },
@@ -185,21 +185,20 @@ export default function DigitalWorkplaceDetail() {
          ───────────────────────────────────────────────────────── */}
       <section
         ref={heroRef}
-        className="relative min-h-[90vh] flex items-center overflow-hidden py-20 lg:py-28 bg-[#0f1420]"
+        className="relative min-h-[90vh] flex items-center overflow-hidden bg-[#0f1420]"
       >
         {/* Background Overlay Easing */}
         <div className="absolute inset-0 z-0 bg-gradient-to-br from-[#0b1426] via-[#0f1420] to-[#070b12]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_30%,rgba(20,109,174,0.15),transparent_60%)] pointer-events-none" />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 w-full">
           <div className="grid lg:grid-cols-12 gap-12 lg:gap-8 items-center">
             {/* Left Content */}
             <div className="lg:col-span-6 text-left space-y-6">
               {/* Eyebrow Badge */}
               <div
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/10 transition-all duration-700 ${
-                  heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
+                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/10 transition-all duration-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}
               >
                 <div className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
                 <span className="text-xs uppercase tracking-widest text-[#3f94cf] font-semibold">
@@ -209,9 +208,8 @@ export default function DigitalWorkplaceDetail() {
 
               {/* Main Headline */}
               <h1
-                className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight transition-all duration-700 delay-100 ${
-                  heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
+                className={`text-4xl sm:text-5xl lg:text-6xl font-bold leading-[1.1] tracking-tight transition-all duration-700 delay-100 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 <span className="text-white">A Digital Workplace </span>
@@ -221,18 +219,16 @@ export default function DigitalWorkplaceDetail() {
 
               {/* Description */}
               <p
-                className={`text-lg sm:text-xl text-slate-300 leading-relaxed max-w-xl transition-all duration-700 delay-200 ${
-                  heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
+                className={`text-lg sm:text-xl text-slate-300 leading-relaxed max-w-xl transition-all duration-700 delay-200 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
               >
                 Enable secure, seamless hybrid and remote work with unified collaboration tools, identity-driven remote access, and zero-trust endpoint management tailored for enterprise productivity.
               </p>
 
               {/* CTA Buttons */}
               <div
-                className={`pt-2 flex flex-wrap items-center gap-4 transition-all duration-700 delay-300 ${
-                  heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
+                className={`pt-2 flex flex-wrap items-center gap-4 transition-all duration-700 delay-300 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
               >
                 <Link
                   href="/contact"
@@ -324,9 +320,8 @@ export default function DigitalWorkplaceDetail() {
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Headers */}
           <div
-            className={`text-center mb-16 transition-all duration-700 ${
-              gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
+            className={`text-center mb-16 transition-all duration-700 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
           >
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-4">
               SECURITY DOMAINS
@@ -349,9 +344,8 @@ export default function DigitalWorkplaceDetail() {
               return (
                 <div
                   key={card.acronym}
-                  className={`group relative rounded-2xl bg-white border border-slate-200/80 p-8 sm:p-9 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-500 z-10 ${
-                    gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                  }`}
+                  className={`group relative rounded-2xl bg-white border border-slate-200/80 p-8 sm:p-9 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-500 z-10 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                    }`}
                   style={{
                     transitionDelay: `${(index % 4) * 80}ms`,
                   }}
@@ -442,9 +436,8 @@ export default function DigitalWorkplaceDetail() {
           <div className="flex flex-col md:flex-row items-center gap-12 lg:gap-20">
             {/* Left Header */}
             <div
-              className={`w-full md:w-2/5 shrink-0 transition-all duration-700 ${
-                whyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-              }`}
+              className={`w-full md:w-2/5 shrink-0 transition-all duration-700 ${whyChooseVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+                }`}
             >
               <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[#1B6BA8] border border-[#1B6BA8]/20 bg-[#1B6BA8]/5 mb-6">
                 ESSL ADVANTAGE

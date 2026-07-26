@@ -2,7 +2,6 @@
 
 import Link from 'next/link';
 import {
-  ArrowRight,
   Landmark,
   Heart,
   Factory,
@@ -60,17 +59,6 @@ export default function IndustriesMegaMenu({ isOpen, onClose }: IndustriesMegaMe
               </Link>
             );
           })}
-        </div>
-
-        <div className="mt-2 pt-4 border-t border-white/5 px-3">
-          <Link
-            href="#"
-            onClick={onClose}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[rgb(20,109,174)] hover:text-white transition-colors duration-200 group/all"
-          >
-            View All Industries
-            <ArrowRight className="w-4 h-4 group-hover/all:translate-x-1 transition-transform" />
-          </Link>
         </div>
       </div>
     </div>

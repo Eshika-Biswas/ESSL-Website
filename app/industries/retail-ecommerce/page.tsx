@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function RetailEcommercePage() {
-  return (
-    <div className="pt-20">
-      <RetailEcommerceDetail />
-    </div>
-  );
+  return <RetailEcommerceDetail />;
 }

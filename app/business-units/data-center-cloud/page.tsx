@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function DataCenterCloudPage() {
-  return (
-    <div className="pt-20">
-      <DataCenterCloudDetail />
-    </div>
-  );
+  return <DataCenterCloudDetail />;
 }

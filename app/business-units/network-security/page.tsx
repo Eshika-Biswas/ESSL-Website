@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function NetworkSecurityPage() {
-  return (
-    <div className="pt-20">
-      <NetworkSecurityDetail />
-    </div>
-  );
+  return <NetworkSecurityDetail />;
 }

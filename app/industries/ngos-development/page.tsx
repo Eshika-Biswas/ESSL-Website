@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function NgosDevelopmentPage() {
-  return (
-    <div className="pt-20">
-      <NgosDevelopmentDetail />
-    </div>
-  );
+  return <NgosDevelopmentDetail />;
 }

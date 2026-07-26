@@ -1,13 +1,30 @@
 'use client';
 
 import Link from 'next/link';
-import { ArrowRight, Shield, Server, Cpu, Wrench } from 'lucide-react';
+import {
+  Laptop,
+  ShieldCheck,
+  Server,
+  Cloud,
+  RefreshCw,
+  Network,
+  Wrench,
+  Zap,
+  Code,
+  Bot
+} from 'lucide-react';
 
 export const solutions = [
-  { name: 'Digital Workplace', icon: Shield, href: '/solutions/digital-workplace' },
-  { name: 'Modern Data Center', icon: Server, href: '/business-units/data-center-cloud' },
-  { name: 'AI Workplace', icon: Cpu, href: '/business-units/ai-automation' },
-  { name: 'Managed Services', icon: Wrench, href: '/business-units/managed-services' },
+  { name: 'Digital Workplace', icon: Laptop, href: '/solutions/digital-workplace' },
+  { name: 'Secure Enterprise', icon: ShieldCheck, href: '/solutions/secure-enterprise' },
+  { name: 'Modern Data Center', icon: Server, href: '/solutions/modern-data-center' },
+  { name: 'Cloud Transformation', icon: Cloud, href: '/solutions/cloud-transformation' },
+  { name: 'Business Continuity & Disaster Recovery', icon: RefreshCw, href: '/solutions/business-continuity-disaster-recovery' },
+  { name: 'Smart Infrastructure', icon: Network, href: '/solutions/smart-infrastructure' },
+  { name: 'Managed IT Services', icon: Wrench, href: '/solutions/managed-it-services' },
+  { name: 'Digital Transformation', icon: Zap, href: '/solutions/digital-transformation' },
+  { name: 'Enterprise Software', icon: Code, href: '/solutions/enterprise-software' },
+  { name: 'AI & Intelligent Automation', icon: Bot, href: '/solutions/ai-intelligent-automation' },
 ];
 
 interface SolutionsMegaMenuProps {
@@ -22,8 +39,8 @@ export default function SolutionsMegaMenu({ isOpen, onClose }: SolutionsMegaMenu
         isOpen ? '!opacity-100 !visible !translate-y-0' : 'pointer-events-none opacity-0 invisible translate-y-2'
       }`}
     >
-      <div className="w-[320px] p-5 rounded-2xl border border-white/10 bg-[#0f1420] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] flex flex-col gap-2">
-        <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-2 px-3 font-mono font-bold">
+      <div className="w-[380px] max-h-[80vh] overflow-y-auto p-4 rounded-2xl border border-white/10 bg-[#0f1420] shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9)] flex flex-col gap-2">
+        <p className="text-[10px] uppercase tracking-widest text-slate-400 mb-1 px-3 font-mono font-bold">
           Solutions
         </p>
         
@@ -35,28 +52,17 @@ export default function SolutionsMegaMenu({ isOpen, onClose }: SolutionsMegaMenu
                 key={item.name}
                 href={item.href}
                 onClick={onClose}
-                className="flex items-center gap-4 px-3 py-3 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 group"
+                className="flex items-center gap-3.5 px-3 py-2 rounded-xl text-slate-300 hover:text-white hover:bg-white/5 transition-all duration-200 group"
               >
-                <div className="w-9 h-9 rounded-lg bg-[rgb(20,109,174)]/10 flex items-center justify-center group-hover:bg-[rgb(20,109,174)]/20 transition-colors shrink-0">
-                  <IconComponent className="w-5 h-5 text-[rgb(20,109,174)]" />
+                <div className="w-8 h-8 rounded-lg bg-[rgb(20,109,174)]/10 flex items-center justify-center group-hover:bg-[rgb(20,109,174)]/20 transition-colors shrink-0">
+                  <IconComponent className="w-4 h-4 text-[rgb(20,109,174)]" />
                 </div>
-                <span className="text-base font-sans font-semibold group-hover:text-white transition-colors leading-tight">
+                <span className="text-sm font-sans font-semibold group-hover:text-white transition-colors leading-tight">
                   {item.name}
                 </span>
               </Link>
             );
           })}
-        </div>
-
-        <div className="mt-2 pt-4 border-t border-white/5 px-3">
-          <Link
-            href="#"
-            onClick={onClose}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-[rgb(20,109,174)] hover:text-white transition-colors duration-200 group/all"
-          >
-            View All Solutions
-            <ArrowRight className="w-4 h-4 group-hover/all:translate-x-1 transition-transform" />
-          </Link>
         </div>
       </div>
     </div>

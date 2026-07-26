@@ -7,9 +7,5 @@ export const metadata: Metadata = {
 };
 
 export default function DigitalWorkplacePage() {
-  return (
-    <div className="pt-20">
-      <DigitalWorkplaceDetail />
-    </div>
-  );
+  return <DigitalWorkplaceDetail />;
 }
