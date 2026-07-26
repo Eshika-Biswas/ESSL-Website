@@ -5,7 +5,6 @@ import VendorStrip from '@/components/VendorStrip';
 import IndustriesSection from '@/components/IndustriesSection';
 import CaseStudy from '@/components/CaseStudy';
 import BlogPreview from '@/components/BlogPreview';
-import ClientOutcomes from '@/components/ClientOutcomes';
 import CTABanner from '@/components/CTABanner';
 
 export default function Home() {
@@ -25,7 +24,6 @@ export default function Home() {
       <CaseStudy />
       {/* 8. Latest Insights */}
       <BlogPreview />
-      <ClientOutcomes />
       <CTABanner />
     </>
   );
