@@ -2,19 +2,62 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { MessageSquare, Sparkles, ArrowRight } from 'lucide-react';
+import Link from 'next/link';
+import { MessageSquare, Sparkles, ArrowRight, Loader2, Send } from 'lucide-react';
 
-const prompts = [
-  "What's the fastest path to ransomware protection?",
-  "How do I secure a hybrid cloud environment?",
-  "Can ESSL help with a Fortinet deployment?",
-  "What does 24x7 managed security support include?",
+const promptChips = [
+  "How do I secure my hybrid workforce?",
+  "What does a Zero Trust roadmap look like?",
+  "How can I modernize my data center?",
+  "What's involved in a cloud migration?",
+  "How fast can I get 24×7 SOC coverage?",
+  "Can ESSL help with disaster recovery planning?",
 ];
+
+interface ChatMessage {
+  role: 'user' | 'assistant';
+  content: string;
+}
+
+function renderMessageContent(content: string) {
+  const parts: (string | React.ReactNode)[] = [];
+  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
+  let lastIndex = 0;
+  let match;
+
+  while ((match = regex.exec(content)) !== null) {
+    if (match.index > lastIndex) {
+      parts.push(content.substring(lastIndex, match.index));
+    }
+    const linkText = match[1];
+    const linkUrl = match[2];
+    parts.push(
+      <Link
+        key={match.index}
+        href={linkUrl}
+        className="text-[#3f94cf] underline font-semibold hover:text-white transition-colors inline-flex items-center gap-0.5"
+      >
+        {linkText}
+      </Link>
+    );
+    lastIndex = regex.lastIndex;
+  }
+
+  if (lastIndex < content.length) {
+    parts.push(content.substring(lastIndex));
+  }
+
+  return parts;
+}
 
 export default function AIAdvisorTeaser() {
   const [isVisible, setIsVisible] = useState(false);
-  const [activePrompt, setActivePrompt] = useState<number | null>(null);
+  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [input, setInput] = useState('');
+  const [loading, setLoading] = useState(false);
+
   const sectionRef = useRef<HTMLElement>(null);
+  const chatBottomRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -25,9 +68,80 @@ export default function AIAdvisorTeaser() {
     return () => observer.disconnect();
   }, []);
 
+  useEffect(() => {
+    chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, loading]);
+
+  const handleSendMessage = async (textToSend: string) => {
+    const query = textToSend.trim();
+    if (!query || loading) return;
+
+    const userMessage: ChatMessage = { role: 'user', content: query };
+    const updatedHistory = [...messages, userMessage];
+
+    setMessages(updatedHistory);
+    setInput('');
+    setLoading(true);
+
+    try {
+      const res = await fetch('/api/ai-advisor', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          message: query,
+          history: messages.map((m) => ({ role: m.role, content: m.content })),
+        }),
+      });
+
+      let data: any = null;
+      try {
+        data = await res.json();
+      } catch (parseErr) {
+        console.error('[AI Advisor Client JSON Parse Error]', parseErr);
+      }
+
+      if (!res.ok) {
+        console.error('[AI Advisor Client Fetch Error]', res.status, res.statusText, data);
+        const serverErrorMessage =
+          data?.error || data?.message || 'Something went wrong — please try again.';
+        setMessages((prev) => [
+          ...prev,
+          { role: 'assistant', content: serverErrorMessage },
+        ]);
+      } else if (data?.error) {
+        console.error('[AI Advisor Client API Error Payload]', data);
+        setMessages((prev) => [
+          ...prev,
+          { role: 'assistant', content: data.error },
+        ]);
+      } else if (data?.reply) {
+        setMessages((prev) => [
+          ...prev,
+          { role: 'assistant', content: data.reply },
+        ]);
+      } else {
+        setMessages((prev) => [
+          ...prev,
+          { role: 'assistant', content: 'Something went wrong — please try again.' },
+        ]);
+      }
+    } catch (netErr) {
+      console.error('[AI Advisor Client Network Failure]', netErr);
+      setMessages((prev) => [
+        ...prev,
+        {
+          role: 'assistant',
+          content: 'Something went wrong — please try again.',
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
-      {/* Background Image at full natural brightness */}
+      {/* Background Image */}
       <div className="absolute inset-0 z-0 bg-[#f8fafc]">
         <Image
           src="/images/ai-advisor-bg.jpg"
@@ -68,65 +182,127 @@ export default function AIAdvisorTeaser() {
                 Available 24/7
               </div>
               <div className="w-px h-4 bg-slate-300/85" />
-              <div>Trained on ESSL&apos;s knowledge base</div>
+              <div>Powered by Groq Llama 3.3 70B</div>
             </div>
           </div>
 
-          {/* Right — Chat Preview */}
+          {/* Right — Interactive Chat Widget */}
           <div className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
-            <div className="relative rounded-2xl glass-card overflow-hidden">
+            <div className="relative rounded-2xl glass-card overflow-hidden border border-white/10 shadow-2xl bg-[#0f1420]/95 backdrop-blur-xl">
               {/* Chat Header */}
-              <div className="flex items-center gap-3 px-6 py-4 border-b border-white/5">
-                <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-                  <MessageSquare className="w-4 h-4 text-white" />
-                </div>
-                <div>
-                  <span className="text-sm font-medium text-white">ESSL AI Advisor</span>
-                  <div className="flex items-center gap-1.5">
-                    <div className="w-1.5 h-1.5 rounded-full bg-success" />
-                    <span className="text-xs text-slate-400">Online</span>
+              <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#0a0e17]/80">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[rgb(20,109,174)] to-[#3f94cf] flex items-center justify-center">
+                    <MessageSquare className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <span className="text-sm font-medium text-white">ESSL AI Advisor</span>
+                    <div className="flex items-center gap-1.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400" />
+                      <span className="text-xs text-slate-400">Online</span>
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              {/* Chat Body */}
-              <div className="p-6 space-y-4">
-                <p className="text-sm text-slate-400 mb-4">Try asking:</p>
-                {prompts.map((prompt, index) => (
+                {messages.length > 0 && (
                   <button
-                    key={index}
-                    onClick={() => setActivePrompt(index)}
-                    className={`w-full text-left flex items-center gap-3 p-3.5 rounded-xl border transition-all duration-300 group ${activePrompt === index
-                        ? 'border-primary/40 bg-primary/5 text-primary'
-                        : 'border-white/5 bg-white/[0.02] hover:border-white/10 hover:bg-white/[0.06] text-slate-300'
-                      }`}
+                    onClick={() => setMessages([])}
+                    className="text-xs text-slate-400 hover:text-white transition-colors"
                   >
-                    <MessageSquare className={`w-4 h-4 flex-shrink-0 ${activePrompt === index ? 'text-primary' : 'text-slate-400 group-hover:text-slate-200'} transition-colors`} />
-                    <span className="text-sm transition-colors">
-                      {prompt}
-                    </span>
-                    <ArrowRight className={`w-3.5 h-3.5 ml-auto flex-shrink-0 opacity-0 group-hover:opacity-100 transition-all ${activePrompt === index ? '!opacity-100 text-primary' : 'text-slate-400'}`} />
+                    Clear Chat
                   </button>
-                ))}
+                )}
               </div>
 
-              {/* Input */}
-              <div className="px-6 pb-6">
-                <div className="flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-white/[0.02]">
+              {/* Chat Window Container */}
+              <div className="p-6 h-[380px] overflow-y-auto space-y-4 text-sm scrollbar-thin">
+                {messages.length === 0 ? (
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3 font-mono">Try asking:</p>
+                    <div className="space-y-2.5">
+                      {promptChips.map((chip, index) => (
+                        <button
+                          key={index}
+                          onClick={() => !loading && handleSendMessage(chip)}
+                          disabled={loading}
+                          className="w-full text-left flex items-center gap-3 p-3 rounded-xl border border-white/10 bg-white/[0.03] hover:border-[rgb(20,109,174)]/40 hover:bg-[rgb(20,109,174)]/10 text-slate-200 transition-all duration-200 group"
+                        >
+                          <MessageSquare className="w-4 h-4 shrink-0 text-[rgb(20,109,174)] group-hover:scale-110 transition-transform" />
+                          <span className="text-sm flex-grow">{chip}</span>
+                          <ArrowRight className="w-3.5 h-3.5 shrink-0 opacity-0 group-hover:opacity-100 text-[rgb(20,109,174)] transition-all" />
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  messages.map((msg, idx) => (
+                    <div
+                      key={idx}
+                      className={`flex gap-3 ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
+                    >
+                      {msg.role === 'assistant' && (
+                        <div className="w-7 h-7 rounded-lg bg-[rgb(20,109,174)]/20 text-[rgb(20,109,174)] flex items-center justify-center shrink-0 mt-0.5">
+                          <Sparkles className="w-3.5 h-3.5" />
+                        </div>
+                      )}
+                      <div
+                        className={`max-w-[85%] p-3.5 rounded-2xl text-sm leading-relaxed ${
+                          msg.role === 'user'
+                            ? 'bg-[rgb(20,109,174)] text-white rounded-tr-none'
+                            : 'bg-white/10 text-slate-100 rounded-tl-none border border-white/5'
+                        }`}
+                      >
+                        {renderMessageContent(msg.content)}
+                      </div>
+                    </div>
+                  ))
+                )}
+
+                {loading && (
+                  <div className="flex gap-3 justify-start items-center text-slate-400">
+                    <div className="w-7 h-7 rounded-lg bg-[rgb(20,109,174)]/20 text-[rgb(20,109,174)] flex items-center justify-center shrink-0">
+                      <Sparkles className="w-3.5 h-3.5 animate-spin" />
+                    </div>
+                    <div className="flex items-center gap-2 px-3.5 py-2.5 rounded-2xl bg-white/10 text-slate-300 text-xs rounded-tl-none">
+                      <Loader2 className="w-3.5 h-3.5 animate-spin text-[rgb(20,109,174)]" />
+                      <span>Thinking...</span>
+                    </div>
+                  </div>
+                )}
+                <div ref={chatBottomRef} />
+              </div>
+
+              {/* Input Form */}
+              <form
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  if (!loading && input.trim()) {
+                    handleSendMessage(input);
+                  }
+                }}
+                className="px-6 pb-6 pt-2"
+              >
+                <div className="flex items-center gap-2 p-2.5 rounded-xl border border-white/15 bg-white/[0.04] focus-within:border-[rgb(20,109,174)]/60 transition-colors">
                   <input
                     type="text"
-                    placeholder="Ask a question..."
-                    className="flex-1 bg-transparent text-sm text-white placeholder-slate-450 outline-none"
-                    readOnly
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    placeholder="Ask about ESSL's services..."
+                    disabled={loading}
+                    className="flex-1 bg-transparent text-sm text-white placeholder-slate-400 outline-none px-2"
                   />
-                  <button className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center hover:bg-primary-dark transition-colors">
-                    <ArrowRight className="w-4 h-4 text-white" />
+                  <button
+                    type="submit"
+                    disabled={!input.trim() || loading}
+                    className="w-9 h-9 rounded-lg bg-[rgb(20,109,174)] hover:bg-[#176ca7] disabled:opacity-40 disabled:hover:bg-[rgb(20,109,174)] flex items-center justify-center transition-all shrink-0 text-white"
+                  >
+                    <Send className="w-4 h-4" />
                   </button>
                 </div>
-              </div>
+              </form>
 
               {/* Decorative glow */}
-              <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-3/4 h-40 bg-accent-2/20 blur-[80px] rounded-full" />
+              <div className="absolute -bottom-20 left-1/2 -translate-x-1/2 w-3/4 h-40 bg-[rgb(20,109,174)]/10 blur-[80px] rounded-full pointer-events-none" />
             </div>
           </div>
         </div>

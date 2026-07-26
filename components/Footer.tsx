@@ -5,28 +5,33 @@ import Image from 'next/image';
 import { Mail, Phone, MapPin } from 'lucide-react';
 
 const solutions = [
+  { name: 'Digital Workplace', href: '/solutions/digital-workplace' },
+  { name: 'Secure Enterprise', href: '/solutions/secure-enterprise' },
+  { name: 'Modern Data Center', href: '/solutions/modern-data-center' },
+  { name: 'Cloud Transformation', href: '/solutions/cloud-transformation' },
+  { name: 'Business Continuity & Disaster Recovery', href: '/solutions/business-continuity-disaster-recovery' },
+  { name: 'Smart Infrastructure', href: '/solutions/smart-infrastructure' },
+];
+
+const capabilities = [
   { name: 'Network & Security', href: '/business-units/network-security' },
   { name: 'Cyber Security', href: '/business-units/cyber-security' },
   { name: 'Data Center & Cloud', href: '/business-units/data-center-cloud' },
   { name: 'Passive Infrastructure', href: '/business-units/passive-infrastructure' },
   { name: 'Managed Services', href: '/business-units/managed-services' },
   { name: 'Technology Consulting', href: '/business-units/technology-consulting' },
-  { name: 'Software & AI', href: '/business-units/software-engineering' },
-  { name: 'Cloud & DevOps', href: '/solutions/cloud-transformation' },
-];
-
-const services = [
-  { name: 'Technology Consulting', href: '/business-units/technology-consulting' },
-  { name: 'System Integration', href: '/solutions/digital-transformation' },
-  { name: 'Managed Services', href: '/business-units/managed-services' },
+  { name: 'Software Engineering', href: '/business-units/software-engineering' },
+  { name: 'AI & Automation', href: '/business-units/ai-automation' },
 ];
 
 const company = [
-  { name: 'About Us', href: '/about/why-ess' },
-  { name: 'Case Studies', href: '/insights' },
-  { name: 'Insights', href: '/insights' },
+  { name: 'Our Story', href: '/about/our-story' },
+  { name: 'Why ESS', href: '/about/why-ess' },
+  { name: 'Our Team', href: '/about/leadership' },
+  { name: 'Our Partners', href: '/about/partners' },
   { name: 'Our Clients', href: '/clients' },
   { name: 'Careers', href: '/about/careers' },
+  { name: 'Insights', href: '/insights' },
   { name: 'Contact Us', href: '/contact' },
 ];
 
@@ -86,7 +91,7 @@ export default function Footer() {
           {/* Column 2: Solutions */}
           <div className="lg:col-span-3">
             <h4 className="text-base font-bold text-white uppercase tracking-wider mb-5">Solutions</h4>
-            <ul className="space-y-3">
+            <ul className="space-y-3 mb-4">
               {solutions.map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">
@@ -95,13 +100,19 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
+            <Link
+              href="/solutions"
+              className="text-sm font-medium text-[rgb(20,109,174)] hover:text-white transition-colors inline-flex items-center gap-1 mt-1"
+            >
+              View All Solutions &rarr;
+            </Link>
           </div>
 
-          {/* Column 3: Services & Products */}
+          {/* Column 3: Capabilities */}
           <div className="lg:col-span-3">
-            <h4 className="text-base font-bold text-white uppercase tracking-wider mb-5">Services</h4>
-            <ul className="space-y-3 mb-8">
-              {services.map((item) => (
+            <h4 className="text-base font-bold text-white uppercase tracking-wider mb-5">Capabilities</h4>
+            <ul className="space-y-3">
+              {capabilities.map((item) => (
                 <li key={item.name}>
                   <Link href={item.href} className="text-sm text-slate-400 hover:text-white transition-colors">
                     {item.name}
@@ -109,10 +120,6 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-            <h4 className="text-base font-bold text-white uppercase tracking-wider mb-3">Products</h4>
-            <Link href="/solutions/smart-infrastructure" className="text-sm font-medium text-[rgb(20,109,174)] hover:text-white transition-colors inline-flex items-center gap-1">
-              View All Products &rarr;
-            </Link>
           </div>
 
           {/* Column 4: Company */}
@@ -137,8 +144,8 @@ export default function Footer() {
             © {new Date().getFullYear()} Ensure Support Service Limited. All rights reserved.
           </div>
           <div className="flex items-center gap-6">
-            <Link href="#" className="text-xs text-slate-400 hover:text-white transition-colors">Privacy Policy</Link>
-            <Link href="#" className="text-xs text-slate-400 hover:text-white transition-colors">Terms of Service</Link>
+            <Link href="/privacy-policy" className="text-xs text-slate-400 hover:text-white transition-colors">Privacy Policy</Link>
+            <Link href="/terms-of-service" className="text-xs text-slate-400 hover:text-white transition-colors">Terms of Service</Link>
             <div className="flex items-center gap-3">
               {socialLinks.map((social) => (
                 <Link
