@@ -18,17 +18,26 @@ export default function CTABanner() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative w-full py-24 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-accent-2/10 to-primary/10 animate-gradient" />
-      <div className="absolute inset-0 bg-dark-950/80" />
-      
-      {/* Grid */}
-      <div className="absolute inset-0 grid-bg opacity-20" />
+    <section ref={sectionRef} className="relative w-full py-28 overflow-hidden">
+      {/* Deep blue gradient background */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none"
+        style={{
+          background: 'radial-gradient(ellipse at 30% 50%, rgb(26,138,220) 0%, rgb(14,76,122) 45%, rgb(8,42,72) 100%)',
+        }}
+      />
 
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[150px]" />
-      <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-accent-2/10 rounded-full blur-[150px]" />
+      {/* Subtle dot-grid texture overlay (white dots on blue) */}
+      <div
+        className="absolute inset-0 z-0 pointer-events-none opacity-[0.07]"
+        style={{
+          backgroundImage: `radial-gradient(circle, white 1px, transparent 1px)`,
+          backgroundSize: '32px 32px',
+        }}
+      />
+
+      {/* Corner vignette to fade grid at edges */}
+      <div className="absolute inset-0 z-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,transparent_40%,rgba(8,42,72,0.6)_100%)]" />
 
       <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div
@@ -39,9 +48,9 @@ export default function CTABanner() {
             style={{ fontFamily: 'var(--font-display)' }}
           >
             Ready to Strengthen Your{' '}
-            <span className="gradient-text-blue">IT Infrastructure?</span>
+            <span className="text-white font-extrabold">IT Infrastructure?</span>
           </h2>
-          <p className="text-slate-300 text-lg max-w-2xl mx-auto mb-10">
+          <p className="text-white/80 text-lg max-w-2xl mx-auto mb-10">
             Let&apos;s discuss how ESSL can architect, deploy, and manage the right solutions for your enterprise. 
             Our team of certified engineers is ready to help.
           </p>
