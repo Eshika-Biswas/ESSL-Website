@@ -11,12 +11,13 @@ import {
   Zap,
   Code,
   Bot,
+  FileCheck,
   ArrowRight
 } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Enterprise Solutions Architecture | ESSL',
-  description: 'Explore ESSL enterprise solution architectures across digital workplace, cybersecurity, data center, cloud transformation, and AI automation.',
+  description: 'Explore ESSL enterprise solution architectures across digital workplace, cybersecurity, data center, cloud transformation, software licensing, and AI automation.',
 };
 
 const solutions = [
@@ -79,6 +80,12 @@ const solutions = [
     description: 'Harness LLMs, autonomous AI agents, RAG, and predictive analytics to automate complex workflows.',
     href: '/solutions/ai-intelligent-automation',
     icon: Bot,
+  },
+  {
+    title: 'Licensing & Software Services',
+    description: 'Procure, manage, and renew software licenses and subscriptions across cloud platforms, security, backup, and productivity tools.',
+    href: '/solutions/licensing-software-services',
+    icon: FileCheck,
   },
 ];
 

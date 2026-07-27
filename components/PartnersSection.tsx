@@ -127,6 +127,33 @@ const dataCenterPartners: Partner[] = [
     bgColor: '#222222',
     isTextPlaceholder: true,
   },
+  {
+    name: 'Microsoft',
+    bgColor: '#0078D4',
+    svg: (
+      <svg viewBox="0 0 23 23" className="w-12 h-12 sm:w-16 sm:h-16">
+        <rect x="0" y="0" width="10.5" height="10.5" fill="#F25022" />
+        <rect x="12.5" y="0" width="10.5" height="10.5" fill="#7FBA00" />
+        <rect x="0" y="12.5" width="10.5" height="10.5" fill="#00A4EF" />
+        <rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900" />
+      </svg>
+    ),
+  },
+  {
+    name: 'Azure',
+    bgColor: '#0089D6',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Red Hat',
+    bgColor: '#EE0000',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'IBM',
+    bgColor: '#052FAD',
+    isTextPlaceholder: true,
+  },
 ];
 
 const cyberSecurityPartners: Partner[] = [
@@ -211,6 +238,16 @@ const cyberSecurityPartners: Partner[] = [
     bgColor: '#2D8CFF',
     isTextPlaceholder: true,
   },
+  {
+    name: 'Imperva',
+    bgColor: '#00A3E0',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'TeamViewer',
+    bgColor: '#0E51A0',
+    isTextPlaceholder: true,
+  },
 ];
 
 const networkSecurityPartners: Partner[] = [
@@ -253,18 +290,6 @@ const networkSecurityPartners: Partner[] = [
     ),
   },
   {
-    name: 'Microsoft',
-    bgColor: '#FFFFFF',
-    svg: (
-      <svg viewBox="0 0 23 23" className="w-12 h-12 sm:w-16 sm:h-16">
-        <rect x="0" y="0" width="10.5" height="10.5" fill="#F25022" />
-        <rect x="12.5" y="0" width="10.5" height="10.5" fill="#7FBA00" />
-        <rect x="0" y="12.5" width="10.5" height="10.5" fill="#00A4EF" />
-        <rect x="12.5" y="12.5" width="10.5" height="10.5" fill="#FFB900" />
-      </svg>
-    ),
-  },
-  {
     name: 'Mikrotik',
     bgColor: '#1B365D',
     isTextPlaceholder: true,
@@ -287,6 +312,54 @@ const networkSecurityPartners: Partner[] = [
   {
     name: 'Prosw',
     bgColor: '#2C3E50',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Aruba',
+    bgColor: '#FF8300',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'ManageEngine',
+    bgColor: '#005C9E',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Holm Security',
+    bgColor: '#1E293B',
+    isTextPlaceholder: true,
+  },
+];
+
+const physicalInfrastructurePartners: Partner[] = [
+  {
+    name: 'LinkBasic',
+    bgColor: '#0F172A',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Hikvision',
+    bgColor: '#D71921',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'APC',
+    bgColor: '#008542',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Emerson',
+    bgColor: '#00539B',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'Google',
+    bgColor: '#4285F4',
+    isTextPlaceholder: true,
+  },
+  {
+    name: 'AutoCAD',
+    bgColor: '#E51636',
     isTextPlaceholder: true,
   },
 ];
@@ -379,6 +452,7 @@ export default function PartnersSection() {
   const dataCenterRows = chunkArray(dataCenterPartners, 4);
   const cyberSecurityRows = chunkArray(cyberSecurityPartners, 4);
   const networkSecurityRows = chunkArray(networkSecurityPartners, 4);
+  const physicalInfrastructureRows = chunkArray(physicalInfrastructurePartners, 4);
 
   return (
     <div className="relative w-full bg-[#f8fafc] text-slate-900">
@@ -499,7 +573,7 @@ export default function PartnersSection() {
           <div className="border-t border-dashed border-slate-200 w-full my-20" />
 
           {/* Sub-section 3 — DATA CENTER & VIRTUALIZATION */}
-          <div>
+          <div className="mb-20">
             <Reveal delay={0} threshold={0.15} duration={700}>
               <h2
                 className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono text-slate-900"
@@ -513,6 +587,31 @@ export default function PartnersSection() {
               {dataCenterRows.map((rowItems, rowIndex) => (
                 <PartnersRow
                   key={`datacenter-${rowIndex}`}
+                  rowItems={rowItems}
+                  staggerMs={90}
+                />
+              ))}
+            </div>
+          </div>
+
+          {/* Divider 3 */}
+          <div className="border-t border-dashed border-slate-200 w-full my-20" />
+
+          {/* Sub-section 4 — PHYSICAL INFRASTRUCTURE & OTHER TOOLS */}
+          <div>
+            <Reveal delay={0} threshold={0.15} duration={700}>
+              <h2
+                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono text-slate-900"
+                style={{ letterSpacing: '0.08em' }}
+              >
+                PHYSICAL INFRASTRUCTURE & OTHER TOOLS
+              </h2>
+            </Reveal>
+
+            <div className="flex flex-col gap-3 w-full">
+              {physicalInfrastructureRows.map((rowItems, rowIndex) => (
+                <PartnersRow
+                  key={`physicalinfrastructure-${rowIndex}`}
                   rowItems={rowItems}
                   staggerMs={90}
                 />

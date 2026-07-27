@@ -11,7 +11,8 @@ import {
   Wrench,
   Zap,
   Code,
-  Bot
+  Bot,
+  FileCheck
 } from 'lucide-react';
 
 export const solutions = [
@@ -25,6 +26,7 @@ export const solutions = [
   { name: 'Digital Transformation', icon: Zap, href: '/solutions/digital-transformation' },
   { name: 'Enterprise Software', icon: Code, href: '/solutions/enterprise-software' },
   { name: 'AI & Intelligent Automation', icon: Bot, href: '/solutions/ai-intelligent-automation' },
+  { name: 'Licensing & Software Services', icon: FileCheck, href: '/solutions/licensing-software-services' },
 ];
 
 interface SolutionsMegaMenuProps {
