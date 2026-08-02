@@ -209,13 +209,20 @@ export async function POST(req: NextRequest) {
       { role: 'user', content: message },
     ];
 
-    const response = await groq.chat.completions.create({
-      model: 'llama-3.3-70b-versatile',
-      messages,
-      temperature: 0.3,
-      top_p: 0.8,
-      max_tokens: 1000,
-    });
+    console.log('[AI Advisor Log] Sending prompt request to Groq SDK model llama-3.3-70b-versatile...');
+    let response;
+    try {
+      response = await groq.chat.completions.create({
+        model: 'llama-3.3-70b-versatile',
+        messages,
+        temperature: 0.3,
+        top_p: 0.8,
+        max_tokens: 1000,
+      });
+    } catch (groqErr: any) {
+      console.error('[AI Advisor Groq API Error]:', groqErr?.message || groqErr, groqErr?.status, groqErr);
+      throw groqErr;
+    }
 
     const replyText = response.choices[0]?.message?.content || '';
 
