@@ -2,6 +2,9 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   devIndicators: false,
+  outputFileTracingIncludes: {
+    '/api/ai-advisor': ['./node_modules/@xenova/transformers/**/*.wasm'],
+  },
   images: {
     remotePatterns: [
       {
