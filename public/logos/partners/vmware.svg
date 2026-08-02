@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- V mark -->
+  <path d="M8 14 L22 46 L36 14" stroke="#607078" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  <!-- Wordmark -->
+  <text x="46" y="38" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#607078" letter-spacing="0.3">VMware</text>
+</svg>

@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60" fill="none">
+  <!-- Shadowman fedora mark -->
+  <ellipse cx="24" cy="20" rx="16" ry="8" fill="#CC0000"/>
+  <ellipse cx="24" cy="20" rx="10" ry="5" fill="#CC0000"/>
+  <path d="M8 20 Q8 48 24 48 Q40 48 40 20" fill="#CC0000"/>
+  <ellipse cx="24" cy="20" rx="16" ry="8" fill="#CC0000"/>
+  <ellipse cx="24" cy="20" rx="8" ry="4" fill="#A30000"/>
+  <!-- Wordmark -->
+  <text x="50" y="27" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="700" fill="#CC0000" letter-spacing="0.5">RED HAT</text>
+  <text x="50" y="42" font-family="Arial, Helvetica, sans-serif" font-size="10" font-weight="500" fill="#666" letter-spacing="0.3">Enterprise Linux</text>
+</svg>
