@@ -147,7 +147,13 @@ export async function POST(req: NextRequest) {
 
       if (supabaseUrl && supabaseKey) {
         const supabase = createClient(supabaseUrl, supabaseKey);
-        const userEmbedding = await generateEmbedding(message);
+        let userEmbedding: number[] | null = null;
+        try {
+          userEmbedding = await generateEmbedding(message);
+          console.log('[AI Advisor Log] Embedding generation succeeded:', { vectorLength: userEmbedding?.length });
+        } catch (embedErr) {
+          console.error('[AI Advisor Log] Embedding generation threw an error:', embedErr);
+        }
 
         if (userEmbedding && userEmbedding.length > 0) {
           const { data: matchedProducts, error: rpcError } = await supabase.rpc('match_products', {
@@ -155,6 +161,12 @@ export async function POST(req: NextRequest) {
             match_threshold: 0.3,
             match_count: 5,
           });
+
+          const matchedCount = Array.isArray(matchedProducts) ? matchedProducts.length : 0;
+          console.log(`[AI Advisor Log] match_products returned exact count: ${matchedCount}`);
+          if (matchedCount === 0) {
+            console.log('[AI Advisor Log] match_products returned zero products. Raw RPC error:', rpcError);
+          }
 
           if (rpcError) {
             console.warn('[AI Advisor RAG Warning] RPC match_products:', rpcError.message);
@@ -168,6 +180,8 @@ export async function POST(req: NextRequest) {
 
             productContext = `Here are relevant ESSL product options retrieved from the database based on the customer's query:\n${formattedList}\nIncorporate these real product options into your expert advice.`;
           }
+        } else {
+          console.log('[AI Advisor Log] No embedding produced or empty vector, skipping match_products RPC call.');
         }
       }
     } catch (ragError: any) {
