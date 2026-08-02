@@ -94,16 +94,16 @@ const steps = [
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function PassiveInfrastructureDetail() {
-  const [heroVisible,      setHeroVisible]      = useState(false);
-  const [gridVisible,      setGridVisible]      = useState(false);
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [gridVisible, setGridVisible] = useState(false);
   const [whyChooseVisible, setWhyChooseVisible] = useState(false);
-  const [journeyVisible,   setJourneyVisible]   = useState(false);
-  const [activeSteps,      setActiveSteps]      = useState(0);
+  const [journeyVisible, setJourneyVisible] = useState(false);
+  const [activeSteps, setActiveSteps] = useState(0);
 
-  const heroRef      = useRef<HTMLElement>(null);
-  const gridRef      = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLElement>(null);
   const whyChooseRef = useRef<HTMLElement>(null);
-  const journeyRef   = useRef<HTMLElement>(null);
+  const journeyRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setHeroVisible(true), 50);
@@ -113,14 +113,14 @@ export default function PassiveInfrastructureDetail() {
         if (entry.isIntersecting) setter(true);
       }, { threshold });
 
-    const gridObs      = makeObserver(setGridVisible,      0.05);
+    const gridObs = makeObserver(setGridVisible, 0.05);
     const whyChooseObs = makeObserver(setWhyChooseVisible, 0.05);
-    const journeyObs   = makeObserver(setJourneyVisible,   0.15);
+    const journeyObs = makeObserver(setJourneyVisible, 0.15);
 
     const refs = [
-      { obs: gridObs,      ref: gridRef.current      },
+      { obs: gridObs, ref: gridRef.current },
       { obs: whyChooseObs, ref: whyChooseRef.current },
-      { obs: journeyObs,   ref: journeyRef.current   },
+      { obs: journeyObs, ref: journeyRef.current },
     ];
     refs.forEach(({ obs, ref }) => { if (ref) obs.observe(ref); });
 

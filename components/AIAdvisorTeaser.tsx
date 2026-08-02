@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import ReactMarkdown from 'react-markdown';
 import { MessageSquare, Sparkles, ArrowRight, Loader2, Send } from 'lucide-react';
 
 const promptChips = [
@@ -19,36 +20,41 @@ interface ChatMessage {
   content: string;
 }
 
-function renderMessageContent(content: string) {
-  const parts: (string | React.ReactNode)[] = [];
-  const regex = /\[([^\]]+)\]\(([^)]+)\)/g;
-  let lastIndex = 0;
-  let match;
-
-  while ((match = regex.exec(content)) !== null) {
-    if (match.index > lastIndex) {
-      parts.push(content.substring(lastIndex, match.index));
+const markdownComponents: Record<string, React.FC<any>> = {
+  h1: ({ children }) => <h1 className="text-sm font-bold mt-2 mb-1 text-white">{children}</h1>,
+  h2: ({ children }) => <h2 className="text-sm font-bold mt-2 mb-1 text-white">{children}</h2>,
+  h3: ({ children }) => <h3 className="text-sm font-bold mt-2 mb-1 text-white">{children}</h3>,
+  h4: ({ children }) => <h4 className="text-xs font-bold mt-1.5 mb-1 text-white">{children}</h4>,
+  p: ({ children }) => <p className="mb-2 last:mb-0 leading-relaxed">{children}</p>,
+  strong: ({ children }) => <strong className="font-bold text-white">{children}</strong>,
+  ul: ({ children }) => <ul className="list-disc pl-4 my-1.5 space-y-0.5">{children}</ul>,
+  ol: ({ children }) => <ol className="list-decimal pl-4 my-1.5 space-y-0.5">{children}</ol>,
+  li: ({ children }) => <li className="my-0.5 leading-relaxed">{children}</li>,
+  a: ({ href, children }) => {
+    const linkUrl = href || '#';
+    const isInternal = linkUrl.startsWith('/') || linkUrl.startsWith('#');
+    if (isInternal) {
+      return (
+        <Link
+          href={linkUrl}
+          className="text-[#3f94cf] underline font-semibold hover:text-white transition-colors inline-flex items-center gap-0.5"
+        >
+          {children}
+        </Link>
+      );
     }
-    const linkText = match[1];
-    const linkUrl = match[2];
-    parts.push(
-      <Link
-        key={match.index}
+    return (
+      <a
         href={linkUrl}
+        target="_blank"
+        rel="noopener noreferrer"
         className="text-[#3f94cf] underline font-semibold hover:text-white transition-colors inline-flex items-center gap-0.5"
       >
-        {linkText}
-      </Link>
+        {children}
+      </a>
     );
-    lastIndex = regex.lastIndex;
-  }
-
-  if (lastIndex < content.length) {
-    parts.push(content.substring(lastIndex));
-  }
-
-  return parts;
-}
+  },
+};
 
 export default function AIAdvisorTeaser() {
   const [isVisible, setIsVisible] = useState(false);
@@ -57,7 +63,7 @@ export default function AIAdvisorTeaser() {
   const [loading, setLoading] = useState(false);
 
   const sectionRef = useRef<HTMLElement>(null);
-  const chatBottomRef = useRef<HTMLDivElement>(null);
+  const chatMessagesContainerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -69,7 +75,11 @@ export default function AIAdvisorTeaser() {
   }, []);
 
   useEffect(() => {
-    chatBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
+    if (messages.length > 0 || loading) {
+      if (chatMessagesContainerRef.current) {
+        chatMessagesContainerRef.current.scrollTop = chatMessagesContainerRef.current.scrollHeight;
+      }
+    }
   }, [messages, loading]);
 
   const handleSendMessage = async (textToSend: string) => {
@@ -140,7 +150,7 @@ export default function AIAdvisorTeaser() {
   };
 
   return (
-    <section ref={sectionRef} className="relative w-full section-padding overflow-hidden">
+    <section id="ai-advisor" ref={sectionRef} className="relative w-full section-padding scroll-mt-24 overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0 bg-[#f8fafc]">
         <Image
@@ -160,7 +170,7 @@ export default function AIAdvisorTeaser() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
           {/* Left Content */}
-          <div className={`transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-x-12'}`}>
+          <div className={`transition-opacity transition-transform duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-6">
               <Sparkles className="w-3.5 h-3.5" />
               AI-Powered
@@ -171,24 +181,15 @@ export default function AIAdvisorTeaser() {
                 AI Advisor
               </span>
             </h2>
-            <p className="text-slate-700 text-lg leading-relaxed mb-8">
+            <p className="text-slate-700 text-lg leading-relaxed">
               Get instant, intelligent answers about cybersecurity solutions, infrastructure design,
               and managed services — powered by ESSL&apos;s real service and product knowledge base.
             </p>
-
-            <div className="flex items-center gap-4 text-sm text-slate-500">
-              <div className="flex items-center gap-2">
-                <div className="w-2 h-2 rounded-full bg-success animate-pulse" />
-                Available 24/7
-              </div>
-              <div className="w-px h-4 bg-slate-300/85" />
-              <div>Powered by Groq Llama 3.3 70B</div>
-            </div>
           </div>
 
           {/* Right — Interactive Chat Widget */}
-          <div className={`transition-all duration-700 delay-200 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-12'}`}>
-            <div className="relative rounded-2xl glass-card overflow-hidden border border-white/10 shadow-2xl bg-[#0f1420]/95 backdrop-blur-xl">
+          <div className={`transition-opacity transition-transform duration-500 ease-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className="relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-[#0f1420]/95 backdrop-blur-xl">
               {/* Chat Header */}
               <div className="flex items-center justify-between px-6 py-4 border-b border-white/10 bg-[#0a0e17]/80">
                 <div className="flex items-center gap-3">
@@ -215,7 +216,7 @@ export default function AIAdvisorTeaser() {
               </div>
 
               {/* Chat Window Container */}
-              <div className="p-6 h-[380px] overflow-y-auto space-y-4 text-sm scrollbar-thin">
+              <div ref={chatMessagesContainerRef} className="p-6 h-[380px] overflow-y-auto space-y-4 text-sm scrollbar-thin">
                 {messages.length === 0 ? (
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-slate-400 mb-3 font-mono">Try asking:</p>
@@ -252,7 +253,11 @@ export default function AIAdvisorTeaser() {
                             : 'bg-white/10 text-slate-100 rounded-tl-none border border-white/5'
                         }`}
                       >
-                        {renderMessageContent(msg.content)}
+                        {msg.role === 'user' ? (
+                          msg.content
+                        ) : (
+                          <ReactMarkdown components={markdownComponents}>{msg.content}</ReactMarkdown>
+                        )}
                       </div>
                     </div>
                   ))
@@ -269,7 +274,6 @@ export default function AIAdvisorTeaser() {
                     </div>
                   </div>
                 )}
-                <div ref={chatBottomRef} />
               </div>
 
               {/* Input Form */}

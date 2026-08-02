@@ -32,6 +32,8 @@ export const metadata: Metadata = {
   },
 };
 
+import ScrollRestoration from "@/components/ScrollRestoration";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -48,6 +50,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased w-full static-grid-bg min-h-screen text-slate-100" suppressHydrationWarning>
+        <ScrollRestoration />
         <Header />
         <main className="min-h-screen w-full">{children}</main>
         <Footer />
