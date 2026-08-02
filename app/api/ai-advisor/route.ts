@@ -148,17 +148,14 @@ export async function POST(req: NextRequest) {
       if (supabaseUrl && supabaseKey) {
         const supabase = createClient(supabaseUrl, supabaseKey);
         let userEmbedding: number[] | null = null;
-
-        console.log('[AI Advisor Log] Attempting embedding generation for user message...');
         try {
           userEmbedding = await generateEmbedding(message);
-          console.log('[AI Advisor Log] Embedding generation step succeeded. Vector length:', userEmbedding?.length);
+          console.log(`[AI Advisor Log] Embedding generation succeeded. Embedding length: ${userEmbedding?.length}`);
         } catch (embedErr) {
-          console.error('[AI Advisor Log] Embedding generation step threw an error:', embedErr);
+          console.error('[AI Advisor Log] Embedding generation failed with error:', embedErr);
         }
 
         if (userEmbedding && userEmbedding.length > 0) {
-          console.log('[AI Advisor Log] Calling match_products RPC with query embedding...');
           const { data: matchedProducts, error: rpcError } = await supabase.rpc('match_products', {
             query_embedding: userEmbedding,
             match_threshold: 0.3,
@@ -166,14 +163,13 @@ export async function POST(req: NextRequest) {
           });
 
           const matchedCount = Array.isArray(matchedProducts) ? matchedProducts.length : 0;
-          console.log(`[AI Advisor Log] match_products returned exact count: ${matchedCount}`);
-          if (matchedCount === 0) {
-            console.log('[AI Advisor Log] match_products returned zero products. Raw RPC error:', rpcError);
+          console.log(`[AI Advisor Log] Exact matched products count returned: ${matchedCount}`);
+
+          if (matchedCount === 0 || rpcError) {
+            console.log('[AI Advisor Log] RPC error or 0 matched products returned. Raw RPC error:', rpcError);
           }
 
-          if (rpcError) {
-            console.warn('[AI Advisor RAG Warning] RPC match_products error:', rpcError);
-          } else if (matchedProducts && matchedProducts.length > 0) {
+          if (matchedProducts && matchedProducts.length > 0) {
             const formattedList = matchedProducts
               .map(
                 (p: { vendor: string; model: string; category: string; description: string; target_segment?: string }) =>
@@ -184,7 +180,7 @@ export async function POST(req: NextRequest) {
             productContext = `Here are relevant ESSL product options retrieved from the database based on the customer's query:\n${formattedList}\nIncorporate these real product options into your expert advice.`;
           }
         } else {
-          console.log('[AI Advisor Log] No vector embedding returned or vector length is 0. Skipping match_products RPC call.');
+          console.log('[AI Advisor Log] Skipping match_products RPC call because no valid embedding vector was produced.');
         }
       } else {
         console.warn('[AI Advisor Log] Supabase URL or Service Key missing.');
