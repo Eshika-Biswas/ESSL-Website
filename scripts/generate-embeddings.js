@@ -13,8 +13,7 @@ async function main() {
 
   const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-  console.log('Loading local embedding model (Xenova/all-MiniLM-L6-v2)...');
-  console.log('(Note: First run automatically downloads ~90MB model files locally)\n');
+  console.log('Using Hugging Face Inference API (sentence-transformers/all-MiniLM-L6-v2)...\n');
 
   console.log('Fetching products with null embedding from Supabase...');
   const { data: products, error } = await supabase
