@@ -194,6 +194,7 @@ export async function POST(req: NextRequest) {
       model: 'llama-3.3-70b-versatile',
       messages,
       temperature: 0.3,
+      top_p: 0.8,
       max_tokens: 1000,
     });
 
