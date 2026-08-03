@@ -9,7 +9,7 @@ ESSL's Business Units: Network & Security, Cyber Security, Data Center & Cloud, 
 
 ESSL's Solutions: Digital Workplace, Secure Enterprise, Modern Data Center, Cloud Transformation, Business Continuity & Disaster Recovery, Smart Infrastructure, Managed IT Services, Digital Transformation, Enterprise Software, AI & Intelligent Automation, Licensing & Software Services.
 
-ESSL's Industries served: Banking & Financial Services, Healthcare & Pharmaceuticals, Manufacturing & Industrial, Education & Research, Government & Public Sector, NGOs & Development, Telecom & Media, Retail & E-Commerce.
+ESSL's Industries served: Banking & Financial Services, Healthcare & Pharmaceuticals, Manufacturing & Industrial, Education & Research, Government & Public Sector, NGOs & Development, Telecom & Media, Retail & E-Commerce, IT & Software.
 
 ESSL is a certified partner for enterprise technology across these key categories:
 - Network & Security Solutions: Cisco, SolarWinds, Ruckus, Mikrotik, Cambium Networks, Rosenberger, Grandstream, Prosw, Aruba, ManageEngine, Holm Security
@@ -57,6 +57,7 @@ Relevant page links you can reference (only use these exact URLs, never invent a
 - AI & Intelligent Automation: /solutions/ai-intelligent-automation
 - Licensing & Software Services: /solutions/licensing-software-services
 - Industries overview: /industries
+- IT & Software: /industries/it-software
 - Our Clients: /clients
 - Our Partners: /about/partners
 - Our Story: /about/our-story

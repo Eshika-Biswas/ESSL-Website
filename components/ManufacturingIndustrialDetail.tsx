@@ -73,20 +73,35 @@ const rightSolutions = [
   },
 ];
 
-interface ClientItem {
+// ─── 19 Manufacturing & Industrial Clients ───────────────────────────────
+interface ManufacturingClient {
   name: string;
   type: string;
+  logo: string;
   initials: string;
+  scale?: string;
 }
 
-const manufacturingClients: ClientItem[] = [
-  { name: 'Biman Bangladesh Airlines', type: 'Aviation', initials: 'BBA' },
-  { name: 'SHV Energy', type: 'Energy', initials: 'SHV' },
-  { name: 'Mobil — MJL Bangladesh', type: 'Lubricants & Energy', initials: 'MJL' },
-  { name: 'INSEE Cement', type: 'Heavy Industry', initials: 'INC' },
-  { name: 'NTC — National Tea', type: 'Agro Industry', initials: 'NTC' },
-  { name: 'Duncan Brothers', type: 'Industrial Group', initials: 'DBL' },
-  { name: 'Sembcorp', type: 'Energy & Utilities', initials: 'SMB' },
+const manufacturingClients: ManufacturingClient[] = [
+  { name: 'City Group', type: 'Conglomerate & FMCG', logo: '/logos/city group 1.png', initials: 'CGL', scale: 'max-h-9 scale-105' },
+  { name: 'United Group', type: 'Industrial Conglomerate', logo: '/logos/united group.png', initials: 'UGL', scale: 'max-h-10 scale-105' },
+  { name: 'Epic Group', type: 'Garments & Apparels', logo: '/logos/EPIC GROUP 1.png', initials: 'EGL', scale: 'max-h-9 scale-105' },
+  { name: 'Veolmedtech', type: 'Medical Technologies', logo: '/logos/VEOL.png', initials: 'VMT', scale: 'max-h-10 scale-110' },
+  { name: 'TK Group', type: 'Industrial Conglomerate', logo: '/logos/TK-Group.png', initials: 'TKG', scale: 'max-h-11 scale-110' },
+  { name: 'Standard Group', type: 'Apparel & Textile', logo: '/logos/standarad.png', initials: 'STG', scale: 'max-h-9 scale-105' },
+  { name: 'DuncanBD', type: 'Industrial & Tea', logo: '/logos/duncan brothers.jpg', initials: 'DBL', scale: 'max-h-8 scale-100' },
+  { name: 'Urmi Group', type: 'Textile & Garments', logo: '/logos/urmi-logo-1-1-2.png', initials: 'URM', scale: 'max-h-10 scale-105' },
+  { name: 'Coca-Cola', type: 'Beverage & FMCG', logo: '/logos/Coke-company-logo-black.svg', initials: 'KO', scale: 'max-h-8 scale-105' },
+  { name: 'Expo Group', type: 'Freight & Logistics', logo: '/logos/expo.svg', initials: 'EXP', scale: 'max-h-10 scale-105' },
+  { name: 'GMS Composite', type: 'Knitting & Textiles', logo: '/logos/GMS.png', initials: 'GMS', scale: 'max-h-8 scale-100' },
+  { name: 'Crown Cement', type: 'Heavy Building Materials', logo: '/logos/crown-cement.svg', initials: 'CCL', scale: 'max-h-10 scale-105' },
+  { name: 'MGL', type: 'Industrial Manufacturing', logo: '/logos/mgl.png', initials: 'MGL', scale: 'max-h-9 scale-105' },
+  { name: 'Sembcorp', type: 'Energy & Utilities', logo: '/logos/sembcorp-logo.svg', initials: 'SMB', scale: 'max-h-9 scale-105' },
+  { name: 'Masco Group', type: 'Knitwear & Manufacturing', logo: '/logos/masco1.png', initials: 'MAS', scale: 'max-h-11 scale-110' },
+  { name: 'Marico', type: 'Consumer Goods & FMCG', logo: '/logos/marico.webp', initials: 'MRC', scale: 'max-h-11 scale-110' },
+  { name: 'Singer (Beko)', type: 'Consumer Electronics', logo: '/logos/singer.png', initials: 'SNG', scale: 'max-h-9 scale-105' },
+  { name: 'Windy Group', type: 'Apparel & Export Manufacturing', logo: '/logos/windy.png', initials: 'WND', scale: 'max-h-10 scale-105' },
+  { name: 'Berger Paints', type: 'Paints & Coatings', logo: '/logos/berger-paints.png', initials: 'BPB', scale: 'max-h-10 scale-105' },
 ];
 
 export default function ManufacturingIndustrialDetail() {
@@ -297,19 +312,35 @@ export default function ManufacturingIndustrialDetail() {
                 Trusted by Premier <span className="text-[rgb(20,109,174)]">Manufacturing & Industrial</span> Leaders
               </h2>
               <p className="text-slate-500 text-sm sm:text-base mt-2">
-                Empowering Bangladesh&apos;s leading aviation, energy, and industrial giants.
+                Empowering Bangladesh&apos;s leading conglomerates, exporters, and industrial giants.
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
+            {/* 19 Manufacturing Clients Grid */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto">
               {manufacturingClients.map((client) => (
                 <div
                   key={client.name}
-                  className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32 w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.85rem)] md:w-44 lg:w-48 shrink-0"
+                  className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
-                    {client.initials}
-                  </div>
+                  {client.logo ? (
+                    <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
+                      <Image
+                        src={encodeURI(client.logo)}
+                        alt={`${client.name} logo`}
+                        width={140}
+                        height={48}
+                        className={`w-auto object-contain transition-transform duration-300 ${
+                          client.scale || 'max-h-10 scale-100'
+                        }`}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
+                      {client.initials}
+                    </div>
+                  )}
+                  
                   <span className="text-xs font-bold text-slate-800 group-hover:text-[rgb(20,109,174)] transition-colors leading-tight">
                     {client.name}
                   </span>

@@ -11,6 +11,7 @@ import {
   HeartHandshake,
   ShoppingBag,
   Radio,
+  Code2,
   ChevronLeft,
   ChevronRight,
   ArrowRight,
@@ -25,6 +26,7 @@ const industries = [
   { name: 'NGOs & Development', icon: HeartHandshake, href: '/industries/ngos-development' },
   { name: 'Retail & E-commerce', icon: ShoppingBag, href: '/industries/retail-ecommerce' },
   { name: 'Telecom & Media', icon: Radio, href: '/industries/telecom-media' },
+  { name: 'IT & Software', icon: Code2, href: '/industries/it-software' },
 ];
 
 // Duplicate industries 3 times to create a seamless infinite scrolling loop

@@ -78,32 +78,34 @@ const rightSolutions = [
   },
 ];
 
-// ─── 17 Banking & Financial Institution Clients ──────────────────────────────
+// ─── 18 Banking & Financial Institution Clients ──────────────────────────────
 interface FinancialClient {
   name: string;
   type: string;
-  logo?: string;
+  logo: string;
   initials: string;
+  scale?: string;
 }
 
 const financialClients: FinancialClient[] = [
-  { name: 'Standard Chartered', type: 'Bank', initials: 'SCB' },
-  { name: 'BRAC Bank', type: 'Bank', initials: 'BBL' },
-  { name: 'Eastern Bank (EBL)', type: 'Bank', initials: 'EBL' },
-  { name: 'Dhaka Bank', type: 'Bank', initials: 'DBL' },
-  { name: 'LankaBangla Finance', type: 'FI', initials: 'LBF' },
-  { name: 'Meghna Bank', type: 'Bank', initials: 'MBL' },
-  { name: 'NRBC Bank', type: 'Bank', initials: 'NRBC' },
-  { name: 'Southeast Bank', type: 'Bank', initials: 'SEB' },
-  { name: 'Commercial Bank', type: 'Bank', initials: 'CBC' },
-  { name: 'NCC Bank', type: 'Bank', initials: 'NCC' },
-  { name: 'IDLC Finance', type: 'FI', logo: '/logos/idlc-finance.png', initials: 'IDLC' },
-  { name: 'HBL (Habib Bank)', type: 'Bank', initials: 'HBL' },
-  { name: 'IDCOL', type: 'FI', initials: 'IDC' },
-  { name: 'IPDC Finance', type: 'FI', initials: 'IPDC' },
-  { name: 'Green Delta Insurance', type: 'Insurance', initials: 'GDI' },
-  { name: 'Pragati Life Insurance', type: 'Insurance', initials: 'PLI' },
-  { name: 'Delta Life Insurance', type: 'Insurance', initials: 'DLI' },
+  { name: 'Standard Chartered', type: 'Multinational Bank', logo: '/logos/Standard Chartered.png', initials: 'SCB', scale: 'max-h-11 scale-105' },
+  { name: 'BRAC Bank', type: 'Private Commercial Bank', logo: '/logos/BRAC Bank.svg', initials: 'BBL', scale: 'max-h-9 scale-100' },
+  { name: 'Eastern Bank (EBL)', type: 'Private Commercial Bank', logo: '/logos/eastern-bank-plc.webp', initials: 'EBL', scale: 'max-h-9 scale-105' },
+  { name: 'Dhaka Bank', type: 'Private Commercial Bank', logo: '/logos/Dhaka Bank.png', initials: 'DBL', scale: 'max-h-9 scale-105' },
+  { name: 'LankaBangla Finance', type: 'Financial Institution', logo: '/logos/LankaBangla Finance.png', initials: 'LBF', scale: 'max-h-10 scale-105' },
+  { name: 'Meghna Bank', type: 'Private Commercial Bank', logo: '/logos/Meghna Bank.png', initials: 'MBL', scale: 'max-h-9 scale-105' },
+  { name: 'NRBC Bank', type: 'Private Commercial Bank', logo: '/logos/NRBC Bank.png', initials: 'NRBC', scale: 'max-h-9 scale-105' },
+  { name: 'Southeast Bank', type: 'Private Commercial Bank', logo: '/logos/Southeast Bank.jpg', initials: 'SEB', scale: 'max-h-10 scale-105' },
+  { name: 'Commercial Bank', type: 'Multinational Bank', logo: '/logos/Commercial Bank.png', initials: 'CBC', scale: 'max-h-10 scale-105' },
+  { name: 'NCC Bank', type: 'Private Commercial Bank', logo: '/logos/NCC Bank.png', initials: 'NCC', scale: 'max-h-10 scale-105' },
+  { name: 'HBL (Habib Bank)', type: 'Multinational Bank', logo: '/logos/HBL (Habib Bank).png', initials: 'HBL', scale: 'max-h-11 scale-110' },
+  { name: 'DBH Finance', type: 'Housing Finance Specialist', logo: '/logos/dbh_logo.png', initials: 'DBH', scale: 'max-h-11 scale-110' },
+  { name: 'IDLC Finance', type: 'Financial Institution', logo: '/logos/idlc-finance.png', initials: 'IDLC', scale: 'max-h-12 scale-115' },
+  { name: 'IDCOL', type: 'Development Financial Inst.', logo: '/logos/idcol.png', initials: 'IDC', scale: 'max-h-10 scale-105' },
+  { name: 'IPDC Finance', type: 'Financial Institution', logo: '/logos/IPDC Finance.png', initials: 'IPDC', scale: 'max-h-12 scale-120' },
+  { name: 'Green Delta Insurance', type: 'Non-Life Insurance', logo: '/logos/Green Delta Insurance.png', initials: 'GDI', scale: 'max-h-10 scale-105' },
+  { name: 'Pragati Life Insurance', type: 'Life Insurance', logo: '/logos/PragatiLifeInsurancePlc.png', initials: 'PLI', scale: 'max-h-9 scale-105' },
+  { name: 'Delta Life Insurance', type: 'Life Insurance', logo: '/logos/Delta Life Insurance.png', initials: 'DLI', scale: 'max-h-9 scale-105' },
 ];
 
 export default function BankingFinancialServicesDetail() {
@@ -350,21 +352,23 @@ export default function BankingFinancialServicesDetail() {
             </p>
           </div>
 
-          {/* 17 Financial Clients Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-5">
+          {/* 16 Financial Clients Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto">
             {financialClients.map((client) => (
               <div
                 key={client.name}
                 className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
               >
                 {client.logo ? (
-                  <div className="h-12 flex items-center justify-center mb-2">
+                  <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
                     <Image
-                      src={client.logo}
+                      src={encodeURI(client.logo)}
                       alt={`${client.name} logo`}
-                      width={110}
-                      height={40}
-                      className="max-h-10 w-auto object-contain"
+                      width={140}
+                      height={48}
+                      className={`w-auto object-contain transition-transform duration-300 ${
+                        client.scale || 'max-h-10 scale-100'
+                      }`}
                     />
                   </div>
                 ) : (

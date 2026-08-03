@@ -75,6 +75,32 @@ const rightSolutions = [
 
 
 
+// ─── 14 Healthcare & Pharmaceutical Clients ─────────────────────────────────
+interface HealthcareClient {
+  name: string;
+  type: string;
+  logo: string;
+  initials: string;
+  scale?: string;
+}
+
+const healthcareClients: HealthcareClient[] = [
+  { name: 'ACI Limited', type: 'Pharmaceuticals & Healthcare', logo: '/logos/aci-plc.png', initials: 'ACI', scale: 'max-h-10 scale-105' },
+  { name: 'Aristo Pharma', type: 'Pharmaceuticals', logo: '/logos/aristo-pharma.png', initials: 'APL', scale: 'max-h-10 scale-105' },
+  { name: 'Beximco Pharma', type: 'Pharmaceuticals & Exporter', logo: '/logos/beximcopharma.png', initials: 'BPL', scale: 'max-h-10 scale-110' },
+  { name: 'Renata PLC', type: 'Pharmaceuticals', logo: '/logos/renata plc.png', initials: 'RPL', scale: 'max-h-9 scale-105' },
+  { name: 'Opsonin Pharma', type: 'Pharmaceuticals', logo: '/logos/opsonin-pharma.png', initials: 'OPL', scale: 'max-h-10 scale-105' },
+  { name: 'Healthcare Pharma', type: 'Pharmaceuticals & Clinical', logo: '/logos/Healthcare.png', initials: 'HPL', scale: 'max-h-12 scale-115' },
+  { name: 'Sun Pharmaceutical', type: 'Multinational Pharma', logo: '/logos/sun pharmaceutical.png', initials: 'SUN', scale: 'max-h-12 scale-115' },
+  { name: 'Incepta Pharma', type: 'Pharmaceuticals & Vaccines', logo: '/logos/inceptapharma.png', initials: 'IPL', scale: 'max-h-10 scale-110' },
+  { name: 'Eskayef (SK+F)', type: 'Pharmaceuticals', logo: '/logos/skf.png', initials: 'SKF', scale: 'max-h-9 scale-105' },
+  { name: 'Synovia Pharma', type: 'Pharmaceuticals', logo: '/logos/synovia-logo.png', initials: 'SPL', scale: 'max-h-9 scale-105' },
+  { name: 'Ibn Sina Pharma', type: 'Pharmaceuticals & Hospitals', logo: '/logos/ibn sina.png', initials: 'ISP', scale: 'max-h-10 scale-105' },
+  { name: 'Evercare Hospital', type: 'Tertiary Care Hospital', logo: '/logos/Evercare-Hospita-Logo (1).webp', initials: 'EHD', scale: 'max-h-12 scale-115' },
+  { name: 'Continental Hospital', type: 'Super Speciality Hospital', logo: '/logos/continental.health.webp', initials: 'CHL', scale: 'max-h-10 scale-105' },
+  { name: 'Asgar Ali Hospital', type: 'Tertiary Care Hospital', logo: '/logos/asgaralihospital 1.png', initials: 'AAH', scale: 'max-h-10 scale-105' },
+];
+
 export default function HealthcarePharmaceuticalsDetail() {
   const gridBgStyle = {
     backgroundColor: '#f8fafc',
@@ -258,6 +284,77 @@ export default function HealthcarePharmaceuticalsDetail() {
       </section>
 
 
+
+      {/* ─── 3. Clients Section ("Customers") ───────────────────────────────────── */}
+      <section className="relative py-20 bg-[#f1f5f9] border-b border-slate-200 overflow-hidden">
+        {/* Background Image backdrop (Solutions BG) */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <Image
+            src="/images/solutions-bg.png"
+            alt="Client Section Backdrop"
+            fill
+            sizes="100vw"
+            className="object-cover opacity-[0.08]"
+          />
+          {/* Soft light-radial glow overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f1f5f9]/40 via-transparent to-[#f1f5f9]/60" />
+        </div>
+
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          
+          {/* Section Header */}
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="inline-block px-3.5 py-1 rounded-full text-xs font-bold uppercase tracking-widest text-slate-500 border border-slate-200 bg-slate-100 mb-3 font-mono">
+              Customers
+            </span>
+            <h2
+              className="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight"
+              style={{ fontFamily: 'var(--font-display)' }}
+            >
+              Trusted by Leading <span className="text-[rgb(20,109,174)]">Healthcare & Pharmaceutical Brands</span>
+            </h2>
+            <p className="text-slate-500 text-sm sm:text-base mt-2">
+              Empowering Bangladesh&apos;s top pharmaceutical exporters, hospital networks, and clinical research leaders.
+            </p>
+          </div>
+
+          {/* 14 Healthcare Clients Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-5 max-w-5xl mx-auto">
+            {healthcareClients.map((client) => (
+              <div
+                key={client.name}
+                className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
+              >
+                {client.logo ? (
+                  <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
+                    <Image
+                      src={encodeURI(client.logo)}
+                      alt={`${client.name} logo`}
+                      width={140}
+                      height={48}
+                      className={`w-auto object-contain transition-transform duration-300 ${
+                        client.scale || 'max-h-10 scale-100'
+                      }`}
+                    />
+                  </div>
+                ) : (
+                  <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
+                    {client.initials}
+                  </div>
+                )}
+                
+                <span className="text-xs font-bold text-slate-800 group-hover:text-[rgb(20,109,174)] transition-colors leading-tight">
+                  {client.name}
+                </span>
+                <span className="text-[10px] font-medium text-slate-400 mt-0.5">
+                  {client.type}
+                </span>
+              </div>
+            ))}
+          </div>
+
+        </div>
+      </section>
 
       {/* ─── 4. Closing CTA Section ────────────────────────────────────────── */}
       <section className="relative py-20 bg-gradient-to-br from-[#0f1420] via-[rgb(14,76,122)] to-[#0f1420] text-white overflow-hidden">
