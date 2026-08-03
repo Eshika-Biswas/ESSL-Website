@@ -6,24 +6,24 @@ import Image from 'next/image';
 
 interface Vendor {
   name: string;
+  type: string;
   src: string;
-  // Optional scale override, e.g. 'max-h-7' (defaults to 'max-h-8')
   scale?: string;
 }
 
+// Only showing verified partner logos with images
 const vendors: Vendor[] = [
-  { name: 'Cisco',        src: '/partners/cisco.png',              scale: 'max-h-7' },
-  { name: 'Fortinet',     src: '/partners/fortinet-logo.svg',      scale: 'max-h-6' },
-  { name: 'Sophos',       src: '/partners/sophos.png',             scale: 'max-h-7' },
-  { name: 'Palo Alto',    src: '/partners/paloalto.svg',           scale: 'max-h-6' },
-  { name: 'CrowdStrike',  src: '/partners/crowdstrike.svg',        scale: 'max-h-5' },
-  { name: 'Dell',         src: '/partners/dell.png',               scale: 'max-h-7' },
-  { name: 'Microsoft',    src: '/partners/microsoft.png',          scale: 'max-h-6' },
-  { name: 'VMware',       src: '/partners/vmware-logo-grey.svg',   scale: 'max-h-6' },
-  { name: 'F5',           src: '/partners/f5.svg',                 scale: 'max-h-7' },
-  { name: 'Veritas',      src: '/partners/veritas.svg',            scale: 'max-h-6' },
-  { name: 'NetApp',       src: '/partners/netapp.avif',            scale: 'max-h-6' },
-  { name: 'Veeam',        src: '/partners/veem.webp',              scale: 'max-h-6' },
+  { name: 'Cisco', type: 'Networking & Security', src: '/partners/cisco.png', scale: 'max-h-7' },
+  { name: 'Fortinet', type: 'Network Security', src: '/partners/fortinet-logo.svg', scale: 'max-h-6' },
+  { name: 'Sophos', type: 'Endpoint Security', src: '/partners/sophos.png', scale: 'max-h-7' },
+  { name: 'Palo Alto Networks', type: 'Network Security', src: '/partners/paloalto.svg', scale: 'max-h-6' },
+  { name: 'CrowdStrike', type: 'EDR & Cybersecurity', src: '/partners/crowdstrike.svg', scale: 'max-h-5' },
+  { name: 'Dell Technologies', type: 'Server & Storage', src: '/partners/dell.png', scale: 'max-h-7' },
+  { name: 'Microsoft', type: 'Cloud & Productivity', src: '/partners/microsoft.png', scale: 'max-h-6' },
+  { name: 'VMware', type: 'Virtualization & Cloud', src: '/partners/vmware-logo-grey.svg', scale: 'max-h-6' },
+  { name: 'F5', type: 'Application Delivery', src: '/partners/f5.svg', scale: 'max-h-7' },
+  { name: 'NetApp', type: 'Hybrid Cloud Storage', src: '/partners/netapp.avif', scale: 'max-h-6' },
+  { name: 'Veeam', type: 'Data Backup & Recovery', src: '/partners/veem.webp', scale: 'max-h-6' },
 ];
 
 export default function VendorStrip() {
@@ -68,37 +68,36 @@ export default function VendorStrip() {
             Certified Partner of the World&apos;s Leading Vendors
           </h2>
           <p className="text-slate-650 text-base max-w-xl mx-auto">
-            We hold the highest certifications from 12+ global technology leaders
+            We hold the highest certifications from global technology leaders
           </p>
         </div>
 
-        {/* Vendor Grid */}
-        <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+        {/* Vendor Grid — matching Clients page card styling */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
           {vendors.map((vendor, index) => (
             <Link
               key={vendor.name}
               href="/about/partners"
-              className={`group relative flex items-center justify-center h-24 rounded-2xl border border-white/10 bg-white/90 hover:bg-white transition-all duration-500 hover:border-primary/20 hover:-translate-y-1 hover:shadow-xl hover:shadow-primary/5 p-4 ${
-                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'
+              className={`group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/85 hover:border-[#1B6BA8]/30 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center text-center h-32 ${
+                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
               }`}
-              style={{ transitionDelay: `${index * 60}ms` }}
+              style={{ transitionDelay: `${index * 50}ms` }}
             >
-              <div className="flex items-center justify-center w-full h-full transition-transform duration-300 group-hover:scale-105">
+              <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
                 <Image
                   src={vendor.src}
                   alt={`${vendor.name} logo`}
                   width={140}
                   height={48}
-                  className={`w-auto object-contain ${vendor.scale ?? 'max-h-8'}`}
-                  onError={(e) => {
-                    // Fallback: hide broken image
-                    (e.target as HTMLImageElement).style.display = 'none';
-                  }}
+                  className={`w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${vendor.scale ?? 'max-h-10'}`}
                 />
               </div>
-              <div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-5 bg-primary transition-opacity duration-300"
-              />
+              <span className="text-xs font-bold text-slate-800 leading-tight transition-colors group-hover:text-[#1B6BA8]">
+                {vendor.name}
+              </span>
+              <span className="text-[10px] font-medium text-slate-400 mt-0.5">
+                {vendor.type}
+              </span>
             </Link>
           ))}
         </div>

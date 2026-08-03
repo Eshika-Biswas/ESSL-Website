@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState, ReactNode } from 'react';
+import { ReactNode } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -15,6 +15,8 @@ interface RevealProps {
   duration?: number;
   className?: string;
 }
+
+import { useEffect, useRef, useState } from 'react';
 
 function Reveal({
   children,
@@ -59,74 +61,63 @@ function Reveal({
 }
 
 /* ================================================================
-   Partner card types
+   Partner interface
    ================================================================ */
 
 interface Partner {
   name: string;
-  /** Path to actual logo image in /public/partners/ — use encodeURI for spaces */
-  logo?: string;
-  /** logo image sizing class, e.g. 'max-h-10 max-w-[120px]' */
+  type: string;
+  logo: string;
   logoScale?: string;
-  /** Background colour for the card */
-  bgColor: string;
-  /** Fallback text shown if no logo supplied */
-  isTextPlaceholder?: boolean;
 }
 
 /* ================================================================
-   Partner data — 3 sections with real logos where available
+   Partner lists with real logos only (no text fallbacks)
    ================================================================ */
 
 // ── NETWORKING & SECURITY ──────────────────────────────────────────
 const networkingPartners: Partner[] = [
   {
     name: 'Cisco',
+    type: 'Networking & Security',
     logo: '/partners/cisco.png',
-    logoScale: 'max-h-12 max-w-[110px]',
-    bgColor: '#F4F6F9',
+    logoScale: 'max-h-8',
   },
   {
     name: 'Fortinet',
+    type: 'Network Security',
     logo: '/partners/fortinet-logo.svg',
-    logoScale: 'max-h-10 max-w-[110px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-7',
   },
   {
     name: 'Palo Alto Networks',
+    type: 'Network Security',
     logo: '/partners/paloalto.svg',
-    logoScale: 'max-h-10 max-w-[120px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-7',
   },
   {
     name: 'Sophos',
+    type: 'Endpoint Security',
     logo: '/partners/sophos.png',
-    logoScale: 'max-h-10 max-w-[110px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-7',
   },
   {
     name: 'F5',
+    type: 'Application Delivery',
     logo: '/partners/f5.svg',
-    logoScale: 'max-h-12 max-w-[80px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-8',
   },
   {
     name: 'Ruckus',
+    type: 'Wireless Networking',
     logo: '/partners/ruckus.svg',
-    logoScale: 'max-h-10 max-w-[120px]',
-    bgColor: '#FFFFFF',
-  },
-  {
-    // No logo file confirmed — text placeholder
-    name: 'Cambium Networks',
-    bgColor: '#005A9C',
-    isTextPlaceholder: true,
+    logoScale: 'max-h-7',
   },
   {
     name: 'CommScope',
+    type: 'Network Infrastructure',
     logo: '/partners/cmmscope.svg',
-    logoScale: 'max-h-10 max-w-[120px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-7',
   },
 ];
 
@@ -134,45 +125,27 @@ const networkingPartners: Partner[] = [
 const cyberSecurityPartners: Partner[] = [
   {
     name: 'CrowdStrike',
+    type: 'EDR & Cybersecurity',
     logo: '/partners/crowdstrike.svg',
-    logoScale: 'max-h-10 max-w-[120px]',
-    bgColor: '#0D0D0D',
+    logoScale: 'max-h-6',
   },
   {
     name: 'Palo Alto Networks',
+    type: 'Network Security',
     logo: '/partners/paloalto.svg',
-    logoScale: 'max-h-10 max-w-[120px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-7',
   },
   {
     name: 'Fortinet',
+    type: 'Network Security',
     logo: '/partners/fortinet-logo.svg',
-    logoScale: 'max-h-10 max-w-[110px]',
-    bgColor: '#C8102E',
+    logoScale: 'max-h-7',
   },
   {
     name: 'Cisco',
+    type: 'Networking & Security',
     logo: '/partners/cisco.png',
-    logoScale: 'max-h-12 max-w-[110px]',
-    bgColor: '#F4F6F9',
-  },
-  {
-    // No logo file confirmed — text placeholder
-    name: 'Tenable',
-    bgColor: '#0A0A0A',
-    isTextPlaceholder: true,
-  },
-  {
-    // No logo file confirmed — text placeholder
-    name: 'Forescout',
-    bgColor: '#00539B',
-    isTextPlaceholder: true,
-  },
-  {
-    // No logo file confirmed — text placeholder
-    name: 'Forcepoint',
-    bgColor: '#00447C',
-    isTextPlaceholder: true,
+    logoScale: 'max-h-8',
   },
 ];
 
@@ -180,152 +153,84 @@ const cyberSecurityPartners: Partner[] = [
 const dataCenterPartners: Partner[] = [
   {
     name: 'AWS',
+    type: 'Cloud Infrastructure',
     logo: '/partners/aws.png',
-    logoScale: 'max-h-10 max-w-[100px]',
-    bgColor: '#141B24',
+    logoScale: 'max-h-8',
   },
   {
     name: 'Microsoft Azure',
+    type: 'Cloud Infrastructure',
     logo: '/partners/azure.png',
-    logoScale: 'max-h-10 max-w-[110px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-8',
   },
   {
     name: 'Google Cloud',
+    type: 'Cloud Infrastructure',
     logo: '/partners/google-logo.svg',
-    logoScale: 'max-h-9 max-w-[110px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-7',
   },
   {
     name: 'Dell',
+    type: 'Server & Storage',
     logo: '/partners/dell.png',
-    logoScale: 'max-h-10 max-w-[100px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-8',
   },
   {
     name: 'VMware',
+    type: 'Virtualization & Cloud',
     logo: '/partners/vmware-logo-grey.svg',
-    logoScale: 'max-h-9 max-w-[120px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-7',
   },
   {
     name: 'Cohesity',
+    type: 'Data Management & Backup',
     logo: '/partners/cohesity-logo-black-green.svg',
-    logoScale: 'max-h-10 max-w-[120px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-7',
   },
   {
     name: 'NetApp',
+    type: 'Hybrid Cloud Storage',
     logo: '/partners/netapp.avif',
-    logoScale: 'max-h-9 max-w-[110px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-7',
   },
   {
     name: 'Veeam',
+    type: 'Data Backup & Recovery',
     logo: '/partners/veem.webp',
-    logoScale: 'max-h-9 max-w-[110px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-7',
   },
   {
     name: 'Red Hat',
-    // Filename has space — use encodeURIComponent handled via encodeURI below
+    type: 'Enterprise Open Source',
     logo: '/partners/red hat.png',
-    logoScale: 'max-h-10 max-w-[110px]',
-    bgColor: '#FFFFFF',
+    logoScale: 'max-h-8',
   },
 ];
 
-/* Helper: split array into rows of n */
-const chunkArray = <T,>(arr: T[], size: number): T[][] => {
-  const chunks: T[][] = [];
-  for (let i = 0; i < arr.length; i += size) {
-    chunks.push(arr.slice(i, i + size));
-  }
-  return chunks;
-};
-
 /* ================================================================
-   PartnerCard — renders a single partner square with real logo
-   or text placeholder fallback
+   PartnerCard — matches ClientCard exactly
    ================================================================ */
 
-function PartnerCard({ partner, visible, delayMs }: { partner: Partner; visible: boolean; delayMs: number }) {
+function PartnerCard({ partner }: { partner: Partner }) {
   return (
     <div
-      className="w-full h-full"
-      style={{
-        opacity: visible ? 1 : 0,
-        transitionProperty: 'opacity, transform',
-        transition: visible
-          ? `opacity 600ms cubic-bezier(0.16, 1, 0.3, 1) ${delayMs}ms, transform 600ms cubic-bezier(0.16, 1, 0.3, 1) ${delayMs}ms`
-          : 'none',
-        transform: visible ? 'translateY(0)' : 'translateY(20px)',
-        willChange: 'opacity, transform',
-      }}
+      className="group relative p-4 rounded-2xl border border-white/30 bg-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
     >
-      <div
-        className="relative w-full aspect-square flex items-center justify-center rounded-none shadow-sm hover:scale-105 transition-transform duration-300 group cursor-pointer p-6"
-        style={{ background: partner.bgColor }}
-      >
-        <div className="flex items-center justify-center w-full h-full transition-all duration-300 group-hover:brightness-110">
-          {partner.logo && !partner.isTextPlaceholder ? (
-            <Image
-              src={encodeURI(partner.logo)}
-              alt={`${partner.name} logo`}
-              width={160}
-              height={80}
-              className={`w-auto object-contain ${partner.logoScale ?? 'max-h-10 max-w-[120px]'}`}
-            />
-          ) : (
-            <div className="text-center px-2">
-              <span className="block text-base sm:text-lg lg:text-xl font-bold tracking-wider font-mono text-white leading-tight select-none">
-                {partner.name}
-              </span>
-            </div>
-          )}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-/* ================================================================
-   PartnersRow — scroll-reveal triggered row
-   ================================================================ */
-
-function PartnersRow({ rowItems, staggerMs = 90 }: { rowItems: Partner[]; staggerMs?: number }) {
-  const [visible, setVisible] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.unobserve(el);
-        }
-      },
-      { threshold: 0.25 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <div
-      ref={ref}
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 w-full justify-items-start"
-    >
-      {rowItems.map((partner, index) => (
-        <PartnerCard
-          key={partner.name}
-          partner={partner}
-          visible={visible}
-          delayMs={index * staggerMs}
+      <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
+        <Image
+          src={encodeURI(partner.logo)}
+          alt={`${partner.name} logo`}
+          width={140}
+          height={48}
+          className={`w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${partner.logoScale || 'max-h-10'}`}
         />
-      ))}
+      </div>
+      <span
+        className="text-xs font-bold text-slate-800 leading-tight transition-colors group-hover:text-[rgb(20,109,174)]"
+      >
+        {partner.name}
+      </span>
+      <span className="text-[10px] font-medium text-slate-500 mt-0.5">{partner.type}</span>
     </div>
   );
 }
@@ -335,10 +240,6 @@ function PartnersRow({ rowItems, staggerMs = 90 }: { rowItems: Partner[]; stagge
    ================================================================ */
 
 export default function PartnersSection() {
-  const networkingRows = chunkArray(networkingPartners, 4);
-  const cyberSecurityRows = chunkArray(cyberSecurityPartners, 4);
-  const dataCenterRows = chunkArray(dataCenterPartners, 4);
-
   // Shared blue-background style matching /clients page
   const blueBg = {
     backgroundColor: 'rgb(22, 120, 191)',
@@ -350,9 +251,7 @@ export default function PartnersSection() {
   return (
     <div className="relative w-full" style={blueBg}>
 
-      {/* ─────────────────────────────────────────────────────────
-          SECTION 1 — Hero
-         ───────────────────────────────────────────────────────── */}
+      {/* Hero Section */}
       <section className="relative w-full overflow-hidden border-b border-white/10">
         <div className="relative z-10 max-w-4xl mx-auto px-6 pt-32 pb-24 text-center">
           <Reveal delay={0} threshold={0.1} duration={700}>
@@ -389,27 +288,27 @@ export default function PartnersSection() {
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────
-          SECTION 2 — Partner grids
-         ───────────────────────────────────────────────────────── */}
+      {/* Grid of Partners */}
       <section className="relative w-full py-24 overflow-hidden border-b border-white/10">
-        <div className="relative z-10 max-w-6xl mx-auto px-6">
+        <div className="relative z-10 max-w-7xl mx-auto px-6">
 
           {/* Networking & Security */}
           <div className="mb-20">
             <Reveal delay={0} threshold={0.15} duration={700}>
               <h2
-                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono text-white/90"
+                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-8 font-mono text-white/90"
                 style={{ letterSpacing: '0.08em' }}
               >
                 NETWORK &amp; SECURITY SOLUTIONS
               </h2>
             </Reveal>
-            <div className="flex flex-col gap-3 w-full">
-              {networkingRows.map((rowItems, rowIndex) => (
-                <PartnersRow key={`networking-${rowIndex}`} rowItems={rowItems} staggerMs={90} />
-              ))}
-            </div>
+            <Reveal delay={100} threshold={0.1} duration={700}>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {networkingPartners.map((partner) => (
+                  <PartnerCard key={partner.name} partner={partner} />
+                ))}
+              </div>
+            </Reveal>
           </div>
 
           <div className="border-t border-dashed border-white/20 w-full my-20" />
@@ -418,17 +317,19 @@ export default function PartnersSection() {
           <div className="mb-20">
             <Reveal delay={0} threshold={0.15} duration={700}>
               <h2
-                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono text-white/90"
+                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-8 font-mono text-white/90"
                 style={{ letterSpacing: '0.08em' }}
               >
                 CYBER SECURITY SOLUTIONS
               </h2>
             </Reveal>
-            <div className="flex flex-col gap-3 w-full">
-              {cyberSecurityRows.map((rowItems, rowIndex) => (
-                <PartnersRow key={`cybersecurity-${rowIndex}`} rowItems={rowItems} staggerMs={90} />
-              ))}
-            </div>
+            <Reveal delay={100} threshold={0.1} duration={700}>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {cyberSecurityPartners.map((partner) => (
+                  <PartnerCard key={partner.name} partner={partner} />
+                ))}
+              </div>
+            </Reveal>
           </div>
 
           <div className="border-t border-dashed border-white/20 w-full my-20" />
@@ -437,25 +338,25 @@ export default function PartnersSection() {
           <div className="mb-20">
             <Reveal delay={0} threshold={0.15} duration={700}>
               <h2
-                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-12 font-mono text-white/90"
+                className="text-xl sm:text-2xl font-bold tracking-wider uppercase mb-8 font-mono text-white/90"
                 style={{ letterSpacing: '0.08em' }}
               >
                 DATA CENTER &amp; CLOUD
               </h2>
             </Reveal>
-            <div className="flex flex-col gap-3 w-full">
-              {dataCenterRows.map((rowItems, rowIndex) => (
-                <PartnersRow key={`datacenter-${rowIndex}`} rowItems={rowItems} staggerMs={90} />
-              ))}
-            </div>
+            <Reveal delay={100} threshold={0.1} duration={700}>
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+                {dataCenterPartners.map((partner) => (
+                  <PartnerCard key={partner.name} partner={partner} />
+                ))}
+              </div>
+            </Reveal>
           </div>
 
         </div>
       </section>
 
-      {/* ─────────────────────────────────────────────────────────
-          SECTION 3 — CTA
-         ───────────────────────────────────────────────────────── */}
+      {/* Collaborate CTA Section */}
       <section className="relative w-full py-28 overflow-hidden">
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-8 sm:p-12 shadow-sm border border-white/20 bg-white/10 text-center">
