@@ -218,7 +218,7 @@ function PartnerCard({ partner }: { partner: Partner }) {
     >
       <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
         <Image
-          src={encodeURI(partner.logo)}
+          src={partner.logo}
           alt={`${partner.name} logo`}
           width={140}
           height={48}
