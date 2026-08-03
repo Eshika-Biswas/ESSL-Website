@@ -81,15 +81,20 @@ const rightSolutions = [
   },
 ];
 
-interface ClientItem {
+// ─── 4 Retail & E-Commerce Clients ──────────────────────────────────────────
+interface RetailClient {
   name: string;
   type: string;
+  logo: string;
   initials: string;
+  scale?: string;
 }
 
-const retailClients: ClientItem[] = [
-  { name: 'Aarong', type: 'Retail Chain', initials: 'ARG' },
-  { name: 'Berger Paints', type: 'Paints & Retail', initials: 'BGR' },
+const retailClients: RetailClient[] = [
+  { name: 'Aarong', type: 'Lifestyle & Retail Chain', logo: '/logos/aarong 111.png', initials: 'ARG', scale: 'max-h-12 scale-110' },
+  { name: 'Alfamart', type: 'Convenience Retail Chain', logo: '/logos/alfamart.png', initials: 'ALF', scale: 'max-h-11 scale-110' },
+  { name: 'Shwapno', type: 'Superstore Retail Chain', logo: '/logos/shwapno_logo.png', initials: 'SHW', scale: 'max-h-10 scale-105' },
+  { name: 'Agora', type: 'Superstore Retail Chain', logo: '/logos/agora.png', initials: 'AGO', scale: 'max-h-10 scale-105' },
 ];
 
 export default function RetailEcommerceDetail() {
@@ -311,15 +316,31 @@ export default function RetailEcommerceDetail() {
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
+            {/* 4 Retail Clients Grid - Centered Max Width */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-5 max-w-4xl mx-auto">
               {retailClients.map((client) => (
                 <div
                   key={client.name}
-                  className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32 w-[calc(50%-0.5rem)] sm:w-56 md:w-60 shrink-0"
+                  className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
-                    {client.initials}
-                  </div>
+                  {client.logo ? (
+                    <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
+                      <Image
+                        src={encodeURI(client.logo)}
+                        alt={`${client.name} logo`}
+                        width={140}
+                        height={48}
+                        className={`w-auto object-contain transition-transform duration-300 ${
+                          client.scale || 'max-h-10 scale-100'
+                        }`}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
+                      {client.initials}
+                    </div>
+                  )}
+                  
                   <span className="text-xs font-bold text-slate-800 group-hover:text-[rgb(20,109,174)] transition-colors leading-tight">
                     {client.name}
                   </span>
