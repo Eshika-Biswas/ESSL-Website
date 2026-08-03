@@ -74,16 +74,21 @@ const rightSolutions = [
   },
 ];
 
-interface ClientItem {
+// ─── 5 Government & Public Sector Clients ────────────────────────────────
+interface GovernmentClient {
   name: string;
   type: string;
+  logo: string;
   initials: string;
+  scale?: string;
 }
 
-const governmentClients: ClientItem[] = [
-  { name: 'Bangladesh Parliament', type: 'Legislative Body', initials: 'BAP' },
-  { name: 'EGCB Bangladesh', type: 'Power & Energy', initials: 'EGC' },
-  { name: 'BIFPCL', type: 'Energy Infra', initials: 'BIF' },
+const governmentClients: GovernmentClient[] = [
+  { name: 'Bangladesh Biman', type: 'National Flag Carrier', logo: '/logos/Bangladesh Biman.PNG', initials: 'BBA', scale: 'max-h-9 scale-105' },
+  { name: 'EGCB', type: 'Power & Energy Sector', logo: '/logos/egcb.png', initials: 'EGC', scale: 'max-h-12 scale-115' },
+  { name: 'IDCOL', type: 'Development Finance', logo: '/logos/idcol.png', initials: 'IDC', scale: 'max-h-10 scale-105' },
+  { name: 'Bangladesh Parliament', type: 'Legislative Secretariat', logo: '/logos/parliament.webp', initials: 'BJP', scale: 'max-h-12 scale-115' },
+  { name: 'BIFPCL', type: 'National Energy Infra', logo: '/logos/bifplc.png', initials: 'BIF', scale: 'max-h-12 scale-115' },
 ];
 
 export default function GovernmentPublicSectorDetail() {
@@ -298,15 +303,31 @@ export default function GovernmentPublicSectorDetail() {
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
+            {/* 5 Government Clients Grid - Centered Max Width */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 max-w-5xl mx-auto">
               {governmentClients.map((client) => (
                 <div
                   key={client.name}
-                  className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32 w-[calc(50%-0.5rem)] sm:w-56 md:w-60 shrink-0"
+                  className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
-                    {client.initials}
-                  </div>
+                  {client.logo ? (
+                    <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
+                      <Image
+                        src={encodeURI(client.logo)}
+                        alt={`${client.name} logo`}
+                        width={140}
+                        height={48}
+                        className={`w-auto object-contain transition-transform duration-300 ${
+                          client.scale || 'max-h-10 scale-100'
+                        }`}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
+                      {client.initials}
+                    </div>
+                  )}
+                  
                   <span className="text-xs font-bold text-slate-800 group-hover:text-[rgb(20,109,174)] transition-colors leading-tight">
                     {client.name}
                   </span>
