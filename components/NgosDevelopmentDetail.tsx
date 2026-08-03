@@ -73,18 +73,20 @@ const rightSolutions = [
   },
 ];
 
-interface ClientItem {
+// ─── 4 NGOs & Development Clients ──────────────────────────────────────────
+interface NgoClient {
   name: string;
   type: string;
+  logo: string;
   initials: string;
+  scale?: string;
 }
 
-const ngoClients: ClientItem[] = [
-  { name: 'IFRC', type: 'Humanitarian Red Cross', initials: 'IFR' },
-  { name: 'Transparency International BD', type: 'Civil Society NGO', initials: 'TIB' },
-  { name: 'BURO Bangladesh', type: 'Microfinance & Dev', initials: 'BUR' },
-  { name: 'World Vision', type: 'Child Rights NGO', initials: 'WVB' },
-  { name: 'icddr,b', type: 'Global Health Research', initials: 'ICD' },
+const ngoClients: NgoClient[] = [
+  { name: 'ASA', type: 'Microfinance & Development', logo: '/logos/asa-logo-vertical.png', initials: 'ASA', scale: 'max-h-12 scale-110' },
+  { name: 'BRAC', type: 'Global Development NGO', logo: '/logos/brac ngo.png', initials: 'BRC', scale: 'max-h-10 scale-105' },
+  { name: 'Shakti Foundation', type: 'Women Empowerment NGO', logo: '/logos/shakti.png', initials: 'SFB', scale: 'max-h-9 scale-105' },
+  { name: 'BEES', type: 'Community Development', logo: '/logos/BEES-Logo-Home-Page-2.jpg', initials: 'BEE', scale: 'max-h-12 scale-110' },
 ];
 
 export default function NgosDevelopmentDetail() {
@@ -299,15 +301,31 @@ export default function NgosDevelopmentDetail() {
               </p>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4 sm:gap-5">
+            {/* 4 NGO Clients Grid - Centered Max Width */}
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-5 max-w-4xl mx-auto">
               {ngoClients.map((client) => (
                 <div
                   key={client.name}
-                  className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32 w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-0.85rem)] md:w-44 lg:w-48 shrink-0"
+                  className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
                 >
-                  <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
-                    {client.initials}
-                  </div>
+                  {client.logo ? (
+                    <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
+                      <Image
+                        src={encodeURI(client.logo)}
+                        alt={`${client.name} logo`}
+                        width={140}
+                        height={48}
+                        className={`w-auto object-contain transition-transform duration-300 ${
+                          client.scale || 'max-h-10 scale-100'
+                        }`}
+                      />
+                    </div>
+                  ) : (
+                    <div className="w-10 h-10 rounded-xl bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] flex items-center justify-center font-black text-sm mb-2 group-hover:bg-[rgb(20,109,174)] group-hover:text-white transition-colors">
+                      {client.initials}
+                    </div>
+                  )}
+                  
                   <span className="text-xs font-bold text-slate-800 group-hover:text-[rgb(20,109,174)] transition-colors leading-tight">
                     {client.name}
                   </span>
