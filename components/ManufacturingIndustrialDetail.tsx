@@ -1,5 +1,6 @@
 'use client';
 
+import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -15,6 +16,8 @@ import {
   Network,
   Radio,
   Boxes,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 
 const leftSolutions = [
@@ -73,7 +76,7 @@ const rightSolutions = [
   },
 ];
 
-// ─── 19 Manufacturing & Industrial Clients ───────────────────────────────
+// ─── 28 Manufacturing & Industrial Clients ───────────────────────────────
 interface ManufacturingClient {
   name: string;
   type: string;
@@ -102,9 +105,20 @@ const manufacturingClients: ManufacturingClient[] = [
   { name: 'Singer (Beko)', type: 'Consumer Electronics', logo: '/logos/singer.png', initials: 'SNG', scale: 'max-h-9 scale-105' },
   { name: 'Windy Group', type: 'Apparel & Export Manufacturing', logo: '/logos/windy.png', initials: 'WND', scale: 'max-h-10 scale-105' },
   { name: 'Berger Paints', type: 'Paints & Coatings', logo: '/logos/berger-paints.png', initials: 'BPB', scale: 'max-h-10 scale-105' },
+  { name: 'Anwar Group', type: 'Industrial Conglomerate', logo: '/logos/anwar-group 12.jpg', initials: 'AGL', scale: 'max-h-10 scale-105' },
+  { name: 'Navana Group', type: 'Industrial & Automotive', logo: '/logos/navana.png', initials: 'NVN', scale: 'max-h-10 scale-105' },
+  { name: 'Partex Star Group', type: 'Consumer & Manufacturing', logo: '/logos/partex-logo.png', initials: 'PSG', scale: 'max-h-9 scale-105' },
+  { name: 'Akij Group', type: 'Industrial Conglomerate', logo: '/logos/Akij-Insaf-logo.472a84eedbb63231b165.png', initials: 'AKJ', scale: 'max-h-11 scale-110' },
+  { name: 'Snowtex Outerwear', type: 'Apparel & Export Mfg', logo: '/logos/snowtex.png', initials: 'STX', scale: 'max-h-9 scale-105' },
+  { name: 'Rahimafrooz', type: 'Energy & Storage Solutions', logo: '/logos/rahimafrooz.png', initials: 'RAF', scale: 'max-h-9 scale-105' },
+  { name: 'Savoy Ice Cream', type: 'FMCG & Food Processing', logo: '/logos/savoy.png', initials: 'SVY', scale: 'max-h-10 scale-105' },
+  { name: 'PDS Multinational', type: 'Global Sourcing & Apparel', logo: '/logos/pds-logo-1.svg', initials: 'PDS', scale: 'max-h-10 scale-105' },
+  { name: 'Thermax Group', type: 'Textiles & Industrial Infra', logo: '/logos/theremax 1.png', initials: 'TMX', scale: 'max-h-10 scale-105' },
 ];
 
 export default function ManufacturingIndustrialDetail() {
+  const [showAllClients, setShowAllClients] = useState(false);
+
   const gridBgStyle = {
     backgroundColor: '#f8fafc',
     backgroundImage: `
@@ -113,6 +127,8 @@ export default function ManufacturingIndustrialDetail() {
     `,
     backgroundSize: '40px 40px',
   };
+
+  const visibleClients = showAllClients ? manufacturingClients : manufacturingClients.slice(0, 12);
 
   return (
     <div className="w-full overflow-hidden bg-slate-50">
@@ -316,9 +332,9 @@ export default function ManufacturingIndustrialDetail() {
               </p>
             </div>
 
-            {/* 19 Manufacturing Clients Grid */}
+            {/* 28 Manufacturing Clients Grid */}
             <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 gap-4 sm:gap-5 max-w-6xl mx-auto">
-              {manufacturingClients.map((client) => (
+              {visibleClients.map((client) => (
                 <div
                   key={client.name}
                   className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:border-[rgb(20,109,174)]/30 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
@@ -350,6 +366,30 @@ export default function ManufacturingIndustrialDetail() {
                 </div>
               ))}
             </div>
+
+            {/* Show More / Show Less Toggle Button */}
+            {manufacturingClients.length > 12 && (
+              <div className="mt-10 text-center">
+                <button
+                  type="button"
+                  onClick={() => setShowAllClients(!showAllClients)}
+                  className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-slate-300/90 bg-white hover:bg-slate-50 text-slate-700 font-bold text-sm shadow-sm hover:shadow transition-all cursor-pointer"
+                >
+                  {showAllClients ? (
+                    <>
+                      Show Fewer Clients
+                      <ChevronUp className="w-4 h-4 text-[rgb(20,109,174)]" />
+                    </>
+                  ) : (
+                    <>
+                      Show All 28 Clients ({manufacturingClients.length - 12} More)
+                      <ChevronDown className="w-4 h-4 text-[rgb(20,109,174)]" />
+                    </>
+                  )}
+                </button>
+              </div>
+            )}
+
           </div>
         </section>
       )}

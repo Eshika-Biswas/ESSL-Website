@@ -73,19 +73,21 @@ const rightSolutions = [
   },
 ];
 
-// ─── 4 IT & Software Clients ─────────────────────────────────────────────────
+// ─── 5 IT & Software Clients ─────────────────────────────────────────────────
 interface ClientLogo {
   name: string;
   type: string;
   logo: string;
   initials: string;
+  scale?: string;
 }
 
 const itSoftwareClients: ClientLogo[] = [
-  { name: 'Brain Station 23', type: 'Software Exporter', logo: '/logos/brain station.webp', initials: 'BS23' },
-  { name: 'TechnoNext', type: 'Software & Cloud Solutions', logo: '/logos/technonext.webp', initials: 'TN' },
-  { name: 'IT Consultants Ltd', type: 'Fintech & Payment Systems', logo: '/logos/itcl-logo-new.png', initials: 'ITCL' },
-  { name: 'SouthTech Group', type: 'Enterprise Software', logo: '/logos/southtech-logo.svg', initials: 'ST' },
+  { name: 'Brain Station 23', type: 'Software Exporter', logo: '/logos/brain station.webp', initials: 'BS23', scale: 'max-h-10 scale-105' },
+  { name: 'TechnoNext', type: 'Software & Cloud Solutions', logo: '/logos/technonext.webp', initials: 'TN', scale: 'max-h-10 scale-105' },
+  { name: 'IT Consultants Ltd', type: 'Fintech & Payment Systems', logo: '/logos/itcl-logo-new.png', initials: 'ITCL', scale: 'max-h-12 scale-125' },
+  { name: 'SouthTech Group', type: 'Enterprise Software', logo: '/logos/southtech-logo.svg', initials: 'ST', scale: 'max-h-9 scale-110' },
+  { name: 'Next Ventures', type: 'Fintech & Tech Venture', logo: '/logos/next-ventures.png', initials: 'NV', scale: 'max-h-9 scale-105' },
 ];
 
 export default function ITSoftwareDetail() {
@@ -332,8 +334,8 @@ export default function ITSoftwareDetail() {
             </p>
           </div>
 
-          {/* 4 IT & Software Clients Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-5 max-w-4xl mx-auto">
+          {/* 5 IT & Software Clients Grid */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 max-w-5xl mx-auto">
             {itSoftwareClients.map((client) => (
               <div
                 key={client.name}
@@ -342,16 +344,12 @@ export default function ITSoftwareDetail() {
                 {client.logo ? (
                   <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
                     <Image
-                      src={client.logo}
+                      src={encodeURI(client.logo)}
                       alt={`${client.name} logo`}
                       width={140}
                       height={48}
                       className={`w-auto object-contain transition-transform duration-300 ${
-                        client.name.includes('IT Consultants')
-                          ? 'max-h-12 scale-125'
-                          : client.name.includes('SouthTech')
-                          ? 'max-h-9 scale-110'
-                          : 'max-h-10 scale-105'
+                        client.scale || 'max-h-10 scale-100'
                       }`}
                     />
                   </div>

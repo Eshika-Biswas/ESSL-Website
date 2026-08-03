@@ -144,7 +144,9 @@ const BASE_CLIENTS: ClientLogo[] = [
     needsBacking: true,
   },
   {
-    kind: 'text', name: 'IPDC Finance',
+    kind: 'image', name: 'IPDC Finance', src: '/logos/IPDC Finance.png',
+    width: 110, height: 40,
+    needsBacking: true,
   },
   {
     kind: 'image', name: 'Berger Paints', src: '/logos/berger-paints.png',
@@ -172,7 +174,7 @@ const BASE_CLIENTS: ClientLogo[] = [
     needsBacking: true,
   },
   {
-    kind: 'image', name: 'UIU', src: '/logos/uiu.png',
+    kind: 'image', name: 'UIU', src: '/logos/uiu 2.png',
     width: 110, height: 40,
   },
   {
@@ -180,12 +182,12 @@ const BASE_CLIENTS: ClientLogo[] = [
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Aarong', src: '/logos/aarong.png',
+    kind: 'image', name: 'Aarong', src: '/logos/aarong 111.png',
     width: 110, height: 40,
     needsBacking: true,
   },
   {
-    kind: 'image', name: 'Buro Bangladesh', src: '/logos/buro-bangladesh.svg',
+    kind: 'image', name: 'Buro Bangladesh', src: '/logos/Buro Bangladesh.png',
     width: 110, height: 40,
   },
   {
@@ -338,8 +340,8 @@ export default function Hero() {
 
                     {/* Eyebrow badge */}
                     <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-8 ${isLight
-                        ? 'border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/5'
-                        : 'border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5'
+                      ? 'border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/5'
+                      : 'border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5'
                       }`}>
                       <div className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
                       <span className={`text-xs uppercase tracking-widest font-semibold ${isLight ? 'text-[#0f1420]/80' : 'text-primary-light'
@@ -434,9 +436,9 @@ export default function Hero() {
 
         {/* Scrolling logo row */}
         <div className="relative w-full overflow-hidden">
-          {/* Fade edges to match the dark background #0f1420 */}
-          <div className="absolute left-0 top-0 bottom-0 w-12 bg-gradient-to-r from-[#0f1420] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-12 bg-gradient-to-l from-[#0f1420] to-transparent z-10 pointer-events-none" />
+          {/* Narrow fade edges — only last ~5% of visible width fades to dark bg */}
+          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#0f1420] to-transparent z-10 pointer-events-none" />
+          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#0f1420] to-transparent z-10 pointer-events-none" />
 
           <div className="overflow-hidden">
             <div className="flex animate-ticker w-max">
@@ -445,14 +447,14 @@ export default function Hero() {
                   key={`${client.name}-${i}`}
                   className="flex-shrink-0 mx-2 sm:mx-3"
                 >
-                  <div className="flex items-center justify-center h-12 px-4 rounded-xl border border-slate-100 bg-white hover:shadow-md transition-all duration-300 group cursor-default" style={{ minWidth: '135px' }}>
+                  <div className="flex items-center justify-center h-12 px-4 rounded-xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-all duration-300 group cursor-default" style={{ minWidth: '135px' }}>
                     {client.kind === 'image' ? (
                       <Image
                         src={client.src}
                         alt={`${client.name} logo`}
                         width={client.width}
                         height={client.height}
-                        className="object-contain max-h-[33px] w-auto transition-all duration-300"
+                        className="object-contain max-h-[33px] w-auto"
                       />
                     ) : client.kind === 'svg' ? (
                       <div

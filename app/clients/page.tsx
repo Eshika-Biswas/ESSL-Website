@@ -1,950 +1,301 @@
 import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeft, Users } from 'lucide-react';
-import { ReactNode } from 'react';
+import { ArrowLeft, Users, ExternalLink } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Our Clients | ESSL',
-  description: 'ESSL is the trusted IT infrastructure and cybersecurity partner for Bangladesh\'s leading banks, government secretariats, MNCs, and corporate conglomerates.',
-  keywords: ['ESSL Clients', 'Ensure Support Service Limited Clients', 'Enterprise Clients Bangladesh', 'IT Infrastructure Clients'],
+  description:
+    "ESSL is the trusted IT infrastructure and cybersecurity partner for Bangladesh's leading banks, government agencies, enterprises, manufacturers, retailers, and NGOs.",
+  keywords: [
+    'ESSL Clients',
+    'Ensure Support Service Limited Clients',
+    'Enterprise Clients Bangladesh',
+    'IT Infrastructure Clients',
+  ],
 };
 
-interface ClientGroup {
-  category: string;
-  companies: string[];
+// ─── Shared Logo Card Component ────────────────────────────────────────────────
+interface ClientEntry {
+  name: string;
+  type: string;
+  logo: string;
+  initials: string;
+  scale?: string;
 }
 
-// Map for clients who have existing high-res PNG/JPG logos in /logos/
-const logoMapping: Record<string, string> = {
-  "AKIJ Insaf": "Akij-Insaf-logo.472a84eedbb63231b165.png",
-  "City Group": "citygroup.png",
-  "Crown Cement": "crown-cement.png",
-  "Masco Group": "masco.png",
-  "Navana Group": "navana_logo-1.svg",
-  "Next Ventures": "next-ventures.png",
-  "Paramount Textile": "paramount.png",
-  "Partex Star Group": "partex-star.png",
-  "PDS": "pds.png",
-  "Rahimafrooz": "rahimafrooz.png",
-  "Samuda Chemical Complex Limited": "samuda.png",
-  "Savoy": "savoy.png",
-  "Snowtex": "snowtex.png",
-  "Standard Group": "standarad.png",
-  "Thermax Group": "theremax.png",
-  "TK Group": "TK-Group-1-2.png",
-  "Urmi Group": "urmi-logo-1-1-2.png",
-};
-
-// Helper: stacked logo tile — icon block on top, label below, fits the square card
-function LogoTile({ icon, label, bg = '#FFFFFF', color = '#1e293b' }: {
-  icon: ReactNode;
-  label: string;
-  bg?: string;
-  color?: string;
-}) {
+function ClientCard({ client, accentColor = 'rgb(20,109,174)' }: { client: ClientEntry; accentColor?: string }) {
   return (
-    <div className="flex flex-col items-center justify-center gap-2 w-full h-full">
-      <div
-        className="flex items-center justify-center rounded-lg w-14 h-14"
-        style={{ background: bg }}
-      >
-        {icon}
-      </div>
+    <div
+      className="group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/80 hover:shadow-md transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
+      style={{ '--accent': accentColor } as React.CSSProperties}
+    >
+      {client.logo ? (
+        <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
+          <Image
+            src={encodeURI(client.logo)}
+            alt={`${client.name} logo`}
+            width={140}
+            height={48}
+            className={`w-auto object-contain ${client.scale || 'max-h-10'}`}
+          />
+        </div>
+      ) : (
+        <div
+          className="w-10 h-10 rounded-xl flex items-center justify-center font-black text-sm mb-2 transition-colors"
+          style={{ background: `${accentColor}1a`, color: accentColor }}
+        >
+          {client.initials}
+        </div>
+      )}
       <span
-        className="text-[10px] font-semibold text-center leading-tight px-1"
-        style={{ color, maxWidth: '100%', wordBreak: 'break-word', whiteSpace: 'normal' }}
+        className="text-xs font-bold text-slate-800 leading-tight transition-colors group-hover:text-[var(--accent)]"
       >
-        {label}
+        {client.name}
       </span>
+      <span className="text-[10px] font-medium text-slate-400 mt-0.5">{client.type}</span>
     </div>
   );
 }
 
-// Map for clients with custom inline vector SVG brand logos (replacing broken images & building placeholders)
-const inlineSvgLogos: Record<string, ReactNode> = {
-  // ──────────────────────────────────────────────
-  // BANKING & FINANCIAL SERVICES
-  // ──────────────────────────────────────────────
-  "Standard Chartered Bank": (
-    <LogoTile
-      label="Standard Chartered"
-      bg="#009A44"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <path d="M5,20 C5,11 15,11 20,18 C25,11 35,11 35,20 C35,29 25,29 20,22 C15,29 5,29 5,20 Z" fill="none" stroke="#FFFFFF" strokeWidth="3" />
-        </svg>
-      }
-    />
-  ),
-  "BRAC Bank": (
-    <LogoTile
-      label="BRAC Bank"
-      bg="#003594"
-      color="#003594"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="6" fill="#FFC72C" />
-          <text x="20" y="28" fill="#003594" fontFamily="sans-serif" fontWeight="900" fontSize="22" textAnchor="middle">b</text>
-        </svg>
-      }
-    />
-  ),
-  "Eastern Bank PLC": (
-    <LogoTile
-      label="Eastern Bank (EBL)"
-      bg="#005A9C"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="6" y="8" width="22" height="7" fill="#FFFFFF" />
-          <rect x="6" y="17" width="16" height="7" fill="#FFFFFF" />
-          <rect x="6" y="26" width="22" height="7" fill="#FFFFFF" />
-        </svg>
-      }
-    />
-  ),
-  "Dhaka Bank PLC": (
-    <LogoTile
-      label="Dhaka Bank"
-      bg="#00843D"
-      color="#002D62"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" fill="#002D62" />
-          <text x="20" y="27" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="14" textAnchor="middle">DB</text>
-        </svg>
-      }
-    />
-  ),
-  "LankaBangla Finance": (
-    <LogoTile
-      label="LankaBangla Finance"
-      bg="#f0faf0"
-      color="#1D252D"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <path d="M4,20 Q14,6 20,20 Q26,34 36,20" fill="none" stroke="#84BD00" strokeWidth="4" strokeLinecap="round" />
-        </svg>
-      }
-    />
-  ),
-  "Meghna Bank PLC": (
-    <LogoTile
-      label="Meghna Bank"
-      bg="#EEF5FF"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <path d="M4,24 Q12,10 20,18 Q28,10 36,24" fill="none" stroke="#D22630" strokeWidth="4" strokeLinecap="round" />
-        </svg>
-      }
-    />
-  ),
-  "NRB Commercial Bank Limited": (
-    <LogoTile
-      label="NRBC Bank"
-      bg="#006A4E"
-      color="#006A4E"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#006A4E" />
-          <circle cx="20" cy="20" r="8" fill="#F42A41" />
-          <circle cx="20" cy="20" r="3" fill="#FFFFFF" />
-        </svg>
-      }
-    />
-  ),
-  "Southeast Bank PLC": (
-    <LogoTile
-      label="Southeast Bank"
-      bg="#EEF4FF"
-      color="#005C8A"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <polygon points="20,4 36,20 20,36 4,20" fill="#005C8A" />
-        </svg>
-      }
-    />
-  ),
-  "Commercial Bank": (
-    <LogoTile
-      label="Commercial Bank"
-      bg="#005A9C"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" fill="#005A9C" />
-          <text x="20" y="28" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="20" textAnchor="middle">C</text>
-        </svg>
-      }
-    />
-  ),
-  "NCC Bank": (
-    <LogoTile
-      label="NCC Bank"
-      bg="#D22630"
-      color="#D22630"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="4" fill="#D22630" />
-          <text x="20" y="27" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="13" textAnchor="middle">NCC</text>
-        </svg>
-      }
-    />
-  ),
-  "IDLC Finance PLC": (
-    <LogoTile
-      label="IDLC Finance"
-      bg="#f0fdf9"
-      color="#1A2B4C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="6" y="8" width="10" height="24" fill="#008080" />
-          <rect x="20" y="18" width="10" height="14" fill="#FF8C00" />
-        </svg>
-      }
-    />
-  ),
-  "HBL (Habib Bank)": (
-    <LogoTile
-      label="HBL — Habib Bank"
-      bg="#006A4E"
-      color="#006A4E"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" fill="#006A4E" />
-          <text x="20" y="27" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="16" textAnchor="middle">HBL</text>
-        </svg>
-      }
-    />
-  ),
-  "IDCOL": (
-    <LogoTile
-      label="IDCOL"
-      bg="#EEF4FF"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#005A9C" />
-          <text x="20" y="25" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="11" textAnchor="middle">IDCOL</text>
-        </svg>
-      }
-    />
-  ),
-  "IPDC Finance": (
-    <LogoTile
-      label="IPDC Finance"
-      bg="#FF5E00"
-      color="#0A1D37"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="4" fill="#FF5E00" />
-          <text x="20" y="27" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="12" textAnchor="middle">IPDC</text>
-        </svg>
-      }
-    />
-  ),
-  "Green Delta Insurance": (
-    <LogoTile
-      label="Green Delta Insurance"
-      bg="#f0fdf4"
-      color="#008000"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <path d="M4,20 Q12,6 20,20 Q28,34 36,20" fill="none" stroke="#008000" strokeWidth="4" strokeLinecap="round" />
-        </svg>
-      }
-    />
-  ),
-  "Pragati Life Insurance Limited": (
-    <LogoTile
-      label="Pragati Life Insurance"
-      bg="#EEF4FF"
-      color="#004687"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <path d="M4,18 L20,4 L36,18 V34 Q20,40 4,34 Z" fill="#004687" />
-        </svg>
-      }
-    />
-  ),
-  "Delta Life Insurance Company Limited": (
-    <LogoTile
-      label="Delta Life Insurance"
-      bg="#fff8f0"
-      color="#1A3B8B"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <polygon points="20,4 36,36 4,36" fill="#E87722" />
-        </svg>
-      }
-    />
-  ),
+// ─── Industry Section Component ────────────────────────────────────────────────
+function IndustrySection({
+  title,
+  href,
+  count,
+  accentColor = 'rgb(20,109,174)',
+  clients,
+}: {
+  title: string;
+  href: string;
+  count: number;
+  accentColor?: string;
+  clients: ClientEntry[];
+}) {
+  return (
+    <section className="relative py-14 border-b border-slate-200 last:border-0">
+      {/* Section Header */}
+      <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
+        <div>
+          <span
+            className="inline-block px-3 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest border mb-3 font-mono"
+            style={{ color: accentColor, borderColor: `${accentColor}33`, background: `${accentColor}0d` }}
+          >
+            {count} Clients
+          </span>
+          <h2
+            className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight"
+            style={{ fontFamily: 'var(--font-display)' }}
+          >
+            {title}
+          </h2>
+        </div>
+        <Link
+          href={href}
+          className="inline-flex items-center gap-1.5 text-xs font-semibold transition-colors shrink-0"
+          style={{ color: accentColor }}
+        >
+          View Industry Page
+          <ExternalLink className="w-3 h-3" />
+        </Link>
+      </div>
 
-  // ──────────────────────────────────────────────
-  // GOVERNMENT & DEVELOPMENT ORGANIZATIONS
-  // ──────────────────────────────────────────────
-  "Bangladesh Parliament": (
-    <LogoTile
-      label="Bangladesh Parliament"
-      bg="#006A4E"
-      color="#006A4E"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <ellipse cx="20" cy="14" rx="12" ry="8" fill="#006A4E" />
-          <ellipse cx="20" cy="14" rx="6" ry="4" fill="#F42A41" />
-          <rect x="8" y="22" width="24" height="4" fill="#006A4E" />
-          <rect x="12" y="28" width="16" height="4" fill="#006A4E" />
-        </svg>
-      }
-    />
-  ),
-  "IFRC": (
-    <LogoTile
-      label="IFRC"
-      bg="#FFF0F0"
-      color="#D22630"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <path d="M20,4 V36 M4,20 H36" stroke="#D22630" strokeWidth="7" strokeLinecap="round" fill="none" />
-        </svg>
-      }
-    />
-  ),
-  "Transparency International (Bangladesh)": (
-    <LogoTile
-      label="Transparency International BD"
-      bg="#EFF9FF"
-      color="#00355F"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="none" stroke="#00A4E4" strokeWidth="3" />
-          <text x="20" y="25" fill="#00A4E4" fontFamily="sans-serif" fontWeight="900" fontSize="13" textAnchor="middle">TI</text>
-        </svg>
-      }
-    />
-  ),
-  "BURO Bangladesh": (
-    <LogoTile
-      label="BURO Bangladesh"
-      bg="#006A4E"
-      color="#006A4E"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="6" fill="#006A4E" />
-          <text x="20" y="27" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="12" textAnchor="middle">BURO</text>
-        </svg>
-      }
-    />
-  ),
-  "World Vision Bangladesh": (
-    <LogoTile
-      label="World Vision"
-      bg="#FFF5F0"
-      color="#FF6B35"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="14" fill="none" stroke="#FF6B35" strokeWidth="3" />
-          <path d="M6,20 Q13,12 20,20 Q27,28 34,20" fill="none" stroke="#FF6B35" strokeWidth="2.5" />
-        </svg>
-      }
-    />
-  ),
-  "icddr,b": (
-    <LogoTile
-      label="icddr,b"
-      bg="#005A9C"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#005A9C" />
-          <text x="20" y="25" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="11" textAnchor="middle">icddr,b</text>
-        </svg>
-      }
-    />
-  ),
-  "EGCB (Electricity Generation Company)": (
-    <LogoTile
-      label="EGCB Bangladesh"
-      bg="#fffbeb"
-      color="#006A4E"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <polygon points="20,4 26,16 16,16 22,30 10,18 22,18" fill="#FFC72C" />
-        </svg>
-      }
-    />
-  ),
-  "BIFPCL": (
-    <LogoTile
-      label="BIFPCL"
-      bg="#1C3F60"
-      color="#1C3F60"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#D22630" />
-          <polygon points="14,20 20,10 26,20" fill="#FFFFFF" />
-          <rect x="14" y="20" width="12" height="8" fill="#FFFFFF" />
-        </svg>
-      }
-    />
-  ),
+      {/* Logo Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+        {clients.map((client) => (
+          <ClientCard key={client.name} client={client} accentColor={accentColor} />
+        ))}
+      </div>
+    </section>
+  );
+}
 
-  // ──────────────────────────────────────────────
-  // AVIATION, ENERGY & INDUSTRIAL
-  // ──────────────────────────────────────────────
-  "Biman Bangladesh Airlines": (
-    <LogoTile
-      label="Biman Bangladesh Airlines"
-      bg="#006A4E"
-      color="#006A4E"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <path d="M4,28 C12,12 28,12 36,20 L28,18 L36,28 Z" fill="#FFFFFF" stroke="#006A4E" strokeWidth="1" />
-          <circle cx="18" cy="22" r="4" fill="#F42A41" />
-        </svg>
-      }
-    />
-  ),
-  "SHV Energy": (
-    <LogoTile
-      label="SHV Energy"
-      bg="#005A9C"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="6" fill="#005A9C" />
-          <text x="20" y="27" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="14" textAnchor="middle">SHV</text>
-        </svg>
-      }
-    />
-  ),
-  "Mobil (MJL Bangladesh PLC)": (
-    <LogoTile
-      label="Mobil — MJL Bangladesh"
-      bg="#FFFFFF"
-      color="#333333"
-      icon={
-        <svg viewBox="0 0 60 28" width="52" height="24">
-          <text x="2" y="22" fill="#005A9C" fontFamily="sans-serif" fontWeight="900" fontSize="24" letterSpacing="-1">M<tspan fill="#D22630">o</tspan>bil</text>
-        </svg>
-      }
-    />
-  ),
-  "INSEE Cement": (
-    <LogoTile
-      label="INSEE Cement"
-      bg="#D22630"
-      color="#D22630"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" fill="#D22630" />
-          <text x="20" y="18" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="11" textAnchor="middle">INSEE</text>
-          <text x="20" y="31" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="10" textAnchor="middle">CEMENT</text>
-        </svg>
-      }
-    />
-  ),
-  "NTC": (
-    <LogoTile
-      label="NTC — National Tea"
-      bg="#006A4E"
-      color="#006A4E"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <path d="M4,8 H36 L32,22 L36,36 H4 Z" fill="#006A4E" />
-          <text x="20" y="26" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="13" textAnchor="middle">NTC</text>
-        </svg>
-      }
-    />
-  ),
-  "Duncan Brothers (Bangladesh) Limited": (
-    <LogoTile
-      label="Duncan Brothers"
-      bg="#005A9C"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#005A9C" />
-          <text x="20" y="17" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="10" textAnchor="middle">DUNCAN</text>
-          <text x="20" y="28" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="9" textAnchor="middle">BROTHERS</text>
-        </svg>
-      }
-    />
-  ),
-  "Sembcorp": (
-    <LogoTile
-      label="Sembcorp"
-      bg="#EFF9FF"
-      color="#0079C1"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="12" width="32" height="16" rx="4" fill="#0079C1" />
-          <text x="20" y="24" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="11" textAnchor="middle">SEMBCORP</text>
-        </svg>
-      }
-    />
-  ),
+// ─── Client Data (mirrors each Industries page's Customers section exactly) ───
 
-  // ──────────────────────────────────────────────
-  // CONGLOMERATES & CORPORATE GROUPS
-  // ──────────────────────────────────────────────
-  "Anwar Group": (
-    <LogoTile
-      label="Anwar Group"
-      bg="#E41E26"
-      color="#1C1B1F"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <polygon points="20,4 36,36 4,36" fill="#E41E26" />
-          <text x="20" y="30" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="11" textAnchor="middle">AG</text>
-        </svg>
-      }
-    />
-  ),
-  "United Group": (
-    <LogoTile
-      label="United Group"
-      bg="#1562A4"
-      color="#1562A4"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="4" fill="#1562A4" />
-          <polygon points="20,8 28,20 20,32 12,20" fill="#FFFFFF" />
-        </svg>
-      }
-    />
-  ),
-  "Team Group": (
-    <LogoTile
-      label="Team Group"
-      bg="#1C3F60"
-      color="#1C3F60"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="6" fill="#1C3F60" />
-          <text x="20" y="27" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="18" textAnchor="middle">T</text>
-        </svg>
-      }
-    />
-  ),
-
-  // ──────────────────────────────────────────────
-  // TEXTILE, APPAREL & CONSUMER GOODS
-  // ──────────────────────────────────────────────
-  "Auto-Tex Group": (
-    <LogoTile
-      label="Auto-Tex Group"
-      bg="#005A9C"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#005A9C" />
-          <text x="20" y="18" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="10" textAnchor="middle">AUTO</text>
-          <text x="20" y="29" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="9" textAnchor="middle">TEX</text>
-        </svg>
-      }
-    />
-  ),
-  "GMS Composite Knitting Ind. Ltd.": (
-    <LogoTile
-      label="GMS Composite Knitting"
-      bg="#006A4E"
-      color="#006A4E"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="4" fill="#006A4E" />
-          <text x="20" y="27" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="14" textAnchor="middle">GMS</text>
-        </svg>
-      }
-    />
-  ),
-  "Cotton": (
-    <LogoTile
-      label="Cotton Group"
-      bg="#EFF9FF"
-      color="#4A90E2"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="16" r="8" fill="#4A90E2" />
-          <circle cx="12" cy="22" r="6" fill="#4A90E2" />
-          <circle cx="28" cy="22" r="6" fill="#4A90E2" />
-          <rect x="18" y="24" width="4" height="10" fill="#6B7280" />
-        </svg>
-      }
-    />
-  ),
-  "Babylon": (
-    <LogoTile
-      label="Babylon Group"
-      bg="#fff0f0"
-      color="#D22630"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <polygon points="20,4 36,32 4,32" fill="#D22630" />
-        </svg>
-      }
-    />
-  ),
-  "Berger Paints": (
-    <LogoTile
-      label="Berger Paints"
-      bg="#D22630"
-      color="#D22630"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" fill="#D22630" />
-          <text x="20" y="18" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="11" textAnchor="middle">BERGER</text>
-          <text x="20" y="30" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="10" textAnchor="middle">PAINTS</text>
-        </svg>
-      }
-    />
-  ),
-  "Aarong": (
-    <LogoTile
-      label="Aarong"
-      bg="#fffbeb"
-      color="#b45309"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#FFC72C" />
-          <text x="20" y="25" fill="#78350F" fontFamily="sans-serif" fontWeight="900" fontSize="12" textAnchor="middle">aarong</text>
-        </svg>
-      }
-    />
-  ),
-
-  // ──────────────────────────────────────────────
-  // TECHNOLOGY & MULTINATIONAL
-  // ──────────────────────────────────────────────
-  "Samsung": (
-    <LogoTile
-      label="Samsung"
-      bg="#0A5CA6"
-      color="#0A5CA6"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <ellipse cx="20" cy="20" rx="18" ry="16" fill="#0A5CA6" />
-          <text x="20" y="25" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="11" textAnchor="middle">SAMSUNG</text>
-        </svg>
-      }
-    />
-  ),
-  "Singer Bangladesh Limited": (
-    <LogoTile
-      label="Singer Bangladesh"
-      bg="#FFF0F0"
-      color="#D22630"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <text x="6" y="32" fill="#D22630" fontFamily="sans-serif" fontWeight="900" fontSize="34">S</text>
-        </svg>
-      }
-    />
-  ),
-  "IWM (Water Environment & Climate)": (
-    <LogoTile
-      label="IWM"
-      bg="#EFF9FF"
-      color="#0079C1"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <path d="M4,28 C12,14 16,14 20,22 C24,30 28,14 36,14" fill="none" stroke="#0079C1" strokeWidth="4" strokeLinecap="round" />
-        </svg>
-      }
-    />
-  ),
-  "Mercury": (
-    <LogoTile
-      label="Mercury"
-      bg="#0A0A0A"
-      color="#0A0A0A"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#1a1a1a" />
-          <text x="20" y="25" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="10" textAnchor="middle">MERCURY</text>
-        </svg>
-      }
-    />
-  ),
-  "New Zealand Dairy": (
-    <LogoTile
-      label="New Zealand Dairy"
-      bg="#f0fdf4"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <path d="M4,20 Q12,8 20,16 Q28,8 36,20" fill="none" stroke="#009A44" strokeWidth="4" strokeLinecap="round" />
-        </svg>
-      }
-    />
-  ),
-  "Avery Dennison Paxar Bangladesh": (
-    <LogoTile
-      label="Avery Dennison"
-      bg="#D22630"
-      color="#D22630"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="12" width="32" height="16" fill="#D22630" />
-          <text x="20" y="24" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="10" textAnchor="middle">AVERY</text>
-        </svg>
-      }
-    />
-  ),
-  "BEOL (Bangladesh Edible Oil Limited)": (
-    <LogoTile
-      label="BEOL"
-      bg="#fffbeb"
-      color="#006A4E"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#FFC72C" />
-          <text x="20" y="25" fill="#006A4E" fontFamily="sans-serif" fontWeight="900" fontSize="13" textAnchor="middle">BEOL</text>
-        </svg>
-      }
-    />
-  ),
-  "EPIC Group": (
-    <LogoTile
-      label="EPIC Group"
-      bg="#0A1D37"
-      color="#0A1D37"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" fill="#0A1D37" />
-          <text x="20" y="19" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="11" textAnchor="middle">EPIC</text>
-          <text x="20" y="30" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="9" textAnchor="middle">GROUP</text>
-        </svg>
-      }
-    />
-  ),
-  "Therap (BD) Ltd.": (
-    <LogoTile
-      label="Therap BD"
-      bg="#005A9C"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="6" fill="#005A9C" />
-          <text x="20" y="26" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="12" textAnchor="middle">Therap</text>
-        </svg>
-      }
-    />
-  ),
-  "TVS": (
-    <LogoTile
-      label="TVS"
-      bg="#EEF4FF"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <text x="20" y="28" fill="#005A9C" fontFamily="sans-serif" fontWeight="900" fontSize="22" textAnchor="middle">TVS</text>
-        </svg>
-      }
-    />
-  ),
-  "Honda": (
-    <LogoTile
-      label="Honda"
-      bg="#FFF0F0"
-      color="#D22630"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="2" fill="none" stroke="#D22630" strokeWidth="3" />
-          <text x="20" y="28" fill="#D22630" fontFamily="sans-serif" fontWeight="900" fontSize="20" textAnchor="middle">H</text>
-        </svg>
-      }
-    />
-  ),
-  "CCI Bangladesh": (
-    <LogoTile
-      label="CCI Bangladesh"
-      bg="#EEF4FF"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#005A9C" />
-          <text x="20" y="25" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="14" textAnchor="middle">CCI</text>
-        </svg>
-      }
-    />
-  ),
-
-  // ──────────────────────────────────────────────
-  // EDUCATION
-  // ──────────────────────────────────────────────
-  "IUB (Independent University Bangladesh)": (
-    <LogoTile
-      label="Independent University Bangladesh"
-      bg="#005A9C"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="4" fill="#005A9C" />
-          <text x="20" y="27" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="16" textAnchor="middle">IUB</text>
-        </svg>
-      }
-    />
-  ),
-  "UIU (United International University)": (
-    <LogoTile
-      label="United International University"
-      bg="#FF5E00"
-      color="#FF5E00"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <rect x="4" y="4" width="32" height="32" rx="4" fill="#FF5E00" />
-          <text x="20" y="27" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="16" textAnchor="middle">UIU</text>
-        </svg>
-      }
-    />
-  ),
-  "East West University": (
-    <LogoTile
-      label="East West University"
-      bg="#005A9C"
-      color="#005A9C"
-      icon={
-        <svg viewBox="0 0 40 40" width="36" height="36">
-          <circle cx="20" cy="20" r="16" fill="#005A9C" />
-          <text x="20" y="18" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="900" fontSize="10" textAnchor="middle">EAST</text>
-          <text x="20" y="29" fill="#FFFFFF" fontFamily="sans-serif" fontWeight="bold" fontSize="10" textAnchor="middle">WEST</text>
-        </svg>
-      }
-    />
-  ),
-};
-
-const CLIENTS_DATA: ClientGroup[] = [
-  {
-    category: "Banking & Financial Services",
-    companies: [
-      "Standard Chartered Bank",
-      "BRAC Bank",
-      "Eastern Bank PLC",
-      "Dhaka Bank PLC",
-      "LankaBangla Finance",
-      "Meghna Bank PLC",
-      "NRB Commercial Bank Limited",
-      "Southeast Bank PLC",
-      "Commercial Bank",
-      "NCC Bank",
-      "IDLC Finance PLC",
-      "HBL (Habib Bank)",
-      "IDCOL",
-      "IPDC Finance",
-      "Green Delta Insurance",
-      "Pragati Life Insurance Limited",
-      "Delta Life Insurance Company Limited"
-    ]
-  },
-  {
-    category: "Government & Development Organizations",
-    companies: [
-      "Bangladesh Parliament",
-      "IFRC",
-      "Transparency International (Bangladesh)",
-      "BURO Bangladesh",
-      "World Vision Bangladesh",
-      "icddr,b",
-      "EGCB (Electricity Generation Company)",
-      "BIFPCL"
-    ]
-  },
-  {
-    category: "Aviation, Energy & Industrial",
-    companies: [
-      "Biman Bangladesh Airlines",
-      "SHV Energy",
-      "Mobil (MJL Bangladesh PLC)",
-      "INSEE Cement",
-      "NTC",
-      "Duncan Brothers (Bangladesh) Limited",
-      "Sembcorp"
-    ]
-  },
-  {
-    category: "Conglomerates & Corporate Groups",
-    companies: [
-      "Masco Group",
-      "Anwar Group",
-      "Navana Group",
-      "Standard Group",
-      "Next Ventures",
-      "TK Group",
-      "United Group",
-      "Rahimafrooz",
-      "Team Group",
-      "City Group",
-      "Partex Star Group",
-      "Samuda Chemical Complex Limited"
-    ]
-  },
-  {
-    category: "Textile, Apparel & Consumer Goods",
-    companies: [
-      "Snowtex",
-      "AKIJ Insaf",
-      "Auto-Tex Group",
-      "GMS Composite Knitting Ind. Ltd.",
-      "Cotton",
-      "Urmi Group",
-      "Thermax Group",
-      "Babylon",
-      "PDS",
-      "Paramount Textile",
-      "Savoy",
-      "Berger Paints",
-      "Aarong"
-    ]
-  },
-  {
-    category: "Technology & Multinational",
-    companies: [
-      "Samsung",
-      "Singer Bangladesh Limited",
-      "IWM (Water Environment & Climate)",
-      "Mercury",
-      "New Zealand Dairy",
-      "Avery Dennison Paxar Bangladesh",
-      "BEOL (Bangladesh Edible Oil Limited)",
-      "EPIC Group",
-      "Therap (BD) Ltd.",
-      "TVS",
-      "Honda",
-      "CCI Bangladesh"
-    ]
-  },
-  {
-    category: "Education",
-    companies: [
-      "IUB (Independent University Bangladesh)",
-      "UIU (United International University)",
-      "East West University"
-    ]
-  }
+const bankingClients: ClientEntry[] = [
+  { name: 'Standard Chartered', type: 'International Bank', logo: '/logos/standard-chartered.png', initials: 'SCB', scale: 'max-h-8' },
+  { name: 'BRAC Bank', type: 'Commercial Bank', logo: '/logos/brac-bank.png', initials: 'BB', scale: 'max-h-10' },
+  { name: 'Eastern Bank (EBL)', type: 'Commercial Bank', logo: '/logos/eastern-bank.png', initials: 'EBL', scale: 'max-h-9' },
+  { name: 'Dhaka Bank', type: 'Commercial Bank', logo: '/logos/dhaka-bank.png', initials: 'DB', scale: 'max-h-10' },
+  { name: 'LankaBangla Finance', type: 'NBFI', logo: '/logos/lankabangla.png', initials: 'LBF', scale: 'max-h-9' },
+  { name: 'Meghna Bank', type: 'Commercial Bank', logo: '/logos/meghna-bank.png', initials: 'MGB', scale: 'max-h-10' },
+  { name: 'NRBC Bank', type: 'Commercial Bank', logo: '/logos/nrbc-bank.png', initials: 'NRBC', scale: 'max-h-10' },
+  { name: 'Southeast Bank', type: 'Commercial Bank', logo: '/logos/southeast-bank.png', initials: 'SEB', scale: 'max-h-9' },
+  { name: 'Commercial Bank of Ceylon', type: 'International Bank', logo: '/logos/commercial-bank.png', initials: 'CBC', scale: 'max-h-10' },
+  { name: 'NCC Bank', type: 'Commercial Bank', logo: '/logos/ncc-bank.png', initials: 'NCC', scale: 'max-h-10' },
+  { name: 'HBL', type: 'International Bank', logo: '/logos/hbl.png', initials: 'HBL', scale: 'max-h-10' },
+  { name: 'DBH Finance', type: 'Housing Finance', logo: '/logos/dbh_logo.png', initials: 'DBH', scale: 'max-h-10' },
+  { name: 'IDLC Finance', type: 'NBFI', logo: '/logos/idlc-finance.png', initials: 'IDLC', scale: 'max-h-9' },
+  { name: 'IDCOL', type: 'Infrastructure Finance', logo: '/logos/idcol.png', initials: 'IDCOL', scale: 'max-h-10' },
+  { name: 'IPDC Finance', type: 'NBFI', logo: '/logos/IPDC Finance.png', initials: 'IPDC', scale: 'max-h-9' },
+  { name: 'Green Delta Insurance', type: 'General Insurance', logo: '/logos/green-delta-insurance.png', initials: 'GDI', scale: 'max-h-10' },
+  { name: 'Pragati Life Insurance', type: 'Life Insurance', logo: '/logos/pragati-life.png', initials: 'PLI', scale: 'max-h-10' },
+  { name: 'Delta Life Insurance', type: 'Life Insurance', logo: '/logos/delta-life.png', initials: 'DLI', scale: 'max-h-10' },
 ];
 
+const healthcareClients: ClientEntry[] = [
+  { name: 'ACI Limited', type: 'Pharmaceuticals & FMCG', logo: '/logos/aci-plc.png', initials: 'ACI', scale: 'max-h-9 scale-105' },
+  { name: 'Aristo Pharma', type: 'Pharmaceuticals', logo: '/logos/aristo-pharma.png', initials: 'AP', scale: 'max-h-10 scale-105' },
+  { name: 'Beximco Pharma', type: 'Pharmaceuticals & Biotech', logo: '/logos/beximco.png', initials: 'BXP', scale: 'max-h-10 scale-105' },
+  { name: 'Renata PLC', type: 'Pharmaceuticals', logo: '/logos/renata.png', initials: 'RP', scale: 'max-h-9 scale-100' },
+  { name: 'Opsonin Pharma', type: 'Pharmaceuticals', logo: '/logos/opsonin-pharma.png', initials: 'OPP', scale: 'max-h-9 scale-105' },
+  { name: 'Healthcare Pharma', type: 'Pharmaceuticals', logo: '/logos/healthcare-pharma.png', initials: 'HCP', scale: 'max-h-10 scale-105' },
+  { name: 'Sun Pharma', type: 'Multinational Pharma', logo: '/logos/sun-pharma.png', initials: 'SP', scale: 'max-h-8 scale-105' },
+  { name: 'Incepta Pharma', type: 'Pharmaceuticals', logo: '/logos/incepta-pharma.png', initials: 'INC', scale: 'max-h-9 scale-105' },
+  { name: 'Eskayef (SK+F)', type: 'Pharmaceuticals', logo: '/logos/eskayef.png', initials: 'SKF', scale: 'max-h-10 scale-105' },
+  { name: 'Synovia Pharma', type: 'Specialty Pharma', logo: '/logos/synovia-pharma.png', initials: 'SYN', scale: 'max-h-9 scale-105' },
+  { name: 'Ibn Sina', type: 'Hospitals & Diagnostics', logo: '/logos/ibn-sina.png', initials: 'IBS', scale: 'max-h-10 scale-105' },
+  { name: 'Evercare Hospital', type: 'Hospitals & Diagnostics', logo: '/logos/evercare-hospita-logo.webp', initials: 'EVC', scale: 'max-h-10 scale-105' },
+  { name: 'Continental Hospital', type: 'Hospitals & Diagnostics', logo: '/logos/continental-hospital.png', initials: 'CH', scale: 'max-h-10 scale-105' },
+  { name: 'Asgar Ali Hospital', type: 'Hospitals & Diagnostics', logo: '/logos/asgar-ali-hospital.png', initials: 'AAH', scale: 'max-h-10 scale-105' },
+];
+
+const manufacturingClients: ClientEntry[] = [
+  { name: 'City Group', type: 'FMCG & Foods', logo: '/logos/citygroup.png', initials: 'CG', scale: 'max-h-10 scale-105' },
+  { name: 'United Group', type: 'Apparel & Textiles', logo: '/logos/united-group.png', initials: 'UG', scale: 'max-h-9 scale-105' },
+  { name: 'Epic Group', type: 'Garments & Apparel', logo: '/logos/epic-group.png', initials: 'EG', scale: 'max-h-10 scale-105' },
+  { name: 'Veolmedtech', type: 'Medical Devices Mfg', logo: '/logos/veolmedtech.png', initials: 'VMT', scale: 'max-h-10 scale-105' },
+  { name: 'TK Group', type: 'FMCG & Consumer Goods', logo: '/logos/TK-Group-1-2.png', initials: 'TKG', scale: 'max-h-10 scale-105' },
+  { name: 'Standard Group', type: 'Garments & Textiles', logo: '/logos/standarad.png', initials: 'STG', scale: 'max-h-9 scale-100' },
+  { name: 'Duncan Brothers BD', type: 'Tea & Agro-Industry', logo: '/logos/duncanbd.png', initials: 'DB', scale: 'max-h-10 scale-105' },
+  { name: 'Urmi Group', type: 'Garments & Textiles', logo: '/logos/urmi-logo-1-1-2.png', initials: 'URM', scale: 'max-h-9 scale-105' },
+  { name: 'Coca-Cola', type: 'Beverages & FMCG', logo: '/logos/coca-cola.png', initials: 'CC', scale: 'max-h-10 scale-105' },
+  { name: 'Expo Group', type: 'Garments & Textiles', logo: '/logos/expo-group.png', initials: 'EXP', scale: 'max-h-10 scale-105' },
+  { name: 'GMS Composite', type: 'Knitting & Garments', logo: '/logos/gms-composite.png', initials: 'GMS', scale: 'max-h-9 scale-105' },
+  { name: 'Crown Cement', type: 'Building Materials', logo: '/logos/crown-cement.png', initials: 'CRC', scale: 'max-h-10 scale-105' },
+  { name: 'MGL', type: 'Gas Distribution', logo: '/logos/mgl.png', initials: 'MGL', scale: 'max-h-10 scale-105' },
+  { name: 'Sembcorp', type: 'Energy & Utilities', logo: '/logos/sembcorp.png', initials: 'SBC', scale: 'max-h-9 scale-100' },
+  { name: 'Masco Group', type: 'Home & Construction', logo: '/logos/masco.png', initials: 'MSC', scale: 'max-h-10 scale-105' },
+  { name: 'Marico', type: 'FMCG & Consumer Goods', logo: '/logos/marico.png', initials: 'MRC', scale: 'max-h-9 scale-105' },
+  { name: 'Singer (Beko)', type: 'Electronics & Appliances', logo: '/logos/singer.png', initials: 'SNG', scale: 'max-h-10 scale-105' },
+  { name: 'Windy Group', type: 'Energy & Renewables', logo: '/logos/windy.png', initials: 'WDY', scale: 'max-h-9 scale-105' },
+  { name: 'Berger Paints', type: 'Paints & Coatings', logo: '/logos/berger-paints.png', initials: 'BP', scale: 'max-h-10 scale-105' },
+  { name: 'Anwar Group', type: 'Industrial Conglomerate', logo: '/logos/anwar-group 12.jpg', initials: 'AGL', scale: 'max-h-10 scale-105' },
+  { name: 'Navana Group', type: 'Industrial & Automotive', logo: '/logos/navana.png', initials: 'NVN', scale: 'max-h-10 scale-105' },
+  { name: 'Partex Star Group', type: 'Consumer & Manufacturing', logo: '/logos/partex-logo.png', initials: 'PSG', scale: 'max-h-9 scale-105' },
+  { name: 'Akij Group', type: 'Industrial Conglomerate', logo: '/logos/Akij-Insaf-logo.472a84eedbb63231b165.png', initials: 'AKJ', scale: 'max-h-11 scale-110' },
+  { name: 'Snowtex Outerwear', type: 'Apparel & Export Mfg', logo: '/logos/snowtex.png', initials: 'STX', scale: 'max-h-9 scale-105' },
+  { name: 'Rahimafrooz', type: 'Energy & Storage Solutions', logo: '/logos/rahimafrooz.png', initials: 'RAF', scale: 'max-h-9 scale-105' },
+  { name: 'Savoy Ice Cream', type: 'FMCG & Food Processing', logo: '/logos/savoy.png', initials: 'SVY', scale: 'max-h-10 scale-105' },
+  { name: 'PDS Multinational', type: 'Global Sourcing & Apparel', logo: '/logos/pds-logo-1.svg', initials: 'PDS', scale: 'max-h-10 scale-105' },
+  { name: 'Thermax Group', type: 'Textiles & Industrial Infra', logo: '/logos/theremax 1.png', initials: 'TMX', scale: 'max-h-10 scale-105' },
+];
+
+const educationClients: ClientEntry[] = [
+  { name: 'IUB', type: 'Private University', logo: '/logos/iub.webp', initials: 'IUB', scale: 'max-h-10 scale-105' },
+  { name: 'UIU', type: 'Private University', logo: '/logos/uiu 2.png', initials: 'UIU', scale: 'max-h-10 scale-105' },
+  { name: 'BRAC University', type: 'Private University', logo: '/logos/brac-university.svg', initials: 'BRACU', scale: 'max-h-10 scale-105' },
+  { name: 'BUFT', type: 'Private University', logo: '/logos/buft_new_logo.png', initials: 'BUFT', scale: 'max-h-11 scale-110' },
+];
+
+const governmentClients: ClientEntry[] = [
+  { name: 'Bangladesh Biman', type: 'National Airline', logo: '/logos/Bangladesh Biman.PNG', initials: 'BBA', scale: 'max-h-10 scale-105' },
+  { name: 'EGCB', type: 'Power Generation', logo: '/logos/egcb.png', initials: 'EGCB', scale: 'max-h-9 scale-105' },
+  { name: 'IDCOL', type: 'Infrastructure Finance', logo: '/logos/idcol.png', initials: 'IDCOL', scale: 'max-h-10 scale-105' },
+  { name: 'Bangladesh Parliament', type: 'National Legislature', logo: '/logos/parliament.webp', initials: 'PARL', scale: 'max-h-10 scale-105' },
+  { name: 'BIFPCL', type: 'Power Generation', logo: '/logos/bifplc.png', initials: 'BIFPCL', scale: 'max-h-10 scale-105' },
+];
+
+const ngoClients: ClientEntry[] = [
+  { name: 'ASA', type: 'Microfinance & Development', logo: '/logos/asa-logo-vertical.png', initials: 'ASA', scale: 'max-h-14 scale-105' },
+  { name: 'BRAC', type: 'Development NGO', logo: '/logos/brac ngo.png', initials: 'BRAC', scale: 'max-h-10 scale-105' },
+  { name: 'Shakti Foundation', type: 'Microfinance NGO', logo: '/logos/shakti.png', initials: 'SHK', scale: 'max-h-10 scale-105' },
+  { name: 'BEES', type: 'Environmental NGO', logo: '/logos/BEES-Logo-Home-Page-2.jpg', initials: 'BEES', scale: 'max-h-10 scale-105' },
+];
+
+const retailClients: ClientEntry[] = [
+  { name: 'Aarong', type: 'Fashion & Lifestyle Retail', logo: '/logos/aarong 111.png', initials: 'ARG', scale: 'max-h-10 scale-105' },
+  { name: 'Alfamart', type: 'Convenience Retail Chain', logo: '/logos/alfamart.png', initials: 'AFM', scale: 'max-h-10 scale-105' },
+  { name: 'Shwapno', type: 'Supermarket Chain', logo: '/logos/shwapno_logo.png', initials: 'SWP', scale: 'max-h-9 scale-105' },
+  { name: 'Agora', type: 'Supermarket Chain', logo: '/logos/agora.png', initials: 'AGR', scale: 'max-h-10 scale-105' },
+];
+
+const itSoftwareClients: ClientEntry[] = [
+  { name: 'Brain Station 23', type: 'Software Exporter', logo: '/logos/brain station.webp', initials: 'BS23', scale: 'max-h-10 scale-105' },
+  { name: 'TechnoNext', type: 'Software & Cloud Solutions', logo: '/logos/technonext.webp', initials: 'TN', scale: 'max-h-10 scale-105' },
+  { name: 'IT Consultants Ltd', type: 'Fintech & Payment Systems', logo: '/logos/itcl-logo-new.png', initials: 'ITCL', scale: 'max-h-12 scale-125' },
+  { name: 'SouthTech Group', type: 'Enterprise Software', logo: '/logos/southtech-logo.svg', initials: 'ST', scale: 'max-h-9 scale-110' },
+  { name: 'Next Ventures', type: 'Fintech & Tech Venture', logo: '/logos/next-ventures.png', initials: 'NV', scale: 'max-h-9 scale-105' },
+];
+
+// ─── Industry Sections Config ─────────────────────────────────────────────────
+const industries = [
+  {
+    title: 'Banking & Financial Services',
+    href: '/industries/banking-financial-services',
+    accentColor: 'rgb(20,109,174)',
+    clients: bankingClients,
+  },
+  {
+    title: 'Healthcare & Pharmaceuticals',
+    href: '/industries/healthcare-pharmaceuticals',
+    accentColor: 'rgb(5,150,105)',
+    clients: healthcareClients,
+  },
+  {
+    title: 'Manufacturing & Industrial',
+    href: '/industries/manufacturing-industrial',
+    accentColor: 'rgb(217,119,6)',
+    clients: manufacturingClients,
+  },
+  {
+    title: 'Education & Research',
+    href: '/industries/education-research',
+    accentColor: 'rgb(99,102,241)',
+    clients: educationClients,
+  },
+  {
+    title: 'Government & Public Sector',
+    href: '/industries/government-public-sector',
+    accentColor: 'rgb(15,118,110)',
+    clients: governmentClients,
+  },
+  {
+    title: 'NGOs & Development',
+    href: '/industries/ngos-development',
+    accentColor: 'rgb(220,38,38)',
+    clients: ngoClients,
+  },
+  {
+    title: 'Retail & E-Commerce',
+    href: '/industries/retail-ecommerce',
+    accentColor: 'rgb(234,88,12)',
+    clients: retailClients,
+  },
+  {
+    title: 'IT & Software',
+    href: '/industries/it-software',
+    accentColor: 'rgb(99,102,241)',
+    clients: itSoftwareClients,
+  },
+];
+
+const totalClients = industries.reduce((sum, ind) => sum + ind.clients.length, 0);
+
+// ─── Page ────────────────────────────────────────────────────────────────────
 export default function ClientsPage() {
   return (
-    <div className="relative min-h-screen bg-transparent pt-28 pb-20">
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 grid-bg opacity-20 pointer-events-none" />
-      
-      {/* Gradient ambient glow */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute top-1/3 right-1/4 w-96 h-96 bg-accent/5 rounded-full blur-[120px] pointer-events-none" />
+    <div className="relative min-h-screen bg-[#f8fafc] pt-28 pb-20">
 
+      {/* Subtle grid texture overlay */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          backgroundImage: `
+            radial-gradient(circle at center, rgba(15, 23, 42, 0.04) 1.5px, transparent 1.5px)
+          `,
+          backgroundSize: '40px 40px',
+        }}
+      />
+
+      {/* Page Hero */}
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Navigation Breadcrumb */}
-        <div className="mb-8">
+
+        {/* Breadcrumb */}
+        <div className="mb-10">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors group"
+            className="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-[rgb(20,109,174)] transition-colors group"
           >
             <ArrowLeft className="w-4 h-4 transition-transform group-hover:-translate-x-1" />
             <span>Back to Home</span>
@@ -952,77 +303,47 @@ export default function ClientsPage() {
         </div>
 
         {/* Hero Header */}
-        <div className="text-center max-w-3xl mx-auto mb-20">
-          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-medium uppercase tracking-widest text-primary border border-primary/20 bg-primary/5 mb-6">
+        <div className="text-center max-w-3xl mx-auto mb-16">
+          <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-6 font-mono">
             <Users className="w-3.5 h-3.5" />
-            Proven Partnerships
+            {totalClients}+ Client Logos Across 8 Industries
           </span>
           <h1
-            className="text-4xl sm:text-5xl font-bold text-white mb-6 font-[family-name:var(--font-display)]"
+            className="text-4xl sm:text-5xl font-bold text-slate-900 mb-6 tracking-tight"
+            style={{ fontFamily: 'var(--font-display)' }}
           >
-            Our <span className="gradient-text-blue">Clients</span>
+            Clients We&apos;re <span className="text-[rgb(20,109,174)]">Proud to Serve</span>
           </h1>
-          <p className="text-slate-350 text-lg leading-relaxed">
-            ESSL is privileged to design, deploy, and manage mission-critical IT infrastructure and cybersecurity solutions 
-            for Bangladesh&apos;s leading financial institutions, government secretariats, energy giants, and corporate conglomerates.
+          <p className="text-slate-600 text-lg leading-relaxed">
+            ESSL designs, deploys, and manages mission-critical IT infrastructure and cybersecurity 
+            for Bangladesh&apos;s leading enterprises across every major sector.
           </p>
+
+          {/* Industry quick-jump links */}
+          <div className="mt-8 flex flex-wrap justify-center gap-2">
+            {industries.map((ind) => (
+              <a
+                key={ind.title}
+                href={`#${ind.href.split('/').pop()}`}
+                className="px-3 py-1.5 rounded-full border border-slate-200 bg-white text-xs font-semibold text-slate-600 hover:border-[rgb(20,109,174)]/40 hover:text-[rgb(20,109,174)] hover:bg-[rgb(20,109,174)]/5 transition-all"
+              >
+                {ind.title}
+              </a>
+            ))}
+          </div>
         </div>
 
-        {/* Categories Section */}
-        <div className="space-y-16">
-          {CLIENTS_DATA.map((group, groupIdx) => (
-            <div key={group.category} className="space-y-6">
-              {/* Category Heading */}
-              <div className="flex items-center gap-3 border-b border-white/5 pb-4">
-                <div className="w-1.5 h-6 rounded-full bg-primary" />
-                <h2 className="text-xl font-bold text-white tracking-tight font-[family-name:var(--font-display)]">
-                  {group.category}
-                </h2>
-                <span className="text-xs font-semibold text-slate-400 bg-white/5 px-2 py-0.5 rounded-full">
-                  {group.companies.length}
-                </span>
-              </div>
-
-              {/* Grid of Companies */}
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-                {group.companies.map((company, companyIdx) => {
-                  const hasInlineSvg = !!inlineSvgLogos[company];
-                  const logo = logoMapping[company];
-                  const hasImageLogo = !!logo;
-
-                  return (
-                    <div
-                      key={company}
-                      className="group flex items-center justify-center bg-white/90 border border-white/10 rounded-xl p-6 hover:bg-white hover:border-primary/20 hover:shadow-md transition-all duration-300 cursor-default"
-                      id={`client-card-${groupIdx}-${companyIdx}`}
-                    >
-                      {hasInlineSvg ? (
-                        <div className="flex items-center justify-center h-28 w-full relative transition-transform duration-300 group-hover:scale-105">
-                          {inlineSvgLogos[company]}
-                        </div>
-                      ) : hasImageLogo ? (
-                        <div className="flex items-center justify-center h-28 w-full relative">
-                          <Image
-                            src={`/logos/${logo}`}
-                            alt={`${company} Logo`}
-                            width={140}
-                            height={56}
-                            className="object-contain max-h-[60px] max-w-[120px] transition-all duration-300 filter grayscale group-hover:grayscale-0"
-                            priority={groupIdx === 0 && companyIdx < 6}
-                          />
-                        </div>
-                      ) : (
-                        // Clean text-only fallback — styled, intentional, no generic circle icons
-                        <div className="flex flex-col items-center justify-center h-28 w-full text-center px-2">
-                          <span className="text-xs font-bold text-slate-800 leading-snug transition-colors duration-300 group-hover:text-primary" style={{ wordBreak: 'break-word', whiteSpace: 'normal' }}>
-                            {company}
-                          </span>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
+        {/* Industry Sections */}
+        <div>
+          {industries.map((ind) => (
+            <div key={ind.title} id={ind.href.split('/').pop()}>
+              <IndustrySection
+                title={ind.title}
+                href={ind.href}
+                count={ind.clients.length}
+                accentColor={ind.accentColor}
+                clients={ind.clients}
+              />
             </div>
           ))}
         </div>
