@@ -427,38 +427,38 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Standalone Trusted Logos Section (Unboxed & Centered Ticker below the stats bar) */}
-      <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-16 w-full py-4 flex flex-col items-center gap-8">
-        {/* Centered label */}
-        <p className="text-[10px] uppercase tracking-widest text-slate-400 font-bold font-mono text-center">
-          Trusted by leading enterprises
-        </p>
+      {/* Standalone Trusted Logos Section (Unboxed & Centered Ticker with light full-width background) */}
+      <div className="relative z-20 w-full bg-[#f8fafc] border-y border-slate-200/80 py-12 sm:py-16 text-slate-800 -mb-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-8">
+          {/* Centered Sophos-style heading */}
+          <h2 className="text-xl sm:text-2xl font-semibold text-[#0f1420] text-center tracking-tight font-sans">
+            Trusted by Leading Enterprises
+          </h2>
 
-        {/* Scrolling logo row */}
-        <div className="relative w-full overflow-hidden">
-          {/* Narrow fade edges — only last ~5% of visible width fades to dark bg */}
-          <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#0f1420] to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#0f1420] to-transparent z-10 pointer-events-none" />
+          {/* Scrolling logo row */}
+          <div className="relative w-full overflow-hidden">
+            {/* Narrow fade edges matching light background */}
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#f8fafc] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#f8fafc] to-transparent z-10 pointer-events-none" />
 
-          <div className="overflow-hidden">
-            <div className="flex animate-ticker w-max">
-              {CLIENTS.map((client, i) => (
-                <div
-                  key={`${client.name}-${i}`}
-                  className="flex-shrink-0 mx-2 sm:mx-3"
-                >
-                  <div className="flex items-center justify-center h-12 px-4 rounded-xl border border-slate-200 bg-white shadow-sm hover:shadow-md transition-all duration-300 group cursor-default" style={{ minWidth: '135px' }}>
+            <div className="overflow-hidden">
+              <div className="flex animate-ticker w-max">
+                {CLIENTS.map((client, i) => (
+                  <div
+                    key={`${client.name}-${i}`}
+                    className="flex-shrink-0 mx-6 sm:mx-8 flex items-center justify-center h-12"
+                  >
                     {client.kind === 'image' ? (
                       <Image
                         src={client.src}
                         alt={`${client.name} logo`}
                         width={client.width}
                         height={client.height}
-                        className="object-contain max-h-[33px] w-auto"
+                        className="object-contain max-h-[33px] w-auto transition-transform duration-300 hover:scale-105"
                       />
                     ) : client.kind === 'svg' ? (
                       <div
-                        className="flex items-center justify-center scale-[1.15]"
+                        className="flex items-center justify-center scale-[1.15] transition-transform duration-300 hover:scale-[1.2]"
                         dangerouslySetInnerHTML={{ __html: client.svg }}
                       />
                     ) : (
@@ -467,21 +467,21 @@ export default function Hero() {
                       </span>
                     )}
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Centered View All link below logo row */}
-        <div className="text-center mt-2">
-          <Link
-            href="/clients"
-            className="inline-flex items-center gap-1 text-xs font-semibold text-[#3f94cf] hover:text-white transition-colors group/link"
-          >
-            <span>View All Clients</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" />
-          </Link>
+          {/* Centered View All link below logo row */}
+          <div className="text-center mt-2">
+            <Link
+              href="/clients"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-[#1B6BA8] hover:text-[#0f1420] transition-colors group/link"
+            >
+              <span>View All Clients</span>
+              <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" />
+            </Link>
+          </div>
         </div>
       </div>
     </>
