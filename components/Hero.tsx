@@ -443,31 +443,50 @@ export default function Hero() {
 
             <div className="overflow-hidden">
               <div className="flex animate-ticker w-max">
-                {CLIENTS.map((client, i) => (
-                  <div
-                    key={`${client.name}-${i}`}
-                    className="flex-shrink-0 mx-6 sm:mx-8 flex items-center justify-center h-12"
-                  >
-                    {client.kind === 'image' ? (
-                      <Image
-                        src={client.src}
-                        alt={`${client.name} logo`}
-                        width={client.width}
-                        height={client.height}
-                        className="object-contain max-h-[33px] w-auto transition-transform duration-300 hover:scale-105"
-                      />
-                    ) : client.kind === 'svg' ? (
-                      <div
-                        className="flex items-center justify-center scale-[1.15] transition-transform duration-300 hover:scale-[1.2]"
-                        dangerouslySetInnerHTML={{ __html: client.svg }}
-                      />
-                    ) : (
-                      <span className="text-[13px] font-extrabold text-slate-800 tracking-tight text-center leading-none">
-                        {client.name}
-                      </span>
-                    )}
-                  </div>
-                ))}
+                {CLIENTS.map((client, i) => {
+                  let logoScaleClass = 'max-h-[48px]';
+                  if (client.name === 'Aarong' || client.name === 'Buro Bangladesh') {
+                    logoScaleClass = 'max-h-[38px] scale-95';
+                  } else if (client.name === 'Evercare Hospital') {
+                    logoScaleClass = 'max-h-[42px] scale-95';
+                  } else if (client.name === 'Bangladesh Biman') {
+                    logoScaleClass = 'max-h-[42px]';
+                  } else if (client.name === 'Aristo Pharma') {
+                    logoScaleClass = 'max-h-[44px]';
+                  } else if (client.name === 'ACI') {
+                    logoScaleClass = 'max-h-[45px]';
+                  } else if (client.name === 'Berger Paints') {
+                    logoScaleClass = 'max-h-[46px]';
+                  } else if (client.name === 'Opsonin Pharma') {
+                    logoScaleClass = 'max-h-[46px]';
+                  }
+
+                  return (
+                    <div
+                      key={`${client.name}-${i}`}
+                      className="flex-shrink-0 mx-8 sm:mx-10 flex items-center justify-center h-16"
+                    >
+                      {client.kind === 'image' ? (
+                        <Image
+                          src={client.src}
+                          alt={`${client.name} logo`}
+                          width={client.width * 1.5}
+                          height={client.height * 1.5}
+                          className={`object-contain w-auto transition-transform duration-300 hover:scale-105 ${logoScaleClass}`}
+                        />
+                      ) : client.kind === 'svg' ? (
+                        <div
+                          className="flex items-center justify-center scale-[1.65] transition-transform duration-300 hover:scale-[1.7]"
+                          dangerouslySetInnerHTML={{ __html: client.svg }}
+                        />
+                      ) : (
+                        <span className="text-[14px] font-extrabold text-slate-800 tracking-tight text-center leading-none">
+                          {client.name}
+                        </span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </div>
