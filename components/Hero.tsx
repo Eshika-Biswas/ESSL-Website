@@ -416,7 +416,7 @@ export default function Hero() {
       </section>
 
       {/* Standalone Full-Width Stats Bar (overlapping the bottom of the hero carousel) */}
-      <div className="relative z-20 w-full bg-white border-y border-slate-200/80 shadow-lg -mt-20 sm:-mt-24 mb-10 py-6 sm:py-8 text-slate-800">
+      <div className="relative z-20 w-full bg-white border-y border-slate-200/80 shadow-lg -mt-20 sm:-mt-24 mb-0 py-6 sm:py-8 text-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
             <StatItem value="10+" label="Years of Experience" icon={Calendar} />
@@ -427,8 +427,14 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Standalone Trusted Logos Section (Unboxed & Centered Ticker with light full-width background) */}
-      <div className="relative z-20 w-full bg-[#f8fafc] border-y border-slate-200/80 py-12 sm:py-16 text-slate-800 -mb-10">
+      {/* Standalone Trusted Logos Section (Unboxed & Centered Ticker with light full-width background and dot-grid texture) */}
+      <div
+        className="relative z-20 w-full bg-[#f8fafc] border-b border-slate-200/80 py-12 sm:py-16 text-slate-800"
+        style={{
+          backgroundImage: 'radial-gradient(circle at center, rgba(15, 23, 42, 0.05) 1.2px, transparent 1.2px)',
+          backgroundSize: '32px 32px',
+        }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-8">
           {/* Centered Sophos-style heading */}
           <h2 className="text-xl sm:text-2xl font-semibold text-[#0f1420] text-center tracking-tight font-sans">
