@@ -427,46 +427,30 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Standalone Trusted Logos Section (Unboxed & Centered Ticker with solid blue background and grid-line texture) */}
+      {/* Standalone Trusted Logos Section (Unboxed & Centered Ticker with light full-width background and dot-grid texture) */}
       <div
-        className="relative z-20 w-full"
+        className="relative z-20 w-full bg-[#f8fafc] border-b border-slate-200/80 py-12 sm:py-16 text-slate-800"
         style={{
-          backgroundColor: 'rgb(22, 120, 191)',
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 0H48M0 0V48' fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='0.75'/%3E%3C/svg%3E")`,
-          backgroundSize: '48px 48px',
-          backgroundRepeat: 'repeat',
-          borderTop: '1px solid rgba(255, 255, 255, 0.15)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.15)',
-          paddingTop: '3rem',
-          paddingBottom: '3rem',
+          backgroundImage: 'radial-gradient(circle at center, rgba(15, 23, 42, 0.05) 1.2px, transparent 1.2px)',
+          backgroundSize: '32px 32px',
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-8">
           {/* Centered Sophos-style heading */}
-          <h2 className="text-xl sm:text-2xl font-semibold text-white text-center tracking-tight font-sans drop-shadow-sm">
+          <h2 className="text-xl sm:text-2xl font-semibold text-[#0f1420] text-center tracking-tight font-sans">
             Trusted by Leading Enterprises
           </h2>
 
           {/* Scrolling logo row */}
           <div className="relative w-full overflow-hidden">
-            {/* Narrow fade edges matching solid blue background */}
-            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[rgb(22,120,191)] to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[rgb(22,120,191)] to-transparent z-10 pointer-events-none" />
+            {/* Narrow fade edges matching light background */}
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-[#f8fafc] to-transparent z-10 pointer-events-none" />
+            <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#f8fafc] to-transparent z-10 pointer-events-none" />
 
             <div className="overflow-hidden">
               <div className="flex animate-ticker w-max">
                 {CLIENTS.map((client, i) => {
                   let logoScaleClass = 'max-h-[48px]';
-                  const isDarkLogo = [
-                    'Aarong',
-                    'IDLC Finance',
-                    'IPDC Finance',
-                    'Buro Bangladesh',
-                    'Aristo Pharma',
-                    'Opsonin Pharma',
-                    'ACI',
-                    'Bangladesh Biman'
-                  ].includes(client.name);
 
                   if (client.name === 'Aarong' || client.name === 'Buro Bangladesh') {
                     logoScaleClass = 'max-h-[38px] scale-95';
@@ -496,11 +480,6 @@ export default function Hero() {
                           width={client.width * 1.5}
                           height={client.height * 1.5}
                           className={`object-contain w-auto transition-transform duration-300 hover:scale-105 ${logoScaleClass}`}
-                          style={{
-                            filter: isDarkLogo
-                              ? 'drop-shadow(1px 0px 0px rgba(255, 255, 255, 0.95)) drop-shadow(-1px 0px 0px rgba(255, 255, 255, 0.95)) drop-shadow(0px 1px 0px rgba(255, 255, 255, 0.95)) drop-shadow(0px -1px 0px rgba(255, 255, 255, 0.95))'
-                              : undefined
-                          }}
                         />
                       ) : client.kind === 'svg' ? (
                         <div
@@ -523,7 +502,7 @@ export default function Hero() {
           <div className="text-center mt-2">
             <Link
               href="/clients"
-              className="inline-flex items-center gap-1 text-xs font-semibold text-white/80 hover:text-white transition-colors group/link"
+              className="inline-flex items-center gap-1 text-xs font-semibold text-[#1B6BA8] hover:text-[#0f1420] transition-colors group/link"
             >
               <span>View All Clients</span>
               <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover/link:translate-x-0.5" />
