@@ -10,7 +10,7 @@ const executiveTeam = [
     slug: 'golam-mostafa',
     name: 'Md. Golam Mostafa',
     title: 'Managing Director',
-    photo: '/team/golam-mostafa.png',
+    photo: '/team/golam-mostafa 1.jpeg',
   },
   {
     slug: 'partha-sharathe-biswas',
@@ -22,7 +22,7 @@ const executiveTeam = [
     slug: 'sarker-mohammad-faisal',
     name: 'Sarker Mohammad Faisal',
     title: 'Director',
-    photo: '/team/mohammad-faisal.png',
+    photo: '/team/mohammad-faisal1.jpeg',
   },
 ];
 
@@ -165,9 +165,8 @@ function TeamMemberCard({ member, isVisible }: { member: OperationalMember; isVi
 
   return (
     <div
-      className={`group flex flex-col rounded-3xl bg-white border border-slate-200/80 p-5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-300 ${
-        isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-      }`}
+      className={`group flex flex-col rounded-3xl bg-white border border-slate-200/80 p-5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+        }`}
       style={{ transitionDelay: `${Math.min(member.id * 40, 500)}ms` }}
     >
       {/* Image Container */}
@@ -302,9 +301,8 @@ export default function Leadership() {
               <Link
                 href={`/about/leadership/${member.slug}`}
                 key={member.slug}
-                className={`group flex flex-col rounded-3xl bg-white border border-slate-200/80 p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-300 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
+                className={`group flex flex-col rounded-3xl bg-white border border-slate-200/80 p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
                 style={{ transitionDelay: `${member.slug === 'golam-mostafa' ? '0ms' : member.slug === 'partha-sharathe-biswas' ? '120ms' : '240ms'}` }}
               >
                 {/* Image Container */}
@@ -367,7 +365,7 @@ export default function Leadership() {
          ───────────────────────────────────────────────────────── */}
       <section className="relative w-full py-24 overflow-hidden" style={blueGridStyle}>
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
-          
+
           {/* Card 1: Come and Work for Us */}
           <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 text-center border border-slate-100 bg-white shadow-xl">
             <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
@@ -377,8 +375,8 @@ export default function Leadership() {
                 COME AND WORK FOR US
               </h3>
               <p className="text-xs sm:text-sm leading-relaxed mb-6 text-slate-600">
-                Work within a passionate team, focused on developing solutions and selling products 
-                that push the boundaries of modern enterprise technology. Explore our 
+                Work within a passionate team, focused on developing solutions and selling products
+                that push the boundaries of modern enterprise technology. Explore our
                 opportunities to make an impact.
               </p>
               <Link
@@ -401,7 +399,7 @@ export default function Leadership() {
                   GET IN TOUCH
                 </h3>
                 <p className="text-xs sm:text-sm leading-relaxed text-slate-600">
-                  Learn more about how we foster a culture of creativity, support, and innovation 
+                  Learn more about how we foster a culture of creativity, support, and innovation
                   to create cutting-edge solutions.
                 </p>
               </div>
