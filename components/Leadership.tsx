@@ -50,7 +50,7 @@ const operationalTeam: OperationalMember[] = [
     designation: 'Deputy Manager',
     department: 'Network & Security',
     email: 'anirban@ensure-bd.com',
-    photo: null,
+    photo: '/team/anirban shil.jpeg',
   },
   {
     id: 3,
@@ -58,7 +58,7 @@ const operationalTeam: OperationalMember[] = [
     designation: 'Deputy Manager',
     department: 'Cyber Security Solutions',
     email: 'faruk@ensure-bd.com',
-    photo: null,
+    photo: '/team/faruk ahmed.jpeg',
   },
   {
     id: 4,
@@ -106,7 +106,7 @@ const operationalTeam: OperationalMember[] = [
     designation: 'Asst. Manager',
     department: 'Technology Sales',
     email: 'sadequr@ensure-bd.com',
-    photo: null,
+    photo: '/team/sedequr Rahman.jpeg',
   },
   {
     id: 10,
@@ -130,7 +130,7 @@ const operationalTeam: OperationalMember[] = [
     designation: 'Asst. Manager',
     department: 'HR & Admin',
     email: 'mehedi.hasan@ensure-bd.com',
-    photo: null,
+    photo: '/team/mehedi hasan.jpeg',
   },
   {
     id: 13,
@@ -138,7 +138,7 @@ const operationalTeam: OperationalMember[] = [
     designation: 'Sr.Manager',
     department: 'Business Development',
     email: undefined,
-    photo: null,
+    photo: '/team/akbar hossain.jpeg',
   },
   {
     id: 14,
@@ -146,7 +146,7 @@ const operationalTeam: OperationalMember[] = [
     designation: 'Solution Architect',
     department: 'Network & Security',
     email: undefined,
-    photo: null,
+    photo: '/team/Md .hedaet shekh .jpeg',
   },
 ];
 
