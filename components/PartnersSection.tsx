@@ -359,21 +359,21 @@ export default function PartnersSection() {
       {/* Collaborate CTA Section */}
       <section className="relative w-full py-28 overflow-hidden">
         <div className="relative z-10 max-w-6xl mx-auto px-6">
-          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-8 sm:p-12 shadow-sm border border-white/20 bg-white/10 text-center">
+          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-8 sm:p-12 shadow-sm border border-slate-200 bg-white text-center">
             <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
               <h3
-                className="text-xl sm:text-2xl font-bold tracking-widest text-white uppercase font-mono mb-4"
+                className="text-xl sm:text-2xl font-bold tracking-widest text-slate-900 uppercase font-mono mb-4"
                 style={{ letterSpacing: '0.08em' }}
               >
                 COLLABORATE WITH US
               </h3>
-              <p className="text-sm sm:text-base leading-relaxed text-white/75 mb-8 max-w-xl">
+              <p className="text-sm sm:text-base leading-relaxed text-slate-600 mb-8 max-w-xl">
                 We&apos;re always looking for new technology and channel partnerships.
                 Get in touch to discuss how we can work together to deliver better outcomes for our clients.
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center justify-center rounded-full px-10 py-3.5 text-xs font-bold tracking-widest text-[rgb(22,120,191)] bg-white font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
+                className="inline-flex items-center justify-center rounded-full px-10 py-3.5 text-xs font-bold tracking-widest text-white bg-[rgb(20,109,174)] font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg"
                 style={{ letterSpacing: '0.08em' }}
               >
                 CONTACT US
