@@ -171,11 +171,6 @@ function TeamMemberCard({ member, isVisible }: { member: OperationalMember; isVi
     >
       {/* Image Container */}
       <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-4 bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200">
-        {/* Number Badge */}
-        <span className="absolute top-3 left-3 z-10 inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold font-mono shadow-sm border border-white/20">
-          {member.id}
-        </span>
-
         {hasPhoto ? (
           <Image
             src={member.photo!}
