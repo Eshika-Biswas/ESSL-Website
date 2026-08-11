@@ -170,6 +170,15 @@ export default function OurStoryDetail() {
     backgroundSize: '40px 40px',
   };
 
+  const blueGridStyle = {
+    backgroundColor: 'rgb(20, 109, 174)',
+    backgroundImage: `
+      linear-gradient(to right, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.18) 1px, transparent 1px)
+    `,
+    backgroundSize: '40px 40px',
+  };
+
   return (
     <div className="relative w-full bg-[#f8fafc] text-slate-900">
 
@@ -336,12 +345,9 @@ export default function OurStoryDetail() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          SECTION 4 — Cross-link card grid (Dark Blue Gradient Banner Style)
+          SECTION 4 — Cross-link card grid (Blue Grid Background)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#0f1420] via-[rgb(14,76,122)] to-[#0f1420] text-white border-t border-slate-800">
-        {/* Subtle fine grid-line overlay pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
-
+      <section className="relative w-full overflow-hidden" style={blueGridStyle}>
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 sm:py-32">
           <StaggeredGrid
             staggerMs={120}

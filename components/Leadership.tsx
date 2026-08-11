@@ -270,6 +270,15 @@ export default function Leadership() {
     backgroundSize: '40px 40px',
   };
 
+  const blueGridStyle = {
+    backgroundColor: 'rgb(20, 109, 174)',
+    backgroundImage: `
+      linear-gradient(to right, rgba(255, 255, 255, 0.18) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.18) 1px, transparent 1px)
+    `,
+    backgroundSize: '40px 40px',
+  };
+
   return (
     <>
       <section ref={sectionRef} className="relative w-full py-24 overflow-hidden bg-[#f8fafc]" style={gridBgStyle}>
@@ -354,27 +363,9 @@ export default function Leadership() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          CTA SECTIONS (Accent blue background with white grid pattern)
+          CTA SECTIONS (Graph paper blue grid background)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full py-24 overflow-hidden bg-[rgb(20,109,174)]">
-        {/* Subtle white grid-line overlay pattern */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0" />
-
-        {/* Soft white radial glow for subtle depth */}
-        <div
-          className="absolute pointer-events-none z-0"
-          style={{
-            top: '50%',
-            right: '-10%',
-            transform: 'translateY(-50%)',
-            width: '650px',
-            height: '650px',
-            borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%)',
-            filter: 'blur(80px)',
-          }}
-        />
-
+      <section className="relative w-full py-24 overflow-hidden" style={blueGridStyle}>
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
           
           {/* Card 1: Come and Work for Us */}
