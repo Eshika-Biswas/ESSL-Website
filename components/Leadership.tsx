@@ -354,20 +354,23 @@ export default function Leadership() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          CTA SECTIONS (light background wrapping container)
+          CTA SECTIONS (Accent blue background with white grid pattern)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full py-24 overflow-hidden border-t border-slate-200 bg-white">
-        {/* Soft blue radial glow gradient blending in from the right side */}
+      <section className="relative w-full py-24 overflow-hidden bg-[rgb(20,109,174)]">
+        {/* Subtle white grid-line overlay pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.08)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0" />
+
+        {/* Soft white radial glow for subtle depth */}
         <div
           className="absolute pointer-events-none z-0"
           style={{
             top: '50%',
-            right: '-15%',
+            right: '-10%',
             transform: 'translateY(-50%)',
             width: '650px',
             height: '650px',
             borderRadius: '50%',
-            background: 'radial-gradient(circle, rgba(20,109,174,0.06) 0%, transparent 70%)',
+            background: 'radial-gradient(circle, rgba(255,255,255,0.12) 0%, transparent 70%)',
             filter: 'blur(80px)',
           }}
         />
@@ -375,7 +378,7 @@ export default function Leadership() {
         <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col gap-16">
           
           {/* Card 1: Come and Work for Us */}
-          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 text-center border border-slate-200 bg-slate-50 shadow-sm">
+          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 text-center border border-slate-100 bg-white shadow-xl">
             <div className="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
               <h3 className="text-lg sm:text-xl font-bold tracking-widest text-slate-900 uppercase font-mono mb-3"
                 style={{ letterSpacing: '0.08em' }}
@@ -398,7 +401,7 @@ export default function Leadership() {
           </div>
 
           {/* Card 2: Get in Touch */}
-          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 bg-gradient-to-r from-white to-slate-50">
+          <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 shadow-xl border border-slate-100 bg-white">
             <div className="grid md:grid-cols-[2fr_1.2fr] items-center gap-6 text-left">
               <div>
                 <h3 className="text-lg sm:text-xl font-bold tracking-widest text-slate-900 uppercase font-mono mb-3"
