@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState, ReactNode } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Users, Handshake, Briefcase, Newspaper, ArrowRight } from 'lucide-react';
 
 /* ================================================================
@@ -105,6 +106,7 @@ function StaggeredGrid({
       {(children as ReactNode[]).map((child, i) => (
         <div
           key={i}
+          className="h-full"
           style={{
             opacity: visible ? 1 : 0,
             transform: visible ? 'translateY(0)' : 'translateY(24px)',
@@ -214,7 +216,7 @@ export default function OurStoryDetail() {
           {/* CTA Button */}
           <Reveal delay={300} threshold={0.1} duration={700}>
             <Link
-              href="/contact"
+              href="/solutions"
               className="inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full text-sm font-semibold uppercase tracking-widest border transition-all duration-300 hover:scale-105 hover:bg-[rgb(20,109,174)]/10 text-[rgb(20,109,174)] border-[rgb(20,109,174)]"
             >
               Explore Our Solutions
@@ -224,9 +226,21 @@ export default function OurStoryDetail() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          SECTION 2 — Our Vision (two-column, light background)
+          SECTION 2 — Our Vision (light circuit texture background)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden bg-white border-t border-slate-200">
+      <section className="relative w-full overflow-hidden bg-[#f8fafc] border-t border-slate-200 text-slate-900">
+        <div className="absolute inset-0 z-0 bg-[#f8fafc]">
+          <Image
+            src="/images/end-to-end-tech-bg.png"
+            alt="Vision Backdrop Pattern"
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-60 pointer-events-none"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/30 via-transparent to-[#f8fafc]/40" />
+        </div>
+
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 sm:py-32">
           <div className="grid md:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-start">
             {/* Left — heading */}
@@ -258,23 +272,61 @@ export default function OurStoryDetail() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          SECTION 3 — Our Mission (full-width single-column, light background)
+          SECTION 3 — Our Mission (circuit-board texture & soft glowing hexagon)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden bg-[#f8fafc] border-t border-slate-200">
+      <section className="relative w-full overflow-hidden bg-[#f8fafc] border-t border-slate-200/80 text-slate-900">
+        {/* Low-opacity circuit-board line pattern backdrop */}
+        <div className="absolute inset-0 z-0 bg-[#f8fafc]">
+          <Image
+            src="/images/network-grid-light.svg"
+            alt="Mission Circuit Grid"
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-40 pointer-events-none"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/40 via-transparent to-[#f8fafc]/50" />
+        </div>
+
+        {/* Faint glowing hexagon shape right-of-center */}
+        <div className="absolute right-[8%] sm:right-[15%] top-1/2 -translate-y-1/2 pointer-events-none opacity-20 sm:opacity-30 z-0">
+          <svg width="300" height="340" viewBox="0 0 300 340" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M150 15 L275 88 L275 252 L150 325 L25 252 L25 88 Z"
+              stroke="rgb(20,109,174)"
+              strokeWidth="1.75"
+              strokeDasharray="8 6"
+              fill="url(#missionHexGlow)"
+            />
+            <circle cx="150" cy="15" r="4.5" fill="rgb(20,109,174)" />
+            <circle cx="275" cy="88" r="4.5" fill="rgb(20,109,174)" />
+            <circle cx="275" cy="252" r="4.5" fill="rgb(20,109,174)" />
+            <circle cx="150" cy="325" r="4.5" fill="rgb(20,109,174)" />
+            <circle cx="25" cy="252" r="4.5" fill="rgb(20,109,174)" />
+            <circle cx="25" cy="88" r="4.5" fill="rgb(20,109,174)" />
+            <defs>
+              <radialGradient id="missionHexGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0%" stopColor="rgb(20,109,174)" stopOpacity="0.18" />
+                <stop offset="100%" stopColor="rgb(20,109,174)" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+          </svg>
+        </div>
+
         <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 sm:py-32 text-left">
-          {/* Top-aligned heading with monospace tech-style font */}
+          {/* Heading */}
           <Reveal delay={0} threshold={0.2} duration={700}>
             <h2
-              className="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold tracking-wider uppercase mb-10 font-mono text-slate-900"
+              className="text-3xl sm:text-4xl lg:text-[2.6rem] font-bold tracking-wider uppercase mb-8 font-mono text-slate-900"
               style={{ letterSpacing: '0.08em' }}
             >
               OUR MISSION
             </h2>
           </Reveal>
 
-          {/* Body paragraph text left-aligned in the same column */}
+          {/* Body paragraph */}
           <Reveal delay={150} threshold={0.2} duration={600}>
-            <p className="text-base sm:text-lg leading-relaxed max-w-3xl text-slate-600">
+            <p className="text-base sm:text-lg leading-relaxed max-w-3xl text-slate-600 font-medium">
               To build long-term relationships with our customers and provide exceptional
               customer services by pursuing business through innovation and advanced technology
               for both on-premises and in the cloud.
@@ -284,17 +336,23 @@ export default function OurStoryDetail() {
       </section>
 
       {/* ─────────────────────────────────────────────────────────
-          SECTION 4 — Cross-link card grid (2×2, light background)
+          SECTION 4 — Cross-link card grid (Dark Blue Gradient Banner Style)
          ───────────────────────────────────────────────────────── */}
-      <section className="relative w-full overflow-hidden bg-white border-t border-slate-200">
-        <div className="relative z-10 max-w-6xl mx-auto px-6 pt-16 pb-28 sm:pb-36">
+      <section className="relative w-full overflow-hidden bg-gradient-to-br from-[#0f1420] via-[rgb(14,76,122)] to-[#0f1420] text-white border-t border-slate-800">
+        {/* Subtle fine grid-line overlay pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_50%,#000_70%,transparent_100%)] pointer-events-none z-0" />
+
+        <div className="relative z-10 max-w-6xl mx-auto px-6 py-24 sm:py-32">
           <StaggeredGrid
             staggerMs={120}
             threshold={0.15}
-            className="grid sm:grid-cols-2 gap-x-10 gap-y-14"
+            className="grid sm:grid-cols-2 gap-8 lg:gap-10"
           >
             {cards.map((card) => (
-              <div key={card.heading} className="flex flex-col p-6 rounded-2xl bg-slate-50 border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+              <div
+                key={card.heading}
+                className="group flex h-full flex-col p-8 rounded-2xl bg-white border border-slate-200/90 shadow-[0_10px_30px_-5px_rgba(0,0,0,0.2)] hover:shadow-[0_20px_40px_-5px_rgba(0,0,0,0.3)] hover:border-[rgb(20,109,174)]/40 hover:-translate-y-1.5 transition-all duration-300"
+              >
                 {/* Icon */}
                 <div className="mb-5">
                   <card.icon
@@ -312,20 +370,20 @@ export default function OurStoryDetail() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-sm leading-relaxed mb-5 text-slate-600">
+                <p className="text-sm leading-relaxed mb-6 text-slate-600">
                   {card.desc}
                 </p>
 
                 {/* Link with circular arrow */}
                 <Link
                   href={card.href}
-                  className="group inline-flex items-center gap-3 mt-auto"
+                  className="group/link inline-flex items-center gap-3 mt-auto"
                 >
-                  <span className="text-xs font-semibold uppercase tracking-widest transition-colors duration-200 text-slate-900 group-hover:text-[rgb(20,109,174)]">
+                  <span className="text-xs font-semibold uppercase tracking-widest transition-colors duration-200 text-slate-900 group-hover/link:text-[rgb(20,109,174)]">
                     {card.linkText}
                   </span>
-                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full border border-slate-300 transition-all duration-300 group-hover:translate-x-1 group-hover:border-[rgb(20,109,174)]">
-                    <ArrowRight className="w-3.5 h-3.5 text-slate-700 group-hover:text-[rgb(20,109,174)]" />
+                  <span className="inline-flex items-center justify-center w-7 h-7 rounded-full border border-slate-300 transition-all duration-300 group-hover/link:translate-x-1 group-hover/link:border-[rgb(20,109,174)] group-hover/link:bg-[rgb(20,109,174)]/10 text-slate-700 group-hover/link:text-[rgb(20,109,174)]">
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </span>
                 </Link>
               </div>

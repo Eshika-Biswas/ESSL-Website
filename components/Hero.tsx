@@ -178,6 +178,11 @@ const BASE_CLIENTS: ClientLogo[] = [
     width: 110, height: 40,
   },
   {
+    kind: 'image', name: 'Brac', src: '/logos/brac 1.svg',
+    width: 110, height: 40,
+    needsBacking: true,
+  },
+  {
     kind: 'image', name: 'Evercare Hospital', src: '/logos/evercare-hospita-logo.webp',
     width: 110, height: 40,
   },
@@ -337,18 +342,6 @@ export default function Hero() {
                 {/* Content Block */}
                 <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 w-full">
                   <div className="max-w-4xl text-left">
-
-                    {/* Eyebrow badge */}
-                    <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border mb-8 ${isLight
-                      ? 'border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/5'
-                      : 'border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5'
-                      }`}>
-                      <div className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
-                      <span className={`text-xs uppercase tracking-widest font-semibold ${isLight ? 'text-[#0f1420]/80' : 'text-primary-light'
-                        }`}>
-                        Business Unit
-                      </span>
-                    </div>
 
                     {/* Headline */}
                     <h1

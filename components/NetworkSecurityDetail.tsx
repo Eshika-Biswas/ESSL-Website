@@ -275,7 +275,7 @@ export default function NetworkSecurityDetail() {
             playsInline
             preload="auto"
             poster="/images/network-security-poster.png"
-            className="w-full h-full object-cover opacity-80"
+            className="w-full h-full object-cover object-[85%_center] sm:object-right md:object-right lg:object-right opacity-80"
           >
             <source src="/videos/network-security-hero-v2.mp4" type="video/mp4" />
           </video>

@@ -165,7 +165,7 @@ export default function PassiveInfrastructureDetail() {
             alt="Passive Infrastructure hero backdrop"
             fill
             sizes="100vw"
-            className="object-cover opacity-80"
+            className="object-cover object-[82%_center] sm:object-right md:object-right lg:object-right opacity-80"
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0b0e14]/90 via-[#0b0e14]/45 to-transparent z-[1]" />
