@@ -625,7 +625,7 @@ export default function NetworkSecurityDetail() {
               { name: 'Sophos', src: '/partners/sophos.png' },
               { name: 'F5', src: '/partners/f5.svg' },
               { name: 'Ruckus', src: '/partners/ruckus.svg' },
-              { name: 'CommScope', src: '/partners/commscope.svg' },
+              { name: 'CommScope', src: '/partners/cmmscope.svg' },
             ].map((partner, index) => (
               <div
                 key={partner.name}

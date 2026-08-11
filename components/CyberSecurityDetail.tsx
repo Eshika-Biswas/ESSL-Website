@@ -150,30 +150,28 @@ const steps = [
 
 // ─── Partner Logos ────────────────────────────────────────────────────────────
 const partners = [
-  { name: 'CrowdStrike', src: '/logos/partners/crowdstrike.svg' },
-  { name: 'Palo Alto',   src: '/logos/partners/palo-alto.svg'   },
-  { name: 'Fortinet',    src: '/logos/partners/fortinet.svg'     },
-  { name: 'Cisco',       src: '/logos/partners/cisco.svg'        },
-  { name: 'Tenable',     src: '/logos/partners/tenable.svg'      },
-  { name: 'Forescout',   src: '/logos/partners/forescout.svg'    },
-  { name: 'Forcepoint',  src: '/logos/partners/forcepoint.svg'   },
+  { name: 'CrowdStrike', src: '/partners/crowdstrike.svg' },
+  { name: 'Palo Alto', src: '/partners/paloalto.svg' },
+  { name: 'Fortinet', src: '/partners/fortinet-logo.svg' },
+  { name: 'Cisco', src: '/partners/cisco.png' },
+
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function CyberSecurityDetail() {
-  const [heroVisible,      setHeroVisible]      = useState(false);
-  const [gridVisible,      setGridVisible]      = useState(false);
+  const [heroVisible, setHeroVisible] = useState(false);
+  const [gridVisible, setGridVisible] = useState(false);
   const [whyChooseVisible, setWhyChooseVisible] = useState(false);
-  const [journeyVisible,   setJourneyVisible]   = useState(false);
+  const [journeyVisible, setJourneyVisible] = useState(false);
   const [ecosystemVisible, setEcosystemVisible] = useState(false);
-  const [activeSteps,      setActiveSteps]      = useState(0);
+  const [activeSteps, setActiveSteps] = useState(0);
 
-  const heroRef      = useRef<HTMLElement>(null);
-  const gridRef      = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLElement>(null);
+  const gridRef = useRef<HTMLElement>(null);
   const whyChooseRef = useRef<HTMLElement>(null);
-  const journeyRef   = useRef<HTMLElement>(null);
+  const journeyRef = useRef<HTMLElement>(null);
   const ecosystemRef = useRef<HTMLElement>(null);
-  const videoRef     = useRef<HTMLVideoElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     if (videoRef.current) {
@@ -192,15 +190,15 @@ export default function CyberSecurityDetail() {
         if (entry.isIntersecting) setter(true);
       }, { threshold });
 
-    const gridObs      = makeObserver(setGridVisible,      0.05);
+    const gridObs = makeObserver(setGridVisible, 0.05);
     const whyChooseObs = makeObserver(setWhyChooseVisible, 0.05);
-    const journeyObs   = makeObserver(setJourneyVisible,   0.15);
+    const journeyObs = makeObserver(setJourneyVisible, 0.15);
     const ecosystemObs = makeObserver(setEcosystemVisible, 0.1);
 
     const refs = [
-      { obs: gridObs,      ref: gridRef.current      },
+      { obs: gridObs, ref: gridRef.current },
       { obs: whyChooseObs, ref: whyChooseRef.current },
-      { obs: journeyObs,   ref: journeyRef.current   },
+      { obs: journeyObs, ref: journeyRef.current },
       { obs: ecosystemObs, ref: ecosystemRef.current },
     ];
 
@@ -266,9 +264,8 @@ export default function CyberSecurityDetail() {
 
               {/* Badge */}
               <div
-                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-8 transition-all duration-700 ${
-                  heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
+                className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-8 transition-all duration-700 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                  }`}
               >
                 <div className="w-2 h-2 rounded-full bg-[rgb(20,109,174)] animate-pulse" />
                 <span className="text-xs uppercase tracking-widest text-primary-light font-semibold">
@@ -278,9 +275,8 @@ export default function CyberSecurityDetail() {
 
               {/* Title */}
               <h1
-                className={`text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 transition-all duration-700 delay-100 ${
-                  heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
+                className={`text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] tracking-tight mb-6 transition-all duration-700 delay-100 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
                 style={{ fontFamily: 'var(--font-display)' }}
               >
                 <span className="text-white">Cyber </span>
@@ -289,18 +285,16 @@ export default function CyberSecurityDetail() {
 
               {/* Description */}
               <p
-                className={`text-lg sm:text-xl text-slate-350 leading-relaxed mb-10 max-w-xl transition-all duration-700 delay-200 ${
-                  heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
+                className={`text-lg sm:text-xl text-slate-350 leading-relaxed mb-10 max-w-xl transition-all duration-700 delay-200 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
               >
                 Protect what matters most with advanced solutions and services.
               </p>
 
               {/* CTA Buttons */}
               <div
-                className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 ${
-                  heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
-                }`}
+                className={`flex flex-wrap gap-4 transition-all duration-700 delay-300 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+                  }`}
               >
                 <Link
                   href="/contact"
@@ -358,9 +352,8 @@ export default function CyberSecurityDetail() {
             {capabilities.map((card, index) => (
               <div
                 key={card.title}
-                className={`group relative rounded-2xl bg-white border border-slate-200/60 p-8 sm:p-10 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${
-                  gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                }`}
+                className={`group relative rounded-2xl bg-white border border-slate-200/60 p-8 sm:p-10 flex flex-col shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.08)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1.5 transition-all duration-500 z-10 ${gridVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                  }`}
                 style={{ transitionDelay: `${(index % 3) * 100}ms` }}
               >
                 {/* Icon */}
@@ -522,19 +515,17 @@ export default function CyberSecurityDetail() {
                 return (
                   <div
                     key={step.title}
-                    className={`flex md:flex-col items-start md:items-center gap-6 md:gap-6 transition-all duration-700 ${
-                      journeyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-                    }`}
+                    className={`flex md:flex-col items-start md:items-center gap-6 md:gap-6 transition-all duration-700 ${journeyVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                      }`}
                     style={{ transitionDelay: `${index * 100}ms` }}
                   >
                     {/* Circle badge */}
                     <div className="relative shrink-0 z-10">
                       <div
-                        className={`w-14 h-14 rounded-full border-2 flex items-center justify-center bg-white transition-all duration-500 ${
-                          isActive
+                        className={`w-14 h-14 rounded-full border-2 flex items-center justify-center bg-white transition-all duration-500 ${isActive
                             ? 'border-[rgb(20,109,174)] bg-[rgb(20,109,174)]/5 text-[rgb(20,109,174)] shadow-[0_0_15px_rgba(20,109,174,0.25)] scale-110'
                             : 'border-slate-200 bg-white text-slate-400'
-                        }`}
+                          }`}
                       >
                         <step.icon className={`w-5 h-5 transition-transform duration-500 ${isActive ? 'rotate-0 scale-100' : '-rotate-12 scale-90'}`} />
                       </div>
@@ -595,9 +586,8 @@ export default function CyberSecurityDetail() {
             {partners.map((partner, index) => (
               <div
                 key={partner.name}
-                className={`group flex items-center justify-center bg-white rounded-2xl border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.10)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1 p-8 h-28 sm:h-32 transition-all duration-500 ${
-                  ecosystemVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
+                className={`group flex items-center justify-center bg-white rounded-2xl border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.10)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1 p-8 h-28 sm:h-32 transition-all duration-500 ${ecosystemVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                  }`}
                 style={{ transitionDelay: `${(index % 4) * 80}ms` }}
               >
                 <Image
