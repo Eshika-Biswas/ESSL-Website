@@ -165,12 +165,12 @@ function TeamMemberCard({ member, isVisible }: { member: OperationalMember; isVi
 
   return (
     <div
-      className={`group flex flex-col rounded-3xl bg-white border border-slate-200/80 p-5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+      className={`group flex flex-col rounded-3xl bg-white border border-slate-300 p-5 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
         }`}
       style={{ transitionDelay: `${Math.min(member.id * 40, 500)}ms` }}
     >
       {/* Image Container */}
-      <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-4 bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-100">
+      <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-4 bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200">
         {/* Number Badge */}
         <span className="absolute top-3 left-3 z-10 inline-flex items-center justify-center w-7 h-7 rounded-full bg-slate-900/80 backdrop-blur-md text-white text-xs font-bold font-mono shadow-sm border border-white/20">
           {member.id}
@@ -301,12 +301,12 @@ export default function Leadership() {
               <Link
                 href={`/about/leadership/${member.slug}`}
                 key={member.slug}
-                className={`group flex flex-col rounded-3xl bg-white border border-slate-200/80 p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
+                className={`group flex flex-col rounded-3xl bg-white border border-slate-300 p-6 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-xl hover:border-[rgb(20,109,174)]/30 hover:-translate-y-1.5 transition-all duration-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
                   }`}
                 style={{ transitionDelay: `${member.slug === 'golam-mostafa' ? '0ms' : member.slug === 'partha-sharathe-biswas' ? '120ms' : '240ms'}` }}
               >
                 {/* Image Container */}
-                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-6 bg-slate-100">
+                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-6 bg-slate-100 border border-slate-200">
                   <Image
                     src={member.photo}
                     alt={member.name}
