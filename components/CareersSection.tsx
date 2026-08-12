@@ -2,7 +2,9 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
-import { Network, Compass, Users, TrendingUp } from 'lucide-react';
+import { Network, Compass, Users, TrendingUp, MapPin, Briefcase, Building2, ChevronDown, ChevronUp, Send, Loader2 } from 'lucide-react';
+import { supabase } from '@/lib/supabaseClient';
+import { JobPosting } from '@/types/job';
 
 const benefits = [
   {
@@ -30,6 +32,10 @@ const benefits = [
 export default function CareersSection() {
   const [heroVisible, setHeroVisible] = useState(false);
   const [benefitsVisible, setBenefitsVisible] = useState(false);
+  
+  const [jobs, setJobs] = useState<JobPosting[]>([]);
+  const [loadingJobs, setLoadingJobs] = useState(true);
+  const [expandedJobId, setExpandedJobId] = useState<string | null>(null);
 
   const heroRef = useRef<HTMLElement>(null);
   const benefitsRef = useRef<HTMLElement>(null);
@@ -60,6 +66,35 @@ export default function CareersSection() {
       benefitsObserver.disconnect();
     };
   }, []);
+
+  useEffect(() => {
+    async function fetchActiveJobs() {
+      try {
+        setLoadingJobs(true);
+        const { data, error } = await supabase
+          .from('job_postings')
+          .select('*')
+          .eq('is_active', true)
+          .order('created_at', { ascending: false });
+
+        if (error) {
+          console.error('Error fetching job postings:', error?.message, '| code:', error?.code, '| details:', error?.details, '| hint:', error?.hint);
+        } else if (data) {
+          setJobs(data as JobPosting[]);
+        }
+      } catch (err) {
+        console.error('Unexpected error fetching jobs:', err);
+      } finally {
+        setLoadingJobs(false);
+      }
+    }
+
+    fetchActiveJobs();
+  }, []);
+
+  const toggleExpand = (id: string) => {
+    setExpandedJobId(prev => (prev === id ? null : id));
+  };
 
   return (
     <div className="w-full text-slate-900 min-h-screen bg-[#f8fafc]">
@@ -139,10 +174,10 @@ export default function CareersSection() {
             >
               We&apos;re always on the lookout for talented team players. If you&apos;re an experienced IT or cybersecurity practitioner, and you&apos;d like to join an innovative and growing organization, get in touch at{' '}
               <a
-                href="mailto:careers@essl.com"
+                href="mailto:careers@ensure-bd.com"
                 className="text-[rgb(20,109,174)] hover:underline font-semibold transition-colors"
               >
-                careers@essl.com
+                careers@ensure-bd.com
               </a>
             </p>
           </div>
@@ -150,7 +185,6 @@ export default function CareersSection() {
           {/* Staggered Grid of 2x2 cards */}
           <div className="grid md:grid-cols-2">
             {benefits.map((benefit, index) => {
-              // Responsive borders to create clean horizontal and vertical lines separating the cards
               const borderClasses =
                 index === 0
                   ? 'border-b md:border-r border-slate-200 pb-8 md:pr-8 md:pb-8'
@@ -183,6 +217,139 @@ export default function CareersSection() {
                 </div>
               );
             })}
+          </div>
+
+          {/* ─────────────────────────────────────────────────────────
+              DYNAMIC OPEN POSITIONS SECTION
+             ───────────────────────────────────────────────────────── */}
+          <div className="mt-28 pt-16 border-t border-slate-200">
+            <div className="text-left mb-12">
+              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-4">
+                JOIN OUR TEAM
+              </span>
+              <h2
+                className="text-2xl sm:text-3xl font-bold uppercase tracking-wider font-mono text-slate-900 mb-4"
+                style={{ letterSpacing: '0.08em' }}
+              >
+                OPEN POSITIONS
+              </h2>
+              <p className="text-sm sm:text-base text-slate-600 max-w-2xl">
+                Explore our current job opportunities and take the next step in your career with Ensure Support Services Limited.
+              </p>
+            </div>
+
+            {loadingJobs ? (
+              <div className="flex flex-col items-center justify-center py-12 text-slate-400">
+                <Loader2 className="w-8 h-8 animate-spin text-[rgb(20,109,174)] mb-3" />
+                <p className="text-sm font-mono uppercase tracking-wider">Loading career opportunities...</p>
+              </div>
+            ) : jobs.length === 0 ? (
+              <div className="p-8 sm:p-12 rounded-3xl bg-white border border-slate-200 text-center">
+                <p className="text-slate-700 font-medium text-base mb-2">There are currently no active job openings.</p>
+                <p className="text-slate-500 text-sm max-w-md mx-auto mb-6">
+                  We are always open to meeting talented professionals. Send your resume to our HR team and we will contact you when suitable roles open up.
+                </p>
+                <a
+                  href="mailto:careers@ensure-bd.com?subject=General Application / Resume Submission"
+                  className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-bold tracking-widest text-white bg-[rgb(20,109,174)] font-mono hover:opacity-90 transition-all duration-300 shadow-sm"
+                  style={{ letterSpacing: '0.08em' }}
+                >
+                  <Send className="w-3.5 h-3.5" />
+                  SUBMIT CV
+                </a>
+              </div>
+            ) : (
+              <div className="space-y-4">
+                {jobs.map(job => {
+                  const isExpanded = expandedJobId === job.id;
+                  return (
+                    <div
+                      key={job.id}
+                      className="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden transition-all duration-300 hover:border-slate-300"
+                    >
+                      {/* Header bar / clickable row */}
+                      <div
+                        onClick={() => toggleExpand(job.id)}
+                        className="p-6 sm:p-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4 cursor-pointer select-none hover:bg-slate-50/50 transition-colors"
+                      >
+                        <div className="space-y-2">
+                          <h3 className="text-lg sm:text-xl font-bold text-slate-900 group-hover:text-[rgb(20,109,174)] transition-colors">
+                            {job.title}
+                          </h3>
+                          <div className="flex flex-wrap gap-3 text-xs text-slate-600 font-mono">
+                            <span className="inline-flex items-center gap-1 bg-slate-100 px-3 py-1 rounded-md text-slate-700">
+                              <Building2 className="w-3.5 h-3.5 text-[rgb(20,109,174)]" />
+                              {job.department}
+                            </span>
+                            <span className="inline-flex items-center gap-1 bg-slate-100 px-3 py-1 rounded-md text-slate-700">
+                              <MapPin className="w-3.5 h-3.5 text-[rgb(20,109,174)]" />
+                              {job.location}
+                            </span>
+                            <span className="inline-flex items-center gap-1 bg-slate-100 px-3 py-1 rounded-md text-slate-700">
+                              <Briefcase className="w-3.5 h-3.5 text-[rgb(20,109,174)]" />
+                              {job.employment_type}
+                            </span>
+                          </div>
+                        </div>
+
+                        <div className="flex items-center gap-4 self-end sm:self-center">
+                          <button
+                            type="button"
+                            className="inline-flex items-center gap-1.5 text-xs font-bold text-[rgb(20,109,174)] font-mono uppercase tracking-wider hover:underline"
+                          >
+                            {isExpanded ? 'Hide Details' : 'View Details'}
+                            {isExpanded ? (
+                              <ChevronUp className="w-4 h-4" />
+                            ) : (
+                              <ChevronDown className="w-4 h-4" />
+                            )}
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Expandable Details section */}
+                      {isExpanded && (
+                        <div className="px-6 sm:px-8 pb-8 pt-2 border-t border-slate-100 bg-slate-50/40 space-y-6">
+                          <div>
+                            <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-slate-900 mb-2">
+                              JOB DESCRIPTION
+                            </h4>
+                            <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                              {job.description}
+                            </p>
+                          </div>
+
+                          {job.requirements && (
+                            <div>
+                              <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-slate-900 mb-2">
+                                REQUIREMENTS & QUALIFICATIONS
+                              </h4>
+                              <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                                {job.requirements}
+                              </p>
+                            </div>
+                          )}
+
+                          <div className="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200/80">
+                            <span className="text-xs text-slate-500 font-mono">
+                              Interested candidates can apply directly via email.
+                            </span>
+                            <a
+                              href={`mailto:careers@ensure-bd.com?subject=Application for ${encodeURIComponent(job.title)}`}
+                              className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-bold tracking-widest text-white bg-[rgb(20,109,174)] font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md"
+                              style={{ letterSpacing: '0.08em' }}
+                            >
+                              <Send className="w-3.5 h-3.5" />
+                              APPLY NOW
+                            </a>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
 
           {/* CTA Section */}
