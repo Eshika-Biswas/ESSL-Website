@@ -167,8 +167,8 @@ const operationalTeam: OperationalMember[] = [
   {
     id: 17,
     name: 'Ali Akbar Molla',
-    designation: 'Asst. Manager',
-    department: 'Commercial',
+    designation: 'Sr.Manager',
+    department: 'Business Development',
     email: 'akbar@ensure-bd.com',
     photo: '/team/Ali Akbar  Malla.jpeg',
   },
