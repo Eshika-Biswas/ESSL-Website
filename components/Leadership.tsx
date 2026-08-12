@@ -202,7 +202,7 @@ function TeamMemberCard({ member, isVisible }: { member: OperationalMember; isVi
       style={{ transitionDelay: `${Math.min(member.id * 40, 500)}ms` }}
     >
       {/* Image Container */}
-      <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-4 bg-gradient-to-br from-slate-50 to-slate-100 border border-slate-200">
+      <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-4 bg-gradient-to-br from-slate-50 to-slate-100 border-2 border-slate-300 ring-1 ring-inset ring-black/5">
         {hasPhoto ? (
           <Image
             src={member.photo!}
@@ -333,7 +333,7 @@ export default function Leadership() {
                 style={{ transitionDelay: `${member.slug === 'golam-mostafa' ? '0ms' : member.slug === 'partha-sharathe-biswas' ? '120ms' : '240ms'}` }}
               >
                 {/* Image Container */}
-                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-6 bg-slate-100 border border-slate-200">
+                <div className="relative w-full aspect-[4/5] overflow-hidden rounded-2xl mb-6 bg-slate-100 border-2 border-slate-300 ring-1 ring-inset ring-black/5">
                   <Image
                     src={member.photo}
                     alt={member.name}
