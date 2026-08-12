@@ -98,7 +98,7 @@ const operationalTeam: OperationalMember[] = [
     designation: 'Deputy Manager',
     department: 'Cyber Security Solutions',
     email: 'faruk@ensure-bd.com',
-    photo: '/team/faruk 1.jpeg',
+    photo: '/team/Faruk vai.jpg',
   },
   {
     id: 9,
@@ -178,7 +178,7 @@ const operationalTeam: OperationalMember[] = [
     designation: 'Asst. Manager',
     department: 'HR & Admin',
     email: 'mehedi.hasan@ensure-bd.com',
-    photo: '/team/mehedi11.jpeg',
+    photo: '/team/mehedi hasan.jpeg',
   },
 ];
 
