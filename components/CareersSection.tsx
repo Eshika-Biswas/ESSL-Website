@@ -234,25 +234,36 @@ export default function CareersSection() {
               );
             })}
           </div>
+        </div>
+      </section>
 
-          {/* ─────────────────────────────────────────────────────────
-              DYNAMIC OPEN POSITIONS SECTION
-             ───────────────────────────────────────────────────────── */}
-          <div className="mt-28 pt-16 border-t border-slate-200">
-            <div className="text-left mb-12">
-              <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-4">
-                JOIN OUR TEAM
-              </span>
-              <h2
-                className="text-2xl sm:text-3xl font-bold uppercase tracking-wider font-mono text-slate-900 mb-4"
-                style={{ letterSpacing: '0.08em' }}
-              >
-                OPEN POSITIONS
-              </h2>
-              <p className="text-sm sm:text-base text-slate-600 max-w-2xl">
-                Explore our current job opportunities and take the next step in your career with Ensure Support Services Limited.
-              </p>
-            </div>
+      {/* ─────────────────────────────────────────────────────────
+          SECTION 2B & 3 — Open Positions & Get in Touch (Blue Grid Background)
+         ───────────────────────────────────────────────────────── */}
+      <section
+        className="relative w-full py-24 overflow-hidden border-t border-white/10"
+        style={{
+          backgroundColor: 'rgb(22, 120, 191)',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 0H48M0 0V48' fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='0.75'/%3E%3C/svg%3E")`,
+          backgroundSize: '48px 48px',
+          backgroundRepeat: 'repeat',
+        }}
+      >
+        <div className="relative z-10 max-w-5xl mx-auto px-6">
+          <div className="text-left mb-12">
+            <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-white border border-white/30 bg-white/15 mb-4 font-mono">
+              JOIN OUR TEAM
+            </span>
+            <h2
+              className="text-2xl sm:text-3xl font-bold uppercase tracking-wider font-mono text-white mb-4"
+              style={{ letterSpacing: '0.08em' }}
+            >
+              OPEN POSITIONS
+            </h2>
+            <p className="text-sm sm:text-base text-white/90 max-w-2xl leading-relaxed">
+              Explore our current job opportunities and take the next step in your career with Ensure Support Services Limited.
+            </p>
+          </div>
 
             {loadingJobs ? (
               <div className="flex flex-col items-center justify-center py-12 text-slate-400">
@@ -480,44 +491,31 @@ export default function CareersSection() {
                 })}
               </div>
             )}
+
+          {/* CTA Section — nested inside the same max-w-5xl blue container */}
+          <div
+            className={`mt-24 sm:mt-32 transition-all duration-700 delay-300 text-center ${
+              benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
+          >
+            <h2
+              className="text-2xl sm:text-3xl font-bold uppercase tracking-wider font-mono text-white mb-4"
+              style={{ letterSpacing: '0.08em' }}
+            >
+              GET IN TOUCH
+            </h2>
+            <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">
+              Learn more about how we foster a culture of creativity, support, and innovation to create cutting-edge solutions.
+            </p>
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center rounded-full px-8 py-3 text-xs font-bold tracking-widest text-[rgb(22, 120, 191)] bg-white hover:bg-slate-100 hover:scale-105 transition-all duration-300 shadow-lg font-mono"
+              style={{ letterSpacing: '0.08em' }}
+            >
+              CONTACT US
+            </Link>
           </div>
 
-        </div>
-      </section>
-
-      {/* ─────────────────────────────────────────────────────────
-          SECTION 3 — Get in Touch (solid blue background with grid)
-         ───────────────────────────────────────────────────────── */}
-      <section
-        className="relative w-full py-20 overflow-hidden"
-        style={{
-          backgroundColor: 'rgb(22, 120, 191)',
-          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 0H48M0 0V48' fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='0.75'/%3E%3C/svg%3E")`,
-          backgroundSize: '48px 48px',
-          backgroundRepeat: 'repeat',
-        }}
-      >
-        <div
-          className={`relative z-10 max-w-4xl mx-auto px-6 text-center transition-all duration-700 delay-300 ${
-            benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
-        >
-          <h2
-            className="text-2xl sm:text-3xl font-bold uppercase tracking-wider font-mono text-white mb-4"
-            style={{ letterSpacing: '0.08em' }}
-          >
-            GET IN TOUCH
-          </h2>
-          <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">
-            Learn more about how we foster a culture of creativity, support, and innovation to create cutting-edge solutions.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-full px-8 py-3 text-xs font-bold tracking-widest text-[rgb(22, 120, 191)] bg-white hover:bg-slate-100 hover:scale-105 transition-all duration-300 shadow-lg font-mono"
-            style={{ letterSpacing: '0.08em' }}
-          >
-            CONTACT US
-          </Link>
         </div>
       </section>
 
