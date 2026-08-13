@@ -12,7 +12,7 @@ const posts = [
     date: '2026-06-28',
     category: 'Cybersecurity',
     readTime: '8 min read',
-    image: '/images/cybersecurity-card.png',
+    image: '/images/insights-zero-trust.png',
     pillColor: 'text-blue-400 border-blue-500/30 bg-slate-950/70',
   },
   {
@@ -21,7 +21,7 @@ const posts = [
     date: '2026-06-15',
     category: 'Networking',
     readTime: '6 min read',
-    image: '/images/networking-card.png',
+    image: '/images/insights-sd-wan.png',
     pillColor: 'text-amber-400 border-amber-500/30 bg-slate-950/70',
   },
   {
@@ -30,7 +30,7 @@ const posts = [
     date: '2026-06-02',
     category: 'Cloud',
     readTime: '10 min read',
-    image: '/images/cloud-card.png',
+    image: '/images/insights-cloud-migration.png',
     pillColor: 'text-sky-400 border-sky-500/30 bg-slate-950/70',
   },
 ];

@@ -11,7 +11,7 @@ const allPosts = [
     date: '2026-06-28',
     category: 'Cybersecurity',
     readTime: '8 min read',
-    image: '/images/cybersecurity-card.png',
+    image: '/images/insights-zero-trust.png',
     pillColor: 'text-[rgb(20,109,174)] border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/10',
   },
   {
@@ -20,7 +20,7 @@ const allPosts = [
     date: '2026-06-15',
     category: 'Networking',
     readTime: '6 min read',
-    image: '/images/networking-card.png',
+    image: '/images/insights-sd-wan.png',
     pillColor: 'text-amber-600 border-amber-500/30 bg-amber-50',
   },
   {
@@ -29,7 +29,7 @@ const allPosts = [
     date: '2026-06-02',
     category: 'Cloud',
     readTime: '10 min read',
-    image: '/images/cloud-card.png',
+    image: '/images/insights-cloud-migration.png',
     pillColor: 'text-sky-600 border-sky-500/30 bg-sky-50',
   },
   {
@@ -38,7 +38,7 @@ const allPosts = [
     date: '2026-05-20',
     category: 'Cybersecurity',
     readTime: '7 min read',
-    image: '/images/cybersecurity-card.png',
+    image: '/images/insights-managed-soc.png',
     pillColor: 'text-[rgb(20,109,174)] border-[rgb(20,109,174)]/30 bg-[rgb(20,109,174)]/10',
   },
   {
@@ -47,7 +47,7 @@ const allPosts = [
     date: '2026-05-10',
     category: 'Networking',
     readTime: '9 min read',
-    image: '/images/networking-card.png',
+    image: '/images/insights-high-availability.png',
     pillColor: 'text-amber-600 border-amber-500/30 bg-amber-50',
   },
   {
@@ -56,7 +56,7 @@ const allPosts = [
     date: '2026-04-28',
     category: 'Cloud',
     readTime: '8 min read',
-    image: '/images/cloud-card.png',
+    image: '/images/insights-hybrid-cloud-dr.png',
     pillColor: 'text-sky-600 border-sky-500/30 bg-sky-50',
   },
 ];
