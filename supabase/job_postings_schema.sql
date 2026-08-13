@@ -10,8 +10,7 @@ CREATE TABLE IF NOT EXISTS public.job_postings (
     department TEXT NOT NULL,
     location TEXT NOT NULL,
     employment_type TEXT NOT NULL,
-    description TEXT NOT NULL,           -- UI: Job Summary
-    requirements TEXT,                   -- Legacy field
+    job_summary TEXT NOT NULL,
     is_active BOOLEAN NOT NULL DEFAULT true,
     created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
     updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),

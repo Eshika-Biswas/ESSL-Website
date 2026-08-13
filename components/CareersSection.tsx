@@ -334,13 +334,13 @@ export default function CareersSection() {
                       <div className="px-6 sm:px-8 pb-8 pt-4 border-t border-slate-100 bg-slate-50/40 space-y-6">
 
                         {/* Job Summary */}
-                        {job.description && (
+                        {job.job_summary && (
                           <div>
                             <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
                               JOB SUMMARY
                             </h4>
                             <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
-                              {job.description}
+                              {job.job_summary}
                             </p>
                           </div>
                         )}
@@ -415,17 +415,6 @@ export default function CareersSection() {
                           </div>
                         )}
 
-                        {/* Legacy requirements field (old postings) */}
-                        {job.requirements && !job.job_responsibilities && (
-                          <div>
-                            <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
-                              REQUIREMENTS & QUALIFICATIONS
-                            </h4>
-                            <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
-                              {job.requirements}
-                            </p>
-                          </div>
-                        )}
 
                         {/* Salary & Benefits row */}
                         {(job.salary_type || job.benefits) && (

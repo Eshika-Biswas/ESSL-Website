@@ -4,8 +4,7 @@ export interface JobPosting {
   department: string;
   location: string;
   employment_type: string;
-  description: string;           // maps to "Job Summary" in the UI
-  requirements?: string | null;  // legacy field — kept for old postings
+  job_summary: string;
   is_active: boolean;
   created_at?: string;
   updated_at?: string;

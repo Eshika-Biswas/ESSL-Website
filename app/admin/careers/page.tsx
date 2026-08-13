@@ -71,7 +71,7 @@ export default function AdminCareersPage() {
   const [formIsActive, setFormIsActive] = useState(true);
 
   // ── Section 2: Role Details ─────────────────────────────────────────────
-  const [formDescription, setFormDescription] = useState('');        // Job Summary
+  const [formJobSummary, setFormJobSummary] = useState('');        // Job Summary
   const [formResponsibilities, setFormResponsibilities] = useState('');
   const [formSkills, setFormSkills] = useState('');
 
@@ -190,7 +190,7 @@ export default function AdminCareersPage() {
     setFormLocation('Dhaka, Bangladesh');
     setFormEmploymentType('Full-Time');
     setFormIsActive(true);
-    setFormDescription('');
+    setFormJobSummary('');
     setFormResponsibilities('');
     setFormSkills('');
     setFormEducation('');
@@ -214,7 +214,7 @@ export default function AdminCareersPage() {
     setFormLocation(job.location);
     setFormEmploymentType(job.employment_type);
     setFormIsActive(job.is_active);
-    setFormDescription(job.description);
+    setFormJobSummary(job.job_summary);
     setFormResponsibilities(job.job_responsibilities || '');
     setFormSkills(job.skills || '');
     setFormEducation(job.educational_requirements || '');
@@ -235,7 +235,7 @@ export default function AdminCareersPage() {
     e.preventDefault();
     setFormError(null);
 
-    if (!formTitle.trim() || !formDepartment.trim() || !formLocation.trim() || !formDescription.trim()) {
+    if (!formTitle.trim() || !formDepartment.trim() || !formLocation.trim() || !formJobSummary.trim()) {
       setFormError('Please fill in all required fields: Title, Department, Location, Job Summary.');
       return;
     }
@@ -247,7 +247,7 @@ export default function AdminCareersPage() {
       location: formLocation.trim(),
       employment_type: formEmploymentType.trim(),
       is_active: formIsActive,
-      description: formDescription.trim(),
+      job_summary: formJobSummary.trim(),
       job_responsibilities: formResponsibilities.trim() || null,
       skills: formSkills.trim() || null,
       educational_requirements: formEducation.trim() || null,
@@ -527,7 +527,7 @@ export default function AdminCareersPage() {
                         <Briefcase className="w-3.5 h-3.5 text-[rgb(20,109,174)]" />{job.employment_type}
                       </span>
                     </div>
-                    <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">{job.description}</p>
+                    <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">{job.job_summary}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 border-t lg:border-t-0 pt-4 lg:pt-0 border-slate-100 shrink-0">
                     <button onClick={() => handleToggleActive(job)}
@@ -630,7 +630,7 @@ export default function AdminCareersPage() {
                 <label className={labelClass}>JOB SUMMARY *</label>
                 <textarea required rows={3}
                   placeholder="Brief overview of the role, its purpose, and how it fits within the team..."
-                  value={formDescription} onChange={e => setFormDescription(e.target.value)} className={textareaClass} />
+                  value={formJobSummary} onChange={e => setFormJobSummary(e.target.value)} className={textareaClass} />
               </div>
 
               <div>

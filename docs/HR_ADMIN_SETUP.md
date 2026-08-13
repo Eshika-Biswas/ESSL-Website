@@ -45,7 +45,7 @@ To create the initial HR admin user account:
 2. Enter the HR Admin email and password created in Step 3.
 3. Once authenticated, you can:
    - **View All Postings**: See active and inactive (hidden) job listings.
-   - **Add New Posting**: Create new job openings with title, department, location, type, description, and requirements.
+   - **Add New Posting**: Create new job openings with title, department, location, type, job summary, responsibilities, skills, and compensation/benefit details.
    - **Edit Posting**: Modify any job listing details.
    - **Deactivate Posting**: Hide filled roles from the public `/about/careers` page immediately while preserving the record.
    - **Reactivate Posting**: Reopen previously filled roles with a single click.
