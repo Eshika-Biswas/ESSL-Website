@@ -5,16 +5,16 @@ import Image from 'next/image';
 import { newsEvents } from '@/lib/newsEvents';
 import { Calendar, ArrowLeft, Rss } from 'lucide-react';
 
-interface Props {
-  params: { slug: string };
-}
+// Allow any slug — don't restrict to statically known slugs at build time
+export const dynamic = 'force-dynamic';
 
-export async function generateStaticParams() {
-  return newsEvents.map((item) => ({ slug: item.slug }));
+interface Props {
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const item = newsEvents.find((n) => n.slug === params.slug);
+  const { slug } = await params;
+  const item = newsEvents.find((n) => n.slug === slug);
   if (!item) return {};
   return {
     title: `${item.title} | Ensure Support Services Ltd.`,
@@ -35,8 +35,9 @@ function formatDate(iso: string) {
   });
 }
 
-export default function NewsEventDetailPage({ params }: Props) {
-  const item = newsEvents.find((n) => n.slug === params.slug);
+export default async function NewsEventDetailPage({ params }: Props) {
+  const { slug } = await params;
+  const item = newsEvents.find((n) => n.slug === slug);
   if (!item) notFound();
 
   return (
@@ -44,6 +45,8 @@ export default function NewsEventDetailPage({ params }: Props) {
 
       {/* Hero Image */}
       <div className="relative w-full" style={{ height: 'clamp(280px, 50vw, 520px)' }}>
+        {/* Fallback gradient visible while/if image is missing */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0f1420] to-[rgb(20,109,174)]/60" />
         <Image
           src={item.heroImage}
           alt={item.title}
@@ -114,7 +117,7 @@ export default function NewsEventDetailPage({ params }: Props) {
             if (block.type === 'image') {
               return (
                 <figure key={i} className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-lg">
-                  <div className="relative w-full aspect-[16/9]">
+                  <div className="relative w-full aspect-[16/9] bg-slate-100">
                     <Image
                       src={block.src}
                       alt={block.caption || ''}

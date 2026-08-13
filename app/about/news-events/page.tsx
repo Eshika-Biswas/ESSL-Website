@@ -22,7 +22,7 @@ export default function NewsEventsPage() {
   return (
     <div className="min-h-screen bg-[#f8fafc] text-slate-900">
 
-      {/* Hero */}
+      {/* Page Hero */}
       <section className="relative w-full pt-32 pb-20 overflow-hidden border-b border-slate-200/70">
         <div
           className="absolute inset-0 z-0 pointer-events-none"
@@ -69,8 +69,8 @@ export default function NewsEventsPage() {
                 href={`/about/news-events/${item.slug}`}
                 className="group flex flex-col bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[rgb(20,109,174)]/30 transition-all duration-300 overflow-hidden"
               >
-                {/* Card image */}
-                <div className="relative w-full aspect-[16/9] overflow-hidden bg-slate-100">
+                {/* Card image — always reserves space; shows gradient placeholder if image is missing */}
+                <div className="relative w-full aspect-[16/9] bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden shrink-0">
                   <Image
                     src={item.heroImage}
                     alt={item.title}
@@ -78,13 +78,13 @@ export default function NewsEventsPage() {
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="object-cover transition-transform duration-500 group-hover:scale-105"
                   />
-                  {/* Category pill */}
-                  <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-[rgb(20,109,174)] text-white shadow">
+                  {/* Category pill — sits inside the image area */}
+                  <span className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-[rgb(20,109,174)] text-white shadow">
                     {item.category}
                   </span>
                 </div>
 
-                {/* Card body */}
+                {/* Card body — always below the image, never overlapping */}
                 <div className="flex flex-col flex-grow p-6">
                   <div className="flex items-center gap-1.5 text-[11px] text-slate-400 font-mono mb-3">
                     <Calendar className="w-3.5 h-3.5" />
