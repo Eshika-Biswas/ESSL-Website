@@ -74,4 +74,82 @@ export const newsEvents: NewsEvent[] = [
       },
     ],
   },
+  {
+    slug: 'essl-wins-cisco-scale-partner-of-the-year-fy26',
+    title: 'ESSL Wins Cisco Scale Partner of the Year – FY26',
+    excerpt:
+      'Ensure Support Services Limited (ESSL) has achieved another remarkable milestone by being awarded "Cisco Scale Partner of the Year – FY26" at the prestigious Cisco Partner Synergy Program.',
+    date: '2026-08-11',
+    category: 'Awards',
+    heroImage: 'placeholder',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ensure Support Services Limited (ESSL) has achieved another remarkable milestone by being awarded "Cisco Scale Partner of the Year – FY26" at the prestigious Cisco Partner Synergy Program.',
+      },
+      {
+        type: 'paragraph',
+        text: 'This recognition reflects ESSL\'s outstanding performance, strong customer focus, commitment to innovation, and continued excellence in delivering Cisco solutions and services. The award is a testament to the dedication and collaborative efforts of the entire ESSL team and further strengthens our position as a trusted Cisco partner in Bangladesh.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Adding another proud moment to the occasion, Mr. Sourav Debnath received the prestigious Cisco Partner Star Award in recognition of his outstanding dedication, contribution, and commitment to driving excellence.',
+      },
+      {
+        type: 'paragraph',
+        text: 'We extend our heartfelt congratulations to Mr. Sourav Debnath on this well-deserved achievement and appreciate his continued efforts toward ESSL\'s success.',
+      },
+      {
+        type: 'paragraph',
+        text: 'This double recognition at the Cisco Partner Synergy Program is a proud achievement for the entire ESSL family and inspires us to aim even higher.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Congratulations to the entire ESSL team!',
+      },
+      {
+        type: 'paragraph',
+        text: 'Together, we continue to grow, innovate, and achieve greater milestones.',
+      },
+    ],
+  },
+  {
+    slug: 'essl-wins-wildfire-award-sophos-sales-excellence',
+    title: 'ESSL Wins The Wildfire Award for Sophos Sales Excellence',
+    excerpt:
+      'Ensure Support Services Limited (ESSL) has proudly received "The Wildfire Award" for its outstanding sales performance of Sophos at the prestigious EXIM Synergy – Synergy Soiree 2026.',
+    date: '2026-08-12',
+    category: 'Awards',
+    heroImage: 'placeholder',
+    body: [
+      {
+        type: 'paragraph',
+        text: 'Ensure Support Services Limited (ESSL) has proudly received "The Wildfire Award" for its outstanding sales performance of Sophos at the prestigious EXIM Synergy – Synergy Soiree 2026.',
+      },
+      {
+        type: 'paragraph',
+        text: 'This recognition reflects ESSL\'s strong commitment to delivering world-class cybersecurity solutions and creating exceptional value for customers through its partnership with Sophos. The award stands as a testament to the dedication, expertise, and relentless efforts of the entire ESSL team in driving business growth and strengthening its position in the cybersecurity market.',
+      },
+      {
+        type: 'paragraph',
+        text: 'The Wildfire Award is a significant achievement for ESSL and highlights the organization\'s continued excellence in sales performance, customer engagement, and technology-driven solutions.',
+      },
+      {
+        type: 'paragraph',
+        text: 'ESSL extends its sincere appreciation to Sophos and the EXIM team for recognizing our performance and continued partnership. We also congratulate and thank every member of the ESSL team whose hard work and commitment made this achievement possible.',
+      },
+      {
+        type: 'paragraph',
+        text: 'This achievement inspires us to aim higher, innovate continuously, and deliver even greater impact for our customers and partners.',
+      },
+      {
+        type: 'paragraph',
+        text: 'Congratulations to Team ESSL!',
+      },
+      {
+        type: 'paragraph',
+        text: 'Stronger Teams. Greater Impact.',
+      },
+    ],
+  },
 ];

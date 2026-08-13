@@ -50,7 +50,7 @@ export default function Footer() {
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Grid */}
         <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-12">
-          
+
           {/* Left Column: Company Logo + Contact Details */}
           <div className="lg:col-span-4 space-y-6">
             <Link href="/" className="inline-block group">
@@ -71,12 +71,12 @@ export default function Footer() {
             <div className="space-y-3.5 text-sm text-slate-300">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[rgb(20,109,174)] shrink-0 mt-0.5" />
-                <span className="leading-snug">JJR Heritage, L-4 147/D, 1 Green Rd, Dhaka 1215</span>
+                <span className="leading-snug">JJR Heritage, L-5 147/D, 1 Green Rd, Dhaka 1215</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[rgb(20,109,174)] shrink-0" />
                 <a href="mailto:sales@ensure-bd.com" className="hover:text-white transition-colors">
-                  sales@ensure-bd.com
+                  support@ensure-bd.com
                 </a>
               </div>
               <div className="flex items-center gap-3">

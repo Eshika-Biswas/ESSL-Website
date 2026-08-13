@@ -70,14 +70,20 @@ export default function NewsEventsPage() {
                 className="group flex flex-col bg-white rounded-3xl border border-slate-200 shadow-sm hover:shadow-xl hover:-translate-y-1 hover:border-[rgb(20,109,174)]/30 transition-all duration-300 overflow-hidden"
               >
                 {/* Card image — always reserves space; shows gradient placeholder if image is missing */}
-                <div className="relative w-full aspect-[16/9] bg-gradient-to-br from-slate-100 to-slate-200 overflow-hidden shrink-0">
-                  <Image
-                    src={item.heroImage}
-                    alt={item.title}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                <div className="relative w-full aspect-[16/9] bg-gradient-to-br from-slate-900 to-slate-800 overflow-hidden shrink-0 flex items-center justify-center">
+                  {item.heroImage && item.heroImage !== 'placeholder' ? (
+                    <Image
+                      src={item.heroImage}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-850 text-white/20 select-none">
+                      <Rss className="w-12 h-12 opacity-30 group-hover:scale-110 transition-transform duration-500 text-[rgb(20,109,174)]" />
+                    </div>
+                  )}
                   {/* Category pill — sits inside the image area */}
                   <span className="absolute top-3 left-3 z-10 px-2.5 py-1 rounded-full text-[10px] font-bold uppercase tracking-widest bg-[rgb(20,109,174)] text-white shadow">
                     {item.category}

@@ -47,14 +47,16 @@ export default async function NewsEventDetailPage({ params }: Props) {
       <div className="relative w-full" style={{ height: 'clamp(280px, 50vw, 520px)' }}>
         {/* Fallback gradient visible while/if image is missing */}
         <div className="absolute inset-0 bg-gradient-to-br from-[#0f1420] to-[rgb(20,109,174)]/60" />
-        <Image
-          src={item.heroImage}
-          alt={item.title}
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover"
-        />
+        {item.heroImage && item.heroImage !== 'placeholder' && (
+          <Image
+            src={item.heroImage}
+            alt={item.title}
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover"
+          />
+        )}
         {/* Dark overlay gradient */}
         <div className="absolute inset-0 bg-gradient-to-t from-[#0f1420]/80 via-[#0f1420]/30 to-transparent" />
 
@@ -115,16 +117,21 @@ export default async function NewsEventDetailPage({ params }: Props) {
               );
             }
             if (block.type === 'image') {
+              const isPlaceholder = !block.src || block.src === 'placeholder';
               return (
                 <figure key={i} className="my-12 rounded-2xl overflow-hidden border border-slate-200 shadow-lg">
-                  <div className="relative w-full aspect-[16/9] bg-slate-100">
-                    <Image
-                      src={block.src}
-                      alt={block.caption || ''}
-                      fill
-                      sizes="(max-width: 896px) 100vw, 896px"
-                      className="object-cover"
-                    />
+                  <div className="relative w-full aspect-[16/9] bg-slate-100 flex items-center justify-center bg-gradient-to-br from-slate-950 via-slate-900 to-slate-850">
+                    {!isPlaceholder ? (
+                      <Image
+                        src={block.src}
+                        alt={block.caption || ''}
+                        fill
+                        sizes="(max-width: 896px) 100vw, 896px"
+                        className="object-cover"
+                      />
+                    ) : (
+                      <Rss className="w-16 h-16 opacity-30 text-[rgb(20,109,174)]" />
+                    )}
                   </div>
                   {block.caption && (
                     <figcaption className="bg-slate-50 px-5 py-3 text-xs text-slate-500 font-mono border-t border-slate-200">
