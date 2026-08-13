@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Network, Compass, Users, TrendingUp, MapPin, Briefcase, Building2, ChevronDown, ChevronUp, Send, Loader2 } from 'lucide-react';
 import { supabase } from '@/lib/supabaseClient';
 import { JobPosting } from '@/types/job';
@@ -105,6 +106,14 @@ export default function CareersSection() {
       <section
         ref={heroRef}
         className="relative w-full overflow-hidden border-b border-dashed border-slate-200 pt-32 pb-24"
+        style={{
+          backgroundColor: '#f8fafc',
+          backgroundImage: `
+            radial-gradient(circle at center, rgba(15, 23, 42, 0.08) 1.5px, transparent 1.5px),
+            url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='40' height='40' fill='none' stroke='rgba(15,23,42,0.08)' stroke-width='0.5'/%3E%3Cpath d='M18 20h4M20 18v4' stroke='rgba(20,109,174,0.30)' stroke-width='1'/%3E%3C/svg%3E")
+          `,
+          backgroundSize: '40px 40px',
+        }}
       >
         {/* Soft blue radial glow blob in the top-left corner */}
         <div
@@ -119,9 +128,6 @@ export default function CareersSection() {
             filter: 'blur(90px)',
           }}
         />
-
-        {/* Faint decorative diagonal grid lines across background */}
-        <div className="absolute inset-0 z-0 grid-bg opacity-15 pointer-events-none" />
 
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
           {/* Centered Heading */}
@@ -150,10 +156,20 @@ export default function CareersSection() {
          ───────────────────────────────────────────────────────── */}
       <section
         ref={benefitsRef}
-        className="relative w-full py-24 overflow-hidden"
+        className="relative w-full py-24 overflow-hidden bg-[#f8fafc]"
       >
-        {/* Faint grid background for Benefits section */}
-        <div className="absolute inset-0 z-0 grid-bg opacity-10 pointer-events-none" />
+        {/* Low-opacity circuit-board line pattern backdrop */}
+        <div className="absolute inset-0 z-0 bg-[#f8fafc]">
+          <Image
+            src="/images/end-to-end-tech-bg.png"
+            alt="Benefits Circuit Pattern"
+            fill
+            sizes="100vw"
+            className="object-cover object-center opacity-60 pointer-events-none"
+            loading="lazy"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#f8fafc]/30 via-transparent to-[#f8fafc]/40" />
+        </div>
 
         <div className="relative z-10 max-w-5xl mx-auto px-6">
           
@@ -466,38 +482,42 @@ export default function CareersSection() {
             )}
           </div>
 
-          {/* CTA Section */}
-          <div
-            className={`mt-24 sm:mt-32 transition-all duration-700 delay-500 ${
-              benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-12'
-            }`}
-          >
-            {/* Card 2: Get in Touch (light card - constrained max-width) */}
-            <div className="relative overflow-hidden w-full max-w-3xl mx-auto rounded-3xl p-6 sm:p-10 shadow-sm border border-slate-200 bg-white">
-              <div className="grid md:grid-cols-[2fr_1.2fr] items-center gap-6 text-left">
-                <div>
-                  <h3 className="text-lg sm:text-xl font-bold tracking-widest text-slate-900 uppercase font-mono mb-3"
-                    style={{ letterSpacing: '0.08em' }}
-                  >
-                    GET IN TOUCH
-                  </h3>
-                  <p className="text-xs sm:text-sm leading-relaxed text-slate-600">
-                    Learn more about how we foster a culture of creativity, support, and innovation to create cutting-edge solutions.
-                  </p>
-                </div>
-                <div className="flex md:justify-end">
-                  <Link
-                    href="/contact"
-                    className="inline-flex items-center justify-center rounded-full px-8 py-2.5 text-[10px] font-bold tracking-widest text-white font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md hover:shadow-lg bg-[rgb(20,109,174)]"
-                    style={{ letterSpacing: '0.08em' }}
-                  >
-                    CONTACT US
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
+        </div>
+      </section>
 
+      {/* ─────────────────────────────────────────────────────────
+          SECTION 3 — Get in Touch (solid blue background with grid)
+         ───────────────────────────────────────────────────────── */}
+      <section
+        className="relative w-full py-20 overflow-hidden"
+        style={{
+          backgroundColor: 'rgb(22, 120, 191)',
+          backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='48' height='48'%3E%3Cpath d='M0 0H48M0 0V48' fill='none' stroke='rgba(255,255,255,0.10)' stroke-width='0.75'/%3E%3C/svg%3E")`,
+          backgroundSize: '48px 48px',
+          backgroundRepeat: 'repeat',
+        }}
+      >
+        <div
+          className={`relative z-10 max-w-4xl mx-auto px-6 text-center transition-all duration-700 delay-300 ${
+            benefitsVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+          }`}
+        >
+          <h2
+            className="text-2xl sm:text-3xl font-bold uppercase tracking-wider font-mono text-white mb-4"
+            style={{ letterSpacing: '0.08em' }}
+          >
+            GET IN TOUCH
+          </h2>
+          <p className="text-sm sm:text-base text-white/90 max-w-2xl mx-auto mb-8 leading-relaxed">
+            Learn more about how we foster a culture of creativity, support, and innovation to create cutting-edge solutions.
+          </p>
+          <Link
+            href="/contact"
+            className="inline-flex items-center justify-center rounded-full px-8 py-3 text-xs font-bold tracking-widest text-[rgb(22, 120, 191)] bg-white hover:bg-slate-100 hover:scale-105 transition-all duration-300 shadow-lg font-mono"
+            style={{ letterSpacing: '0.08em' }}
+          >
+            CONTACT US
+          </Link>
         </div>
       </section>
 
