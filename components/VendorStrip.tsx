@@ -9,14 +9,14 @@ interface Vendor {
   type: string;
   src: string;
   scale?: string;
+  href?: string;
 }
 
-// Only showing verified partner logos with images
 const vendors: Vendor[] = [
-  { name: 'Cisco', type: 'Networking & Security', src: '/partners/cisco.png', scale: 'max-h-7' },
-  { name: 'Fortinet', type: 'Network Security', src: '/partners/fortinet-logo.svg', scale: 'max-h-6' },
+  { name: 'Cisco', type: 'Networking & Security', src: '/partners/cisco.png', scale: 'max-h-7', href: 'https://locatr.cloudapps.cisco.com/WWChannels/LOCATR/pf/index.jsp#/NjUyMTI3@MTM2NTYxMDUw@RU4=' },
+  { name: 'Fortinet', type: 'Network Security', src: '/partners/fortinet-logo.svg', scale: 'max-h-6', href: 'https://partnerportal.fortinet.com/directory/search?loe=Advanced&l=Bangladesh&q=ensure+support+services' },
   { name: 'Sophos', type: 'Endpoint Security', src: '/partners/sophos.png', scale: 'max-h-7' },
-  { name: 'Palo Alto Networks', type: 'Network Security', src: '/partners/paloalto.svg', scale: 'max-h-6' },
+  { name: 'Palo Alto Networks', type: 'Network Security', src: '/partners/paloalto.svg', scale: 'max-h-6', href: 'https://paloaltonetworks.my.site.com/NextWavePartnerProgram/s/partnerlocator?c__pageDetails=RecordView&c__key=2Smer%2FK0VxCnaeqoa617j8Fo%2FxiWsRYO6Pns%2FGdvAhOoGgnXqPzIs%2BrcB%2B0bbi2%2B' },
   { name: 'CrowdStrike', type: 'EDR & Cybersecurity', src: '/partners/crowdstrike.svg', scale: 'max-h-5' },
   { name: 'Dell Technologies', type: 'Server & Storage', src: '/partners/dell.png', scale: 'max-h-7' },
   { name: 'Microsoft', type: 'Cloud & Productivity', src: '/partners/microsoft.png', scale: 'max-h-6' },
@@ -74,32 +74,55 @@ export default function VendorStrip() {
 
         {/* Vendor Grid — matching Clients page card styling */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4 max-w-6xl mx-auto">
-          {vendors.map((vendor, index) => (
-            <Link
-              key={vendor.name}
-              href="/about/partners"
-              className={`group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/85 hover:border-[#1B6BA8]/30 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center text-center h-32 ${
-                isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-              }`}
-              style={{ transitionDelay: `${index * 50}ms` }}
-            >
-              <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
-                <Image
-                  src={vendor.src}
-                  alt={`${vendor.name} logo`}
-                  width={140}
-                  height={48}
-                  className={`w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${vendor.scale ?? 'max-h-10'}`}
-                />
-              </div>
-              <span className="text-xs font-bold text-slate-800 leading-tight transition-colors group-hover:text-[#1B6BA8]">
-                {vendor.name}
-              </span>
-              <span className="text-[10px] font-medium text-slate-400 mt-0.5">
-                {vendor.type}
-              </span>
-            </Link>
-          ))}
+          {vendors.map((vendor, index) => {
+            const cardContent = (
+              <>
+                <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
+                  <Image
+                    src={vendor.src}
+                    alt={`${vendor.name} logo`}
+                    width={140}
+                    height={48}
+                    className={`w-auto object-contain transition-transform duration-300 group-hover:scale-105 ${vendor.scale ?? 'max-h-10'}`}
+                  />
+                </div>
+                <span className="text-xs font-bold text-slate-800 leading-tight transition-colors group-hover:text-[#1B6BA8]">
+                  {vendor.name}
+                </span>
+                <span className="text-[10px] font-medium text-slate-400 mt-0.5">
+                  {vendor.type}
+                </span>
+              </>
+            );
+            const sharedClass = `group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/85 hover:border-[#1B6BA8]/30 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center text-center h-32 ${
+              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+            }`;
+            if (vendor.href) {
+              return (
+                <a
+                  key={vendor.name}
+                  href={vendor.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`${vendor.name} partner locator (opens in new tab)`}
+                  className={sharedClass}
+                  style={{ transitionDelay: `${index * 50}ms` }}
+                >
+                  {cardContent}
+                </a>
+              );
+            }
+            return (
+              <Link
+                key={vendor.name}
+                href="/about/partners"
+                className={sharedClass}
+                style={{ transitionDelay: `${index * 50}ms` }}
+              >
+                {cardContent}
+              </Link>
+            );
+          })}
         </div>
 
         {/* View All Partners Link */}

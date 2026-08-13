@@ -151,10 +151,9 @@ const steps = [
 // ─── Partner Logos ────────────────────────────────────────────────────────────
 const partners = [
   { name: 'CrowdStrike', src: '/partners/crowdstrike.svg' },
-  { name: 'Palo Alto', src: '/partners/paloalto.svg' },
-  { name: 'Fortinet', src: '/partners/fortinet-logo.svg' },
-  { name: 'Cisco', src: '/partners/cisco.png' },
-
+  { name: 'Palo Alto', src: '/partners/paloalto.svg', href: 'https://paloaltonetworks.my.site.com/NextWavePartnerProgram/s/partnerlocator?c__pageDetails=RecordView&c__key=2Smer%2FK0VxCnaeqoa617j8Fo%2FxiWsRYO6Pns%2FGdvAhOoGgnXqPzIs%2BrcB%2B0bbi2%2B' },
+  { name: 'Fortinet', src: '/partners/fortinet-logo.svg', href: 'https://partnerportal.fortinet.com/directory/search?loe=Advanced&l=Bangladesh&q=ensure+support+services' },
+  { name: 'Cisco', src: '/partners/cisco.png', href: 'https://locatr.cloudapps.cisco.com/WWChannels/LOCATR/pf/index.jsp#/NjUyMTI3@MTM2NTYxMDUw@RU4=' },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -583,22 +582,37 @@ export default function CyberSecurityDetail() {
 
           {/* 7 logos — 4+3 responsive grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
-            {partners.map((partner, index) => (
-              <div
-                key={partner.name}
-                className={`group flex items-center justify-center bg-white rounded-2xl border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.10)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1 p-8 h-28 sm:h-32 transition-all duration-500 ${ecosystemVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                  }`}
-                style={{ transitionDelay: `${(index % 4) * 80}ms` }}
-              >
-                <Image
-                  src={partner.src}
-                  alt={`${partner.name} logo`}
-                  width={160}
-                  height={60}
-                  className="object-contain max-h-10 w-auto grayscale-[20%] group-hover:grayscale-0 transition-all duration-300"
-                />
-              </div>
-            ))}
+            {partners.map((partner, index) => {
+              const card = (
+                <div
+                  className={`group flex items-center justify-center bg-white rounded-2xl border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.10)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1 p-8 h-28 sm:h-32 transition-all duration-500 ${ecosystemVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }${partner.href ? ' cursor-pointer' : ''}`}
+                  style={{ transitionDelay: `${(index % 4) * 80}ms` }}
+                >
+                  <Image
+                    src={partner.src}
+                    alt={`${partner.name} logo`}
+                    width={160}
+                    height={60}
+                    className="object-contain max-h-10 w-auto grayscale-[20%] group-hover:grayscale-0 transition-all duration-300"
+                  />
+                </div>
+              );
+              if (partner.href) {
+                return (
+                  <a
+                    key={partner.name}
+                    href={partner.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`${partner.name} partner locator (opens in new tab)`}
+                  >
+                    {card}
+                  </a>
+                );
+              }
+              return <div key={partner.name}>{card}</div>;
+            })}
           </div>
 
         </div>
