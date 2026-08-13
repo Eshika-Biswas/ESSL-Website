@@ -69,6 +69,7 @@ interface Partner {
   type: string;
   logo: string;
   logoScale?: string;
+  href?: string;
 }
 
 /* ================================================================
@@ -82,18 +83,21 @@ const networkingPartners: Partner[] = [
     type: 'Networking & Security',
     logo: '/partners/cisco.png',
     logoScale: 'max-h-8',
+    href: 'https://locatr.cloudapps.cisco.com/WWChannels/LOCATR/pf/index.jsp#/NjUyMTI3@MTM2NTYxMDUw@RU4=',
   },
   {
     name: 'Fortinet',
     type: 'Network Security',
     logo: '/partners/fortinet-logo.svg',
     logoScale: 'max-h-7',
+    href: 'https://partnerportal.fortinet.com/directory/search?loe=Advanced&l=Bangladesh&q=ensure+support+services',
   },
   {
     name: 'Palo Alto Networks',
     type: 'Network Security',
     logo: '/partners/paloalto.svg',
     logoScale: 'max-h-7',
+    href: 'https://paloaltonetworks.my.site.com/NextWavePartnerProgram/s/partnerlocator?c__pageDetails=RecordView&c__key=2Smer%2FK0VxCnaeqoa617j8Fo%2FxiWsRYO6Pns%2FGdvAhOoGgnXqPzIs%2BrcB%2B0bbi2%2B',
   },
   {
     name: 'Sophos',
@@ -134,18 +138,21 @@ const cyberSecurityPartners: Partner[] = [
     type: 'Network Security',
     logo: '/partners/paloalto.svg',
     logoScale: 'max-h-7',
+    href: 'https://paloaltonetworks.my.site.com/NextWavePartnerProgram/s/partnerlocator?c__pageDetails=RecordView&c__key=2Smer%2FK0VxCnaeqoa617j8Fo%2FxiWsRYO6Pns%2FGdvAhOoGgnXqPzIs%2BrcB%2B0bbi2%2B',
   },
   {
     name: 'Fortinet',
     type: 'Network Security',
     logo: '/partners/fortinet-logo.svg',
     logoScale: 'max-h-7',
+    href: 'https://partnerportal.fortinet.com/directory/search?loe=Advanced&l=Bangladesh&q=ensure+support+services',
   },
   {
     name: 'Cisco',
     type: 'Networking & Security',
     logo: '/partners/cisco.png',
     logoScale: 'max-h-8',
+    href: 'https://locatr.cloudapps.cisco.com/WWChannels/LOCATR/pf/index.jsp#/NjUyMTI3@MTM2NTYxMDUw@RU4=',
   },
 ];
 
@@ -212,9 +219,11 @@ const dataCenterPartners: Partner[] = [
    ================================================================ */
 
 function PartnerCard({ partner }: { partner: Partner }) {
-  return (
+  const card = (
     <div
-      className="group relative p-4 rounded-2xl border border-white/30 bg-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center text-center h-32"
+      className={`group relative p-4 rounded-2xl border border-white/30 bg-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center text-center h-32${
+        partner.href ? ' cursor-pointer hover:scale-[1.03] hover:border-[rgb(20,109,174)]/40' : ''
+      }`}
     >
       <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
         <Image
@@ -231,8 +240,28 @@ function PartnerCard({ partner }: { partner: Partner }) {
         {partner.name}
       </span>
       <span className="text-[10px] font-medium text-slate-500 mt-0.5">{partner.type}</span>
+      {partner.href && (
+        <span className="text-[9px] font-semibold text-[rgb(20,109,174)] mt-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 tracking-wider uppercase">
+          Find Us ↗
+        </span>
+      )}
     </div>
   );
+
+  if (partner.href) {
+    return (
+      <a
+        href={partner.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={`${partner.name} partner locator (opens in new tab)`}
+      >
+        {card}
+      </a>
+    );
+  }
+
+  return card;
 }
 
 /* ================================================================
