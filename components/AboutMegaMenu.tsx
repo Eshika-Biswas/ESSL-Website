@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { BookOpen, HelpCircle, Users, Handshake, Briefcase, Newspaper } from 'lucide-react';
+import { BookOpen, HelpCircle, Users, Handshake, Briefcase, Newspaper, Rss } from 'lucide-react';
 
 export const aboutItems = [
   { name: 'Our Story', icon: BookOpen, href: '/about/our-story' },
@@ -9,6 +9,7 @@ export const aboutItems = [
   { name: 'Our Team', icon: Users, href: '/about/leadership' },
   { name: 'Our Partners', icon: Handshake, href: '/about/partners' },
   { name: 'Careers', icon: Briefcase, href: '/about/careers' },
+  { name: 'News & Events', icon: Rss, href: '/about/news-events' },
   { name: 'Insights', icon: Newspaper, href: '/insights' },
 ];
 
