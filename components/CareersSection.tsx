@@ -309,19 +309,94 @@ export default function CareersSection() {
 
                       {/* Expandable Details section */}
                       {isExpanded && (
-                        <div className="px-6 sm:px-8 pb-8 pt-2 border-t border-slate-100 bg-slate-50/40 space-y-6">
-                          <div>
-                            <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-slate-900 mb-2">
-                              JOB DESCRIPTION
-                            </h4>
-                            <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
-                              {job.description}
-                            </p>
-                          </div>
+                        <div className="px-6 sm:px-8 pb-8 pt-4 border-t border-slate-100 bg-slate-50/40 space-y-6">
 
-                          {job.requirements && (
+                          {/* Job Summary */}
+                          {job.description && (
                             <div>
-                              <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-slate-900 mb-2">
+                              <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
+                                JOB SUMMARY
+                              </h4>
+                              <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                                {job.description}
+                              </p>
+                            </div>
+                          )}
+
+                          {/* Job Responsibilities */}
+                          {job.job_responsibilities && (
+                            <div>
+                              <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
+                                JOB RESPONSIBILITIES
+                              </h4>
+                              <ul className="space-y-1.5">
+                                {job.job_responsibilities.split('\n').filter(l => l.trim()).map((line, i) => (
+                                  <li key={i} className="flex items-start gap-2 text-sm text-slate-700 leading-relaxed">
+                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[rgb(20,109,174)] shrink-0" />
+                                    {line.trim()}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {/* Skills */}
+                          {job.skills && (
+                            <div>
+                              <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
+                                REQUIRED SKILLS
+                              </h4>
+                              <ul className="space-y-1.5">
+                                {job.skills.split('\n').filter(l => l.trim()).map((line, i) => (
+                                  <li key={i} className="flex items-start gap-2 text-sm text-slate-700 leading-relaxed">
+                                    <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-[rgb(20,109,174)] shrink-0" />
+                                    {line.trim()}
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          )}
+
+                          {/* Educational Requirements */}
+                          {job.educational_requirements && (
+                            <div>
+                              <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
+                                EDUCATIONAL REQUIREMENTS
+                              </h4>
+                              <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                                {job.educational_requirements}
+                              </p>
+                            </div>
+                          )}
+
+                          {/* Experience Requirements */}
+                          {job.experience_requirements && (
+                            <div>
+                              <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
+                                EXPERIENCE REQUIREMENTS
+                              </h4>
+                              <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                                {job.experience_requirements}
+                              </p>
+                            </div>
+                          )}
+
+                          {/* Additional Requirements */}
+                          {job.additional_requirements && (
+                            <div>
+                              <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
+                                ADDITIONAL REQUIREMENTS
+                              </h4>
+                              <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
+                                {job.additional_requirements}
+                              </p>
+                            </div>
+                          )}
+
+                          {/* Legacy requirements field (old postings) */}
+                          {job.requirements && !job.job_responsibilities && (
+                            <div>
+                              <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
                                 REQUIREMENTS & QUALIFICATIONS
                               </h4>
                               <p className="text-sm text-slate-700 leading-relaxed whitespace-pre-line">
@@ -330,6 +405,45 @@ export default function CareersSection() {
                             </div>
                           )}
 
+                          {/* Salary & Benefits row */}
+                          {(job.salary_type || job.benefits) && (
+                            <div className="grid sm:grid-cols-2 gap-4">
+                              {/* Salary */}
+                              {job.salary_type && (
+                                <div>
+                                  <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
+                                    SALARY
+                                  </h4>
+                                  <p className="text-sm font-semibold text-slate-800">
+                                    {job.salary_type === 'Range' && job.salary_min != null && job.salary_max != null
+                                      ? `BDT ${job.salary_min.toLocaleString()} – ${job.salary_max.toLocaleString()} / month`
+                                      : job.salary_type === 'Range' && (job.salary_min != null || job.salary_max != null)
+                                      ? `BDT ${(job.salary_min ?? job.salary_max ?? 0).toLocaleString()} / month`
+                                      : 'Negotiable'}
+                                  </p>
+                                </div>
+                              )}
+
+                              {/* Benefits */}
+                              {job.benefits && (
+                                <div>
+                                  <h4 className="text-xs font-bold uppercase tracking-wider font-mono text-[rgb(20,109,174)] mb-2">
+                                    BENEFITS
+                                  </h4>
+                                  <div className="flex flex-wrap gap-1.5">
+                                    {job.benefits.split(',').map(b => b.trim()).filter(Boolean).map((b, i) => (
+                                      <span key={i}
+                                        className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-medium bg-[rgb(20,109,174)]/8 text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20">
+                                        ✓ {b.startsWith('Other: ') ? b.replace('Other: ', '') : b}
+                                      </span>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          )}
+
+                          {/* Apply CTA */}
                           <div className="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200/80">
                             <span className="text-xs text-slate-500 font-mono">
                               Interested candidates can apply directly via email.

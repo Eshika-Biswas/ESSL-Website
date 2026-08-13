@@ -4,9 +4,21 @@ export interface JobPosting {
   department: string;
   location: string;
   employment_type: string;
-  description: string;
-  requirements?: string | null;
+  description: string;           // maps to "Job Summary" in the UI
+  requirements?: string | null;  // legacy field — kept for old postings
   is_active: boolean;
   created_at?: string;
   updated_at?: string;
+
+  // ── New fields added in August 2026 vacancy template expansion ──
+  unit?: string | null;
+  job_responsibilities?: string | null;
+  skills?: string | null;
+  educational_requirements?: string | null;
+  experience_requirements?: string | null;
+  additional_requirements?: string | null;
+  salary_type?: string | null;   // 'Negotiable' | 'Range'
+  salary_min?: number | null;
+  salary_max?: number | null;
+  benefits?: string | null;      // comma-separated list, e.g. "Mobile Bill,Lunch Bill,Other: ..."
 }
