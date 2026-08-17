@@ -153,7 +153,7 @@ const manufacturingClients: ClientEntry[] = [
   { name: 'City Group', type: 'Conglomerate & FMCG', logo: '/logos/city group 1.png', initials: 'CGL', scale: 'max-h-9 scale-105' },
   { name: 'United Group', type: 'Industrial Conglomerate', logo: '/logos/united group.png', initials: 'UGL', scale: 'max-h-10 scale-105' },
   { name: 'Epic Group', type: 'Garments & Apparels', logo: '/logos/EPIC GROUP 1.png', initials: 'EGL', scale: 'max-h-9 scale-105' },
-  { name: 'Veolmedtech', type: 'Medical Technologies', logo: '/logos/VEOL.png', initials: 'VMT', scale: 'max-h-10 scale-110' },
+  { name: 'BEOL', type: 'Edible Oil / FMCG', logo: '/logos/Beol.png', initials: 'BEOL', scale: 'max-h-10 scale-110' },
   { name: 'TK Group', type: 'Industrial Conglomerate', logo: '/logos/TK-Group.png', initials: 'TKG', scale: 'max-h-11 scale-110' },
   { name: 'Standard Group', type: 'Apparel & Textile', logo: '/logos/standarad.png', initials: 'STG', scale: 'max-h-9 scale-105' },
   { name: 'DuncanBD', type: 'Industrial & Tea', logo: '/logos/duncan brothers.jpg', initials: 'DBL', scale: 'max-h-8 scale-100' },
@@ -185,6 +185,7 @@ const educationClients: ClientEntry[] = [
   { name: 'UIU', type: 'Private University', logo: '/logos/uiu 2.png', initials: 'UIU', scale: 'max-h-10 scale-105' },
   { name: 'BRAC University', type: 'Private University', logo: '/logos/brac-university.svg', initials: 'BRACU', scale: 'max-h-10 scale-105' },
   { name: 'BUFT', type: 'Private University', logo: '/logos/buft_new_logo.png', initials: 'BUFT', scale: 'max-h-11 scale-110' },
+  { name: 'EWU', type: 'Private University', logo: '/logos/Ewubd.png', initials: 'EWU', scale: 'max-h-10 scale-105' },
 ];
 
 const governmentClients: ClientEntry[] = [

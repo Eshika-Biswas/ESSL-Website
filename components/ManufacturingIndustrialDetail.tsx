@@ -89,7 +89,7 @@ const manufacturingClients: ManufacturingClient[] = [
   { name: 'City Group', type: 'Conglomerate & FMCG', logo: '/logos/city group 1.png', initials: 'CGL', scale: 'max-h-9 scale-105' },
   { name: 'United Group', type: 'Industrial Conglomerate', logo: '/logos/united group.png', initials: 'UGL', scale: 'max-h-10 scale-105' },
   { name: 'Epic Group', type: 'Garments & Apparels', logo: '/logos/EPIC GROUP 1.png', initials: 'EGL', scale: 'max-h-9 scale-105' },
-  { name: 'Veolmedtech', type: 'Medical Technologies', logo: '/logos/VEOL.png', initials: 'VMT', scale: 'max-h-10 scale-110' },
+  { name: 'BEOL', type: 'Edible Oil / FMCG', logo: '/logos/Beol.png', initials: 'BEOL', scale: 'max-h-10 scale-110' },
   { name: 'TK Group', type: 'Industrial Conglomerate', logo: '/logos/TK-Group.png', initials: 'TKG', scale: 'max-h-11 scale-110' },
   { name: 'Standard Group', type: 'Apparel & Textile', logo: '/logos/standarad.png', initials: 'STG', scale: 'max-h-9 scale-105' },
   { name: 'DuncanBD', type: 'Industrial & Tea', logo: '/logos/duncan brothers.jpg', initials: 'DBL', scale: 'max-h-8 scale-100' },
@@ -132,7 +132,7 @@ export default function ManufacturingIndustrialDetail() {
 
   return (
     <div className="w-full overflow-hidden bg-slate-50">
-      
+
       {/* ─── 1. Hero Section ─────────────────────────────────────────────────── */}
       <section className="relative w-full min-h-[520px] sm:min-h-[620px] md:min-h-[700px] lg:min-h-[760px] xl:min-h-[820px] 2xl:min-h-[880px] flex items-center overflow-hidden border-b border-slate-200 bg-[#f8fafc]">
         <div className="absolute inset-0 z-0 w-full h-full">
@@ -191,7 +191,7 @@ export default function ManufacturingIndustrialDetail() {
       {/* ─── 2. Industry Solutions Section (Hub & Spoke) ────────────────────── */}
       <section id="solutions" className="relative py-24 border-b border-slate-200" style={gridBgStyle}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          
+
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-widest text-[rgb(20,109,174)] border border-[rgb(20,109,174)]/20 bg-[rgb(20,109,174)]/5 mb-4 font-mono">
               Industry Solutions
@@ -208,7 +208,8 @@ export default function ManufacturingIndustrialDetail() {
           </div>
 
           <div className="relative my-8">
-            <style dangerouslySetInnerHTML={{ __html: `
+            <style dangerouslySetInnerHTML={{
+              __html: `
               @keyframes dashFlow {
                 from { stroke-dashoffset: 20; }
                 to { stroke-dashoffset: 0; }
@@ -233,7 +234,7 @@ export default function ManufacturingIndustrialDetail() {
             </svg>
 
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
-              
+
               <div className="lg:col-span-5 space-y-3 z-10">
                 {leftSolutions.map((item) => {
                   const IconComp = item.icon;
@@ -346,9 +347,8 @@ export default function ManufacturingIndustrialDetail() {
                         alt={`${client.name} logo`}
                         width={140}
                         height={48}
-                        className={`w-auto object-contain transition-transform duration-300 ${
-                          client.scale || 'max-h-10 scale-100'
-                        }`}
+                        className={`w-auto object-contain transition-transform duration-300 ${client.scale || 'max-h-10 scale-100'
+                          }`}
                       />
                     </div>
                   ) : (
@@ -356,7 +356,7 @@ export default function ManufacturingIndustrialDetail() {
                       {client.initials}
                     </div>
                   )}
-                  
+
                   <span className="text-xs font-bold text-slate-800 group-hover:text-[rgb(20,109,174)] transition-colors leading-tight">
                     {client.name}
                   </span>
