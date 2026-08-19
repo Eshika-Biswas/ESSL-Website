@@ -136,11 +136,11 @@ export default function AdminCareersPage() {
         // Fetch application counts
         const { data: appsData, error: appsError } = await supabase
           .from('job_applications')
-          .select('id, job_posting_id');
+          .select('id, job_id');
         if (!appsError && appsData) {
           const counts: Record<string, number> = {};
           appsData.forEach(app => {
-            counts[app.job_posting_id] = (counts[app.job_posting_id] || 0) + 1;
+            counts[app.job_id] = (counts[app.job_id] || 0) + 1;
           });
           setApplicationCounts(counts);
         }
@@ -158,8 +158,8 @@ export default function AdminCareersPage() {
       const { data, error } = await supabase
         .from('job_applications')
         .select('*')
-        .eq('job_posting_id', jobId)
-        .order('submitted_at', { ascending: false });
+        .eq('job_id', jobId)
+        .order('created_at', { ascending: false });
       if (error) {
         showToast('Failed to load applications.');
       } else if (data) {
@@ -926,7 +926,7 @@ export default function AdminCareersPage() {
                         <div>📞 {app.phone}</div>
                         <div className="sm:col-span-2">📍 {app.address}</div>
                         <div>💰 Expected Salary: <span className="font-bold text-slate-800">{app.expected_salary}</span></div>
-                        <div>📅 Submitted: {new Date(app.submitted_at).toLocaleString()}</div>
+                        <div>📅 Submitted: {new Date(app.created_at).toLocaleString()}</div>
                       </div>
 
                       {app.cover_letter && (
@@ -939,7 +939,7 @@ export default function AdminCareersPage() {
 
                     <div className="flex flex-col gap-2 shrink-0 w-full md:w-auto items-stretch md:items-end">
                       <button
-                        onClick={() => handleDownloadCV(app.cv_file_url)}
+                        onClick={() => handleDownloadCV(app.cv_url)}
                         className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-xs font-bold text-white bg-[rgb(20,109,174)] font-mono hover:bg-[rgb(18,98,156)] transition-all shadow-sm cursor-pointer text-center"
                       >
                         📄 Download CV

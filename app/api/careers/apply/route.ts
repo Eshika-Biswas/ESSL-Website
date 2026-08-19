@@ -100,14 +100,15 @@ export async function POST(req: NextRequest) {
       .from('job_applications')
       .insert([
         {
-          job_posting_id: jobPostingId,
+          job_id: jobPostingId,
+          job_title: jobTitle,
           full_name: fullName.trim(),
           email: email.trim(),
           phone: phone.trim(),
           address: address.trim(),
-          cover_letter: coverLetter ? coverLetter.trim() : null,
+          cover_letter: coverLetter ? coverLetter.trim() : '', // Send empty string instead of null to prevent NOT NULL errors
           expected_salary: expectedSalary.trim(),
-          cv_file_url: filePath,
+          cv_url: filePath,
           cv_file_name: cvFile.name
         }
       ])
