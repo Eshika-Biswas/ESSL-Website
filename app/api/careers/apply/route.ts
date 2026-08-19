@@ -141,7 +141,7 @@ export async function POST(req: NextRequest) {
     try {
       // Send email to HR Admin
       const hrEmail = await resend.emails.send({
-        from: 'onboarding@resend.dev',
+        from: 'mehedi.hasan@ensure-bd.com',
         to: HR_ADMIN_EMAIL,
         replyTo: email,
         subject: `[Job Application] ${fullName} applied for ${jobTitle}`,
@@ -221,7 +221,7 @@ export async function POST(req: NextRequest) {
     try {
       // Send confirmation email to Applicant
       const candidateEmail = await resend.emails.send({
-        from: 'onboarding@resend.dev',
+        from: 'mehedi.hasan@ensure-bd.com',
         to: email, // Candidate email
         subject: `Application Received: ${jobTitle} at ESSL`,
         html: `
