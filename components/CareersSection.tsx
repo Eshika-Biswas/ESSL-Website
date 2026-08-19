@@ -189,7 +189,7 @@ export default function CareersSection() {
                 href="mailto:mehedi.hasan@ensure-bd.com"
                 className="text-[rgb(20,109,174)] hover:underline font-semibold transition-colors"
               >
-                careers@ensure-bd.com
+                mehedi.hasan@ensure-bd.com
               </a>
             </p>
           </div>
