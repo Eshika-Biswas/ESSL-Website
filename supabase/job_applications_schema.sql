@@ -3,8 +3,11 @@
 -- Run this script in the Supabase Dashboard -> SQL Editor
 -- =========================================================================
 
--- 1. Create the job_applications table if it does not exist
-CREATE TABLE IF NOT EXISTS public.job_applications (
+-- 0. Drop the table first to avoid schema mismatch from previous setups
+DROP TABLE IF EXISTS public.job_applications CASCADE;
+
+-- 1. Create the job_applications table
+CREATE TABLE public.job_applications (
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     job_posting_id UUID NOT NULL REFERENCES public.job_postings(id) ON DELETE CASCADE,
     full_name TEXT NOT NULL,
