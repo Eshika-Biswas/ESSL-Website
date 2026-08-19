@@ -206,11 +206,11 @@ export async function POST(req: NextRequest) {
       { role: 'user', content: message },
     ];
 
-    console.log('[AI Advisor Log] Sending prompt request to Groq SDK model llama-3.3-70b-versatile...');
+    console.log('[AI Advisor Log] Sending prompt request to Groq SDK model openai/gpt-oss-120b...');
     let response;
     try {
       response = await groq.chat.completions.create({
-        model: 'llama-3.3-70b-versatile',
+        model: 'openai/gpt-oss-120b',
         messages,
         temperature: 0.3,
         top_p: 0.8,
