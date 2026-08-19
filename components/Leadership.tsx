@@ -16,7 +16,7 @@ const executiveTeam = [
     slug: 'partha-sharathe-biswas',
     name: 'Partha Sharathe Biswas',
     title: 'Director',
-    photo: '/team/partha-biswas.png',
+    photo: '/team/partho sir.jpg',
   },
   {
     slug: 'sarker-mohammad-faisal',
