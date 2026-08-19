@@ -150,10 +150,14 @@ const steps = [
 
 // ─── Partner Logos ────────────────────────────────────────────────────────────
 const partners = [
-  { name: 'CrowdStrike', src: '/partners/crowdstrike.svg' },
-  { name: 'Palo Alto', src: '/partners/paloalto.svg', href: 'https://paloaltonetworks.my.site.com/NextWavePartnerProgram/s/partnerlocator?c__pageDetails=RecordView&c__key=2Smer%2FK0VxCnaeqoa617j8Fo%2FxiWsRYO6Pns%2FGdvAhOoGgnXqPzIs%2BrcB%2B0bbi2%2B' },
-  { name: 'Fortinet', src: '/partners/fortinet-logo.svg', href: 'https://partnerportal.fortinet.com/directory/search?loe=Advanced&l=Bangladesh&q=ensure+support+services' },
-  { name: 'Cisco', src: '/partners/cisco.png', href: 'https://locatr.cloudapps.cisco.com/WWChannels/LOCATR/pf/index.jsp#/NjUyMTI3@MTM2NTYxMDUw@RU4=' },
+  { name: 'CrowdStrike', type: 'EDR & Cybersecurity', src: '/partners/crowdstrike.svg' },
+  { name: 'Palo Alto', type: 'Network Security', src: '/partners/paloalto.svg', href: 'https://paloaltonetworks.my.site.com/NextWavePartnerProgram/s/partnerlocator?c__pageDetails=RecordView&c__key=2Smer%2FK0VxCnaeqoa617j8Fo%2FxiWsRYO6Pns%2FGdvAhOoGgnXqPzIs%2BrcB%2B0bbi2%2B' },
+  { name: 'Fortinet', type: 'Network Security', src: '/partners/fortinet-logo.svg', href: 'https://partnerportal.fortinet.com/directory/search?loe=Advanced&l=Bangladesh&q=ensure+support+services' },
+  { name: 'Cisco', type: 'Networking & Security', src: '/partners/cisco.png', href: 'https://locatr.cloudapps.cisco.com/WWChannels/LOCATR/pf/index.jsp#/NjUyMTI3@MTM2NTYxMDUw@RU4=' },
+  { name: 'Sophos', type: 'Endpoint Security', src: '/partners/sophos.png' },
+  { name: 'Barracuda', type: 'Email Security', src: '/partners/logo-barracuda-fins-only-mar2025.svg' },
+  { name: 'Netwrix', type: 'Data Security & Compliance', src: '/partners/netwrix.avif' },
+  { name: 'Tenable', type: 'Vulnerability Management', src: '/partners/tenable.png' },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────
@@ -585,17 +589,23 @@ export default function CyberSecurityDetail() {
             {partners.map((partner, index) => {
               const card = (
                 <div
-                  className={`group flex items-center justify-center bg-white rounded-2xl border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.10)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1 p-8 h-28 sm:h-32 transition-all duration-500 ${ecosystemVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                    }${partner.href ? ' cursor-pointer' : ''}`}
+                  className={`group flex flex-col items-center justify-center bg-white rounded-2xl border border-slate-200/60 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] hover:shadow-[0_10px_30px_-5px_rgba(0,0,0,0.10)] hover:border-[rgb(20,109,174)]/20 hover:-translate-y-1 p-5 h-36 sm:h-40 text-center transition-all duration-500 ${ecosystemVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }${partner.href ? ' cursor-pointer hover:border-[rgb(20,109,174)]/40 hover:scale-[1.02]' : ''}`}
                   style={{ transitionDelay: `${(index % 4) * 80}ms` }}
                 >
-                  <Image
-                    src={partner.src}
-                    alt={`${partner.name} logo`}
-                    width={160}
-                    height={60}
-                    className="object-contain max-h-10 w-auto grayscale-[20%] group-hover:grayscale-0 transition-all duration-300"
-                  />
+                  <div className="h-14 flex items-center justify-center mb-2.5 w-full">
+                    <Image
+                      src={partner.src}
+                      alt={`${partner.name} logo`}
+                      width={140}
+                      height={48}
+                      className="object-contain max-h-9 w-auto grayscale-[20%] group-hover:grayscale-0 transition-all duration-300"
+                    />
+                  </div>
+                  <span className="text-xs font-bold text-slate-800 leading-tight transition-colors group-hover:text-[rgb(20,109,174)]">
+                    {partner.name}
+                  </span>
+                  <span className="text-[10px] font-medium text-slate-500 mt-0.5">{partner.type}</span>
                 </div>
               );
               if (partner.href) {
