@@ -4,6 +4,8 @@ import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 import { MessageSquare, Sparkles, ArrowRight, Loader2, Send } from 'lucide-react';
 
 const promptChips = [
@@ -54,6 +56,16 @@ const markdownComponents: Record<string, React.FC<any>> = {
       </a>
     );
   },
+  table: ({ children }) => (
+    <div className="overflow-x-auto w-full my-3 border border-white/10 rounded-lg">
+      <table className="w-full border-collapse text-xs text-left min-w-[400px]">{children}</table>
+    </div>
+  ),
+  thead: ({ children }) => <thead className="bg-white/10 text-white font-bold">{children}</thead>,
+  tbody: ({ children }) => <tbody className="divide-y divide-white/5">{children}</tbody>,
+  tr: ({ children }) => <tr className="hover:bg-white/5 transition-colors">{children}</tr>,
+  th: ({ children }) => <th className="p-2 border border-white/10 font-bold">{children}</th>,
+  td: ({ children }) => <td className="p-2 border border-white/10 text-slate-300 leading-normal">{children}</td>,
 };
 
 export default function AIAdvisorTeaser() {
@@ -256,7 +268,13 @@ export default function AIAdvisorTeaser() {
                         {msg.role === 'user' ? (
                           msg.content
                         ) : (
-                          <ReactMarkdown components={markdownComponents}>{msg.content}</ReactMarkdown>
+                          <ReactMarkdown
+                            components={markdownComponents}
+                            remarkPlugins={[remarkGfm]}
+                            rehypePlugins={[rehypeRaw]}
+                          >
+                            {msg.content}
+                          </ReactMarkdown>
                         )}
                       </div>
                     </div>
