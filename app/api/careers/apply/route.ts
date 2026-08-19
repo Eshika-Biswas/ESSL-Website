@@ -3,7 +3,7 @@ import { Resend } from 'resend';
 import { createServerClient } from '@/lib/supabaseClient';
 
 const resend = new Resend(process.env.RESEND_API_KEY || 're_dummy_key_for_build');
-const HR_ADMIN_EMAIL = 'eshikabiswas801@gmail.com'; // Verified sandbox email for testing
+const HR_ADMIN_EMAIL = 'mehedi.hasan@ensure-bd.com';
 
 export async function POST(req: NextRequest) {
   try {
