@@ -154,6 +154,30 @@ const cyberSecurityPartners: Partner[] = [
     logoScale: 'max-h-8',
     href: 'https://locatr.cloudapps.cisco.com/WWChannels/LOCATR/pf/index.jsp#/NjUyMTI3@MTM2NTYxMDUw@RU4=',
   },
+  {
+    name: 'Sophos',
+    type: 'Endpoint Security',
+    logo: '/partners/sophos.png',
+    logoScale: 'max-h-8',
+  },
+  {
+    name: 'Barracuda',
+    type: 'Email Security',
+    logo: '/partners/logo-barracuda-fins-only-mar2025.svg',
+    logoScale: 'max-h-7',
+  },
+  {
+    name: 'Netwrix',
+    type: 'Data Security & Compliance',
+    logo: '/partners/netwrix.avif',
+    logoScale: 'max-h-7',
+  },
+  {
+    name: 'Tenable',
+    type: 'Vulnerability Management',
+    logo: '/partners/tenable.png',
+    logoScale: 'max-h-8',
+  },
 ];
 
 // ── DATA CENTER & CLOUD ─────────────────────────────────────────────
@@ -353,7 +377,7 @@ export default function PartnersSection() {
               </h2>
             </Reveal>
             <Reveal delay={100} threshold={0.1} duration={700}>
-              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4">
+              <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 max-w-5xl">
                 {cyberSecurityPartners.map((partner) => (
                   <PartnerCard key={partner.name} partner={partner} />
                 ))}
