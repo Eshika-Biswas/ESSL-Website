@@ -137,6 +137,8 @@ export async function POST(req: NextRequest) {
     // 6. Send emails asynchronously (don't block the client response on email sending)
     (async () => {
       try {
+        console.log('[Email] Starting email send process...');
+        console.log('[Email] RESEND_API_KEY present?', !!process.env.RESEND_API_KEY);
         console.log(`[Resend Email] Initializing email dispatch for application ${applicationId}...`);
         
         // Send email to HR Admin
