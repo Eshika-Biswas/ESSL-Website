@@ -137,8 +137,10 @@ export async function POST(req: NextRequest) {
     // 6. Send emails asynchronously (don't block the client response on email sending)
     (async () => {
       try {
+        console.log(`[Resend Email] Initializing email dispatch for application ${applicationId}...`);
+        
         // Send email to HR Admin
-        await resend.emails.send({
+        const hrResponse = await resend.emails.send({
           from: 'onboarding@resend.dev',
           to: HR_ADMIN_EMAIL,
           replyTo: email,
@@ -212,10 +214,14 @@ export async function POST(req: NextRequest) {
           ]
         });
 
+        if (hrResponse.error) {
+          console.error('[Resend Email] HR Admin Notification Email failed:', hrResponse.error);
+        } else {
+          console.log('[Resend Email] HR Admin Notification Email sent successfully:', hrResponse.data);
+        }
+
         // Send confirmation email to Applicant
-        // In Resend Sandbox, sending to non-verified addresses will fail.
-        // We attempt it but capture any errors silently to avoid throwing.
-        await resend.emails.send({
+        const candidateResponse = await resend.emails.send({
           from: 'onboarding@resend.dev',
           to: email, // Candidate email
           subject: `Application Received: ${jobTitle} at ESSL`,
@@ -244,10 +250,15 @@ export async function POST(req: NextRequest) {
             </div>
           `
         });
+
+        if (candidateResponse.error) {
+          console.error('[Resend Email] Candidate Confirmation Email failed:', candidateResponse.error);
+        } else {
+          console.log('[Resend Email] Candidate Confirmation Email sent successfully:', candidateResponse.data);
+        }
         
-        console.log(`Job application emails processed successfully for application: ${applicationId}`);
       } catch (emailErr) {
-        console.error('Email notification failure (non-blocking):', emailErr);
+        console.error('[Resend Email] Email notification failure (non-blocking caught exception):', emailErr);
       }
     })();
 
