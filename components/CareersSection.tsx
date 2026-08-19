@@ -38,6 +38,93 @@ export default function CareersSection() {
   const [loadingJobs, setLoadingJobs] = useState(true);
   const [expandedJobId, setExpandedJobId] = useState<string | null>(null);
 
+  // Job application state hooks
+  const [applyingJob, setApplyingJob] = useState<JobPosting | null>(null);
+  const [formName, setFormName] = useState('');
+  const [formEmail, setFormEmail] = useState('');
+  const [formPhone, setFormPhone] = useState('');
+  const [formAddress, setFormAddress] = useState('');
+  const [formCover, setFormCover] = useState('');
+  const [formSalary, setFormSalary] = useState('');
+  const [formFile, setFormFile] = useState<File | null>(null);
+
+  const [submitLoading, setSubmitLoading] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    setSubmitError(null);
+    if (!file) return;
+
+    if (file.size > 5 * 1024 * 1024) {
+      setSubmitError('File size exceeds the 5MB limit.');
+      setFormFile(null);
+      return;
+    }
+
+    const ext = file.name.split('.').pop()?.toLowerCase();
+    if (ext !== 'pdf' && ext !== 'doc' && ext !== 'docx') {
+      setSubmitError('Only PDF, DOC, and DOCX files are allowed.');
+      setFormFile(null);
+      return;
+    }
+
+    setFormFile(file);
+  };
+
+  const resetForm = () => {
+    setFormName('');
+    setFormEmail('');
+    setFormPhone('');
+    setFormAddress('');
+    setFormCover('');
+    setFormSalary('');
+    setFormFile(null);
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitError(null);
+
+    if (!applyingJob) return;
+    if (!formFile) {
+      setSubmitError('Please upload your CV.');
+      return;
+    }
+
+    setSubmitLoading(true);
+
+    try {
+      const formData = new FormData();
+      formData.append('jobPostingId', applyingJob.id);
+      formData.append('fullName', formName);
+      formData.append('email', formEmail);
+      formData.append('phone', formPhone);
+      formData.append('address', formAddress);
+      formData.append('coverLetter', formCover);
+      formData.append('expectedSalary', formSalary);
+      formData.append('cv', formFile);
+
+      const res = await fetch('/api/careers/apply', {
+        method: 'POST',
+        body: formData,
+      });
+
+      const data = await res.json();
+      if (!res.ok) {
+        setSubmitError(data.error || 'Failed to submit application.');
+      } else {
+        setSubmitSuccess(true);
+      }
+    } catch (err) {
+      console.error(err);
+      setSubmitError('An unexpected error occurred during submission.');
+    } finally {
+      setSubmitLoading(false);
+    }
+  };
+
   const heroRef = useRef<HTMLElement>(null);
   const benefitsRef = useRef<HTMLElement>(null);
 
@@ -457,16 +544,16 @@ export default function CareersSection() {
                         {/* Apply CTA */}
                         <div className="pt-4 flex flex-wrap items-center justify-between gap-4 border-t border-slate-200/80">
                           <span className="text-xs text-slate-500 font-mono">
-                            Interested candidates can apply directly via email.
+                            Interested candidates can apply online directly.
                           </span>
-                          <a
-                            href={`mailto:careers@ensure-bd.com?subject=Application for ${encodeURIComponent(job.title)}`}
-                            className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-bold tracking-widest text-white bg-[rgb(20,109,174)] font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md"
+                          <button
+                            onClick={() => setApplyingJob(job)}
+                            className="inline-flex items-center gap-2 rounded-full px-6 py-2.5 text-xs font-bold tracking-widest text-white bg-[rgb(20,109,174)] font-mono hover:opacity-90 hover:scale-105 transition-all duration-300 shadow-md cursor-pointer"
                             style={{ letterSpacing: '0.08em' }}
                           >
                             <Send className="w-3.5 h-3.5" />
                             APPLY NOW
-                          </a>
+                          </button>
                         </div>
                       </div>
                     )}
@@ -501,6 +588,212 @@ export default function CareersSection() {
 
         </div>
       </section>
+
+      {/* ─────────────────────────────────────────────────────────────
+          APPLICATION FORM MODAL
+         ───────────────────────────────────────────────────────────── */}
+      {applyingJob && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-white rounded-3xl max-w-lg w-full border border-slate-200 shadow-2xl p-6 sm:p-8 my-8 relative">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+              <div className="text-left">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[rgb(20,109,174)]">
+                  APPLY FOR POSITION
+                </span>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
+                  {applyingJob.title}
+                </h2>
+              </div>
+              <button 
+                onClick={() => {
+                  setApplyingJob(null);
+                  setSubmitSuccess(false);
+                  setSubmitError(null);
+                  resetForm();
+                }} 
+                className="text-slate-400 hover:text-slate-600 text-lg font-bold p-1 cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {submitSuccess ? (
+              <div className="text-center py-10 space-y-4">
+                <div className="w-16 h-16 bg-emerald-50 text-emerald-500 rounded-full flex items-center justify-center mx-auto border border-emerald-100">
+                  <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <h3 className="text-lg font-bold text-slate-900">Application Submitted!</h3>
+                <p className="text-sm text-slate-600 max-w-sm mx-auto leading-relaxed">
+                  Thank you for applying. We have received your application and sent a confirmation email. Our HR team will review your CV shortly.
+                </p>
+                <button
+                  onClick={() => {
+                    setApplyingJob(null);
+                    setSubmitSuccess(false);
+                    resetForm();
+                  }}
+                  className="inline-flex items-center justify-center rounded-full px-6 py-2 text-xs font-bold tracking-widest text-white bg-[rgb(20,109,174)] font-mono hover:opacity-90 transition-all cursor-pointer"
+                  style={{ letterSpacing: '0.08em' }}
+                >
+                  CLOSE
+                </button>
+              </div>
+            ) : (
+              <form onSubmit={handleFormSubmit} className="space-y-4 text-left">
+                {submitError && (
+                  <div className="p-3.5 rounded-xl bg-red-50 border border-red-200 text-red-700 text-xs flex items-start gap-2">
+                    <span className="shrink-0">⚠️</span>
+                    <span>{submitError}</span>
+                  </div>
+                )}
+
+                <div>
+                  <label className="block text-xs font-mono font-bold uppercase text-slate-700 mb-1.5 tracking-wider">
+                    Full Name *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="John Doe"
+                    value={formName}
+                    onChange={(e) => setFormName(e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-sm text-slate-900 focus:outline-none focus:border-[rgb(20,109,174)] transition-colors"
+                  />
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase text-slate-700 mb-1.5 tracking-wider">
+                      Email Address *
+                    </label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="john@example.com"
+                      value={formEmail}
+                      onChange={(e) => setFormEmail(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-sm text-slate-900 focus:outline-none focus:border-[rgb(20,109,174)] transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase text-slate-700 mb-1.5 tracking-wider">
+                      Phone Number *
+                    </label>
+                    <input
+                      type="tel"
+                      required
+                      placeholder="e.g. +8801700000000"
+                      value={formPhone}
+                      onChange={(e) => setFormPhone(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-sm text-slate-900 focus:outline-none focus:border-[rgb(20,109,174)] transition-colors"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono font-bold uppercase text-slate-700 mb-1.5 tracking-wider">
+                    Address *
+                  </label>
+                  <input
+                    type="text"
+                    required
+                    placeholder="House, Road, Area, Dhaka"
+                    value={formAddress}
+                    onChange={(e) => setFormAddress(e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-sm text-slate-900 focus:outline-none focus:border-[rgb(20,109,174)] transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-mono font-bold uppercase text-slate-700 mb-1.5 tracking-wider">
+                    Cover Letter (Optional)
+                  </label>
+                  <textarea
+                    rows={4}
+                    placeholder="Brief introduction or message for our HR team..."
+                    value={formCover}
+                    onChange={(e) => setFormCover(e.target.value)}
+                    className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-sm text-slate-900 focus:outline-none focus:border-[rgb(20,109,174)] transition-colors resize-none"
+                  />
+                </div>
+
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase text-slate-700 mb-1.5 tracking-wider">
+                      Expected Salary *
+                    </label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. 50,000 BDT or Negotiable"
+                      value={formSalary}
+                      onChange={(e) => setFormSalary(e.target.value)}
+                      className="w-full bg-slate-50 border border-slate-300 rounded-xl px-4 py-2 text-sm text-slate-900 focus:outline-none focus:border-[rgb(20,109,174)] transition-colors"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-mono font-bold uppercase text-slate-700 mb-1.5 tracking-wider">
+                      CV Upload (PDF/DOC/DOCX - Max 5MB) *
+                    </label>
+                    <div className="relative">
+                      <input
+                        type="file"
+                        accept=".pdf,.doc,.docx"
+                        required
+                        onChange={handleFileChange}
+                        className="hidden"
+                        id="cv-file-upload"
+                      />
+                      <label
+                        htmlFor="cv-file-upload"
+                        className="w-full inline-flex items-center justify-center px-4 py-2 border border-slate-300 border-dashed rounded-xl bg-slate-50 text-slate-600 hover:bg-slate-100 hover:border-slate-400 cursor-pointer text-xs font-mono font-bold transition-all text-center animate-pulse"
+                      >
+                        {formFile ? 'Change File' : 'Choose CV File'}
+                      </label>
+                    </div>
+                  </div>
+                </div>
+
+                {formFile && (
+                  <div className="flex items-center justify-between p-2.5 rounded-xl bg-slate-100/80 border border-slate-200 text-xs">
+                    <span className="truncate text-slate-700 font-medium max-w-[80%] font-mono">
+                      📄 {formFile.name} ({(formFile.size / (1024 * 1024)).toFixed(2)} MB)
+                    </span>
+                    <button
+                      type="button"
+                      onClick={() => setFormFile(null)}
+                      className="text-red-500 hover:text-red-700 font-bold cursor-pointer"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                )}
+
+                <div className="pt-2">
+                  <button
+                    type="submit"
+                    disabled={submitLoading}
+                    className="w-full rounded-xl py-3.5 text-xs font-bold font-mono tracking-widest text-white bg-[rgb(20,109,174)] hover:bg-[rgb(18,98,156)] transition-all duration-300 shadow-md flex items-center justify-center gap-2 disabled:opacity-50 cursor-pointer"
+                    style={{ letterSpacing: '0.08em' }}
+                  >
+                    {submitLoading ? (
+                      <>
+                        <Loader2 className="w-4 h-4 animate-spin" />
+                        SUBMITTING APPLICATION...
+                      </>
+                    ) : (
+                      'SUBMIT APPLICATION'
+                    )}
+                  </button>
+                </div>
+              </form>
+            )}
+          </div>
+        </div>
+      )}
 
     </div>
   );

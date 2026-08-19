@@ -56,6 +56,13 @@ export default function AdminCareersPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [filterStatus, setFilterStatus] = useState<'all' | 'active' | 'inactive'>('all');
 
+  // ── Application management state ────────────────────────────────────────
+  const [applicationCounts, setApplicationCounts] = useState<Record<string, number>>({});
+  const [viewingAppsJob, setViewingAppsJob] = useState<JobPosting | null>(null);
+  const [applications, setApplications] = useState<any[]>([]);
+  const [loadingApps, setLoadingApps] = useState(false);
+  const [updatingAppId, setUpdatingAppId] = useState<string | null>(null);
+
   // ── Form modal state ────────────────────────────────────────────────────
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingJob, setEditingJob] = useState<JobPosting | null>(null);
@@ -125,11 +132,91 @@ export default function AdminCareersPage() {
         showToast('Error loading job postings.');
       } else if (data) {
         setJobs(data as JobPosting[]);
+
+        // Fetch application counts
+        const { data: appsData, error: appsError } = await supabase
+          .from('job_applications')
+          .select('id, job_posting_id');
+        if (!appsError && appsData) {
+          const counts: Record<string, number> = {};
+          appsData.forEach(app => {
+            counts[app.job_posting_id] = (counts[app.job_posting_id] || 0) + 1;
+          });
+          setApplicationCounts(counts);
+        }
       }
     } catch (err) {
       console.error('Unexpected error fetching jobs:', err);
     } finally {
       setLoadingJobs(false);
+    }
+  };
+
+  const fetchApplicationsForJob = async (jobId: string) => {
+    try {
+      setLoadingApps(true);
+      const { data, error } = await supabase
+        .from('job_applications')
+        .select('*')
+        .eq('job_posting_id', jobId)
+        .order('submitted_at', { ascending: false });
+      if (error) {
+        showToast('Failed to load applications.');
+      } else if (data) {
+        setApplications(data);
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoadingApps(false);
+    }
+  };
+
+  useEffect(() => {
+    if (viewingAppsJob) {
+      fetchApplicationsForJob(viewingAppsJob.id);
+    } else {
+      setApplications([]);
+    }
+  }, [viewingAppsJob]);
+
+  const handleDownloadCV = async (fileUrl: string) => {
+    try {
+      const { data, error } = await supabase.storage
+        .from('cv-uploads')
+        .createSignedUrl(fileUrl, 300); // 5 min expiry
+      
+      if (error) {
+        showToast('Error generating link: ' + error.message);
+      } else if (data?.signedUrl) {
+        window.open(data.signedUrl, '_blank');
+      }
+    } catch (err) {
+      console.error(err);
+      showToast('Unexpected error downloading CV.');
+    }
+  };
+
+  const handleUpdateAppStatus = async (appId: string, newStatus: string) => {
+    setUpdatingAppId(appId);
+    try {
+      const { error } = await supabase
+        .from('job_applications')
+        .update({ status: newStatus })
+        .eq('id', appId);
+      
+      if (error) {
+        showToast('Failed to update status: ' + error.message);
+      } else {
+        showToast('Application status updated.');
+        setApplications(prev => 
+          prev.map(app => app.id === appId ? { ...app, status: newStatus } : app)
+        );
+      }
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setUpdatingAppId(null);
     }
   };
 
@@ -514,6 +601,12 @@ export default function AdminCareersPage() {
                           <XCircle className="w-3.5 h-3.5" />Inactive (Hidden)
                         </span>
                       )}
+                      <button
+                        onClick={() => setViewingAppsJob(job)}
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-mono font-bold bg-blue-100 text-blue-800 border border-blue-200 hover:bg-blue-200 transition-colors cursor-pointer"
+                      >
+                        {applicationCounts[job.id] || 0} applications
+                      </button>
                     </div>
                     <div className="flex flex-wrap gap-4 text-xs text-slate-600 font-mono">
                       <span className="inline-flex items-center gap-1 text-slate-700">
@@ -530,16 +623,20 @@ export default function AdminCareersPage() {
                     <p className="text-xs text-slate-600 line-clamp-2 leading-relaxed">{job.job_summary}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-2 border-t lg:border-t-0 pt-4 lg:pt-0 border-slate-100 shrink-0">
+                    <button onClick={() => setViewingAppsJob(job)}
+                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-semibold bg-blue-50 text-blue-800 border border-blue-200 hover:bg-blue-100 transition-colors cursor-pointer">
+                      View Applications ({applicationCounts[job.id] || 0})
+                    </button>
                     <button onClick={() => handleToggleActive(job)}
-                      className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-semibold border transition-colors ${job.is_active ? 'bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100' : 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'}`}>
+                      className={`inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-semibold border transition-colors cursor-pointer ${job.is_active ? 'bg-amber-50 text-amber-800 border-amber-200 hover:bg-amber-100' : 'bg-emerald-50 text-emerald-800 border-emerald-200 hover:bg-emerald-100'}`}>
                       {job.is_active ? 'Deactivate (Hide)' : 'Reactivate (Show)'}
                     </button>
                     <button onClick={() => openEditModal(job)}
-                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 transition-colors">
+                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-semibold bg-slate-100 text-slate-700 border border-slate-200 hover:bg-slate-200 transition-colors cursor-pointer">
                       <Edit2 className="w-3.5 h-3.5 text-slate-600" />Edit
                     </button>
                     <button onClick={() => setDeleteConfirmJob(job)}
-                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-semibold bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition-colors">
+                      className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-mono font-semibold bg-red-50 text-red-700 border border-red-200 hover:bg-red-100 transition-colors cursor-pointer">
                       <Trash2 className="w-3.5 h-3.5" />Delete
                     </button>
                   </div>
@@ -768,6 +865,106 @@ export default function AdminCareersPage() {
                 PERMANENTLY DELETE
               </button>
             </div>
+          </div>
+        </div>
+      )}
+
+      {/* ─────────────────────────────────────────────────────────────
+          VIEW APPLICATIONS MODAL
+         ───────────────────────────────────────────────────────────── */}
+      {viewingAppsJob && (
+        <div className="fixed inset-0 z-50 flex items-start justify-center p-4 bg-slate-900/60 backdrop-blur-sm overflow-y-auto">
+          <div className="bg-white rounded-3xl max-w-4xl w-full border border-slate-200 shadow-2xl p-6 sm:p-8 my-8 relative">
+            {/* Modal Header */}
+            <div className="flex items-center justify-between mb-6 pb-4 border-b border-slate-100">
+              <div className="text-left">
+                <span className="text-[10px] font-mono font-bold uppercase tracking-widest text-[rgb(20,109,174)]">
+                  HR APPLICATIONS VIEWER
+                </span>
+                <h2 className="text-lg sm:text-xl font-bold text-slate-900 leading-snug">
+                  {viewingAppsJob.title}
+                </h2>
+                <p className="text-xs text-slate-500 font-mono">Department: {viewingAppsJob.department}</p>
+              </div>
+              <button 
+                onClick={() => setViewingAppsJob(null)} 
+                className="text-slate-400 hover:text-slate-600 text-lg font-bold p-1 cursor-pointer"
+              >
+                ✕
+              </button>
+            </div>
+
+            {loadingApps ? (
+              <div className="py-12 text-center">
+                <Loader2 className="w-8 h-8 animate-spin text-[rgb(20,109,174)] mx-auto mb-3" />
+                <p className="text-sm font-mono text-slate-500">Loading applications...</p>
+              </div>
+            ) : applications.length === 0 ? (
+              <div className="py-12 text-center text-slate-500">
+                <Briefcase className="w-10 h-10 mx-auto mb-3 text-slate-300" />
+                <p className="text-sm font-mono">No applications received yet for this position.</p>
+              </div>
+            ) : (
+              <div className="space-y-6 max-h-[60vh] overflow-y-auto pr-2">
+                {applications.map((app) => (
+                  <div key={app.id} className="p-5 rounded-2xl border border-slate-200 bg-slate-50/50 shadow-sm flex flex-col md:flex-row justify-between items-start gap-4">
+                    <div className="space-y-3 flex-1 text-left">
+                      <div className="flex flex-wrap items-center gap-3">
+                        <h4 className="text-base font-bold text-slate-900">{app.full_name}</h4>
+                        <span className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-mono font-semibold border ${
+                          app.status === 'new' ? 'bg-blue-50 text-blue-700 border-blue-200' :
+                          app.status === 'reviewed' ? 'bg-amber-50 text-amber-700 border-amber-200' :
+                          app.status === 'shortlisted' ? 'bg-emerald-50 text-emerald-700 border-emerald-200' :
+                          'bg-red-50 text-red-700 border-red-200'
+                        }`}>
+                          {app.status}
+                        </span>
+                      </div>
+                      
+                      <div className="grid sm:grid-cols-2 gap-2 text-xs font-mono text-slate-600">
+                        <div>📧 <a href={`mailto:${app.email}`} className="text-[rgb(20,109,174)] hover:underline">{app.email}</a></div>
+                        <div>📞 {app.phone}</div>
+                        <div className="sm:col-span-2">📍 {app.address}</div>
+                        <div>💰 Expected Salary: <span className="font-bold text-slate-800">{app.expected_salary}</span></div>
+                        <div>📅 Submitted: {new Date(app.submitted_at).toLocaleString()}</div>
+                      </div>
+
+                      {app.cover_letter && (
+                        <div className="text-xs text-slate-600 bg-white p-3.5 rounded-xl border border-slate-200/80 leading-relaxed whitespace-pre-line">
+                          <p className="font-bold font-mono text-[10px] text-[rgb(20,109,174)] mb-1">COVER LETTER</p>
+                          {app.cover_letter}
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex flex-col gap-2 shrink-0 w-full md:w-auto items-stretch md:items-end">
+                      <button
+                        onClick={() => handleDownloadCV(app.cv_file_url)}
+                        className="inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-xs font-bold text-white bg-[rgb(20,109,174)] font-mono hover:bg-[rgb(18,98,156)] transition-all shadow-sm cursor-pointer text-center"
+                      >
+                        📄 Download CV
+                      </button>
+
+                      {/* Status Tracker */}
+                      <div className="flex items-center gap-1.5 mt-2 justify-end">
+                        <span className="text-[10px] font-mono font-bold text-slate-400">STATUS:</span>
+                        <select
+                          disabled={updatingAppId === app.id}
+                          value={app.status}
+                          onChange={(e) => handleUpdateAppStatus(app.id, e.target.value)}
+                          className="bg-white border border-slate-300 rounded-lg px-2 py-1 text-xs text-slate-700 focus:outline-none focus:border-[rgb(20,109,174)]"
+                        >
+                          <option value="new">New</option>
+                          <option value="reviewed">Reviewed</option>
+                          <option value="shortlisted">Shortlisted</option>
+                          <option value="rejected">Rejected</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       )}
