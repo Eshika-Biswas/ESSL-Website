@@ -20,10 +20,22 @@ const vendors: Vendor[] = [
   { name: 'CrowdStrike', type: 'EDR & Cybersecurity', src: '/partners/crowdstrike.svg', scale: 'max-h-5' },
   { name: 'Dell Technologies', type: 'Server & Storage', src: '/partners/dell.png', scale: 'max-h-7' },
   { name: 'Microsoft', type: 'Cloud & Productivity', src: '/partners/microsoft.png', scale: 'max-h-6' },
-  { name: 'VMware', type: 'Virtualization & Cloud', src: '/partners/vmware-logo-grey.svg', scale: 'max-h-6' },
+  {
+    name: 'Veeam',
+    type: 'Data Backup & Recovery',
+    src: '/partners/veeam-logo.svg',
+    scale: 'max-h-6',
+    href: 'https://www.veeam.com/find-a-partner.html'
+  },
   { name: 'F5', type: 'Application Delivery', src: '/partners/f5.svg', scale: 'max-h-7' },
   { name: 'NetApp', type: 'Hybrid Cloud Storage', src: '/partners/netapp.avif', scale: 'max-h-6' },
-  { name: 'Veeam', type: 'Data Backup & Recovery', src: '/partners/veeam-logo.svg', scale: 'max-h-6', href: 'https://www.veeam.com/find-a-partner.html' },
+  {
+    name: 'VMware',
+    type: 'Virtualization & Cloud',
+    src: '/partners/vmware-logo-grey.svg',
+    scale: 'max-h-6',
+    href: 'https://www.broadcom.com/how-to-buy/partner-distributor-lookup?tagId=0&tagId=16&value=bangladesh&value=Reseller%20%28VMware%29&isfiltertag=False&isfiltertag=True'
+  },
   { name: 'AWS', type: 'Cloud Infrastructure', src: '/partners/aws.png', scale: 'max-h-6' },
 ];
 
@@ -95,9 +107,8 @@ export default function VendorStrip() {
                 </span>
               </>
             );
-            const sharedClass = `group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/85 hover:border-[#1B6BA8]/30 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center text-center h-32 ${
-              isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
-            }`;
+            const sharedClass = `group relative p-4 rounded-2xl border border-slate-200/90 bg-white hover:bg-slate-50/85 hover:border-[#1B6BA8]/30 hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center text-center h-32 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95'
+              }`;
             if (vendor.href) {
               return (
                 <a
