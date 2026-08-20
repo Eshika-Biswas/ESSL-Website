@@ -168,7 +168,7 @@ export default function ContactPage() {
       }
 
       setSubmitted(true);
-      
+
       // Clear fields
       setFullName('');
       setCompany('');
@@ -191,7 +191,7 @@ export default function ContactPage() {
 
   return (
     <div className="w-full min-h-screen bg-transparent text-slate-300">
-      
+
       {/* ─────────────────────────────────────────────────────────
           SECTION 1 — "Let's Talk" Hero (Light background, dark stats card)
          ───────────────────────────────────────────────────────── */}
@@ -201,7 +201,7 @@ export default function ContactPage() {
 
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            
+
             {/* Left side: Heading */}
             <div className="lg:col-span-7 text-left">
               <Reveal delay={0}>
@@ -223,7 +223,7 @@ export default function ContactPage() {
               <Reveal delay={150}>
                 <div className="relative overflow-hidden rounded-3xl p-8 shadow-xl bg-[#0A0F1D] text-left border border-white/5">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none" />
-                  
+
                   <div className="grid grid-cols-2 gap-8">
                     {/* Stat 1 */}
                     <div className="flex flex-col">
@@ -279,11 +279,11 @@ export default function ContactPage() {
       <section className="relative w-full py-24 bg-transparent">
         <div className="relative z-10 max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
-            
+
             {/* LEFT COLUMN — Redesigned Form */}
             <div className="lg:col-span-8 w-full text-left">
               <Reveal delay={200}>
-                
+
                 {submitted ? (
                   <div className="flex flex-col items-center justify-center py-16 text-center border border-white/5 rounded-3xl bg-[#0a0e17]/50 p-8 shadow-sm">
                     <div className="w-16 h-16 bg-success/10 border border-success/20 rounded-full flex items-center justify-center text-success mb-6">
@@ -305,7 +305,7 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <form onSubmit={handleSubmit} className="space-y-10">
-                    
+
                     <div>
                       <h2 className="text-xs font-bold tracking-widest text-slate-400 font-mono mb-8 uppercase">
                         YOUR DETAILS
@@ -360,7 +360,7 @@ export default function ContactPage() {
                               className="border-b border-[var(--accent-blue)]/30 focus:border-[var(--accent-blue)] focus:outline-none bg-transparent text-white py-2 w-full transition-colors text-sm"
                             />
                           </div>
-                          
+
                           <div className="flex flex-col">
                             <label className="text-[10px] font-bold tracking-widest uppercase font-mono text-slate-400 mb-1">
                               PHONE NUMBER*
@@ -408,7 +408,7 @@ export default function ContactPage() {
                               ))}
                             </select>
                           </div>
-                          
+
                           <div className="flex flex-col">
                             <label className="text-[10px] font-bold tracking-widest uppercase font-mono text-slate-400 mb-1">
                               CITY*
@@ -418,9 +418,8 @@ export default function ContactPage() {
                               disabled={!country}
                               value={city}
                               onChange={(e) => setCity(e.target.value)}
-                              className={`border-b border-[var(--accent-blue)]/30 focus:border-[var(--accent-blue)] focus:outline-none bg-transparent text-white py-2 w-full transition-colors text-sm cursor-pointer ${
-                                !country ? 'opacity-40 cursor-not-allowed' : ''
-                              }`}
+                              className={`border-b border-[var(--accent-blue)]/30 focus:border-[var(--accent-blue)] focus:outline-none bg-transparent text-white py-2 w-full transition-colors text-sm cursor-pointer ${!country ? 'opacity-40 cursor-not-allowed' : ''
+                                }`}
                             >
                               <option value="" disabled className="bg-[#0f1420]">
                                 {country ? 'Select City' : 'Choose Country First'}
@@ -464,11 +463,10 @@ export default function ContactPage() {
                               key={category}
                               type="button"
                               onClick={() => toggleInterest(category)}
-                              className={`px-4 py-3 rounded-lg border text-left text-xs font-bold transition-all duration-300 cursor-pointer ${
-                                isSelected
-                                  ? 'border-[var(--accent-blue)] bg-[var(--accent-blue)]/5 text-[var(--accent-blue)] shadow-[0_0_12px_rgba(20,109,174,0.1)]'
-                                  : 'border-white/5 bg-white/[0.02] text-slate-400 hover:border-white/10 hover:bg-white/[0.04]'
-                              }`}
+                              className={`px-4 py-3 rounded-lg border text-left text-xs font-bold transition-all duration-300 cursor-pointer ${isSelected
+                                ? 'border-[var(--accent-blue)] bg-[var(--accent-blue)]/5 text-[var(--accent-blue)] shadow-[0_0_12px_rgba(20,109,174,0.1)]'
+                                : 'border-white/5 bg-white/[0.02] text-slate-400 hover:border-white/10 hover:bg-white/[0.04]'
+                                }`}
                             >
                               {category}
                             </button>
@@ -516,11 +514,10 @@ export default function ContactPage() {
                       <button
                         type="submit"
                         disabled={isLoading}
-                        className={`w-full rounded-xl py-4 text-xs font-bold tracking-widest text-white font-mono shadow-md transition-all duration-300 ${
-                          isLoading
-                            ? 'bg-[var(--accent-blue)]/70 cursor-not-allowed'
-                            : 'bg-[var(--accent-blue)] hover:opacity-90 hover:scale-[1.01] hover:shadow-lg'
-                        }`}
+                        className={`w-full rounded-xl py-4 text-xs font-bold tracking-widest text-white font-mono shadow-md transition-all duration-300 ${isLoading
+                          ? 'bg-[var(--accent-blue)]/70 cursor-not-allowed'
+                          : 'bg-[var(--accent-blue)] hover:opacity-90 hover:scale-[1.01] hover:shadow-lg'
+                          }`}
                         style={{ letterSpacing: '0.08em' }}
                       >
                         {isLoading ? 'SENDING...' : 'Send Message'}
@@ -534,7 +531,7 @@ export default function ContactPage() {
 
             {/* RIGHT COLUMN — Sidebar */}
             <div className="lg:col-span-4 w-full text-left space-y-12 lg:pl-4">
-              
+
               {/* Process Section */}
               <Reveal delay={300}>
                 <div>
@@ -590,7 +587,7 @@ export default function ContactPage() {
                   <h3 className="text-xs font-bold tracking-widest text-[var(--accent-blue)] font-mono mb-6 uppercase">
                     DIRECT CONTACT
                   </h3>
-                  
+
                   <div className="glass-card rounded-2xl p-6 space-y-6">
                     {/* Email */}
                     <div className="flex items-start gap-3">
@@ -616,7 +613,7 @@ export default function ContactPage() {
                           Office Address
                         </span>
                         <p className="text-sm font-normal text-slate-300 leading-relaxed">
-                          JJR Heritage, L-4 147/D, 1 Green Rd, Dhaka 1215
+                          JJR Heritage, L-4 147/D-1 Green Rd, Dhaka 1215
                         </p>
                       </div>
                     </div>

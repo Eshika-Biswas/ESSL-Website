@@ -71,7 +71,7 @@ export default function Footer() {
             <div className="space-y-3.5 text-sm text-slate-300">
               <div className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-[rgb(20,109,174)] shrink-0 mt-0.5" />
-                <span className="leading-snug">JJR Heritage, L-4 & 5, 147/D/1, Green Road, Dhaka- 1215</span>
+                <span className="leading-snug">JJR Heritage, L-4 & 5, 147/D-1, Green Road, Dhaka- 1215</span>
               </div>
               <div className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-[rgb(20,109,174)] shrink-0" />
