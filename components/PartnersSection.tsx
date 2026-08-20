@@ -228,7 +228,7 @@ const dataCenterPartners: Partner[] = [
   {
     name: 'Veeam',
     type: 'Data Backup & Recovery',
-    logo: '/partners/veem.webp',
+    logo: '/partners/Veeam_logo.png',
     logoScale: 'max-h-7',
   },
   {

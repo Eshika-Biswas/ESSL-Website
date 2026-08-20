@@ -138,7 +138,7 @@ const partners = [
   { name: 'VMware', src: '/partners/vmware-logo-grey.svg' },
   { name: 'Cohesity', src: '/partners/cohesity-logo-black-green.svg' },
   { name: 'NetApp', src: '/partners/netapp.avif' },
-  { name: 'Veeam', src: '/partners/veeam-logo.svg' },
+  { name: 'Veeam', src: '/partners/Veeam_logo.png' },
   { name: 'Red Hat', src: '/partners/red-hat.png' },
 ];
 
