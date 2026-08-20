@@ -185,7 +185,7 @@ const dataCenterPartners: Partner[] = [
   {
     name: 'AWS',
     type: 'Cloud Infrastructure',
-    logo: '/partners/aws.png',
+    logo: '/partners/aws2.png',
     logoScale: 'max-h-8',
   },
   {
@@ -203,14 +203,15 @@ const dataCenterPartners: Partner[] = [
   {
     name: 'Dell',
     type: 'Server & Storage',
-    logo: '/partners/dell.png',
+    logo: '/partners/dell-logo-png-svg.webp',
     logoScale: 'max-h-8',
   },
   {
     name: 'VMware',
     type: 'Virtualization & Cloud',
-    logo: '/partners/vmware-logo-grey.svg',
+    logo: '/partners/Veeam_logo.png',
     logoScale: 'max-h-7',
+    href: 'https://www.broadcom.com/how-to-buy/partner-distributor-lookup?tagId=0&tagId=16&value=bangladesh&value=Reseller%20%28VMware%29&isfiltertag=False&isfiltertag=True'
   },
   {
     name: 'Cohesity',
@@ -233,7 +234,7 @@ const dataCenterPartners: Partner[] = [
   {
     name: 'Red Hat',
     type: 'Enterprise Open Source',
-    logo: '/partners/red-hat.png',
+    logo: '/partners/rhb-logos-red_hat_logo-hero_image_2.svg',
     logoScale: 'max-h-8',
   },
 ];
@@ -245,9 +246,8 @@ const dataCenterPartners: Partner[] = [
 function PartnerCard({ partner }: { partner: Partner }) {
   const card = (
     <div
-      className={`group relative p-4 rounded-2xl border border-white/30 bg-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center text-center h-32${
-        partner.href ? ' cursor-pointer hover:scale-[1.03] hover:border-[rgb(20,109,174)]/40' : ''
-      }`}
+      className={`group relative p-4 rounded-2xl border border-white/30 bg-white shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 flex flex-col items-center justify-center text-center h-32${partner.href ? ' cursor-pointer hover:scale-[1.03] hover:border-[rgb(20,109,174)]/40' : ''
+        }`}
     >
       <div className="h-14 flex items-center justify-center mb-2 w-full px-2">
         <Image

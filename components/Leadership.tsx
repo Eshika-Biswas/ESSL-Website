@@ -70,7 +70,7 @@ const operationalTeam: OperationalMember[] = [
   },
   {
     id: 5,
-    name: 'Sadequr Rahman',
+    name: 'Sadequr Rahman (Tuhin)',
     designation: 'Asst. Manager',
     department: 'Technology Sales',
     email: 'sadequr@ensure-bd.com',
@@ -167,7 +167,7 @@ const operationalTeam: OperationalMember[] = [
   {
     id: 17,
     name: 'Ali Akbar Molla',
-    designation: 'Sr.Manager',
+    designation: 'Asst. Manager',
     department: 'Business Development',
     email: 'akbar@ensure-bd.com',
     photo: '/team/ali-akbar-malla.jpeg',
