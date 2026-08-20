@@ -233,7 +233,7 @@ const dataCenterPartners: Partner[] = [
   {
     name: 'Red Hat',
     type: 'Enterprise Open Source',
-    logo: '/partners/red hat.png',
+    logo: '/partners/red-hat.png',
     logoScale: 'max-h-8',
   },
 ];

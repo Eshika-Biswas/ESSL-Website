@@ -91,7 +91,7 @@ interface RetailClient {
 }
 
 const retailClients: RetailClient[] = [
-  { name: 'Aarong', type: 'Lifestyle & Retail Chain', logo: '/logos/aarong 111.png', initials: 'ARG', scale: 'max-h-12 scale-110' },
+  { name: 'Aarong', type: 'Lifestyle & Retail Chain', logo: '/logos/aarong-111.png', initials: 'ARG', scale: 'max-h-12 scale-110' },
   { name: 'Alfamart', type: 'Convenience Retail Chain', logo: '/logos/alfamart.png', initials: 'ALF', scale: 'max-h-11 scale-110' },
   { name: 'Shwapno', type: 'Superstore Retail Chain', logo: '/logos/shwapno_logo.png', initials: 'SHW', scale: 'max-h-10 scale-105' },
   { name: 'Agora', type: 'Superstore Retail Chain', logo: '/logos/agora.png', initials: 'AGO', scale: 'max-h-10 scale-105' },

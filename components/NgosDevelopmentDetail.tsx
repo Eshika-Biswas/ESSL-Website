@@ -84,7 +84,7 @@ interface NgoClient {
 
 const ngoClients: NgoClient[] = [
   { name: 'ASA', type: 'Microfinance & Development', logo: '/logos/asa-logo-vertical.png', initials: 'ASA', scale: 'max-h-12 scale-110' },
-  { name: 'BRAC', type: 'Global Development NGO', logo: '/logos/brac ngo.png', initials: 'BRC', scale: 'max-h-10 scale-105' },
+  { name: 'BRAC', type: 'Global Development NGO', logo: '/logos/brac-ngo.png', initials: 'BRC', scale: 'max-h-10 scale-105' },
   { name: 'Shakti Foundation', type: 'Women Empowerment NGO', logo: '/logos/shakti.png', initials: 'SFB', scale: 'max-h-9 scale-105' },
   { name: 'BEES', type: 'Community Development', logo: '/logos/BEES-Logo-Home-Page-2.jpg', initials: 'BEE', scale: 'max-h-12 scale-110' },
 ];

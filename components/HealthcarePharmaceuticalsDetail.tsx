@@ -88,17 +88,17 @@ const healthcareClients: HealthcareClient[] = [
   { name: 'ACI Limited', type: 'Pharmaceuticals & Healthcare', logo: '/logos/aci-plc.png', initials: 'ACI', scale: 'max-h-10 scale-105' },
   { name: 'Aristo Pharma', type: 'Pharmaceuticals', logo: '/logos/aristo-pharma.png', initials: 'APL', scale: 'max-h-10 scale-105' },
   { name: 'Beximco Pharma', type: 'Pharmaceuticals & Exporter', logo: '/logos/beximcopharma.png', initials: 'BPL', scale: 'max-h-10 scale-110' },
-  { name: 'Renata PLC', type: 'Pharmaceuticals', logo: '/logos/renata plc.png', initials: 'RPL', scale: 'max-h-9 scale-105' },
+  { name: 'Renata PLC', type: 'Pharmaceuticals', logo: '/logos/renata-plc.png', initials: 'RPL', scale: 'max-h-9 scale-105' },
   { name: 'Opsonin Pharma', type: 'Pharmaceuticals', logo: '/logos/opsonin-pharma.png', initials: 'OPL', scale: 'max-h-10 scale-105' },
   { name: 'Healthcare Pharma', type: 'Pharmaceuticals & Clinical', logo: '/logos/Healthcare.png', initials: 'HPL', scale: 'max-h-12 scale-115' },
-  { name: 'Sun Pharmaceutical', type: 'Multinational Pharma', logo: '/logos/sun pharmaceutical.png', initials: 'SUN', scale: 'max-h-12 scale-115' },
+  { name: 'Sun Pharmaceutical', type: 'Multinational Pharma', logo: '/logos/sun-pharmaceutical.png', initials: 'SUN', scale: 'max-h-12 scale-115' },
   { name: 'Incepta Pharma', type: 'Pharmaceuticals & Vaccines', logo: '/logos/inceptapharma.png', initials: 'IPL', scale: 'max-h-10 scale-110' },
   { name: 'Eskayef (SK+F)', type: 'Pharmaceuticals', logo: '/logos/skf.png', initials: 'SKF', scale: 'max-h-9 scale-105' },
   { name: 'Synovia Pharma', type: 'Pharmaceuticals', logo: '/logos/synovia-logo.png', initials: 'SPL', scale: 'max-h-9 scale-105' },
-  { name: 'Ibn Sina Pharma', type: 'Pharmaceuticals & Hospitals', logo: '/logos/ibn sina.png', initials: 'ISP', scale: 'max-h-10 scale-105' },
-  { name: 'Evercare Hospital', type: 'Tertiary Care Hospital', logo: '/logos/Evercare-Hospita-Logo (1).webp', initials: 'EHD', scale: 'max-h-12 scale-115' },
+  { name: 'Ibn Sina Pharma', type: 'Pharmaceuticals & Hospitals', logo: '/logos/ibn-sina.png', initials: 'ISP', scale: 'max-h-10 scale-105' },
+  { name: 'Evercare Hospital', type: 'Tertiary Care Hospital', logo: '/logos/evercare-hospita-logo-1.webp', initials: 'EHD', scale: 'max-h-12 scale-115' },
   { name: 'Continental Hospital', type: 'Super Speciality Hospital', logo: '/logos/continental.health.webp', initials: 'CHL', scale: 'max-h-10 scale-105' },
-  { name: 'Asgar Ali Hospital', type: 'Tertiary Care Hospital', logo: '/logos/asgaralihospital 1.png', initials: 'AAH', scale: 'max-h-10 scale-105' },
+  { name: 'Asgar Ali Hospital', type: 'Tertiary Care Hospital', logo: '/logos/asgaralihospital-1.png', initials: 'AAH', scale: 'max-h-10 scale-105' },
 ];
 
 export default function HealthcarePharmaceuticalsDetail() {

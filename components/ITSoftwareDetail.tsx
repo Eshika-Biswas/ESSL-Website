@@ -83,7 +83,7 @@ interface ClientLogo {
 }
 
 const itSoftwareClients: ClientLogo[] = [
-  { name: 'Brain Station 23', type: 'Software Exporter', logo: '/logos/brain station.webp', initials: 'BS23', scale: 'max-h-10 scale-105' },
+  { name: 'Brain Station 23', type: 'Software Exporter', logo: '/logos/brain-station.webp', initials: 'BS23', scale: 'max-h-10 scale-105' },
   { name: 'TechnoNext', type: 'Software & Cloud Solutions', logo: '/logos/technonext.webp', initials: 'TN', scale: 'max-h-10 scale-105' },
   { name: 'IT Consultants Ltd', type: 'Fintech & Payment Systems', logo: '/logos/itcl-logo-new.png', initials: 'ITCL', scale: 'max-h-12 scale-125' },
   { name: 'SouthTech Group', type: 'Enterprise Software', logo: '/logos/southtech-logo.svg', initials: 'ST', scale: 'max-h-9 scale-110' },

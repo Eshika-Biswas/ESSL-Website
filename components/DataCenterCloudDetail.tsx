@@ -139,7 +139,7 @@ const partners = [
   { name: 'Cohesity', src: '/partners/cohesity-logo-black-green.svg' },
   { name: 'NetApp', src: '/partners/netapp.avif' },
   { name: 'Veeam', src: '/partners/veem.webp' },
-  { name: 'Red Hat', src: '/partners/red hat.png' },
+  { name: 'Red Hat', src: '/partners/red-hat.png' },
 ];
 
 // ─── Component ────────────────────────────────────────────────────────────────

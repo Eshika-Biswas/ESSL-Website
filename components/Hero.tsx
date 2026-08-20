@@ -144,7 +144,7 @@ const BASE_CLIENTS: ClientLogo[] = [
     needsBacking: true,
   },
   {
-    kind: 'image', name: 'IPDC Finance', src: '/logos/IPDC Finance.png',
+    kind: 'image', name: 'IPDC Finance', src: '/logos/ipdc-finance.png',
     width: 110, height: 40,
     needsBacking: true,
   },
@@ -174,11 +174,11 @@ const BASE_CLIENTS: ClientLogo[] = [
     needsBacking: true,
   },
   {
-    kind: 'image', name: 'UIU', src: '/logos/uiu 2.png',
+    kind: 'image', name: 'UIU', src: '/logos/uiu-2.png',
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Brac', src: '/logos/brac 1.svg',
+    kind: 'image', name: 'Brac', src: '/logos/brac-1.svg',
     width: 110, height: 40,
     needsBacking: true,
   },
@@ -187,12 +187,12 @@ const BASE_CLIENTS: ClientLogo[] = [
     width: 110, height: 40,
   },
   {
-    kind: 'image', name: 'Aarong', src: '/logos/aarong 111.png',
+    kind: 'image', name: 'Aarong', src: '/logos/aarong-111.png',
     width: 110, height: 40,
     needsBacking: true,
   },
   {
-    kind: 'image', name: 'Buro Bangladesh', src: '/logos/Buro Bangladesh.png',
+    kind: 'image', name: 'Buro Bangladesh', src: '/logos/buro-bangladesh.png',
     width: 110, height: 40,
   },
   {

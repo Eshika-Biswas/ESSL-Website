@@ -211,8 +211,9 @@ export default function LicensingSoftwareServicesDetail() {
             <div className={`lg:col-span-5 transition-all duration-700 delay-200 ${heroVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
               <div className="relative rounded-3xl overflow-hidden border border-white/10 bg-white/5 p-4 shadow-2xl backdrop-blur-xl">
                 <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+                  {/* TODO: replace with a dedicated Licensing & Software Services image — currently reusing AI Automation's image by mistake */}
                   <Image
-                    src="/Solutions/AI & Intelligent Automation.png"
+                    src="/Solutions/ai-and-intelligent-automation.png"
                     alt="Licensing & Software Services"
                     fill
                     className="object-cover"

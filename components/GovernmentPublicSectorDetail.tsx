@@ -84,7 +84,7 @@ interface GovernmentClient {
 }
 
 const governmentClients: GovernmentClient[] = [
-  { name: 'Bangladesh Biman', type: 'National Flag Carrier', logo: '/logos/Bangladesh Biman.PNG', initials: 'BBA', scale: 'max-h-9 scale-105' },
+  { name: 'Bangladesh Biman', type: 'National Flag Carrier', logo: '/logos/bangladesh-biman.png', initials: 'BBA', scale: 'max-h-9 scale-105' },
   { name: 'EGCB', type: 'Power & Energy Sector', logo: '/logos/egcb.png', initials: 'EGC', scale: 'max-h-12 scale-115' },
   { name: 'IDCOL', type: 'Development Finance', logo: '/logos/idcol.png', initials: 'IDC', scale: 'max-h-10 scale-105' },
   { name: 'Bangladesh Parliament', type: 'Legislative Secretariat', logo: '/logos/parliament.webp', initials: 'BJP', scale: 'max-h-12 scale-115' },

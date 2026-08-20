@@ -88,24 +88,24 @@ interface FinancialClient {
 }
 
 const financialClients: FinancialClient[] = [
-  { name: 'Standard Chartered', type: 'Multinational Bank', logo: '/logos/Standard Chartered.png', initials: 'SCB', scale: 'max-h-11 scale-105' },
-  { name: 'BRAC Bank', type: 'Private Commercial Bank', logo: '/logos/BRAC Bank.svg', initials: 'BBL', scale: 'max-h-9 scale-100' },
+  { name: 'Standard Chartered', type: 'Multinational Bank', logo: '/logos/standard-chartered.png', initials: 'SCB', scale: 'max-h-11 scale-105' },
+  { name: 'BRAC Bank', type: 'Private Commercial Bank', logo: '/logos/brac-bank.svg', initials: 'BBL', scale: 'max-h-9 scale-100' },
   { name: 'Eastern Bank (EBL)', type: 'Private Commercial Bank', logo: '/logos/eastern-bank-plc.webp', initials: 'EBL', scale: 'max-h-9 scale-105' },
-  { name: 'Dhaka Bank', type: 'Private Commercial Bank', logo: '/logos/Dhaka Bank.png', initials: 'DBL', scale: 'max-h-9 scale-105' },
-  { name: 'LankaBangla Finance', type: 'Financial Institution', logo: '/logos/LankaBangla Finance.png', initials: 'LBF', scale: 'max-h-10 scale-105' },
-  { name: 'Meghna Bank', type: 'Private Commercial Bank', logo: '/logos/Meghna Bank.png', initials: 'MBL', scale: 'max-h-9 scale-105' },
-  { name: 'NRBC Bank', type: 'Private Commercial Bank', logo: '/logos/NRBC Bank.png', initials: 'NRBC', scale: 'max-h-9 scale-105' },
-  { name: 'Southeast Bank', type: 'Private Commercial Bank', logo: '/logos/Southeast Bank.jpg', initials: 'SEB', scale: 'max-h-10 scale-105' },
-  { name: 'Commercial Bank', type: 'Multinational Bank', logo: '/logos/Commercial Bank.png', initials: 'CBC', scale: 'max-h-10 scale-105' },
-  { name: 'NCC Bank', type: 'Private Commercial Bank', logo: '/logos/NCC Bank.png', initials: 'NCC', scale: 'max-h-10 scale-105' },
-  { name: 'HBL (Habib Bank)', type: 'Multinational Bank', logo: '/logos/HBL (Habib Bank).png', initials: 'HBL', scale: 'max-h-11 scale-110' },
+  { name: 'Dhaka Bank', type: 'Private Commercial Bank', logo: '/logos/dhaka-bank.png', initials: 'DBL', scale: 'max-h-9 scale-105' },
+  { name: 'LankaBangla Finance', type: 'Financial Institution', logo: '/logos/lankabangla-finance.png', initials: 'LBF', scale: 'max-h-10 scale-105' },
+  { name: 'Meghna Bank', type: 'Private Commercial Bank', logo: '/logos/meghna-bank.png', initials: 'MBL', scale: 'max-h-9 scale-105' },
+  { name: 'NRBC Bank', type: 'Private Commercial Bank', logo: '/logos/nrbc-bank.png', initials: 'NRBC', scale: 'max-h-9 scale-105' },
+  { name: 'Southeast Bank', type: 'Private Commercial Bank', logo: '/logos/southeast-bank.jpg', initials: 'SEB', scale: 'max-h-10 scale-105' },
+  { name: 'Commercial Bank', type: 'Multinational Bank', logo: '/logos/commercial-bank.png', initials: 'CBC', scale: 'max-h-10 scale-105' },
+  { name: 'NCC Bank', type: 'Private Commercial Bank', logo: '/logos/ncc-bank.png', initials: 'NCC', scale: 'max-h-10 scale-105' },
+  { name: 'HBL (Habib Bank)', type: 'Multinational Bank', logo: '/logos/hbl-habib-bank.png', initials: 'HBL', scale: 'max-h-11 scale-110' },
   { name: 'DBH Finance', type: 'Housing Finance Specialist', logo: '/logos/dbh_logo.png', initials: 'DBH', scale: 'max-h-11 scale-110' },
   { name: 'IDLC Finance', type: 'Financial Institution', logo: '/logos/idlc-finance.png', initials: 'IDLC', scale: 'max-h-12 scale-115' },
   { name: 'IDCOL', type: 'Development Financial Inst.', logo: '/logos/idcol.png', initials: 'IDC', scale: 'max-h-10 scale-105' },
-  { name: 'IPDC Finance', type: 'Financial Institution', logo: '/logos/IPDC Finance.png', initials: 'IPDC', scale: 'max-h-12 scale-120' },
-  { name: 'Green Delta Insurance', type: 'Non-Life Insurance', logo: '/logos/Green Delta Insurance.png', initials: 'GDI', scale: 'max-h-10 scale-105' },
+  { name: 'IPDC Finance', type: 'Financial Institution', logo: '/logos/ipdc-finance.png', initials: 'IPDC', scale: 'max-h-12 scale-120' },
+  { name: 'Green Delta Insurance', type: 'Non-Life Insurance', logo: '/logos/green-delta-insurance.png', initials: 'GDI', scale: 'max-h-10 scale-105' },
   { name: 'Pragati Life Insurance', type: 'Life Insurance', logo: '/logos/PragatiLifeInsurancePlc.png', initials: 'PLI', scale: 'max-h-9 scale-105' },
-  { name: 'Delta Life Insurance', type: 'Life Insurance', logo: '/logos/Delta Life Insurance.png', initials: 'DLI', scale: 'max-h-9 scale-105' },
+  { name: 'Delta Life Insurance', type: 'Life Insurance', logo: '/logos/delta-life-insurance.png', initials: 'DLI', scale: 'max-h-9 scale-105' },
 ];
 
 export default function BankingFinancialServicesDetail() {

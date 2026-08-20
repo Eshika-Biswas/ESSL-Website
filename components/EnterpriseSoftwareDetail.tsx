@@ -322,7 +322,7 @@ export default function EnterpriseSoftwareDetail() {
                 <div className="col-span-8 relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 group transform -rotate-1 hover:rotate-0 transition-transform duration-500">
                   <div className="relative aspect-[4/3] w-full bg-slate-900">
                     <Image
-                      src="/Solutions/Enterprise Software.png"
+                      src="/Solutions/enterprise-software.png"
                       alt="Enterprise Software Development & Architecture"
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -337,7 +337,7 @@ export default function EnterpriseSoftwareDetail() {
                 <div className="col-span-7 -ml-16 sm:-ml-20 col-start-6 relative z-10 rounded-2xl overflow-hidden border border-white/15 shadow-2xl shadow-black/70 group transform translate-y-8 rotate-2 hover:rotate-0 transition-transform duration-500">
                   <div className="relative aspect-[4/3] w-full bg-slate-900">
                     <Image
-                      src="/Solutions/Enterprise Software 2.png"
+                      src="/Solutions/enterprise-software-2.png"
                       alt="Enterprise Software Dashboard & Analytics"
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"

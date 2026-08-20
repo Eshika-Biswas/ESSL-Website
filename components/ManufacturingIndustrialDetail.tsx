@@ -86,13 +86,13 @@ interface ManufacturingClient {
 }
 
 const manufacturingClients: ManufacturingClient[] = [
-  { name: 'City Group', type: 'Conglomerate & FMCG', logo: '/logos/city group 1.png', initials: 'CGL', scale: 'max-h-9 scale-105' },
-  { name: 'United Group', type: 'Industrial Conglomerate', logo: '/logos/united group.png', initials: 'UGL', scale: 'max-h-10 scale-105' },
-  { name: 'Epic Group', type: 'Garments & Apparels', logo: '/logos/EPIC GROUP 1.png', initials: 'EGL', scale: 'max-h-9 scale-105' },
+  { name: 'City Group', type: 'Conglomerate & FMCG', logo: '/logos/city-group-1.png', initials: 'CGL', scale: 'max-h-9 scale-105' },
+  { name: 'United Group', type: 'Industrial Conglomerate', logo: '/logos/united-group.png', initials: 'UGL', scale: 'max-h-10 scale-105' },
+  { name: 'Epic Group', type: 'Garments & Apparels', logo: '/logos/epic-group-1.png', initials: 'EGL', scale: 'max-h-9 scale-105' },
   { name: 'BEOL', type: 'Edible Oil / FMCG', logo: '/logos/Beol.png', initials: 'BEOL', scale: 'max-h-10 scale-110' },
   { name: 'TK Group', type: 'Industrial Conglomerate', logo: '/logos/TK-Group.png', initials: 'TKG', scale: 'max-h-11 scale-110' },
   { name: 'Standard Group', type: 'Apparel & Textile', logo: '/logos/standarad.png', initials: 'STG', scale: 'max-h-9 scale-105' },
-  { name: 'DuncanBD', type: 'Industrial & Tea', logo: '/logos/duncan brothers.jpg', initials: 'DBL', scale: 'max-h-8 scale-100' },
+  { name: 'DuncanBD', type: 'Industrial & Tea', logo: '/logos/duncan-brothers.jpg', initials: 'DBL', scale: 'max-h-8 scale-100' },
   { name: 'Urmi Group', type: 'Textile & Garments', logo: '/logos/urmi-logo-1-1-2.png', initials: 'URM', scale: 'max-h-10 scale-105' },
   { name: 'Coca-Cola', type: 'Beverage & FMCG', logo: '/logos/Coke-company-logo-black.svg', initials: 'KO', scale: 'max-h-8 scale-105' },
   { name: 'Expo Group', type: 'Freight & Logistics', logo: '/logos/expo.svg', initials: 'EXP', scale: 'max-h-10 scale-105' },
@@ -105,7 +105,7 @@ const manufacturingClients: ManufacturingClient[] = [
   { name: 'Singer (Beko)', type: 'Consumer Electronics', logo: '/logos/singer.png', initials: 'SNG', scale: 'max-h-9 scale-105' },
   { name: 'Windy Group', type: 'Apparel & Export Manufacturing', logo: '/logos/windy.png', initials: 'WND', scale: 'max-h-10 scale-105' },
   { name: 'Berger Paints', type: 'Paints & Coatings', logo: '/logos/berger-paints.png', initials: 'BPB', scale: 'max-h-10 scale-105' },
-  { name: 'Anwar Group', type: 'Industrial Conglomerate', logo: '/logos/anwar-group 12.jpg', initials: 'AGL', scale: 'max-h-10 scale-105' },
+  { name: 'Anwar Group', type: 'Industrial Conglomerate', logo: '/logos/anwar-group-12.jpg', initials: 'AGL', scale: 'max-h-10 scale-105' },
   { name: 'Navana Group', type: 'Industrial & Automotive', logo: '/logos/navana.png', initials: 'NVN', scale: 'max-h-10 scale-105' },
   { name: 'Partex Star Group', type: 'Consumer & Manufacturing', logo: '/logos/partex-logo.png', initials: 'PSG', scale: 'max-h-9 scale-105' },
   { name: 'Akij Group', type: 'Industrial Conglomerate', logo: '/logos/Akij-Insaf-logo.472a84eedbb63231b165.png', initials: 'AKJ', scale: 'max-h-11 scale-110' },
@@ -113,7 +113,7 @@ const manufacturingClients: ManufacturingClient[] = [
   { name: 'Rahimafrooz', type: 'Energy & Storage Solutions', logo: '/logos/rahimafrooz.png', initials: 'RAF', scale: 'max-h-9 scale-105' },
   { name: 'Savoy Ice Cream', type: 'FMCG & Food Processing', logo: '/logos/savoy.png', initials: 'SVY', scale: 'max-h-10 scale-105' },
   { name: 'PDS Multinational', type: 'Global Sourcing & Apparel', logo: '/logos/pds-logo-1.svg', initials: 'PDS', scale: 'max-h-10 scale-105' },
-  { name: 'Thermax Group', type: 'Textiles & Industrial Infra', logo: '/logos/theremax 1.png', initials: 'TMX', scale: 'max-h-10 scale-105' },
+  { name: 'Thermax Group', type: 'Textiles & Industrial Infra', logo: '/logos/theremax-1.png', initials: 'TMX', scale: 'max-h-10 scale-105' },
 ];
 
 export default function ManufacturingIndustrialDetail() {

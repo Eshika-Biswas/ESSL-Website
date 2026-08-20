@@ -320,7 +320,7 @@ export default function DigitalTransformationDetail() {
                 <div className="col-span-8 relative rounded-2xl overflow-hidden border border-white/10 shadow-2xl shadow-black/50 group transform -rotate-1 hover:rotate-0 transition-transform duration-500">
                   <div className="relative aspect-[4/3] w-full bg-slate-900">
                     <Image
-                      src="/Solutions/Digital Transformation.png"
+                      src="/Solutions/digital-transformation.png"
                       alt="Digital Transformation Consulting & Strategy"
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
@@ -335,7 +335,7 @@ export default function DigitalTransformationDetail() {
                 <div className="col-span-7 -ml-16 sm:-ml-20 col-start-6 relative z-10 rounded-2xl overflow-hidden border border-white/15 shadow-2xl shadow-black/70 group transform translate-y-8 rotate-2 hover:rotate-0 transition-transform duration-500">
                   <div className="relative aspect-[4/3] w-full bg-slate-900">
                     <Image
-                      src="/Solutions/Digital Transformation2.png"
+                      src="/Solutions/digital-transformation2.png"
                       alt="Digital Transformation Process Automation Dashboard"
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"

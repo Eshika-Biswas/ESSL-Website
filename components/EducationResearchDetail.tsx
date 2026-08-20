@@ -86,7 +86,7 @@ interface EducationClient {
 
 const educationClients: EducationClient[] = [
   { name: 'IUB', type: 'Private University', logo: '/logos/iub.webp', initials: 'IUB', scale: 'max-h-12 scale-110' },
-  { name: 'UIU', type: 'Private University', logo: '/logos/uiu 2.png', initials: 'UIU', scale: 'max-h-11 scale-105' },
+  { name: 'UIU', type: 'Private University', logo: '/logos/uiu-2.png', initials: 'UIU', scale: 'max-h-11 scale-105' },
   { name: 'BRAC University', type: 'Private University', logo: '/logos/brac-university.svg', initials: 'BRAC', scale: 'max-h-12 scale-115' },
   { name: 'BUFT', type: 'Specialized University', logo: '/logos/buft_new_logo.png', initials: 'BUFT', scale: 'max-h-10 scale-105' },
   { name: 'EWU', type: 'Private University', logo: '/logos/Ewubd.png', initials: 'EWU', scale: 'max-h-10 scale-105' },
