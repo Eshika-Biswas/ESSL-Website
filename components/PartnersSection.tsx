@@ -203,7 +203,7 @@ const dataCenterPartners: Partner[] = [
   {
     name: 'Dell',
     type: 'Server & Storage',
-    logo: '/partners/dell-logo-png-svg.webp',
+    logo: '/partners/dell.png',
     logoScale: 'max-h-8',
   },
   {
