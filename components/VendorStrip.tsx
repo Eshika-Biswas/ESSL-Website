@@ -23,7 +23,7 @@ const vendors: Vendor[] = [
   { name: 'VMware', type: 'Virtualization & Cloud', src: '/partners/vmware-logo-grey.svg', scale: 'max-h-6' },
   { name: 'F5', type: 'Application Delivery', src: '/partners/f5.svg', scale: 'max-h-7' },
   { name: 'NetApp', type: 'Hybrid Cloud Storage', src: '/partners/netapp.avif', scale: 'max-h-6' },
-  { name: 'Veeam', type: 'Data Backup & Recovery', src: '/partners/veem.webp', scale: 'max-h-6' },
+  { name: 'Veeam', type: 'Data Backup & Recovery', src: '/partners/veeam-logo.svg', scale: 'max-h-6', href: 'https://www.veeam.com/find-a-partner.html' },
   { name: 'AWS', type: 'Cloud Infrastructure', src: '/partners/aws.png', scale: 'max-h-6' },
 ];
 

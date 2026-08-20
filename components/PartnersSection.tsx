@@ -209,7 +209,7 @@ const dataCenterPartners: Partner[] = [
   {
     name: 'VMware',
     type: 'Virtualization & Cloud',
-    logo: '/partners/Veeam_logo.png',
+    logo: '/partners/vmware-logo-grey.svg',
     logoScale: 'max-h-7',
     href: 'https://www.broadcom.com/how-to-buy/partner-distributor-lookup?tagId=0&tagId=16&value=bangladesh&value=Reseller%20%28VMware%29&isfiltertag=False&isfiltertag=True'
   },
