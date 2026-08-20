@@ -211,7 +211,6 @@ export default function Hero() {
   const [interactionTrigger, setInteractionTrigger] = useState(0);
 
   const carouselContainerRef = useRef<HTMLDivElement>(null);
-  const lastScrollTime = useRef(0);
 
   const resetAutoRotate = () => {
     setInteractionTrigger((prev) => prev + 1);
@@ -234,52 +233,7 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [isHovered, interactionTrigger]);
 
-  // Scroll to navigate slides natively (with passive: false for e.preventDefault())
-  useEffect(() => {
-    const container = carouselContainerRef.current;
-    if (!container) return;
 
-    const handleNativeWheel = (e: WheelEvent) => {
-      // Only capture scroll interaction if hover is active
-      if (!isHovered) return;
-
-      const now = Date.now();
-      const isScrollDown = e.deltaY > 0;
-
-      // Throttle scrolling to avoid fast skipping
-      if (now - lastScrollTime.current < 900) {
-        if (isScrollDown && currentSlide < slides.length - 1) {
-          e.preventDefault();
-        } else if (!isScrollDown && currentSlide > 0) {
-          e.preventDefault();
-        }
-        return;
-      }
-
-      if (isScrollDown) {
-        if (currentSlide < slides.length - 1) {
-          // Block page scroll and advance slide
-          e.preventDefault();
-          setCurrentSlide((prev) => prev + 1);
-          lastScrollTime.current = now;
-          resetAutoRotate();
-        }
-      } else {
-        if (currentSlide > 0) {
-          // Block page scroll and go to previous slide
-          e.preventDefault();
-          setCurrentSlide((prev) => prev - 1);
-          lastScrollTime.current = now;
-          resetAutoRotate();
-        }
-      }
-    };
-
-    container.addEventListener('wheel', handleNativeWheel, { passive: false });
-    return () => {
-      container.removeEventListener('wheel', handleNativeWheel);
-    };
-  }, [currentSlide, isHovered]);
 
   const activeSlide = slides[currentSlide];
   const isCurrentSlideLight = activeSlide?.textColor === 'dark';
